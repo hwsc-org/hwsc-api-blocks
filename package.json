@@ -1,0 +1,22 @@
+{
+  "name": "hwsc-api-blocks",
+  "version": "1.0.0",
+  "description": "The contract for hwsc-gateway-svc to consume other services.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faraonc/hwsc-api-blocks.git"
+  },
+  "author": "Conard Faraon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faraonc/hwsc-api-blocks/issues"
+  },
+  "homepage": "https://github.com/faraonc/hwsc-api-blocks#readme",
+  "dependencies": {
+    "npm": "^6.4.1"
+  }
+}
