@@ -22,12 +22,14 @@
    * ##### ``file-svc.js has a function download({params...})``
 7. Import the function using module.exports
    ``` js
-   function printMsg(){
-   	console.log("This is a message from the demo package");
+   function download(req, res){
+    //call hwsc-file-svc
+   	err, result = callFileSvcDownload(req)
+    //handle appropriately
    }
 
    module.exports = {
-   	printMsg : printMsg
+   	download : download
    }; 
    ```
 
