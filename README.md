@@ -5,7 +5,7 @@
 1. Draft the contract in the service's repository README.md
 2. Declare the operation
    * ##### ``Downloading File``
-3. Declare the HTTP verb
+3. Declare the HTTP verb ([HTTP verb guideline](https://www.restapitutorial.com/lessons/httpmethods.html))
    * ##### ``GET``
 4. Declare an endpoint ([naming guideline](https://restfulapi.net/resource-naming/))
    * ##### ``/api/file-management/file?loc={}``
