@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/faraonc/hwsc-api-blocks#readme",
   "dependencies": {
+    "@grpc/proto-loader": "^0.3.0",
+    "grpc": "^1.15.1",
     "npm": "^6.4.1"
   }
 }

@@ -4,4 +4,18 @@ package sample;
 
 option go_package="grpcSamplePb";
 
-service SampleService{}
+// The SampleService service definition.
+service SampleService {
+    // Sends a greeting
+    rpc SayHello (SampleServiceRequest) returns (SampleServiceResponse) {}
+}
+
+// The SampleService request message containing the user's name.
+message SampleServiceRequest {
+    string name = 1;
+}
+
+// The SampleService response message containing the greetings
+message SampleServiceResponse {
+    string message = 1;
+}
