@@ -6,6 +6,8 @@ package grpcSamplePb
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	context "golang.org/x/net/context"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -119,4 +121,78 @@ var fileDescriptor_c4c938bb013b3053 = []byte{
 	0x27, 0x27, 0x5f, 0x48, 0x46, 0x0f, 0xea, 0x24, 0x6c, 0x2e, 0x90, 0x92, 0xc5, 0x21, 0x0b, 0xb1,
 	0x53, 0x89, 0xc1, 0x89, 0x2f, 0x8a, 0x07, 0xe4, 0x2f, 0x88, 0x74, 0x40, 0x52, 0x12, 0x1b, 0xd8,
 	0x67, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0xe0, 0xb6, 0x12, 0x8c, 0xee, 0x00, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// SampleServiceClient is the client API for SampleService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type SampleServiceClient interface {
+	// Sends a greeting
+	SayHello(ctx context.Context, in *SampleServiceRequest, opts ...grpc.CallOption) (*SampleServiceResponse, error)
+}
+
+type sampleServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewSampleServiceClient(cc *grpc.ClientConn) SampleServiceClient {
+	return &sampleServiceClient{cc}
+}
+
+func (c *sampleServiceClient) SayHello(ctx context.Context, in *SampleServiceRequest, opts ...grpc.CallOption) (*SampleServiceResponse, error) {
+	out := new(SampleServiceResponse)
+	err := c.cc.Invoke(ctx, "/sample.SampleService/SayHello", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SampleServiceServer is the server API for SampleService service.
+type SampleServiceServer interface {
+	// Sends a greeting
+	SayHello(context.Context, *SampleServiceRequest) (*SampleServiceResponse, error)
+}
+
+func RegisterSampleServiceServer(s *grpc.Server, srv SampleServiceServer) {
+	s.RegisterService(&_SampleService_serviceDesc, srv)
+}
+
+func _SampleService_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SampleServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SampleServiceServer).SayHello(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sample.SampleService/SayHello",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SampleServiceServer).SayHello(ctx, req.(*SampleServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _SampleService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "sample.SampleService",
+	HandlerType: (*SampleServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SayHello",
+			Handler:    _SampleService_SayHello_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "grpc-sample.proto",
 }
