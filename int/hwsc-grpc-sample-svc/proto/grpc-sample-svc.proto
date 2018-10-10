@@ -2,7 +2,7 @@ syntax="proto3";
 
 package sample;
 
-option go_package="grpcSamplePb";
+option go_package="grpcSampleSvcPb";
 
 // The SampleService service definition.
 service SampleService {
