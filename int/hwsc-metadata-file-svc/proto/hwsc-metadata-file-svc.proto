@@ -1,0 +1,24 @@
+syntax="proto3";
+
+package hwscMetadataFileSvc;
+
+option go_package="hwscMetadataFileSvcPb";
+
+service MetadataFileService{
+    rpc CreateMetadata(MetadataRequest) returns (MetadataResponse) {}
+    rpc GetMetadata(MetadataRequest) returns(Metadata) {}
+}
+
+message Metadata{
+    string first = 1;
+    string last = 2;
+    string url = 3;
+}
+
+message MetadataRequest{
+    Metadata data = 1;
+}
+
+message MetadataResponse{
+    string message = 1;
+}
