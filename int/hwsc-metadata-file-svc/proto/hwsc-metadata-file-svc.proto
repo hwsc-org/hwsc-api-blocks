@@ -4,21 +4,40 @@ package hwscMetadataFileSvc;
 
 option go_package="hwscMetadataFileSvcPb";
 
+import "timestamp.proto";
+
+
 service MetadataFileService{
-    rpc CreateMetadata(MetadataRequest) returns (MetadataResponse) {}
-    rpc GetMetadata(MetadataRequest) returns(Metadata) {}
+    rpc CreateMetadata(MetadataFileRequest) returns (MetadataFileResponse) {}
 }
 
-message Metadata{
-    string first = 1;
-    string last = 2;
-    string url = 3;
+message MetadataFile{
+    string last_name = 1;
+    string first_name = 2;
+    string call_type_name = 3;
+    string ground_type = 4;
+    string region = 5;
+    string ocean = 6;
+    string sensor_type = 7;
+    string sensor_name = 8;
+    int32 sample_rate = 9;
+    float latitude = 10;
+    float longitude = 11;
+
+    repeated string image_url = 12;
+    repeated string audio_url = 13;
+    repeated string video_url = 14;
+    repeated string file_url = 15;
+ 
+    google.protobuf.Timestamp record_timestamp = 16;
+    google.protobuf.Timestamp create_timestamp = 17;
+    google.protobuf.Timestamp update_timestamp = 18;
 }
 
-message MetadataRequest{
-    Metadata data = 1;
+message MetadataFileRequest{
+    MetadataFile data = 1;
 }
 
-message MetadataResponse{
+message MetadataFileResponse{
     string message = 1;
 }
