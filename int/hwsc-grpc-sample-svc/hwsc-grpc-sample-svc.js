@@ -22,6 +22,7 @@ function sayHello() {
     }
     client.sayHello({name: user}, function(err, response) {
         console.log("Greeting:", response.message);
+        grpc.closeClient(client);
     });
 }
 
