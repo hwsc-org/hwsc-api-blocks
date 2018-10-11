@@ -1,23 +1,35 @@
+const HWSC_GRPC_SAMPLE_SVC_PROTO_PATH = __dirname + "/proto/hwsc-grpc-sample-svc.proto";
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
-const HWSC_GRPC_SAMPLE_SVC_PROTO_PATH = __dirname + "/proto/grpc-sample-svc.proto";
+
 const options = {
     includeDirs: [
         HWSC_GRPC_SAMPLE_SVC_PROTO_PATH
     ]
 };
-
 const hwscGrpcSampleSvcProtoPkgDef = protoLoader.loadSync("", options);
+const hwscGrpcSampleSvcPbJs = grpc.loadPackageDefinition(hwscGrpcSampleSvcProtoPkgDef).hwscGrpcSampleSvc;
 
-const sample_proto = grpc.loadPackageDefinition(hwscGrpcSampleSvcProtoPkgDef).sample; // has to match grpc-sample-svc.proto line 3 package
-
-function sayHello() {
-    let client = new sample_proto.SampleService("localhost:50051",
+function sayHello(callback) {
+    const client = new hwscGrpcSampleSvcPbJs.SampleService("localhost:50051",
         grpc.credentials.createInsecure());
 
-    client.sayHello({firstName: world}, function(err, response) {
-        console.log("Greeting:", response.message);
-        grpc.closeClient(client);
+    const request = {
+        firstName: "beautiful world",
+        createTimestamp: {
+            seconds: 100,
+            nanos: 0
+        }
+    }
+
+    client.sayHello(request, function (err, response) {
+        if (!err) {
+            console.log("Greeting:", response.message.firstName);
+            console.log(response.message.responseTimestamp);
+            grpc.closeClient(client);
+        }
+
+        callback(err, response);
     });
 }
 
