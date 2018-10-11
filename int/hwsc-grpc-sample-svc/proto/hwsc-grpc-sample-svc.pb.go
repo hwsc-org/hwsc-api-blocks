@@ -22,6 +22,8 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
+// TODO Convert to our own timestamp until resolve
+// https://github.com/faraonc/hwsc-gateway-svc/issues/37
 type Timestamp struct {
 	// Represents seconds of UTC time since Unix epoch
 	// 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
@@ -124,7 +126,7 @@ func (m *SampleServiceRequest) GetCreateTimestamp() *Timestamp {
 	return nil
 }
 
-// The SampleService response message containing the greetings
+// The SampleService response message containing the greetings.
 type SampleServiceResponse struct {
 	Message              string     `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
 	ResponseTimestamp    *Timestamp `protobuf:"bytes,2,opt,name=response_timestamp,json=responseTimestamp,proto3" json:"response_timestamp,omitempty"`

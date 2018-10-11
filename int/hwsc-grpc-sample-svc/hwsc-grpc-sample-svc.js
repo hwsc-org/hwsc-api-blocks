@@ -15,17 +15,17 @@ function sayHello(callback) {
         grpc.credentials.createInsecure());
 
     const request = {
-        firstName: "beautiful world",
+        firstName: "Lisa",
         createTimestamp: {
-            seconds: 100,
+            seconds: Math.round((new Date()).getTime() / 1000),
             nanos: 0
         }
-    }
+    };
 
     client.sayHello(request, function (err, response) {
         if (!err) {
-            console.log("Greeting:", response.message.firstName);
-            console.log(response.message.responseTimestamp);
+            console.log("hwsc-grpc-sample-svc.js response.msg -> ", response.message);
+            console.log("hwsc-grpc-sample-svc.js response.responseTimestamp -> ", response.responseTimestamp);
             grpc.closeClient(client);
         }
 
