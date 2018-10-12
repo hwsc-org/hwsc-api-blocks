@@ -1,11 +1,12 @@
 const demo = require("./int/demo/demo.js");
 const hwscGrpcSampleSvc = require("./int/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js")
-const hwscMetadataFileSvc = require("./int/hwsc-metadata-file-svc/hwsc-metadata-file-svc.js")
 
-function callback(err, response){
-    if(err){
+// const hwscMetadataFileSvc = require("./int/hwsc-metadata-file-svc/hwsc-metadata-file-svc.js")
+
+function callback(err, response) {
+    if (err) {
         console.log("Error: ", err);
-    }else{
+    } else {
         console.log("Response ", response)
     }
 }
@@ -13,8 +14,8 @@ function callback(err, response){
 
 function main() {
     demo.printMsg();
-    // hwscGrpcSampleSvc.sayHello(callback);
-    hwscMetadataFileSvc.createMetadata(callback);
+    hwscGrpcSampleSvc.sayHello(callback);
+    // hwscMetadataFileSvc.createMetadata(callback);
 }
 
 

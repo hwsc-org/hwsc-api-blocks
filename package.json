@@ -19,6 +19,7 @@
   "dependencies": {
     "@grpc/proto-loader": "^0.3.0",
     "grpc": "^1.15.1",
+    "moment": "^2.22.2",
     "npm": "^6.4.1"
   },
   "devDependencies": {}

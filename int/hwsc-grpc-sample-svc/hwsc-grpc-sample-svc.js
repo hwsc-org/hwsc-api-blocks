@@ -1,6 +1,7 @@
 const HWSC_GRPC_SAMPLE_SVC_PROTO_PATH = __dirname + "/proto/hwsc-grpc-sample-svc.proto";
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
+const moment = require("moment")
 
 const options = {
     includeDirs: [
@@ -14,18 +15,20 @@ function sayHello(callback) {
     const client = new hwscGrpcSampleSvcPbJs.SampleService("localhost:50051",
         grpc.credentials.createInsecure());
 
+    const now = moment().utc();
+    console.log("Sending request with UTC unix:", now.unix());
+    console.log("Sending request with UTC date:", now.format());
+
     const request = {
         firstName: "Lisa",
-        createTimestamp: {
-            seconds: Math.round((new Date()).getTime() / 1000),
-            nanos: 0
-        }
+        createTimestamp: now.unix()
     };
 
     client.sayHello(request, function (err, response) {
         if (!err) {
-            console.log("hwsc-grpc-sample-svc.js response.msg -> ", response.message);
-            console.log("hwsc-grpc-sample-svc.js response.responseTimestamp -> ", response.responseTimestamp);
+            const dateString = moment.unix(response.responseTimestamp).utc().format();
+            console.log("Receiving response.msg:", response.message);
+            console.log("Receiving UTC date:", dateString);
             grpc.closeClient(client);
         }
 
