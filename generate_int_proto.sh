@@ -9,6 +9,9 @@ protoc int/hwsc-grpc-sample-svc/proto/hwsc-grpc-sample-svc.proto --go_out=plugin
 echo "Generating hwsc-metadata-file-svc.pb.go..."
 protoc int/hwsc-metadata-file-svc/proto/hwsc-metadata-file-svc.proto --go_out=plugins=grpc:.
 
+echo "Generating hwsc-file-svc.pb.py..."
+python3 -m grpc_tools.protoc -I./int/hwsc-file-svc/proto --python_out=./int/hwsc-file-svc/proto/ --grpc_python_out=./int/hwsc-file-svc/proto/ ./int/hwsc-file-svc/proto/hwsc-file-svc.proto
+
 # path example
 # protoc --proto_path=int/proto --go_out=plugins=grpc:int/hwsc-grpc-sample-svc/go-proto int/proto/hwsc-grpc-sample-svc.proto
 # protoc -I./int/hwsc-metadata-file-svc/proto/golang/protobuf/ptypes/timestamp -I./int/hwsc-metadata-file-svc/proto --js_out=./int/hwsc-metadata-file-svc/proto  hwsc-metadata-file-svc.proto
