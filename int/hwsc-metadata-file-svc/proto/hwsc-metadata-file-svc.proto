@@ -4,23 +4,8 @@ package hwscMetadataFileSvc;
 
 option go_package="hwscMetadataFileSvcPb";
 
-// TODO Convert to our own timestamp until resolve
-// https://github.com/faraonc/hwsc-gateway-svc/issues/37
-message Timestamp {
-    // Represents seconds of UTC time since Unix epoch
-    // 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
-    // 9999-12-31T23:59:59Z inclusive.
-    int64 seconds = 1;
-
-    // Non-negative fractions of a second at nanosecond resolution. Negative
-    // second values with fractions must still have non-negative nanos values
-    // that count forward in time. Must be from 0 to 999,999,999
-    // inclusive.
-    int32 nanos = 2;
-}
-
 service MetadataFileService{
-    rpc CreateMetadata(MetadataFileRequest) returns (MetadataFileResponse) {}
+    rpc CreateMetadataFile(MetadataFileRequest) returns (MetadataFileResponse) {}
 }
 
 message MetadataFile{
@@ -41,9 +26,9 @@ message MetadataFile{
     repeated string video_url = 14;
     repeated string file_url = 15;
 
-    Timestamp record_timestamp = 16;
-    Timestamp create_timestamp = 17;
-    Timestamp update_timestamp = 18;
+    int64 record_timestamp = 16;
+    int64 create_timestamp = 17;
+    int64 update_timestamp = 18;
 }
 
 message MetadataFileRequest{

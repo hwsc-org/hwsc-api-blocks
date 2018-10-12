@@ -1,7 +1,7 @@
 const HWSC_GRPC_SAMPLE_SVC_PROTO_PATH = __dirname + "/proto/hwsc-grpc-sample-svc.proto";
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
-const moment = require("moment")
+const moment = require("moment");
 
 const options = {
     includeDirs: [
