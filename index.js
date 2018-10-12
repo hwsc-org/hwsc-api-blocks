@@ -15,7 +15,7 @@ function main() {
     demo.printMsg();
     // Uncomment/Comment gRPC calls below as necessary
     // hwscGrpcSampleSvc.sayHello(callback);
-    hwscMetadataFileSvc.createMetadata(callback);
+    hwscMetadataFileSvc.createMetadataFile(callback);
 }
 
 main();
