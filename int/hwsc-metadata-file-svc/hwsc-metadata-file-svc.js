@@ -11,7 +11,7 @@ const options = {
 const hwscMetadataFileSvcProtoPkgDef = protoLoader.loadSync("", options);
 const hwscMetadataFileSvcPbJs = grpc.loadPackageDefinition(hwscMetadataFileSvcProtoPkgDef).hwscMetadataFileSvc;
 
-function createMetadata(callback) {
+function createMetadataFile(callback) {
     const client = new hwscMetadataFileSvcPbJs.MetadataFileService("localhost:50051",
         grpc.credentials.createInsecure());
 
@@ -50,6 +50,6 @@ function createMetadata(callback) {
 }
 
 module.exports = {
-    createMetadata: createMetadata
+    createMetadataFile: createMetadataFile
 };
 
