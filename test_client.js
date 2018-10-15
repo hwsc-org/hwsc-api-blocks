@@ -1,4 +1,5 @@
 const index = require("./index.js");
+const moment = require("moment");
 
 function callback(err, response) {
     if (err) {
@@ -29,12 +30,9 @@ const data = {
         updateTimestamp: 0
     };
 
-const metadataFile = new index.hwscMetadataFileSvc.MetadataFile(data);
-
-
 function main() {
     index.demo.printMsg();
-    index.hwscMetadataFileSvc.postMetadataFile(metadataFile, callback)
+    index.hwscMetadataFileSvc.createMetadataFile(data, callback)
     index.hwscFileSvc.getStatus(callback);
 }
 
