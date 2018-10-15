@@ -23,24 +23,42 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type MetadataFile struct {
-	LastName             string   `protobuf:"bytes,1,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	FirstName            string   `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	CallTypeName         string   `protobuf:"bytes,3,opt,name=call_type_name,json=callTypeName,proto3" json:"call_type_name,omitempty"`
-	GroundType           string   `protobuf:"bytes,4,opt,name=ground_type,json=groundType,proto3" json:"ground_type,omitempty"`
-	Region               string   `protobuf:"bytes,5,opt,name=region,proto3" json:"region,omitempty"`
-	Ocean                string   `protobuf:"bytes,6,opt,name=ocean,proto3" json:"ocean,omitempty"`
-	SensorType           string   `protobuf:"bytes,7,opt,name=sensor_type,json=sensorType,proto3" json:"sensor_type,omitempty"`
-	SensorName           string   `protobuf:"bytes,8,opt,name=sensor_name,json=sensorName,proto3" json:"sensor_name,omitempty"`
-	SampleRate           int32    `protobuf:"varint,9,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty"`
-	Latitude             float32  `protobuf:"fixed32,10,opt,name=latitude,proto3" json:"latitude,omitempty"`
-	Longitude            float32  `protobuf:"fixed32,11,opt,name=longitude,proto3" json:"longitude,omitempty"`
-	ImageUrl             []string `protobuf:"bytes,12,rep,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
-	AudioUrl             []string `protobuf:"bytes,13,rep,name=audio_url,json=audioUrl,proto3" json:"audio_url,omitempty"`
-	VideoUrl             []string `protobuf:"bytes,14,rep,name=video_url,json=videoUrl,proto3" json:"video_url,omitempty"`
-	FileUrl              []string `protobuf:"bytes,15,rep,name=file_url,json=fileUrl,proto3" json:"file_url,omitempty"`
-	RecordTimestamp      int64    `protobuf:"varint,16,opt,name=record_timestamp,json=recordTimestamp,proto3" json:"record_timestamp,omitempty"`
-	CreateTimestamp      int64    `protobuf:"varint,17,opt,name=create_timestamp,json=createTimestamp,proto3" json:"create_timestamp,omitempty"`
-	UpdateTimestamp      int64    `protobuf:"varint,18,opt,name=update_timestamp,json=updateTimestamp,proto3" json:"update_timestamp,omitempty"`
+	// @inject_tag: bson:"lastName"
+	LastName string `protobuf:"bytes,1,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" bson:"lastName"`
+	// @inject_tag: bson:"firstName"
+	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" bson:"firstName"`
+	// @inject_tag: bson:"callTypeName"
+	CallTypeName string `protobuf:"bytes,3,opt,name=call_type_name,json=callTypeName,proto3" json:"call_type_name,omitempty" bson:"callTypeName"`
+	// @inject_tag: bson:"groundType"
+	GroundType string `protobuf:"bytes,4,opt,name=ground_type,json=groundType,proto3" json:"ground_type,omitempty" bson:"groundType"`
+	// @inject_tag: bson:"region"
+	Region string `protobuf:"bytes,5,opt,name=region,proto3" json:"region,omitempty" bson:"region"`
+	// @inject_tag: bson:"ocean"
+	Ocean string `protobuf:"bytes,6,opt,name=ocean,proto3" json:"ocean,omitempty" bson:"ocean"`
+	// @inject_tag: bson:"sensorType"
+	SensorType string `protobuf:"bytes,7,opt,name=sensor_type,json=sensorType,proto3" json:"sensor_type,omitempty" bson:"sensorType"`
+	// @inject_tag: bson:"sensorName"
+	SensorName string `protobuf:"bytes,8,opt,name=sensor_name,json=sensorName,proto3" json:"sensor_name,omitempty" bson:"sensorName"`
+	// @inject_tag: bson:"sampleRate"
+	SampleRate int32 `protobuf:"varint,9,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty" bson:"sampleRate"`
+	// @inject_tag: bson:"latitude"
+	Latitude float32 `protobuf:"fixed32,10,opt,name=latitude,proto3" json:"latitude,omitempty" bson:"latitude"`
+	// @inject_tag: bson:"longitude"
+	Longitude float32 `protobuf:"fixed32,11,opt,name=longitude,proto3" json:"longitude,omitempty" bson:"longitude"`
+	// @inject_tag: bson:"imageUrl"
+	ImageUrl []string `protobuf:"bytes,12,rep,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty" bson:"imageUrl"`
+	// @inject_tag: bson:"audioUrl"
+	AudioUrl []string `protobuf:"bytes,13,rep,name=audio_url,json=audioUrl,proto3" json:"audio_url,omitempty" bson:"audioUrl"`
+	// @inject_tag: bson:"videoUrl"
+	VideoUrl []string `protobuf:"bytes,14,rep,name=video_url,json=videoUrl,proto3" json:"video_url,omitempty" bson:"videoUrl"`
+	// @inject_tag: bson:"fileUrl"
+	FileUrl []string `protobuf:"bytes,15,rep,name=file_url,json=fileUrl,proto3" json:"file_url,omitempty" bson:"fileUrl"`
+	// @inject_tag: bson:"recordTimestamp"
+	RecordTimestamp int64 `protobuf:"varint,16,opt,name=record_timestamp,json=recordTimestamp,proto3" json:"record_timestamp,omitempty" bson:"recordTimestamp"`
+	// @inject_tag: bson:"createTimestamp"
+	CreateTimestamp int64 `protobuf:"varint,17,opt,name=create_timestamp,json=createTimestamp,proto3" json:"create_timestamp,omitempty" bson:"createTimestamp"`
+	// @inject_tag: bson:"updateTimestamp"
+	UpdateTimestamp      int64    `protobuf:"varint,18,opt,name=update_timestamp,json=updateTimestamp,proto3" json:"update_timestamp,omitempty" bson:"updateTimestamp"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
