@@ -5,7 +5,7 @@ package hwscMetadataFileSvc;
 option go_package="hwscMetadataFileSvcPb";
 
 service MetadataFileService{
-    rpc CasdasreateMetadataFile(MetadataFileRequest) returns (MetadataFileResponse) {}
+    rpc CreateMetadataFile(MetadataFileRequest) returns (MetadataFileResponse) {}
 }
 
 message MetadataFile{
