@@ -10,8 +10,8 @@ function callback(err, response) {
 }
 
 const data = {
-        firstName: "Lisa",
         lastName: "Kim",
+        firstName: "Lisa",
         callTypeName: "some call type name",
         groundType: "some ground type",
         region: "some region",
@@ -33,7 +33,7 @@ const data = {
 function main() {
     index.demo.printMsg();
     index.hwscMetadataFileSvc.createMetadataFile(data, callback)
-    index.hwscFileSvc.getStatus(callback);
+    // index.hwscFileSvc.getStatus(callback);
 }
 
 main();
