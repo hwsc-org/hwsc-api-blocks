@@ -1,7 +1,7 @@
 const HWSC_METADATA_FILE_SVC_PROTO_PATH = __dirname + "/proto/hwsc-metadata-file-svc.proto";
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
-const moment = require("moment");
+
 
 const options = {
     includeDirs: [
