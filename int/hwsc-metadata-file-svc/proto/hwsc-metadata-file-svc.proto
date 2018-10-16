@@ -56,5 +56,6 @@ message MetadataFileRequest{
 }
 
 message MetadataFileResponse{
-    string message = 1;
+    uint32 status = 1;
+    string message = 2;
 }
