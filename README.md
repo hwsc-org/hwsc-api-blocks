@@ -13,8 +13,9 @@
     </dl>
 4. Make and define proto file in the folder "int/hwsc-file-svc" with a function that uses the service, [example](https://github.com/faraonc/hwsc-api-blocks/blob/master/int/hwsc-grpc-sample-svc/proto/grpc-sample-svc.proto)
 5. Ensure [protocol buffers 3.6.1](https://github.com/protocolbuffers/protobuf/releases) is installed 
-6. Modify bash [script](https://github.com/faraonc/hwsc-api-blocks/blob/master/generate_int_proto.sh) for generating proto stub
-7. Run the bash script to generate proto stub
-8. Implement your gRPC service in the language you prefer, [example](https://github.com/faraonc/hwsc-grpc-sample-svc)
-9. Implement a wrapper for the gRPC call, [example](https://github.com/faraonc/hwsc-api-blocks/blob/master/int/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js) 
-10. Test your function using [index.js](https://github.com/faraonc/hwsc-api-blocks/blob/master/index.js)
+6. To inject an additional tag like ``bson``, install and include [protoc-go-inject-tag](https://github.com/favadi/protoc-go-inject-tag)
+7. Modify bash [script](https://github.com/faraonc/hwsc-api-blocks/blob/master/generate_int_proto.sh) for generating proto stub
+8. Run the bash script to generate proto stub
+9. Implement your gRPC service in the language you prefer, [example](https://github.com/faraonc/hwsc-grpc-sample-svc)
+10. Implement a wrapper for the gRPC call, [example](https://github.com/faraonc/hwsc-api-blocks/blob/master/int/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js) 
+11. Test your function using [index.js](https://github.com/faraonc/hwsc-api-blocks/blob/master/index.js)
