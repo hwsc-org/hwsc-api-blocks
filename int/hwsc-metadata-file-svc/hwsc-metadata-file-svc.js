@@ -30,5 +30,5 @@ function createMetadataFile(metadataFile, callback) {
 }
 
 module.exports = {
-    createMetadataFile: createMetadataFile,
+    createMetadataFile: createMetadataFile
 };
