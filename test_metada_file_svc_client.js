@@ -13,6 +13,7 @@ function callback(err, response) {
 const dataSet = [
     // valid
     {
+        uuid: "4ff30392-8ec8-45a4-ba94-5e22c4a686de",
         lastName: "Kim",
         firstName: "Lisa",
         callTypeName: "some call type name",
@@ -36,6 +37,7 @@ const dataSet = [
     null,
     // invalid lastName
     {
+        uuid: "4ff30392-8ec8-45a4-ba94-5e22c4a686de",
         lastName: "",
         firstName: "Lisa",
         callTypeName: "some call type name",
@@ -55,11 +57,11 @@ const dataSet = [
         createTimestamp: 0,
         updateTimestamp: 0
     }
-]
+];
 
 
 function main() {
-    index.hwscMetadataFileSvc.createMetadataFile(dataSet[1], callback)
+    index.hwscMetadataFileSvc.createMetadataFile(dataSet[0], callback)
 }
 
 main();
