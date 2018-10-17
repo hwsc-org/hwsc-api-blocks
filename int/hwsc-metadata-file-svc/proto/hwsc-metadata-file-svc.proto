@@ -28,7 +28,7 @@ message MetadataFile{
     // @inject_tag: bson:"sensorName"
     string sensor_name = 9;
     // @inject_tag: bson:"sampleRate"
-    int32 sample_rate = 10;
+    uint32 sample_rate = 10;
     // @inject_tag: bson:"latitude"
     float latitude = 11;
     // @inject_tag: bson:"longitude"
