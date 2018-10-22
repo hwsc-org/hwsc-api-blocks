@@ -1,5 +1,5 @@
 const index = require("./index.js");
-const moment = require("moment");
+// const moment = require("moment");
 
 function callback(err, response) {
     if (err) {
@@ -39,15 +39,12 @@ const dataSet = [
     },
     // null
     null
-    // no need to test further, unit test covers hwsc-metadata-file-svc
+    // no need to test further, unit test covers hwsc-file-metadata-svc
 ];
 
 
 function main() {
-    index.hwscMetadataFileSvc.createMetadataFile(dataSet[1], callback)
+    index.hwscFileMetadataSvc.createFileMetadata(dataSet[1], callback)
 }
 
 main();
-
-
-
