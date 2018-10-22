@@ -1,0 +1,24 @@
+syntax="proto3";
+
+package hwscFileTransactionSvc;
+
+option go_package="hwscFileTransactionSvcPb";
+
+service FileTransactionService{
+    rpc GetStatus(FileTransactionRequest) returns (FileTransactionResponse) {}
+}
+
+enum State {
+    AVAILABLE = 0;
+    UNAVAILABLE = 1;
+    SUCCESS = 2;
+    FAIL = 3;
+}
+
+message FileTransactionRequest{
+    string message = 1;
+}
+
+message FileTransactionResponse{
+    State state = 1;
+}

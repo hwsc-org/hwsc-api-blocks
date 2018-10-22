@@ -1,18 +1,17 @@
-const HWSC_GRPC_SAMPLE_SVC_PROTO_PATH = __dirname + "/proto/hwsc-file-svc.proto";
+const HWSC_FILE_TRANSACTION_SVC_PROTO_PATH = __dirname + "/proto/hwsc-file-transaction-svc.proto";
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
-const moment = require("moment");
 
 const options = {
     includeDirs: [
-        HWSC_GRPC_SAMPLE_SVC_PROTO_PATH
+        HWSC_FILE_TRANSACTION_SVC_PROTO_PATH
     ]
 };
-const hwscGrpcSampleSvcProtoPkgDef = protoLoader.loadSync("", options);
-const hwscGrpcSampleSvcPbJs = grpc.loadPackageDefinition(hwscGrpcSampleSvcProtoPkgDef).hwscFileSvc;
+const hwscFileTransactionSvcProtoPkgDef = protoLoader.loadSync("", options);
+const hwscFileTransactionSvcPbJs = grpc.loadPackageDefinition(hwscFileTransactionSvcProtoPkgDef).hwscFileTransactionSvc;
 
 function getStatus(callback) {
-    const client = new hwscGrpcSampleSvcPbJs.FileService("localhost:50051",
+    const client = new hwscFileTransactionSvcPbJs.FileTransactionService("localhost:50051",
         grpc.credentials.createInsecure());
 
     const request = {
