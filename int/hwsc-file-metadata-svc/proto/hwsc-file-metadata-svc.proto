@@ -5,6 +5,7 @@ package hwscFileMetadataSvc;
 option go_package="hwscFileMetadataSvcPb";
 
 service FileMetadataService{
+    rpc GetStatus(FileMetadataRequest) returns (FileMetadataResponse) {}
     rpc CreateFileMetadata(FileMetadataRequest) returns (FileMetadataResponse) {}
 }
 
