@@ -11,6 +11,19 @@ const options = {
 const hwscFileMetadataSvcProtoPkgDef = protoLoader.loadSync("", options);
 const hwscFileMetadataSvcPbJs = grpc.loadPackageDefinition(hwscFileMetadataSvcProtoPkgDef).hwscFileMetadataSvc;
 
+function getStatus(callback) {
+    const client = new hwscFileMetadataSvcPbJs.FileMetadataService("localhost:50051",
+        grpc.credentials.createInsecure());
+
+    client.getStatus({}, function (err, response) {
+        if (!err) {
+            grpc.closeClient(client);
+        }
+
+        callback(err, response);
+    });
+}
+
 function createFileMetadata(fileMetadata, callback) {
     const client = new hwscFileMetadataSvcPbJs.FileMetadataService("localhost:50051",
         grpc.credentials.createInsecure());
@@ -30,5 +43,6 @@ function createFileMetadata(fileMetadata, callback) {
 }
 
 module.exports = {
+    getStatus: getStatus,
     createFileMetadata: createFileMetadata
 };
