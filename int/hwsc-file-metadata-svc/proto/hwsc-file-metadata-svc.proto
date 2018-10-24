@@ -12,7 +12,7 @@ service FileMetadataService{
 
 message FileMetadata{
     // @inject_tag: bson:"_id"
-    bytes id = 1;
+    string id = 1;
     // @inject_tag: bson:"uuid"
     string uuid = 2;
     // @inject_tag: bson:"lastName"
