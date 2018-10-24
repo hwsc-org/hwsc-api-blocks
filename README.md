@@ -13,10 +13,11 @@
     </dl>
 4. Make and define proto file in the folder "int/hwsc-file-svc" with a function that uses the service, [example](https://github.com/faraonc/hwsc-api-blocks/blob/master/int/hwsc-grpc-sample-svc/proto/grpc-sample-svc.proto)
 5. Ensure [protocol buffers 3.6.1](https://github.com/protocolbuffers/protobuf/releases) is installed 
-6. Ensure Python 3 [grpc tools](https://grpc.io/docs/quickstart/python.html) are installed ``$ python3 -m pip install grpcio``
+6. Ensure Python 3 [gRPC tools](https://grpc.io/docs/quickstart/python.html) are installed ``$ python3 -m pip install grpcio``
 7. To inject an additional tag like ``bson``, install and include [protoc-go-inject-tag](https://github.com/favadi/protoc-go-inject-tag)
-8. Modify bash [script](https://github.com/faraonc/hwsc-api-blocks/blob/master/generate_int_proto.sh) for generating proto stub
-9. Run the bash script to generate proto stub
-10. Implement your gRPC service in the language you prefer, [example](https://github.com/faraonc/hwsc-grpc-sample-svc)
-11. Implement a wrapper for the gRPC call, [example](https://github.com/faraonc/hwsc-api-blocks/blob/master/int/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js) 
-12. Test your function using [index.js](https://github.com/faraonc/hwsc-api-blocks/blob/master/index.js)
+8. To unit test service in GoLang, install and use [gRPC mocking service](https://github.com/grpc/grpc-go/blob/master/Documentation/gomock-example.md)
+9. Modify bash [script](https://github.com/faraonc/hwsc-api-blocks/blob/master/generate_int_proto.sh) for generating proto stub
+10. Run the bash script to generate proto stub
+11. Implement your gRPC service in the language you prefer, [example](https://github.com/faraonc/hwsc-grpc-sample-svc)
+12. Implement a wrapper for the gRPC call, [example](https://github.com/faraonc/hwsc-api-blocks/blob/master/int/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js) 
+13. Test your function using [index.js](https://github.com/faraonc/hwsc-api-blocks/blob/master/index.js)
