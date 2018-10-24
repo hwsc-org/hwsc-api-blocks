@@ -10,13 +10,9 @@ service FileMetadataService{
     rpc ListFileMetadataCollection(FileMetadataRequest) returns (FileMetadataResponse) {}
 }
 
-message objectID{
-    bytes id = 1;
-}
-
 message FileMetadata{
-    // @inject_tag: bson:"_id"
-    objectID id = 1;
+    // @inject_tag: bson:"xxx"
+    string xxx = 1;
     // @inject_tag: bson:"uuid"
     string uuid = 2;
     // @inject_tag: bson:"lastName"
