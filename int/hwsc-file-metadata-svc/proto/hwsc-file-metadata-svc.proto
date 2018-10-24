@@ -11,46 +11,48 @@ service FileMetadataService{
 }
 
 message FileMetadata{
+    // @inject_tag: bson:"_id"
+    bytes id = 1;
     // @inject_tag: bson:"uuid"
-    string uuid = 1;
+    string uuid = 2;
     // @inject_tag: bson:"lastName"
-    string last_name = 2;
+    string last_name = 3;
     // @inject_tag: bson:"firstName"
-    string first_name = 3;
+    string first_name = 4;
     // @inject_tag: bson:"callTypeName"
-    string call_type_name = 4;
+    string call_type_name = 5;
     // @inject_tag: bson:"groundType"
-    string ground_type = 5;
+    string ground_type = 6;
     // @inject_tag: bson:"region"
-    string region = 6;
+    string region = 7;
     // @inject_tag: bson:"ocean"
-    string ocean = 7;
+    string ocean = 8;
     // @inject_tag: bson:"sensorType"
-    string sensor_type = 8;
+    string sensor_type = 9;
     // @inject_tag: bson:"sensorName"
-    string sensor_name = 9;
+    string sensor_name = 10;
     // @inject_tag: bson:"sampleRate"
-    uint32 sample_rate = 10;
+    uint32 sample_rate = 11;
     // @inject_tag: bson:"latitude"
-    float latitude = 11;
+    float latitude = 12;
     // @inject_tag: bson:"longitude"
-    float longitude = 12;
+    float longitude = 13;
 
     // @inject_tag: bson:"imageUrl"
-    repeated string image_url = 13;
+    repeated string image_url = 14;
     // @inject_tag: bson:"audioUrl"
-    repeated string audio_url = 14;
+    repeated string audio_url = 15;
     // @inject_tag: bson:"videoUrl"
-    repeated string video_url = 15;
+    repeated string video_url = 16;
     // @inject_tag: bson:"fileUrl"
-    repeated string file_url = 16;
+    repeated string file_url = 17;
 
     // @inject_tag: bson:"recordTimestamp"
-    int64 record_timestamp = 17;
+    int64 record_timestamp = 18;
     // @inject_tag: bson:"createTimestamp"
-    int64 create_timestamp = 18;
+    int64 create_timestamp = 19;
     // @inject_tag: bson:"updateTimestamp"
-    int64 update_timestamp = 19;
+    int64 update_timestamp = 20;
 }
 
 message FileMetadataRequest{
