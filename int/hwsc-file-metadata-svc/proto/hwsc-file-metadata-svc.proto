@@ -55,6 +55,8 @@ message FileMetadata{
 
 message FileMetadataRequest{
     FileMetadata data = 1;
+    // @inject_tag: bson:"uuid"
+    string uuid = 2;
 }
 
 message FileMetadataResponse{
