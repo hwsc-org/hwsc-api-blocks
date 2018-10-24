@@ -42,7 +42,26 @@ function createFileMetadata(fileMetadata, callback) {
     });
 }
 
+function listFileMetadataCollection(fileMetadata, callback) {
+    const client = new hwscFileMetadataSvcPbJs.FileMetadataService("localhost:50051",
+        grpc.credentials.createInsecure());
+
+    const request = {
+        data: fileMetadata
+    };
+
+    client.listFileMetadataCollection(request, function (err, response) {
+        if (!err) {
+            console.log(request);
+            grpc.closeClient(client);
+        }
+
+        callback(err, response);
+    });
+}
+
 module.exports = {
     getStatus: getStatus,
-    createFileMetadata: createFileMetadata
+    createFileMetadata: createFileMetadata,
+    listFileMetadataCollection: listFileMetadataCollection
 };

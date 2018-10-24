@@ -89,12 +89,17 @@ const dataSet = [
         createTimestamp: 0,
         updateTimestamp: 0
     },
+    {
+        uuid: "4ff30392-8ec8-45a4-ba94-5e22c4a686de"
+    }
     // no need to test further, unit test covers hwsc-file-metadata-svc
 ];
 
 
 function main() {
-    index.hwscFileMetadataSvc.createFileMetadata(dataSet[parseInt(process.argv[2])], callback)
+    // index.hwscFileMetadataSvc.getStatus(callback)
+    // index.hwscFileMetadataSvc.createFileMetadata(dataSet[parseInt(process.argv[2])], callback)
+    index.hwscFileMetadataSvc.listFileMetadataCollection(dataSet[parseInt(process.argv[2])], callback)
 }
 
 main();
