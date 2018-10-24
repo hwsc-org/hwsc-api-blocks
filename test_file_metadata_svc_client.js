@@ -63,7 +63,32 @@ const dataSet = [
         updateTimestamp: 0
     },
     // null
-    null
+    null,
+    {
+        uuid: "garbage",
+        lastName: "Faraon",
+        firstName: "Conard",
+        callTypeName: "some call type name",
+        groundType: "some ground type",
+        region: "some region",
+        ocean: "Pacific Ocean",
+        sensorType: "some sensor type",
+        sensorName: "some sensor name",
+        sampleRate: 100,
+        latitude: 89.123,
+        longitude: -100.123,
+        imageUrl: ["https://hwssappstorage.blob.core.windows.net/image/hulkgif.png",
+            "https://hwssappstorage.blob.core.windows.net/image/Rotating_earth_(large).gif"],
+        audioUrl: ["https://hwssappstorage.blob.core.windows.net/audio/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.wav",
+            "https://hwssappstorage.blob.core.windows.net/audio/Milad Hosseini - Deli Asheghetam [128].mp3"],
+        videoUrl: ["https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv",
+            "https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4"],
+        fileUrl: ["https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv",
+            "https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4"],
+        recordTimestamp: 1514764800,
+        createTimestamp: 0,
+        updateTimestamp: 0
+    },
     // no need to test further, unit test covers hwsc-file-metadata-svc
 ];
 

@@ -7,6 +7,7 @@ option go_package="hwscFileMetadataSvcPb";
 service FileMetadataService{
     rpc GetStatus(FileMetadataRequest) returns (FileMetadataResponse) {}
     rpc CreateFileMetadata(FileMetadataRequest) returns (FileMetadataResponse) {}
+    rpc ListFileMetadataCollection(FileMetadataRequest) returns (FileMetadataResponse) {}
 }
 
 message FileMetadata{
@@ -59,4 +60,5 @@ message FileMetadataRequest{
 message FileMetadataResponse{
     oneof status { uint32 code = 1; }
     string message = 2;
+    repeated FileMetadata file_metadata_collection = 3;
 }

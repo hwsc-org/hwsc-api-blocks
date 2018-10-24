@@ -104,6 +104,24 @@ func (mr *MockFileMetadataServiceClientMockRecorder) CreateFileMetadata(ctx, in 
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateFileMetadata", reflect.TypeOf((*MockFileMetadataServiceClient)(nil).CreateFileMetadata), varargs...)
 }
 
+// ListFileMetadataCollection mocks base method
+func (m *MockFileMetadataServiceClient) ListFileMetadataCollection(ctx context.Context, in *x.FileMetadataRequest, opts ...grpc.CallOption) (*x.FileMetadataResponse, error) {
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ListFileMetadataCollection", varargs...)
+	ret0, _ := ret[0].(*x.FileMetadataResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListFileMetadataCollection indicates an expected call of ListFileMetadataCollection
+func (mr *MockFileMetadataServiceClientMockRecorder) ListFileMetadataCollection(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListFileMetadataCollection", reflect.TypeOf((*MockFileMetadataServiceClient)(nil).ListFileMetadataCollection), varargs...)
+}
+
 // MockFileMetadataServiceServer is a mock of FileMetadataServiceServer interface
 type MockFileMetadataServiceServer struct {
 	ctrl     *gomock.Controller
@@ -151,4 +169,17 @@ func (m *MockFileMetadataServiceServer) CreateFileMetadata(arg0 context.Context,
 // CreateFileMetadata indicates an expected call of CreateFileMetadata
 func (mr *MockFileMetadataServiceServerMockRecorder) CreateFileMetadata(arg0, arg1 interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateFileMetadata", reflect.TypeOf((*MockFileMetadataServiceServer)(nil).CreateFileMetadata), arg0, arg1)
+}
+
+// ListFileMetadataCollection mocks base method
+func (m *MockFileMetadataServiceServer) ListFileMetadataCollection(arg0 context.Context, arg1 *x.FileMetadataRequest) (*x.FileMetadataResponse, error) {
+	ret := m.ctrl.Call(m, "ListFileMetadataCollection", arg0, arg1)
+	ret0, _ := ret[0].(*x.FileMetadataResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListFileMetadataCollection indicates an expected call of ListFileMetadataCollection
+func (mr *MockFileMetadataServiceServerMockRecorder) ListFileMetadataCollection(arg0, arg1 interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListFileMetadataCollection", reflect.TypeOf((*MockFileMetadataServiceServer)(nil).ListFileMetadataCollection), arg0, arg1)
 }
