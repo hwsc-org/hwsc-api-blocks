@@ -10,7 +10,7 @@ echo "Generating hwsc-file-metadata-svc.pb.go..."
 protoc int/hwsc-file-metadata-svc/proto/hwsc-file-metadata-svc.proto --go_out=plugins=grpc:.
 protoc-go-inject-tag -input=./int/hwsc-file-metadata-svc/proto/hwsc-file-metadata-svc.pb.go
 echo "Generating mock-hwsc-file-metadata-svc.pb.go..."
-mockgen -source=./int/hwsc-file-metadata-svc/proto/hwsc-file-metadata-svc.pb.go -destination=./int/hwsc-file-metadata-svc/proto/mock-hwsc-file-metadata-svc.pb.go
+mockgen -source=./int/hwsc-file-metadata-svc/proto/hwsc-file-metadata-svc.pb.go -destination=./int/hwsc-file-metadata-svc/mock/mock-hwsc-file-metadata-svc.pb.go
 
 
 echo "Generating hwsc-file-transaction-svc.pb2.py, hwsc-file-transaction-svc.pb2_grpc.py..."

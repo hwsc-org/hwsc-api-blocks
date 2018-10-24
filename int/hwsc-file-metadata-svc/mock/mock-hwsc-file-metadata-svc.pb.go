@@ -5,6 +5,7 @@
 package mock_hwscFileMetadataSvcPb
 
 import (
+	x "."
 	gomock "github.com/golang/mock/gomock"
 	context "golang.org/x/net/context"
 	grpc "google.golang.org/grpc"
@@ -68,13 +69,13 @@ func (m *MockFileMetadataServiceClient) EXPECT() *MockFileMetadataServiceClientM
 }
 
 // GetStatus mocks base method
-func (m *MockFileMetadataServiceClient) GetStatus(ctx context.Context, in *FileMetadataRequest, opts ...grpc.CallOption) (*FileMetadataResponse, error) {
+func (m *MockFileMetadataServiceClient) GetStatus(ctx context.Context, in *x.FileMetadataRequest, opts ...grpc.CallOption) (*x.FileMetadataResponse, error) {
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "GetStatus", varargs...)
-	ret0, _ := ret[0].(*FileMetadataResponse)
+	ret0, _ := ret[0].(*x.FileMetadataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -86,13 +87,13 @@ func (mr *MockFileMetadataServiceClientMockRecorder) GetStatus(ctx, in interface
 }
 
 // CreateFileMetadata mocks base method
-func (m *MockFileMetadataServiceClient) CreateFileMetadata(ctx context.Context, in *FileMetadataRequest, opts ...grpc.CallOption) (*FileMetadataResponse, error) {
+func (m *MockFileMetadataServiceClient) CreateFileMetadata(ctx context.Context, in *x.FileMetadataRequest, opts ...grpc.CallOption) (*x.FileMetadataResponse, error) {
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "CreateFileMetadata", varargs...)
-	ret0, _ := ret[0].(*FileMetadataResponse)
+	ret0, _ := ret[0].(*x.FileMetadataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -127,9 +128,9 @@ func (m *MockFileMetadataServiceServer) EXPECT() *MockFileMetadataServiceServerM
 }
 
 // GetStatus mocks base method
-func (m *MockFileMetadataServiceServer) GetStatus(arg0 context.Context, arg1 *FileMetadataRequest) (*FileMetadataResponse, error) {
+func (m *MockFileMetadataServiceServer) GetStatus(arg0 context.Context, arg1 *x.FileMetadataRequest) (*x.FileMetadataResponse, error) {
 	ret := m.ctrl.Call(m, "GetStatus", arg0, arg1)
-	ret0, _ := ret[0].(*FileMetadataResponse)
+	ret0, _ := ret[0].(*x.FileMetadataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -140,9 +141,9 @@ func (mr *MockFileMetadataServiceServerMockRecorder) GetStatus(arg0, arg1 interf
 }
 
 // CreateFileMetadata mocks base method
-func (m *MockFileMetadataServiceServer) CreateFileMetadata(arg0 context.Context, arg1 *FileMetadataRequest) (*FileMetadataResponse, error) {
+func (m *MockFileMetadataServiceServer) CreateFileMetadata(arg0 context.Context, arg1 *x.FileMetadataRequest) (*x.FileMetadataResponse, error) {
 	ret := m.ctrl.Call(m, "CreateFileMetadata", arg0, arg1)
-	ret0, _ := ret[0].(*FileMetadataResponse)
+	ret0, _ := ret[0].(*x.FileMetadataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
