@@ -95,6 +95,9 @@ const dataSet = [
     },
     {
         uuid: "6ff30392-8ec8-45a4-ba94-5e22c4a686dc"
+    },
+    {
+        uuid: "garbage-8ec8-45a4-ba94-5e22c4a686dc"
     }
     // no need to test further, unit test covers hwsc-file-metadata-svc
 ];
