@@ -14,7 +14,7 @@ GARBAGE_UUID=3
 #Test variables for ListFileMetadataCollection
 VALID_UUID_A=4
 VALID_UUID_B=5
-INVALID_UUID_B=6
+INVALID_UUID=6
 
 echo "Integration Test for hwsc-file-metadata-svc"
 
@@ -79,11 +79,11 @@ else
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
-node test_file_metadata_svc_client.js  $LIST_FILES_SIGNAL $INVALID_UUID_B | grep 'code: 3,' &> /dev/null
+node test_file_metadata_svc_client.js  $LIST_FILES_SIGNAL $INVALID_UUID | grep 'code: 3,' &> /dev/null
 if [ $? == 0 ]; then
-   echo "[SUCCESS] Handled Invalid UUID B"
+   echo "[SUCCESS] Handled Invalid UUID"
 else
-    echo "[FAILURE] Handled Invalid UUID B"
+    echo "[FAILURE] Handled Invalid UUID"
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
