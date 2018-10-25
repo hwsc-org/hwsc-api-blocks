@@ -12,6 +12,11 @@ const hwscGrpcSampleSvcProtoPkgDef = protoLoader.loadSync("", options);
 const hwscGrpcSampleSvcPbJs = grpc.loadPackageDefinition(hwscGrpcSampleSvcProtoPkgDef).hwscGrpcSampleSvc;
 
 function sayHello(callback) {
+    if (typeof callback !== "function") {
+        console.error("callback not a function");
+        return;
+    }
+
     const client = new hwscGrpcSampleSvcPbJs.SampleService("localhost:50051",
         grpc.credentials.createInsecure());
 
