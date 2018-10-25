@@ -117,7 +117,7 @@ function main() {
             index.hwscFileMetadataSvc.createFileMetadata(dataSet[parseInt(process.argv[3])], callback);
             break;
         case "2":
-            index.hwscFileMetadataSvc.listFileMetadataCollection(dataSet[parseInt(process.argv[3])], callback)
+            index.hwscFileMetadataSvc.listFileMetadataCollection(dataSet[parseInt(process.argv[3])], callback);
             break;
     }
 }
