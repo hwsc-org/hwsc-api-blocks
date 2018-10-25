@@ -12,6 +12,11 @@ const hwscFileMetadataSvcProtoPkgDef = protoLoader.loadSync("", options);
 const hwscFileMetadataSvcPbJs = grpc.loadPackageDefinition(hwscFileMetadataSvcProtoPkgDef).hwscFileMetadataSvc;
 
 function getStatus(callback) {
+    if (typeof callback !== "function") {
+        console.error("callback not a function");
+        return;
+    }
+
     const client = new hwscFileMetadataSvcPbJs.FileMetadataService("localhost:50051",
         grpc.credentials.createInsecure());
 
@@ -25,6 +30,11 @@ function getStatus(callback) {
 }
 
 function createFileMetadata(fileMetadata, callback) {
+    if (typeof callback !== "function") {
+        console.error("callback not a function");
+        return;
+    }
+
     const client = new hwscFileMetadataSvcPbJs.FileMetadataService("localhost:50051",
         grpc.credentials.createInsecure());
 
@@ -43,6 +53,11 @@ function createFileMetadata(fileMetadata, callback) {
 }
 
 function listFileMetadataCollection(fileMetadata, callback) {
+    if (typeof callback !== "function") {
+        console.error("callback not a function");
+        return;
+    }
+
     const client = new hwscFileMetadataSvcPbJs.FileMetadataService("localhost:50051",
         grpc.credentials.createInsecure());
 

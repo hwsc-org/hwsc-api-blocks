@@ -7,12 +7,13 @@ function callback(err, response) {
         console.log(err);
     } else {
         console.log("Response ", response)
+        // console.log("Length ", response.fileMetadataCollection.length)
     }
 }
 
 
 const dataSet = [
-    // valid
+    // valid A
     {
         uuid: "4ff30392-8ec8-45a4-ba94-5e22c4a686de",
         lastName: "Kim",
@@ -38,6 +39,7 @@ const dataSet = [
         createTimestamp: 0,
         updateTimestamp: 0
     },
+    // valid B
     {
         uuid: "6ff30392-8ec8-45a4-ba94-5e22c4a686dc",
         lastName: "Faraon",
@@ -65,6 +67,7 @@ const dataSet = [
     },
     // null
     null,
+    // garabage uuid
     {
         uuid: "garbage",
         lastName: "Faraon",
@@ -90,23 +93,33 @@ const dataSet = [
         createTimestamp: 0,
         updateTimestamp: 0
     },
+    // valid uuid
     {
         uuid: "4ff30392-8ec8-45a4-ba94-5e22c4a686de"
     },
+    // valid uuid
     {
         uuid: "6ff30392-8ec8-45a4-ba94-5e22c4a686dc"
     },
+    // invalid uuid
     {
         uuid: "garbage-8ec8-45a4-ba94-5e22c4a686dc"
     }
-    // no need to test further, unit test covers hwsc-file-metadata-svc
 ];
 
 
 function main() {
-    // index.hwscFileMetadataSvc.getStatus(callback)
-    // index.hwscFileMetadataSvc.createFileMetadata(dataSet[parseInt(process.argv[2])], callback)
-    index.hwscFileMetadataSvc.listFileMetadataCollection(dataSet[parseInt(process.argv[2])], callback)
+    switch(process.argv[2]){
+        case "0":
+            index.hwscFileMetadataSvc.getStatus(callback);
+            break;
+        case "1":
+            index.hwscFileMetadataSvc.createFileMetadata(dataSet[parseInt(process.argv[3])], callback);
+            break;
+        case "2":
+            index.hwscFileMetadataSvc.listFileMetadataCollection(dataSet[parseInt(process.argv[3])], callback)
+            break;
+    }
 }
 
 main();
