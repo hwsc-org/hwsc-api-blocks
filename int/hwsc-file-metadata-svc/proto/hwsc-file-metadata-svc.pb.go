@@ -24,45 +24,45 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type FileMetadata struct {
 	// @inject_tag: bson:"fuid"
-	Fuid string `protobuf:"bytes,1,opt,name=fuid,proto3" json:"fuid,omitempty" bson:"fuid"`
+	Fuid string `protobuf:"bytes,1,opt,name=fuid,proto3" json:"fuid,omitempty"`
 	// @inject_tag: bson:"uuid"
-	Uuid string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty" bson:"uuid"`
+	Uuid string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// @inject_tag: bson:"lastName"
-	LastName string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" bson:"lastName"`
+	LastName string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	// @inject_tag: bson:"firstName"
-	FirstName string `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" bson:"firstName"`
+	FirstName string `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	// @inject_tag: bson:"callTypeName"
-	CallTypeName string `protobuf:"bytes,5,opt,name=call_type_name,json=callTypeName,proto3" json:"call_type_name,omitempty" bson:"callTypeName"`
+	CallTypeName string `protobuf:"bytes,5,opt,name=call_type_name,json=callTypeName,proto3" json:"call_type_name,omitempty"`
 	// @inject_tag: bson:"groundType"
-	GroundType string `protobuf:"bytes,6,opt,name=ground_type,json=groundType,proto3" json:"ground_type,omitempty" bson:"groundType"`
+	GroundType string `protobuf:"bytes,6,opt,name=ground_type,json=groundType,proto3" json:"ground_type,omitempty"`
 	// @inject_tag: bson:"region"
-	Region string `protobuf:"bytes,7,opt,name=region,proto3" json:"region,omitempty" bson:"region"`
+	Region string `protobuf:"bytes,7,opt,name=region,proto3" json:"region,omitempty"`
 	// @inject_tag: bson:"ocean"
-	Ocean string `protobuf:"bytes,8,opt,name=ocean,proto3" json:"ocean,omitempty" bson:"ocean"`
+	Ocean string `protobuf:"bytes,8,opt,name=ocean,proto3" json:"ocean,omitempty"`
 	// @inject_tag: bson:"sensorType"
-	SensorType string `protobuf:"bytes,9,opt,name=sensor_type,json=sensorType,proto3" json:"sensor_type,omitempty" bson:"sensorType"`
+	SensorType string `protobuf:"bytes,9,opt,name=sensor_type,json=sensorType,proto3" json:"sensor_type,omitempty"`
 	// @inject_tag: bson:"sensorName"
-	SensorName string `protobuf:"bytes,10,opt,name=sensor_name,json=sensorName,proto3" json:"sensor_name,omitempty" bson:"sensorName"`
+	SensorName string `protobuf:"bytes,10,opt,name=sensor_name,json=sensorName,proto3" json:"sensor_name,omitempty"`
 	// @inject_tag: bson:"sampleRate"
-	SampleRate uint32 `protobuf:"varint,11,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty" bson:"sampleRate"`
+	SampleRate uint32 `protobuf:"varint,11,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty"`
 	// @inject_tag: bson:"latitude"
-	Latitude float32 `protobuf:"fixed32,12,opt,name=latitude,proto3" json:"latitude,omitempty" bson:"latitude"`
+	Latitude float32 `protobuf:"fixed32,12,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	// @inject_tag: bson:"longitude"
-	Longitude float32 `protobuf:"fixed32,13,opt,name=longitude,proto3" json:"longitude,omitempty" bson:"longitude"`
+	Longitude float32 `protobuf:"fixed32,13,opt,name=longitude,proto3" json:"longitude,omitempty"`
 	// @inject_tag: bson:"imageUrl"
-	ImageUrl []string `protobuf:"bytes,14,rep,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty" bson:"imageUrl"`
+	ImageUrl []string `protobuf:"bytes,14,rep,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
 	// @inject_tag: bson:"audioUrl"
-	AudioUrl []string `protobuf:"bytes,15,rep,name=audio_url,json=audioUrl,proto3" json:"audio_url,omitempty" bson:"audioUrl"`
+	AudioUrl []string `protobuf:"bytes,15,rep,name=audio_url,json=audioUrl,proto3" json:"audio_url,omitempty"`
 	// @inject_tag: bson:"videoUrl"
-	VideoUrl []string `protobuf:"bytes,16,rep,name=video_url,json=videoUrl,proto3" json:"video_url,omitempty" bson:"videoUrl"`
+	VideoUrl []string `protobuf:"bytes,16,rep,name=video_url,json=videoUrl,proto3" json:"video_url,omitempty"`
 	// @inject_tag: bson:"fileUrl"
-	FileUrl []string `protobuf:"bytes,17,rep,name=file_url,json=fileUrl,proto3" json:"file_url,omitempty" bson:"fileUrl"`
+	FileUrl []string `protobuf:"bytes,17,rep,name=file_url,json=fileUrl,proto3" json:"file_url,omitempty"`
 	// @inject_tag: bson:"recordTimestamp"
-	RecordTimestamp int64 `protobuf:"varint,18,opt,name=record_timestamp,json=recordTimestamp,proto3" json:"record_timestamp,omitempty" bson:"recordTimestamp"`
+	RecordTimestamp int64 `protobuf:"varint,18,opt,name=record_timestamp,json=recordTimestamp,proto3" json:"record_timestamp,omitempty"`
 	// @inject_tag: bson:"createTimestamp"
-	CreateTimestamp int64 `protobuf:"varint,19,opt,name=create_timestamp,json=createTimestamp,proto3" json:"create_timestamp,omitempty" bson:"createTimestamp"`
+	CreateTimestamp int64 `protobuf:"varint,19,opt,name=create_timestamp,json=createTimestamp,proto3" json:"create_timestamp,omitempty"`
 	// @inject_tag: bson:"updateTimestamp"
-	UpdateTimestamp      int64    `protobuf:"varint,20,opt,name=update_timestamp,json=updateTimestamp,proto3" json:"update_timestamp,omitempty" bson:"updateTimestamp"`
+	UpdateTimestamp      int64    `protobuf:"varint,20,opt,name=update_timestamp,json=updateTimestamp,proto3" json:"update_timestamp,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -236,7 +236,7 @@ func (m *FileMetadata) GetUpdateTimestamp() int64 {
 type FileMetadataRequest struct {
 	Data *FileMetadata `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	// @inject_tag: bson:"uuid"
-	Uuid                 string   `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty" bson:"uuid"`
+	Uuid                 string   `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`

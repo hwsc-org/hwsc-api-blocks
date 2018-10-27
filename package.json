@@ -22,5 +22,7 @@
     "moment": "^2.22.2",
     "npm": "^6.4.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "ts-protoc-gen": "^0.7.7"
+  }
 }
