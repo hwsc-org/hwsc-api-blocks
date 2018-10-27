@@ -1,0 +1,22 @@
+syntax="proto3";
+
+package hwscAppGatewaySvc;
+
+option go_package = "hwscAppGatewaySvc";
+
+service AppGatewayService {
+    // rpc == methods
+    // GetStatus accepts Request, returns response
+    rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+}
+
+
+// data struct that accepts the follwogin
+message AppGatewayServiceRequest {
+    string message = 1;
+}
+
+message AppGatewayServiceResponse {
+    oneof status { uint32 code = 1;}
+    string message = 2;
+}
