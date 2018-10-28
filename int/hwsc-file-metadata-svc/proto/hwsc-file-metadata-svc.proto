@@ -8,6 +8,8 @@ service FileMetadataService{
     rpc GetStatus(FileMetadataRequest) returns (FileMetadataResponse) {}
     rpc CreateFileMetadata(FileMetadataRequest) returns (FileMetadataResponse) {}
     rpc ListFileMetadataCollection(FileMetadataRequest) returns (FileMetadataResponse) {}
+    rpc UpdateFileMetadata(FileMetadataRequest) returns (FileMetadataResponse) {}
+    rpc DeleteFileMetadata(FileMetadataRequest) returns (FileMetadataResponse) {}
 }
 
 message FileMetadata{
@@ -59,6 +61,7 @@ message FileMetadataRequest{
     FileMetadata data = 1;
     // @inject_tag: bson:"uuid"
     string uuid = 2;
+    string fuid = 3;
 }
 
 message FileMetadataResponse{

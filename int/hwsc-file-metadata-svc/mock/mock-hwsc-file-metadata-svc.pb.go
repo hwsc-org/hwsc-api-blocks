@@ -122,6 +122,42 @@ func (mr *MockFileMetadataServiceClientMockRecorder) ListFileMetadataCollection(
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListFileMetadataCollection", reflect.TypeOf((*MockFileMetadataServiceClient)(nil).ListFileMetadataCollection), varargs...)
 }
 
+// UpdateFileMetadata mocks base method
+func (m *MockFileMetadataServiceClient) UpdateFileMetadata(ctx context.Context, in *x.FileMetadataRequest, opts ...grpc.CallOption) (*x.FileMetadataResponse, error) {
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UpdateFileMetadata", varargs...)
+	ret0, _ := ret[0].(*x.FileMetadataResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateFileMetadata indicates an expected call of UpdateFileMetadata
+func (mr *MockFileMetadataServiceClientMockRecorder) UpdateFileMetadata(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateFileMetadata", reflect.TypeOf((*MockFileMetadataServiceClient)(nil).UpdateFileMetadata), varargs...)
+}
+
+// DeleteFileMetadata mocks base method
+func (m *MockFileMetadataServiceClient) DeleteFileMetadata(ctx context.Context, in *x.FileMetadataRequest, opts ...grpc.CallOption) (*x.FileMetadataResponse, error) {
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DeleteFileMetadata", varargs...)
+	ret0, _ := ret[0].(*x.FileMetadataResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteFileMetadata indicates an expected call of DeleteFileMetadata
+func (mr *MockFileMetadataServiceClientMockRecorder) DeleteFileMetadata(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteFileMetadata", reflect.TypeOf((*MockFileMetadataServiceClient)(nil).DeleteFileMetadata), varargs...)
+}
+
 // MockFileMetadataServiceServer is a mock of FileMetadataServiceServer interface
 type MockFileMetadataServiceServer struct {
 	ctrl     *gomock.Controller
@@ -182,4 +218,30 @@ func (m *MockFileMetadataServiceServer) ListFileMetadataCollection(arg0 context.
 // ListFileMetadataCollection indicates an expected call of ListFileMetadataCollection
 func (mr *MockFileMetadataServiceServerMockRecorder) ListFileMetadataCollection(arg0, arg1 interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListFileMetadataCollection", reflect.TypeOf((*MockFileMetadataServiceServer)(nil).ListFileMetadataCollection), arg0, arg1)
+}
+
+// UpdateFileMetadata mocks base method
+func (m *MockFileMetadataServiceServer) UpdateFileMetadata(arg0 context.Context, arg1 *x.FileMetadataRequest) (*x.FileMetadataResponse, error) {
+	ret := m.ctrl.Call(m, "UpdateFileMetadata", arg0, arg1)
+	ret0, _ := ret[0].(*x.FileMetadataResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateFileMetadata indicates an expected call of UpdateFileMetadata
+func (mr *MockFileMetadataServiceServerMockRecorder) UpdateFileMetadata(arg0, arg1 interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateFileMetadata", reflect.TypeOf((*MockFileMetadataServiceServer)(nil).UpdateFileMetadata), arg0, arg1)
+}
+
+// DeleteFileMetadata mocks base method
+func (m *MockFileMetadataServiceServer) DeleteFileMetadata(arg0 context.Context, arg1 *x.FileMetadataRequest) (*x.FileMetadataResponse, error) {
+	ret := m.ctrl.Call(m, "DeleteFileMetadata", arg0, arg1)
+	ret0, _ := ret[0].(*x.FileMetadataResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteFileMetadata indicates an expected call of DeleteFileMetadata
+func (mr *MockFileMetadataServiceServerMockRecorder) DeleteFileMetadata(arg0, arg1 interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteFileMetadata", reflect.TypeOf((*MockFileMetadataServiceServer)(nil).DeleteFileMetadata), arg0, arg1)
 }
