@@ -8,7 +8,8 @@ const options = {
   ],
 };
 const hwscFileTransactionSvcProtoPkgDef = protoLoader.loadSync('', options);
-const hwscFileTransactionSvcPbJs = grpc.loadPackageDefinition(hwscFileTransactionSvcProtoPkgDef).hwscFileTransactionSvc;
+const hwscFileTransactionSvcPbJs = grpc.loadPackageDefinition(hwscFileTransactionSvcProtoPkgDef)
+  .hwscFileTransactionSvc;
 
 function getStatus(callback) {
   if (typeof callback !== 'function') {
