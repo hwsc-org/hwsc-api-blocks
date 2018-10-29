@@ -9,7 +9,8 @@ const options = {
   ],
 };
 const hwscGrpcSampleSvcProtoPkgDef = protoLoader.loadSync('', options);
-const hwscGrpcSampleSvcPbJs = grpc.loadPackageDefinition(hwscGrpcSampleSvcProtoPkgDef).hwscGrpcSampleSvc;
+const hwscGrpcSampleSvcPbJs = grpc.loadPackageDefinition(hwscGrpcSampleSvcProtoPkgDef)
+  .hwscGrpcSampleSvc;
 
 function sayHello(callback) {
   if (typeof callback !== 'function') {

@@ -9,7 +9,8 @@ const options = {
   ],
 };
 const hwscFileMetadataSvcProtoPkgDef = protoLoader.loadSync('', options);
-const hwscFileMetadataSvcPbJs = grpc.loadPackageDefinition(hwscFileMetadataSvcProtoPkgDef).hwscFileMetadataSvc;
+const hwscFileMetadataSvcPbJs = grpc.loadPackageDefinition(hwscFileMetadataSvcProtoPkgDef)
+  .hwscFileMetadataSvc;
 
 function getStatus(callback) {
   if (typeof callback !== 'function') {
@@ -75,8 +76,32 @@ function listFileMetadataCollection(fileMetadata, callback) {
   });
 }
 
+function deleteFileMetadata(fileMetadata, callback) {
+  if (typeof callback !== 'function') {
+    console.error('callback not a function');
+    return;
+  }
+
+  const client = new hwscFileMetadataSvcPbJs.FileMetadataService('localhost:50051',
+    grpc.credentials.createInsecure());
+
+  const request = {
+    data: fileMetadata,
+  };
+
+  client.deleteFileMetadata(request, (err, response) => {
+    if (!err) {
+      console.log(request);
+      grpc.closeClient(client);
+    }
+
+    callback(err, response);
+  });
+}
+
 module.exports = {
   getStatus,
   createFileMetadata,
   listFileMetadataCollection,
+  deleteFileMetadata,
 };

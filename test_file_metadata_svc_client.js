@@ -13,7 +13,7 @@ function callback(err, response) {
 
 
 const dataSet = [
-  // valid A
+  // valid A - 0
   {
     uuid: '4ff30392-8ec8-45a4-ba94-5e22c4a686de',
     lastName: 'Kim',
@@ -39,7 +39,7 @@ const dataSet = [
     createTimestamp: 0,
     updateTimestamp: 0,
   },
-  // valid B
+  // valid B - 1
   {
     uuid: '6ff30392-8ec8-45a4-ba94-5e22c4a686dc',
     lastName: 'Faraon',
@@ -65,9 +65,9 @@ const dataSet = [
     createTimestamp: 0,
     updateTimestamp: 0,
   },
-  // null
+  // null - 2
   null,
-  // garabage uuid
+  // garabage uuid - 3
   {
     uuid: 'garbage',
     lastName: 'Faraon',
@@ -93,17 +93,21 @@ const dataSet = [
     createTimestamp: 0,
     updateTimestamp: 0,
   },
-  // valid uuid
+  // valid uuid - 4
   {
     uuid: '4ff30392-8ec8-45a4-ba94-5e22c4a686de',
   },
-  // valid uuid
+  // valid uuid - 5
   {
     uuid: '6ff30392-8ec8-45a4-ba94-5e22c4a686dc',
   },
-  // invalid uuid
+  // invalid uuid - 6
   {
     uuid: 'garbage-8ec8-45a4-ba94-5e22c4a686dc',
+  },
+  // non-existing uuid - 7
+  {
+    uuid: '6dd00392-8ec8-45a4-ba94-5e22c4a686dc',
   },
 ];
 
@@ -111,13 +115,20 @@ const dataSet = [
 function main() {
   switch (process.argv[2]) {
     case '0':
-      index.hwscFileMetadataSvc.getStatus(callback);
+      index.hwscFileMetadataSvc
+        .getStatus(callback);
       break;
     case '1':
-      index.hwscFileMetadataSvc.createFileMetadata(dataSet[parseInt(process.argv[3])], callback);
+      index.hwscFileMetadataSvc
+        .createFileMetadata(dataSet[parseInt(process.argv[3])], callback);
       break;
     case '2':
-      index.hwscFileMetadataSvc.listFileMetadataCollection(dataSet[parseInt(process.argv[3])], callback);
+      index.hwscFileMetadataSvc
+        .listFileMetadataCollection(dataSet[parseInt(process.argv[3])], callback);
+      break;
+    case '3':
+      index.hwscFileMetadataSvc
+        .deleteFileMetadata({ uuid: process.argv[3], fuid: process.argv[4] }, callback);
       break;
   }
 }

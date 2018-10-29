@@ -13,7 +13,8 @@ const options = {
 const hwscAppGatewaySvcProtoPkgDef = protoLoader.loadSync('', options);
 
 // pointing to pb file in memory
-const hwscAppGatewaySvcPbJs = grpc.loadPackageDefinition(hwscAppGatewaySvcProtoPkgDef).hwscAppGatewaySvc;
+const hwscAppGatewaySvcPbJs = grpc.loadPackageDefinition(hwscAppGatewaySvcProtoPkgDef)
+  .hwscAppGatewaySvc;
 
 function getStatus(callback) {
   if (typeof callback !== 'function') {
