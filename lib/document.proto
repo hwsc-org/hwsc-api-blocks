@@ -1,0 +1,48 @@
+syntax="proto3";
+
+package hwsc;
+
+message Document{
+    // @inject_tag: bson:"duid"
+    string duid = 1;
+    // @inject_tag: bson:"uuid"
+    string uuid = 2;
+    // @inject_tag: bson:"lastName"
+    string last_name = 3;
+    // @inject_tag: bson:"firstName"
+    string first_name = 4;
+    // @inject_tag: bson:"callTypeName"
+    string call_type_name = 5;
+    // @inject_tag: bson:"groundType"
+    string ground_type = 6;
+    // @inject_tag: bson:"region"
+    string region = 7;
+    // @inject_tag: bson:"ocean"
+    string ocean = 8;
+    // @inject_tag: bson:"sensorType"
+    string sensor_type = 9;
+    // @inject_tag: bson:"sensorName"
+    string sensor_name = 10;
+    // @inject_tag: bson:"sampleRate"
+    uint32 sample_rate = 11;
+    // @inject_tag: bson:"latitude"
+    float latitude = 12;
+    // @inject_tag: bson:"longitude"
+    float longitude = 13;
+
+    // @inject_tag: bson:"imageUrl"
+    map<string, string> image_url = 14;
+    // @inject_tag: bson:"audioUrl"
+    map<string, string> audio_url = 15;
+    // @inject_tag: bson:"videoUrl"
+    map<string, string> video_url = 16;
+    // @inject_tag: bson:"fileUrl"
+    map<string, string> file_url = 17;
+
+    // @inject_tag: bson:"recordTimestamp"
+    int64 record_timestamp = 18;
+    // @inject_tag: bson:"createTimestamp"
+    int64 create_timestamp = 19;
+    // @inject_tag: bson:"updateTimestamp"
+    int64 update_timestamp = 20;
+}
