@@ -1,0 +1,26 @@
+syntax="proto3";
+
+package hwscDocumentSvc;
+
+import "document.proto";
+
+option go_package="hwscDocumentSvcPb";
+
+service DocumentService {
+    rpc GetStatus (DocumentRequest) returns (DocumentResponse) {}
+    rpc CreateDocument (DocumentRequest) returns (DocumentResponse) {}
+    rpc ListUserDocument (DocumentRequest) returns (DocumentResponse) {}
+    rpc UpdateDocument (DocumentRequest) returns (DocumentResponse) {}
+    rpc DeleteDocument (DocumentRequest) returns (DocumentResponse) {}
+}
+
+
+message DocumentRequest {
+    hwsc.Document data = 1;
+}
+
+message DocumentResponse {
+    oneof status { uint32 code = 1; }
+    string message = 2;
+    repeated hwsc.Document document_collection = 3;
+}
