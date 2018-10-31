@@ -9,7 +9,7 @@ option go_package="hwscDocumentSvcPb";
 service DocumentService {
     rpc GetStatus (DocumentRequest) returns (DocumentResponse) {}
     rpc CreateDocument (DocumentRequest) returns (DocumentResponse) {}
-    rpc ListUserDocument (DocumentRequest) returns (DocumentResponse) {}
+    rpc ListUserDocumentCollection (DocumentRequest) returns (DocumentResponse) {}
     rpc UpdateDocument (DocumentRequest) returns (DocumentResponse) {}
     rpc DeleteDocument (DocumentRequest) returns (DocumentResponse) {}
 }
