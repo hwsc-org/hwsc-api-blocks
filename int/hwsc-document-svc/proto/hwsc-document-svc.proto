@@ -13,6 +13,7 @@ service DocumentService {
     rpc UpdateDocument (DocumentRequest) returns (DocumentResponse) {}
     rpc DeleteDocument (DocumentRequest) returns (DocumentResponse) {}
     rpc AddFileMetadata (DocumentRequest) returns (DocumentResponse) {}
+    rpc DeleteFileMetadata (DocumentRequest) returns (DocumentResponse) {}
 }
 
 
