@@ -22,5 +22,8 @@ message DocumentRequest {
 message DocumentResponse {
     oneof status { uint32 code = 1; }
     string message = 2;
-    repeated hwsc.Document document_collection = 3;
+    string duid = 3;
+    string fuid = 4;
+    hwsc.Document data = 5;
+    repeated hwsc.Document document_collection = 6;
 }
