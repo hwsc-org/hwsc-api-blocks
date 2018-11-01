@@ -12,18 +12,30 @@ service DocumentService {
     rpc ListUserDocumentCollection (DocumentRequest) returns (DocumentResponse) {}
     rpc UpdateDocument (DocumentRequest) returns (DocumentResponse) {}
     rpc DeleteDocument (DocumentRequest) returns (DocumentResponse) {}
+    rpc AddFileMetadata (DocumentRequest) returns (DocumentResponse) {}
 }
 
 
 message DocumentRequest {
     hwsc.Document data = 1;
+    enum FileType {
+        FILE = 0;
+        AUDIO = 1;
+        IMAGE = 2;
+        VIDEO = 3;
+    }
+    FileType media = 2;
 }
 
 message DocumentResponse {
     oneof status { uint32 code = 1; }
     string message = 2;
+    // Return for CreateDocument
     string duid = 3;
+    // Return for AddFileMetadata
     string fuid = 4;
+    // Return for UpdateDocument, DeleteDocument
     hwsc.Document data = 5;
+    // Return for ListUserDocumentCollection
     repeated hwsc.Document document_collection = 6;
 }
