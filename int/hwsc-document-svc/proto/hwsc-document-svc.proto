@@ -24,7 +24,10 @@ message DocumentRequest {
         IMAGE = 2;
         VIDEO = 3;
     }
-    FileType media = 2;
+
+    // For adding FileMetadata
+    string url = 2;
+    FileType media = 3;
 }
 
 message DocumentResponse {
