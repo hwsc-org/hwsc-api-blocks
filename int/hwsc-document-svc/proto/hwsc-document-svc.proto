@@ -14,6 +14,8 @@ service DocumentService {
     rpc DeleteDocument (DocumentRequest) returns (DocumentResponse) {}
     rpc AddFileMetadata (DocumentRequest) returns (DocumentResponse) {}
     rpc DeleteFileMetadata (DocumentRequest) returns (DocumentResponse) {}
+    rpc ListDistinctFieldValues (DocumentRequest) returns (DocumentResponse) {}
+    rpc QueryDocument (DocumentRequest) returns (DocumentResponse) {}
 }
 
 
@@ -30,12 +32,14 @@ message DocumentRequest {
     string url = 2;
     string fuid = 3;
     FileType media = 4;
+    hwsc.QueryTransaction query_parameters = 5;
 }
 
 message DocumentResponse {
     oneof status { uint32 code = 1; }
     string message = 2;
     hwsc.Document data = 3;
-    // Return for ListUserDocumentCollection
+    // Return for ListUserDocumentCollection && Query
     repeated hwsc.Document document_collection = 4;
+    hwsc.QueryTransaction query_results = 5;
 }
