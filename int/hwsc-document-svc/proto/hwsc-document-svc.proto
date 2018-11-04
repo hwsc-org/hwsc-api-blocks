@@ -1,10 +1,10 @@
-syntax="proto3";
+syntax = "proto3";
 
 package hwscDocumentSvc;
 
 import "document.proto";
 
-option go_package="hwscDocumentSvcPb";
+option go_package = "hwscDocumentSvcPb";
 
 service DocumentService {
     rpc GetStatus (DocumentRequest) returns (DocumentResponse) {}
@@ -21,25 +21,23 @@ service DocumentService {
 
 message DocumentRequest {
     hwsc.Document data = 1;
-    enum FileType {
-        FILE = 0;
-        AUDIO = 1;
-        IMAGE = 2;
-        VIDEO = 3;
-    }
 
-    // For adding/deleting FileMetadata
-    string url = 2;
-    string fuid = 3;
-    FileType media = 4;
-    hwsc.QueryTransaction query_parameters = 5;
+    // Request for AddFileMetadata & DeleteFileMetadata
+    hwsc.FileMetadataTransaction fileMetadata_parameters = 2;
+
+    // Request for QueryDocument
+    hwsc.QueryTransaction query_parameters = 3;
 }
 
 message DocumentResponse {
     oneof status { uint32 code = 1; }
     string message = 2;
     hwsc.Document data = 3;
-    // Return for ListUserDocumentCollection && Query
+
+    // Response for ListUserDocumentCollection
+    // Response for QueryDocument
     repeated hwsc.Document document_collection = 4;
+
+    // Response for ListDistinctFieldValues
     hwsc.QueryTransaction query_results = 5;
 }

@@ -20,6 +20,296 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
+type FileType int32
+
+const (
+	FileType_FILE  FileType = 0
+	FileType_AUDIO FileType = 1
+	FileType_IMAGE FileType = 2
+	FileType_VIDEO FileType = 3
+)
+
+var FileType_name = map[int32]string{
+	0: "FILE",
+	1: "AUDIO",
+	2: "IMAGE",
+	3: "VIDEO",
+}
+
+var FileType_value = map[string]int32{
+	"FILE":  0,
+	"AUDIO": 1,
+	"IMAGE": 2,
+	"VIDEO": 3,
+}
+
+func (x FileType) String() string {
+	return proto.EnumName(FileType_name, int32(x))
+}
+
+func (FileType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_9d2790a4091b3173, []int{0}
+}
+
+type Publisher struct {
+	// @inject_tag: bson:"lastName"
+	LastName string `protobuf:"bytes,1,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" bson:"lastName"`
+	// @inject_tag: bson:"firstName"
+	FirstName            string   `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" bson:"firstName"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
+}
+
+func (m *Publisher) Reset()         { *m = Publisher{} }
+func (m *Publisher) String() string { return proto.CompactTextString(m) }
+func (*Publisher) ProtoMessage()    {}
+func (*Publisher) Descriptor() ([]byte, []int) {
+	return fileDescriptor_9d2790a4091b3173, []int{0}
+}
+
+func (m *Publisher) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Publisher.Unmarshal(m, b)
+}
+func (m *Publisher) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Publisher.Marshal(b, m, deterministic)
+}
+func (m *Publisher) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Publisher.Merge(m, src)
+}
+func (m *Publisher) XXX_Size() int {
+	return xxx_messageInfo_Publisher.Size(m)
+}
+func (m *Publisher) XXX_DiscardUnknown() {
+	xxx_messageInfo_Publisher.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Publisher proto.InternalMessageInfo
+
+func (m *Publisher) GetLastName() string {
+	if m != nil {
+		return m.LastName
+	}
+	return ""
+}
+
+func (m *Publisher) GetFirstName() string {
+	if m != nil {
+		return m.FirstName
+	}
+	return ""
+}
+
+type StudySite struct {
+	// @inject_tag: bson:"city"
+	City string `protobuf:"bytes,1,opt,name=city,proto3" json:"city,omitempty" bson:"city"`
+	// @inject_tag: bson:"country"
+	Country              string   `protobuf:"bytes,2,opt,name=country,proto3" json:"country,omitempty" bson:"country"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
+}
+
+func (m *StudySite) Reset()         { *m = StudySite{} }
+func (m *StudySite) String() string { return proto.CompactTextString(m) }
+func (*StudySite) ProtoMessage()    {}
+func (*StudySite) Descriptor() ([]byte, []int) {
+	return fileDescriptor_9d2790a4091b3173, []int{1}
+}
+
+func (m *StudySite) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StudySite.Unmarshal(m, b)
+}
+func (m *StudySite) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StudySite.Marshal(b, m, deterministic)
+}
+func (m *StudySite) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StudySite.Merge(m, src)
+}
+func (m *StudySite) XXX_Size() int {
+	return xxx_messageInfo_StudySite.Size(m)
+}
+func (m *StudySite) XXX_DiscardUnknown() {
+	xxx_messageInfo_StudySite.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StudySite proto.InternalMessageInfo
+
+func (m *StudySite) GetCity() string {
+	if m != nil {
+		return m.City
+	}
+	return ""
+}
+
+func (m *StudySite) GetCountry() string {
+	if m != nil {
+		return m.Country
+	}
+	return ""
+}
+
+// Request for AddFileMetadata & DeleteFileMetadata
+type FileMetadataTransaction struct {
+	Url                  string   `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	Fuid                 string   `protobuf:"bytes,3,opt,name=fuid,proto3" json:"fuid,omitempty"`
+	Media                FileType `protobuf:"varint,4,opt,name=media,proto3,enum=hwsc.FileType" json:"media,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
+}
+
+func (m *FileMetadataTransaction) Reset()         { *m = FileMetadataTransaction{} }
+func (m *FileMetadataTransaction) String() string { return proto.CompactTextString(m) }
+func (*FileMetadataTransaction) ProtoMessage()    {}
+func (*FileMetadataTransaction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_9d2790a4091b3173, []int{2}
+}
+
+func (m *FileMetadataTransaction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FileMetadataTransaction.Unmarshal(m, b)
+}
+func (m *FileMetadataTransaction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FileMetadataTransaction.Marshal(b, m, deterministic)
+}
+func (m *FileMetadataTransaction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FileMetadataTransaction.Merge(m, src)
+}
+func (m *FileMetadataTransaction) XXX_Size() int {
+	return xxx_messageInfo_FileMetadataTransaction.Size(m)
+}
+func (m *FileMetadataTransaction) XXX_DiscardUnknown() {
+	xxx_messageInfo_FileMetadataTransaction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FileMetadataTransaction proto.InternalMessageInfo
+
+func (m *FileMetadataTransaction) GetUrl() string {
+	if m != nil {
+		return m.Url
+	}
+	return ""
+}
+
+func (m *FileMetadataTransaction) GetFuid() string {
+	if m != nil {
+		return m.Fuid
+	}
+	return ""
+}
+
+func (m *FileMetadataTransaction) GetMedia() FileType {
+	if m != nil {
+		return m.Media
+	}
+	return FileType_FILE
+}
+
+// Response for ListDistinctFieldValues
+// Request for QueryDocument
+type QueryTransaction struct {
+	// @inject_tag: bson:"publishers"
+	Publishers []*Publisher `protobuf:"bytes,1,rep,name=publishers,proto3" json:"publishers,omitempty" bson:"publishers"`
+	// @inject_tag: bson:"studySites"
+	StudySites []*StudySite `protobuf:"bytes,2,rep,name=study_sites,json=studySites,proto3" json:"study_sites,omitempty" bson:"studySites"`
+	// @inject_tag: bson:"callTypes"
+	CallTypes []string `protobuf:"bytes,3,rep,name=call_types,json=callTypes,proto3" json:"call_types,omitempty" bson:"callTypes"`
+	// @inject_tag: bson:"groundTypes"
+	GroundTypes []string `protobuf:"bytes,4,rep,name=ground_types,json=groundTypes,proto3" json:"ground_types,omitempty" bson:"groundTypes"`
+	// @inject_tag: bson:"sensorTypes"
+	SensorTypes []string `protobuf:"bytes,5,rep,name=sensor_types,json=sensorTypes,proto3" json:"sensor_types,omitempty" bson:"sensorTypes"`
+	// @inject_tag: bson:"sensorNames"
+	SensorNames []string `protobuf:"bytes,6,rep,name=sensor_names,json=sensorNames,proto3" json:"sensor_names,omitempty" bson:"sensorNames"`
+	// @inject_tag: bson:"minRecordTimestamp"
+	MinRecordTimestamp int64 `protobuf:"varint,7,opt,name=min_record_timestamp,json=minRecordTimestamp,proto3" json:"min_record_timestamp,omitempty" bson:"minRecordTimestamp"`
+	// @inject_tag: bson:"maxRecordTimestamp"
+	MaxRecordTimestamp   int64    `protobuf:"varint,8,opt,name=max_record_timestamp,json=maxRecordTimestamp,proto3" json:"max_record_timestamp,omitempty" bson:"maxRecordTimestamp"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
+}
+
+func (m *QueryTransaction) Reset()         { *m = QueryTransaction{} }
+func (m *QueryTransaction) String() string { return proto.CompactTextString(m) }
+func (*QueryTransaction) ProtoMessage()    {}
+func (*QueryTransaction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_9d2790a4091b3173, []int{3}
+}
+
+func (m *QueryTransaction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_QueryTransaction.Unmarshal(m, b)
+}
+func (m *QueryTransaction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_QueryTransaction.Marshal(b, m, deterministic)
+}
+func (m *QueryTransaction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryTransaction.Merge(m, src)
+}
+func (m *QueryTransaction) XXX_Size() int {
+	return xxx_messageInfo_QueryTransaction.Size(m)
+}
+func (m *QueryTransaction) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryTransaction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryTransaction proto.InternalMessageInfo
+
+func (m *QueryTransaction) GetPublishers() []*Publisher {
+	if m != nil {
+		return m.Publishers
+	}
+	return nil
+}
+
+func (m *QueryTransaction) GetStudySites() []*StudySite {
+	if m != nil {
+		return m.StudySites
+	}
+	return nil
+}
+
+func (m *QueryTransaction) GetCallTypes() []string {
+	if m != nil {
+		return m.CallTypes
+	}
+	return nil
+}
+
+func (m *QueryTransaction) GetGroundTypes() []string {
+	if m != nil {
+		return m.GroundTypes
+	}
+	return nil
+}
+
+func (m *QueryTransaction) GetSensorTypes() []string {
+	if m != nil {
+		return m.SensorTypes
+	}
+	return nil
+}
+
+func (m *QueryTransaction) GetSensorNames() []string {
+	if m != nil {
+		return m.SensorNames
+	}
+	return nil
+}
+
+func (m *QueryTransaction) GetMinRecordTimestamp() int64 {
+	if m != nil {
+		return m.MinRecordTimestamp
+	}
+	return 0
+}
+
+func (m *QueryTransaction) GetMaxRecordTimestamp() int64 {
+	if m != nil {
+		return m.MaxRecordTimestamp
+	}
+	return 0
+}
+
 type Document struct {
 	// @inject_tag: bson:"duid"
 	Duid string `protobuf:"bytes,1,opt,name=duid,proto3" json:"duid,omitempty" bson:"duid"`
@@ -33,34 +323,38 @@ type Document struct {
 	CallTypeName string `protobuf:"bytes,5,opt,name=call_type_name,json=callTypeName,proto3" json:"call_type_name,omitempty" bson:"callTypeName"`
 	// @inject_tag: bson:"groundType"
 	GroundType string `protobuf:"bytes,6,opt,name=ground_type,json=groundType,proto3" json:"ground_type,omitempty" bson:"groundType"`
-	// @inject_tag: bson:"region"
-	Region string `protobuf:"bytes,7,opt,name=region,proto3" json:"region,omitempty" bson:"region"`
+	// @inject_tag: bson:"city"
+	City string `protobuf:"bytes,7,opt,name=city,proto3" json:"city,omitempty" bson:"city"`
+	// @inject_tag: bson:"country"
+	Country string `protobuf:"bytes,8,opt,name=country,proto3" json:"country,omitempty" bson:"country"`
 	// @inject_tag: bson:"ocean"
-	Ocean string `protobuf:"bytes,8,opt,name=ocean,proto3" json:"ocean,omitempty" bson:"ocean"`
+	Ocean string `protobuf:"bytes,9,opt,name=ocean,proto3" json:"ocean,omitempty" bson:"ocean"`
 	// @inject_tag: bson:"sensorType"
-	SensorType string `protobuf:"bytes,9,opt,name=sensor_type,json=sensorType,proto3" json:"sensor_type,omitempty" bson:"sensorType"`
+	SensorType string `protobuf:"bytes,10,opt,name=sensor_type,json=sensorType,proto3" json:"sensor_type,omitempty" bson:"sensorType"`
 	// @inject_tag: bson:"sensorName"
-	SensorName string `protobuf:"bytes,10,opt,name=sensor_name,json=sensorName,proto3" json:"sensor_name,omitempty" bson:"sensorName"`
+	SensorName string `protobuf:"bytes,11,opt,name=sensor_name,json=sensorName,proto3" json:"sensor_name,omitempty" bson:"sensorName"`
 	// @inject_tag: bson:"sampleRate"
-	SampleRate uint32 `protobuf:"varint,11,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty" bson:"sampleRate"`
+	SampleRate uint32 `protobuf:"varint,12,opt,name=sample_rate,json=sampleRate,proto3" json:"sample_rate,omitempty" bson:"sampleRate"`
 	// @inject_tag: bson:"latitude"
-	Latitude float32 `protobuf:"fixed32,12,opt,name=latitude,proto3" json:"latitude,omitempty" bson:"latitude"`
+	Latitude float32 `protobuf:"fixed32,13,opt,name=latitude,proto3" json:"latitude,omitempty" bson:"latitude"`
 	// @inject_tag: bson:"longitude"
-	Longitude float32 `protobuf:"fixed32,13,opt,name=longitude,proto3" json:"longitude,omitempty" bson:"longitude"`
+	Longitude float32 `protobuf:"fixed32,14,opt,name=longitude,proto3" json:"longitude,omitempty" bson:"longitude"`
 	// @inject_tag: bson:"imageUrl"
-	ImageUrl map[string]string `protobuf:"bytes,14,rep,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"imageUrl"`
+	ImageUrl map[string]string `protobuf:"bytes,15,rep,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"imageUrl"`
 	// @inject_tag: bson:"audioUrl"
-	AudioUrl map[string]string `protobuf:"bytes,15,rep,name=audio_url,json=audioUrl,proto3" json:"audio_url,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"audioUrl"`
+	AudioUrl map[string]string `protobuf:"bytes,16,rep,name=audio_url,json=audioUrl,proto3" json:"audio_url,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"audioUrl"`
 	// @inject_tag: bson:"videoUrl"
-	VideoUrl map[string]string `protobuf:"bytes,16,rep,name=video_url,json=videoUrl,proto3" json:"video_url,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"videoUrl"`
+	VideoUrl map[string]string `protobuf:"bytes,17,rep,name=video_url,json=videoUrl,proto3" json:"video_url,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"videoUrl"`
 	// @inject_tag: bson:"fileUrl"
-	FileUrl map[string]string `protobuf:"bytes,17,rep,name=file_url,json=fileUrl,proto3" json:"file_url,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"fileUrl"`
+	FileUrl map[string]string `protobuf:"bytes,18,rep,name=file_url,json=fileUrl,proto3" json:"file_url,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"fileUrl"`
 	// @inject_tag: bson:"recordTimestamp"
-	RecordTimestamp int64 `protobuf:"varint,18,opt,name=record_timestamp,json=recordTimestamp,proto3" json:"record_timestamp,omitempty" bson:"recordTimestamp"`
+	RecordTimestamp int64 `protobuf:"varint,19,opt,name=record_timestamp,json=recordTimestamp,proto3" json:"record_timestamp,omitempty" bson:"recordTimestamp"`
 	// @inject_tag: bson:"createTimestamp"
-	CreateTimestamp int64 `protobuf:"varint,19,opt,name=create_timestamp,json=createTimestamp,proto3" json:"create_timestamp,omitempty" bson:"createTimestamp"`
+	CreateTimestamp int64 `protobuf:"varint,20,opt,name=create_timestamp,json=createTimestamp,proto3" json:"create_timestamp,omitempty" bson:"createTimestamp"`
 	// @inject_tag: bson:"updateTimestamp"
-	UpdateTimestamp      int64    `protobuf:"varint,20,opt,name=update_timestamp,json=updateTimestamp,proto3" json:"update_timestamp,omitempty" bson:"updateTimestamp"`
+	UpdateTimestamp int64 `protobuf:"varint,21,opt,name=update_timestamp,json=updateTimestamp,proto3" json:"update_timestamp,omitempty" bson:"updateTimestamp"`
+	// @inject_tag: bson:"isPublic"
+	IsPublic             bool     `protobuf:"varint,22,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty" bson:"isPublic"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -70,7 +364,7 @@ func (m *Document) Reset()         { *m = Document{} }
 func (m *Document) String() string { return proto.CompactTextString(m) }
 func (*Document) ProtoMessage()    {}
 func (*Document) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9d2790a4091b3173, []int{0}
+	return fileDescriptor_9d2790a4091b3173, []int{4}
 }
 
 func (m *Document) XXX_Unmarshal(b []byte) error {
@@ -133,9 +427,16 @@ func (m *Document) GetGroundType() string {
 	return ""
 }
 
-func (m *Document) GetRegion() string {
+func (m *Document) GetCity() string {
 	if m != nil {
-		return m.Region
+		return m.City
+	}
+	return ""
+}
+
+func (m *Document) GetCountry() string {
+	if m != nil {
+		return m.Country
 	}
 	return ""
 }
@@ -231,7 +532,19 @@ func (m *Document) GetUpdateTimestamp() int64 {
 	return 0
 }
 
+func (m *Document) GetIsPublic() bool {
+	if m != nil {
+		return m.IsPublic
+	}
+	return false
+}
+
 func init() {
+	proto.RegisterEnum("hwsc.FileType", FileType_name, FileType_value)
+	proto.RegisterType((*Publisher)(nil), "hwsc.Publisher")
+	proto.RegisterType((*StudySite)(nil), "hwsc.StudySite")
+	proto.RegisterType((*FileMetadataTransaction)(nil), "hwsc.FileMetadataTransaction")
+	proto.RegisterType((*QueryTransaction)(nil), "hwsc.QueryTransaction")
 	proto.RegisterType((*Document)(nil), "hwsc.Document")
 	proto.RegisterMapType((map[string]string)(nil), "hwsc.Document.AudioUrlEntry")
 	proto.RegisterMapType((map[string]string)(nil), "hwsc.Document.FileUrlEntry")
@@ -242,34 +555,52 @@ func init() {
 func init() { proto.RegisterFile("document.proto", fileDescriptor_9d2790a4091b3173) }
 
 var fileDescriptor_9d2790a4091b3173 = []byte{
-	// 462 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x93, 0xcf, 0x8e, 0xd3, 0x3c,
-	0x14, 0xc5, 0x95, 0xb6, 0xd3, 0x26, 0xb7, 0x7f, 0xa6, 0x9f, 0xbf, 0x11, 0x8a, 0x66, 0x06, 0x11,
-	0x21, 0x16, 0x61, 0xd3, 0x05, 0x48, 0x08, 0x86, 0x15, 0x12, 0x20, 0xb1, 0x61, 0x11, 0x0d, 0x6c,
-	0x23, 0x93, 0xdc, 0x16, 0x0b, 0x27, 0x8e, 0x1c, 0xbb, 0xa8, 0x0f, 0xcb, 0xbb, 0x20, 0xfb, 0xa6,
-	0x93, 0x06, 0xcd, 0xa6, 0x3b, 0x9f, 0x73, 0x7e, 0xc7, 0xba, 0xba, 0x71, 0x60, 0x55, 0xaa, 0xc2,
-	0x56, 0x58, 0x9b, 0x4d, 0xa3, 0x95, 0x51, 0x6c, 0xf2, 0xf3, 0x77, 0x5b, 0x3c, 0xff, 0x33, 0x83,
-	0xf0, 0x63, 0x17, 0x30, 0x06, 0x93, 0xd2, 0x8a, 0x32, 0x0e, 0x92, 0x20, 0x8d, 0x32, 0x7f, 0x76,
-	0x9e, 0x75, 0xde, 0x88, 0x3c, 0x77, 0x66, 0x37, 0x10, 0x49, 0xde, 0x9a, 0xbc, 0xe6, 0x15, 0xc6,
-	0x63, 0x1f, 0x84, 0xce, 0xf8, 0xca, 0x2b, 0x64, 0x4f, 0x01, 0xb6, 0x42, 0x1f, 0xd3, 0x89, 0x4f,
-	0x23, 0xef, 0xf8, 0xf8, 0x05, 0xac, 0x0a, 0x2e, 0x65, 0x6e, 0x0e, 0x0d, 0x12, 0x72, 0xe1, 0x91,
-	0x85, 0x73, 0xef, 0x0f, 0x0d, 0x7a, 0xea, 0x19, 0xcc, 0x77, 0x5a, 0xd9, 0xba, 0xf4, 0x5c, 0x3c,
-	0xf5, 0x08, 0x90, 0xe5, 0x20, 0xf6, 0x04, 0xa6, 0x1a, 0x77, 0x42, 0xd5, 0xf1, 0xcc, 0x67, 0x9d,
-	0x62, 0x57, 0x70, 0xa1, 0x0a, 0xe4, 0x75, 0x1c, 0x7a, 0x9b, 0x84, 0xbb, 0xae, 0xc5, 0xba, 0x55,
-	0x9a, 0xae, 0x8b, 0xe8, 0x3a, 0xb2, 0xfc, 0x75, 0x3d, 0xe0, 0x47, 0x82, 0x53, 0xe0, 0x38, 0x50,
-	0xcb, 0xab, 0x46, 0x62, 0xae, 0xb9, 0xc1, 0x78, 0x9e, 0x04, 0xe9, 0x32, 0x03, 0xb2, 0x32, 0x6e,
-	0x90, 0x5d, 0x43, 0x28, 0xb9, 0x11, 0xc6, 0x96, 0x18, 0x2f, 0x92, 0x20, 0x1d, 0x65, 0x0f, 0x9a,
-	0xdd, 0x42, 0x24, 0x55, 0xbd, 0xa3, 0x70, 0xe9, 0xc3, 0xde, 0x60, 0xef, 0x20, 0x12, 0x15, 0xdf,
-	0x61, 0x6e, 0xb5, 0x8c, 0x57, 0xc9, 0x38, 0x9d, 0xbf, 0xba, 0xdd, 0xb8, 0x8f, 0xb3, 0x39, 0x7e,
-	0x98, 0xcd, 0x17, 0x97, 0x7f, 0xd3, 0xf2, 0x53, 0x6d, 0xf4, 0x21, 0x0b, 0x45, 0x27, 0x5d, 0x95,
-	0xdb, 0x52, 0x28, 0x5f, 0xbd, 0x7c, 0xb4, 0xfa, 0xc1, 0xe5, 0x7d, 0x95, 0x77, 0xd2, 0x55, 0xf7,
-	0xa2, 0x44, 0xaa, 0xae, 0x1f, 0xad, 0x7e, 0x77, 0x79, 0x5f, 0xdd, 0x77, 0x92, 0xbd, 0x81, 0x70,
-	0x2b, 0x24, 0xcd, 0xfb, 0x9f, 0x6f, 0xde, 0xfc, 0xd3, 0xfc, 0x2c, 0x64, 0x3f, 0xee, 0x6c, 0x4b,
-	0x8a, 0xbd, 0x84, 0xb5, 0xc6, 0x42, 0xe9, 0x32, 0x37, 0xa2, 0xc2, 0xd6, 0xf0, 0xaa, 0x89, 0x59,
-	0x12, 0xa4, 0xe3, 0xec, 0x92, 0xfc, 0xfb, 0xa3, 0xed, 0xd0, 0x42, 0x23, 0x37, 0x78, 0x82, 0xfe,
-	0x4f, 0x28, 0xf9, 0x03, 0xd4, 0x36, 0xe5, 0x10, 0xbd, 0x22, 0x94, 0xfc, 0x07, 0xf4, 0xfa, 0x3d,
-	0x2c, 0x07, 0x9b, 0x64, 0x6b, 0x18, 0xff, 0xc2, 0x43, 0xf7, 0xde, 0xdd, 0xd1, 0xbd, 0x9f, 0x3d,
-	0x97, 0x16, 0xbb, 0xf7, 0x4e, 0xe2, 0x6e, 0xf4, 0x36, 0x70, 0xe5, 0xc1, 0x2e, 0xcf, 0x2d, 0x0f,
-	0xb6, 0x79, 0x56, 0xf9, 0x0e, 0x16, 0xa7, 0x0b, 0x3d, 0xa7, 0xfb, 0x63, 0xea, 0x7f, 0xf6, 0xd7,
-	0x7f, 0x03, 0x00, 0x00, 0xff, 0xff, 0x2d, 0x60, 0x95, 0xc9, 0xfe, 0x03, 0x00, 0x00,
+	// 748 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x55, 0x5d, 0x4f, 0xdb, 0x48,
+	0x14, 0x5d, 0xc7, 0x09, 0xb1, 0x6f, 0x42, 0xf0, 0xce, 0xb2, 0xbb, 0x16, 0x50, 0xd5, 0x8d, 0x78,
+	0x08, 0x7d, 0x48, 0x2b, 0xaa, 0x56, 0x85, 0x3e, 0x21, 0x11, 0x50, 0xa4, 0x52, 0x5a, 0xf3, 0xf1,
+	0x6a, 0x0d, 0xf6, 0x04, 0x46, 0xf5, 0x47, 0xe4, 0x19, 0x53, 0xf2, 0x2f, 0xfa, 0x17, 0xfb, 0x4f,
+	0xaa, 0x3b, 0x63, 0x27, 0x4e, 0x40, 0x95, 0x78, 0xbb, 0x1f, 0xe7, 0x8c, 0x67, 0xce, 0x3d, 0xb9,
+	0x81, 0x5e, 0x94, 0x85, 0x45, 0xc2, 0x52, 0x39, 0x9c, 0xe6, 0x99, 0xcc, 0x48, 0xf3, 0xee, 0x87,
+	0x08, 0xfb, 0xa7, 0x60, 0x7f, 0x2d, 0x6e, 0x62, 0x2e, 0xee, 0x58, 0x4e, 0xb6, 0xc1, 0x8e, 0xa9,
+	0x90, 0x41, 0x4a, 0x13, 0xe6, 0x1a, 0x9e, 0x31, 0xb0, 0x7d, 0x0b, 0x0b, 0x5f, 0x68, 0xc2, 0xc8,
+	0x0b, 0x80, 0x09, 0xcf, 0xab, 0x6e, 0x43, 0x75, 0x6d, 0x55, 0xc1, 0x76, 0xff, 0x00, 0xec, 0x0b,
+	0x59, 0x44, 0xb3, 0x0b, 0x2e, 0x19, 0x21, 0xd0, 0x0c, 0xb9, 0x9c, 0x95, 0x67, 0xa8, 0x98, 0xb8,
+	0xd0, 0x0e, 0xb3, 0x22, 0x95, 0xf9, 0xac, 0x24, 0x57, 0x69, 0x9f, 0xc1, 0xff, 0x27, 0x3c, 0x66,
+	0x67, 0x4c, 0xd2, 0x88, 0x4a, 0x7a, 0x99, 0xd3, 0x54, 0xd0, 0x50, 0xf2, 0x2c, 0x25, 0x0e, 0x98,
+	0x45, 0x1e, 0x97, 0x04, 0x0c, 0xf1, 0xe8, 0x49, 0xc1, 0x23, 0xd7, 0xd4, 0x47, 0x63, 0x4c, 0x76,
+	0xa1, 0x95, 0xb0, 0x88, 0x53, 0xb7, 0xe9, 0x19, 0x83, 0xde, 0x7e, 0x6f, 0x88, 0x4f, 0x1b, 0xe2,
+	0x99, 0x97, 0xb3, 0x29, 0xf3, 0x75, 0xb3, 0xff, 0xab, 0x01, 0xce, 0xb7, 0x82, 0xe5, 0xb3, 0xfa,
+	0x07, 0xde, 0x00, 0x4c, 0xab, 0xf7, 0x0b, 0xd7, 0xf0, 0xcc, 0x41, 0x67, 0x7f, 0x43, 0xf3, 0xe7,
+	0xba, 0xf8, 0x35, 0x08, 0x79, 0x0b, 0x1d, 0x81, 0xef, 0x0c, 0x04, 0x97, 0x4c, 0xb8, 0x8d, 0x3a,
+	0x63, 0x2e, 0x80, 0x0f, 0xa2, 0x0a, 0x05, 0x0a, 0x17, 0xd2, 0x38, 0x0e, 0xe4, 0x6c, 0xca, 0x84,
+	0x6b, 0x7a, 0x26, 0x0a, 0x87, 0x15, 0xbc, 0x9c, 0x20, 0xaf, 0xa0, 0x7b, 0x9b, 0x67, 0x45, 0x1a,
+	0x95, 0x80, 0xa6, 0x02, 0x74, 0x74, 0x6d, 0x0e, 0x11, 0x2c, 0x15, 0x59, 0x5e, 0x42, 0x5a, 0x1a,
+	0xa2, 0x6b, 0xab, 0x10, 0x1c, 0x8f, 0x70, 0xd7, 0xea, 0x10, 0x1c, 0x10, 0xde, 0x7c, 0x33, 0xe1,
+	0x69, 0x90, 0xb3, 0x30, 0xcb, 0xa3, 0x40, 0xf2, 0x84, 0x09, 0x49, 0x93, 0xa9, 0xdb, 0xf6, 0x8c,
+	0x81, 0xe9, 0x93, 0x84, 0xa7, 0xbe, 0x6a, 0x5d, 0x56, 0x1d, 0xc5, 0xa0, 0x0f, 0x8f, 0x19, 0x56,
+	0xc9, 0xa0, 0x0f, 0x2b, 0x8c, 0xfe, 0x4f, 0x0b, 0xac, 0xe3, 0xd2, 0x67, 0x38, 0xaa, 0x08, 0x47,
+	0x55, 0xba, 0x00, 0x63, 0xac, 0x15, 0x58, 0xd3, 0x13, 0x55, 0xf1, 0xb2, 0xed, 0xcc, 0x3f, 0xda,
+	0xae, 0xb9, 0x62, 0x3b, 0xb2, 0x0b, 0xbd, 0xb9, 0xb8, 0x1a, 0xd2, 0x52, 0x90, 0x6e, 0x25, 0xb0,
+	0x42, 0xbd, 0x84, 0x4e, 0x4d, 0x63, 0x77, 0x4d, 0x41, 0x60, 0x21, 0xf1, 0xdc, 0xb0, 0xed, 0xa7,
+	0x0d, 0x6b, 0x2d, 0x19, 0x96, 0x6c, 0x42, 0x2b, 0x0b, 0x19, 0x4d, 0x5d, 0x5b, 0xd5, 0x75, 0x82,
+	0x1f, 0xa9, 0x4d, 0xc9, 0x05, 0xfd, 0x91, 0xc5, 0x90, 0x6a, 0x00, 0x75, 0xd1, 0x4e, 0x1d, 0x50,
+	0x5d, 0x53, 0xd0, 0x64, 0x1a, 0xb3, 0x20, 0xa7, 0x92, 0xb9, 0x5d, 0xcf, 0x18, 0xac, 0xfb, 0xa0,
+	0x4b, 0x3e, 0x95, 0x8c, 0x6c, 0x81, 0x15, 0x53, 0xc9, 0x65, 0x11, 0x31, 0x77, 0xdd, 0x33, 0x06,
+	0x0d, 0x7f, 0x9e, 0x93, 0x1d, 0xb0, 0xe3, 0x2c, 0xbd, 0xd5, 0xcd, 0x9e, 0x6a, 0x2e, 0x0a, 0xe4,
+	0x00, 0x6c, 0x9e, 0xd0, 0x5b, 0x16, 0xe0, 0xcf, 0x69, 0x43, 0x99, 0x76, 0x47, 0x9b, 0xb6, 0x1a,
+	0xd7, 0x70, 0x8c, 0xfd, 0xab, 0x3c, 0x1e, 0xe1, 0x1b, 0x7d, 0x8b, 0x97, 0x29, 0x52, 0x69, 0x11,
+	0xf1, 0x4c, 0x51, 0x9d, 0x27, 0xa9, 0x47, 0xd8, 0x5f, 0x50, 0x69, 0x99, 0x22, 0xf5, 0x9e, 0x47,
+	0x4c, 0x53, 0xff, 0x7e, 0x92, 0x7a, 0x8d, 0xfd, 0x05, 0xf5, 0xbe, 0x4c, 0xc9, 0x07, 0xb0, 0x26,
+	0x3c, 0xd6, 0xf7, 0x25, 0x8a, 0xb9, 0xbd, 0xc2, 0xc4, 0xdf, 0xf7, 0x9c, 0xd8, 0x9e, 0xe8, 0x8c,
+	0xec, 0x81, 0xf3, 0xc8, 0xaf, 0xff, 0x28, 0xbf, 0x6e, 0xe4, 0x2b, 0xf6, 0xde, 0x03, 0x27, 0xcc,
+	0x19, 0x95, 0xac, 0x06, 0xdd, 0xd4, 0x50, 0x5d, 0x5f, 0x82, 0x16, 0xd3, 0x68, 0x19, 0xfa, 0xaf,
+	0x86, 0xea, 0xfa, 0x02, 0xba, 0x0d, 0x36, 0x17, 0x81, 0xda, 0x18, 0xa1, 0xfb, 0x9f, 0x67, 0x0c,
+	0x2c, 0xdf, 0xe2, 0x42, 0x2d, 0x93, 0x70, 0xeb, 0x13, 0xac, 0x2f, 0xc9, 0x8c, 0x0b, 0xee, 0x3b,
+	0xab, 0x16, 0x25, 0x86, 0x68, 0xae, 0x7b, 0x1a, 0x17, 0xd5, 0x8a, 0xd5, 0xc9, 0x61, 0xe3, 0xa3,
+	0x81, 0xe4, 0x25, 0xa1, 0x9f, 0x4b, 0x5e, 0x92, 0xfa, 0x59, 0xe4, 0x43, 0xe8, 0xd6, 0xd5, 0x7e,
+	0x0e, 0xf7, 0xf5, 0x7b, 0xb0, 0xaa, 0x4d, 0x4c, 0x2c, 0x68, 0x9e, 0x8c, 0x3f, 0x8f, 0x9c, 0xbf,
+	0x88, 0x0d, 0xad, 0xa3, 0xab, 0xe3, 0xf1, 0xb9, 0x63, 0x60, 0x38, 0x3e, 0x3b, 0x3a, 0x1d, 0x39,
+	0x0d, 0x0c, 0xaf, 0xc7, 0xc7, 0xa3, 0x73, 0xc7, 0xbc, 0x59, 0x53, 0xff, 0x52, 0xef, 0x7e, 0x07,
+	0x00, 0x00, 0xff, 0xff, 0x3c, 0x28, 0x02, 0x41, 0xb7, 0x06, 0x00, 0x00,
 }

@@ -1,4 +1,4 @@
-syntax="proto3";
+syntax = "proto3";
 
 package hwsc;
 
@@ -9,11 +9,25 @@ message Publisher {
     string first_name = 2;
 }
 
-message Region {
+message StudySite {
     // @inject_tag: bson:"city"
     string city = 1;
     // @inject_tag: bson:"country"
     string country = 2;
+}
+
+enum FileType {
+    FILE = 0;
+    AUDIO = 1;
+    IMAGE = 2;
+    VIDEO = 3;
+}
+
+// Request for AddFileMetadata & DeleteFileMetadata
+message FileMetadataTransaction {
+    string url = 2;
+    string fuid = 3;
+    FileType media = 4;
 }
 
 // Response for ListDistinctFieldValues
@@ -21,8 +35,8 @@ message Region {
 message QueryTransaction {
     // @inject_tag: bson:"publishers"
     repeated Publisher publishers = 1;
-    // @inject_tag: bson:"regions"
-    repeated Region regions = 2;
+    // @inject_tag: bson:"studySites"
+    repeated StudySite study_sites = 2;
     // @inject_tag: bson:"callTypes"
     repeated string call_types = 3;
     // @inject_tag: bson:"groundTypes"
@@ -31,17 +45,13 @@ message QueryTransaction {
     repeated string sensor_types = 5;
     // @inject_tag: bson:"sensorNames"
     repeated string sensor_names = 6;
-    // @inject_tag: bson:"minSampleRate"
-    uint32 min_sample_rate = 7;
-    // @inject_tag: bson:"maxSampleRate;"
-    uint32 max_sample_rate = 8;
     // @inject_tag: bson:"minRecordTimestamp"
-    int64 min_record_timestamp = 9;
+    int64 min_record_timestamp = 7;
     // @inject_tag: bson:"maxRecordTimestamp"
-    int64 max_record_timestamp = 10;
+    int64 max_record_timestamp = 8;
 }
 
-message Document{
+message Document {
     // @inject_tag: bson:"duid"
     string duid = 1;
     // @inject_tag: bson:"uuid"
@@ -86,4 +96,7 @@ message Document{
     int64 create_timestamp = 20;
     // @inject_tag: bson:"updateTimestamp"
     int64 update_timestamp = 21;
+
+    // @inject_tag: bson:"isPublic"
+    bool is_public = 22;
 }
