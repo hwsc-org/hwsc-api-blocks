@@ -65,7 +65,7 @@ message Document {
     // @inject_tag: bson:"groundType"
     string ground_type = 5;
     // @inject_tag: bson:"studySite"
-    repeated StudySite study_site = 6;
+    StudySite study_site = 6;
     // @inject_tag: bson:"ocean"
     string ocean = 7;
     // @inject_tag: bson:"sensorType"
