@@ -1,8 +1,57 @@
-syntax="proto3";
+syntax = "proto3";
 
 package hwsc;
 
-message Document{
+message Publisher {
+    // @inject_tag: bson:"lastName"
+    string last_name = 1;
+    // @inject_tag: bson:"firstName"
+    string first_name = 2;
+}
+
+message StudySite {
+    // @inject_tag: bson:"city"
+    string city = 1;
+    // @inject_tag: bson:"country"
+    string country = 2;
+}
+
+enum FileType {
+    FILE = 0;
+    AUDIO = 1;
+    IMAGE = 2;
+    VIDEO = 3;
+}
+
+// Request for AddFileMetadata & DeleteFileMetadata
+message FileMetadataTransaction {
+    string url = 2;
+    string fuid = 3;
+    FileType media = 4;
+}
+
+// Response for ListDistinctFieldValues
+// Request for QueryDocument
+message QueryTransaction {
+    // @inject_tag: bson:"publishers"
+    repeated Publisher publishers = 1;
+    // @inject_tag: bson:"studySites"
+    repeated StudySite study_sites = 2;
+    // @inject_tag: bson:"callTypes"
+    repeated string call_types = 3;
+    // @inject_tag: bson:"groundTypes"
+    repeated string ground_types = 4;
+    // @inject_tag: bson:"sensorTypes"
+    repeated string sensor_types = 5;
+    // @inject_tag: bson:"sensorNames"
+    repeated string sensor_names = 6;
+    // @inject_tag: bson:"minRecordTimestamp"
+    int64 min_record_timestamp = 7;
+    // @inject_tag: bson:"maxRecordTimestamp"
+    int64 max_record_timestamp = 8;
+}
+
+message Document {
     // @inject_tag: bson:"duid"
     string duid = 1;
     // @inject_tag: bson:"uuid"
@@ -15,34 +64,39 @@ message Document{
     string call_type_name = 5;
     // @inject_tag: bson:"groundType"
     string ground_type = 6;
-    // @inject_tag: bson:"region"
-    string region = 7;
+    // @inject_tag: bson:"city"
+    string city = 7;
+    // @inject_tag: bson:"country"
+    string country = 8;
     // @inject_tag: bson:"ocean"
-    string ocean = 8;
+    string ocean = 9;
     // @inject_tag: bson:"sensorType"
-    string sensor_type = 9;
+    string sensor_type = 10;
     // @inject_tag: bson:"sensorName"
-    string sensor_name = 10;
+    string sensor_name = 11;
     // @inject_tag: bson:"sampleRate"
-    uint32 sample_rate = 11;
+    uint32 sample_rate = 12;
     // @inject_tag: bson:"latitude"
-    float latitude = 12;
+    float latitude = 13;
     // @inject_tag: bson:"longitude"
-    float longitude = 13;
+    float longitude = 14;
 
     // @inject_tag: bson:"imageUrl"
-    map<string, string> image_url = 14;
+    map<string, string> image_url = 15;
     // @inject_tag: bson:"audioUrl"
-    map<string, string> audio_url = 15;
+    map<string, string> audio_url = 16;
     // @inject_tag: bson:"videoUrl"
-    map<string, string> video_url = 16;
+    map<string, string> video_url = 17;
     // @inject_tag: bson:"fileUrl"
-    map<string, string> file_url = 17;
+    map<string, string> file_url = 18;
 
     // @inject_tag: bson:"recordTimestamp"
-    int64 record_timestamp = 18;
+    int64 record_timestamp = 19;
     // @inject_tag: bson:"createTimestamp"
-    int64 create_timestamp = 19;
+    int64 create_timestamp = 20;
     // @inject_tag: bson:"updateTimestamp"
-    int64 update_timestamp = 20;
+    int64 update_timestamp = 21;
+
+    // @inject_tag: bson:"isPublic"
+    bool is_public = 22;
 }
