@@ -27,7 +27,9 @@ enum FileType {
 message FileMetadataTransaction {
     string url = 1;
     string fuid = 2;
-    FileType media = 3;
+    string duid = 3;
+    string uuid = 4;
+    FileType media = 5;
 }
 
 // Response for ListDistinctFieldValues
