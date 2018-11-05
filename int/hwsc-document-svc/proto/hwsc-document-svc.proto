@@ -16,7 +16,6 @@ service DocumentService {
     rpc DeleteFileMetadata (DocumentRequest) returns (DocumentResponse) {}
     rpc ListDistinctFieldValues (DocumentRequest) returns (DocumentResponse) {}
     rpc QueryDocument (DocumentRequest) returns (DocumentResponse) {}
-    rpc ToggleDocumentAccessibility (DocumentRequest) returns (DocumentResponse) {}
 }
 
 
