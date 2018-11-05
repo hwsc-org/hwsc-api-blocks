@@ -8,9 +8,16 @@ function callback(err, response) {
   }
 }
 
+function fileName(err, gotName) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('FileName ', gotName);
+  }
+}
 
 function main() {
-  index.hwscFileTransactionSvc.uploadFile(callback);
+  index.hwscFileTransactionSvc.uploadFile(callback, fileName);
 }
 
 main();

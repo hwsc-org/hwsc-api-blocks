@@ -32,7 +32,7 @@ function getStatus(callback) {
   });
 }
 
-function uploadFile(callback) {
+/*function uploadFile(callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
@@ -55,6 +55,32 @@ function uploadFile(callback) {
     server.end();
   });
 
+}*/
+
+function uploadFile(callback,fileName) {
+  if (typeof callback !== 'function') {
+    console.error('callback not a function');
+    return;
+  }
+
+  if (typeof fileName !== 'function') {
+    console.error('fileName not a function');
+    return;
+  }
+
+  // create a pointer from client in API-block to server in Pycharm
+  const server = client.uploadFile((err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+    callback(err, response);
+  });
+
+  // client send the upload file name to server
+  server.send({name : fileName})
+
+  // read the upload file to stream
+  const readStream = fs.createReadStream('res/cat.jpg');
 }
 
 module.exports = {
