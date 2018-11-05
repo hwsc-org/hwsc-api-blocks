@@ -1,0 +1,203 @@
+syntax="proto3";
+
+package hwscUserSvc;
+
+option go_package="hwscDocumentSvcPb";
+
+service UserService {
+    rpc GetStatus (UserRequest) returns (UserResponse) {}
+
+    // chrome fills out registration page and make request to register
+    // gateway passes User filled object
+    // svc will look through user documents and see if email is already taken
+    // svc will create a new mongo document and insert to user collection if email not taken
+    // svc will also hash password before storing
+    // svc returns OK with uuid? || email is already taken error || service is down error
+
+    // if OK, chrome stores uuid in User object, and redirects to search page
+    // else, chrome stays on registration page and display error msg
+    rpc AddNewUser (UserRequest) returns (UserResponse) {}
+
+
+    // chrome requests to delete user from user profile page
+    // gateway passes the User object obtained when logging in
+    // svc will archive the users public documents and delete private documents?
+    // svc will traverse through shared files, go through each friend and delete shared documents
+    // svc returns OK || cannot delete for whatever reason || service is down error
+
+    // if OK, chrome redirects to login page
+    // else, chrome stays on user profile page and displays error msg
+    rpc DeleteUser (UserRequest) returns (UserResponse) {}
+
+
+    // chrome makes changes to a copy of User object (obtained when logged in), from user profile page
+    // gateway passes the modified User object
+    // svc will check that if the email changed, go through users documents to check for duplicated email
+    // svc will then do partial or complete update on users document?
+    // svc returns OK || email is already taken error || service is down error
+
+    // if OK, chrome sets offical User object with copy User object, displays success msg to user
+    // else, chrome will display error msg
+    rpc ModifyUserInfo (UserRequest) returns (UserResponse) {}
+
+
+    // chrome stores email/password in an object and makes request to login from login page
+    // gateway passes email/password object
+    // svc will look through user document for matching email
+    // svc will then match password (dehash, then match)
+    // svc will start session????
+    // svc returns OK with User object (with password nulled?) and some kind of session token?
+    //      || email doesn't match error
+    //      || if email match, password doesn't match error
+    //      || service is down error
+
+    // if OK, chrome will store user object and whatever token?, redirect to search page
+    // else, chrome will display error msg
+    rpc AuthenticateUserLogin (UserRequest) returns (UserResponse) {}
+
+
+
+
+    // THINGS GET KIND OF CONFUSING FROM HERE --------------------------------------
+
+
+    // chrome makes request to add friend by providing email? or by first and/or last name?
+    // gateway passes email (or first and last name)
+    // svc will look through user documents for matching email or name
+    // svc returns OK with found Users || email/name not found error || service is down error
+
+    // if OK, chrome will display Users first and last name and ask for confirmation?
+    //      || display list of matched names and corresponding emails and ask user to select correct one
+    //   Once user selects or confirms, chrome will store the matched users object under friends object
+    // else, chrome will display not found msg or error msg
+    rpc LookUpUser (UserRequest) returns (UserResponse) {}
+
+
+    // chrome makes request to share documents with found user
+    // gateway passes
+    //    1) request makers User object
+    //    2) a list of DUIDS to share with
+    //    3) found User object
+    // svc will...
+    rpc ShareDocuments (UserRequest) returns (UserResponse) {}
+
+
+    // chrome makes request to delete document/s
+    // gateway passes
+    //      1) document/s to delete
+    //      2) User object
+    // svc will go through users object documents map and delete key's (duid)
+    // svc will...
+    rpc DeleteDocuments (UserRequest) returns (UserResponse) {}
+
+}
+
+
+
+
+message DocumentData {
+    bool public = 1;
+    repeated string shared_with = 2;
+}
+
+message User {
+    string uuid = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    string password = 5;
+    string organization = 6;
+    map<string, DocumentData> documents = 7;
+}
+
+message UserRequest {
+    repeated User user = 1;
+    string email = 2;
+    string password = 3;
+    repeated string duids_to_share = 4;
+}
+
+message UserResponse {
+    oneof status { uint32 code = 1; }
+    string message = 2;
+    User user = 3;
+}
+
+
+
+
+// -------- VERSION 1 SCHEMA -------------
+//    {
+//        uuid : "some-uuid"
+//        firstName : "Wooyoung",
+//        lastName : "Kim",
+//        email : "123@123.com",
+//        password : "$2b$10$7aAW7A7/pWY5FSWzUjWCZONH8fSqAhiOP94mUEvO1mw21ke3JzrjG",
+//        organization : "Argosy University-Salt Lake City",
+//        friends :
+//        [
+//            {uuid : "friend-A-uuid":,  sharedDuids : ["duid-A", "duid-B"]},
+//            {uuid : "friend -B-uuid":,  sharedDuids : ["duid-A", "duid-C"]},
+//        ],
+//        publicDuids : ["duid-X", "duid-Y"],
+//        privateDuids : ["duid-Q", "duid-T"]
+//    }
+
+
+// -------- VERSION 2 SCHEMA -------------
+//{
+//    uuid : "some-uuid"
+//    firstName : "Wooyoung",
+//    lastName : "Kim",
+//    email : "123@123.com",
+//    password : "$2b$10$7aAW7A7/pWY5FSWzUjWCZONH8fSqAhiOP94mUEvO1mw21ke3JzrjG",
+//    organization : "Argosy University-Salt Lake City",
+//    sharedDocumentsFromFriends:
+//    {
+//        "friend-A-uuid":  {"duid-A" : true, "duid-B" : true},
+//        "friend-B-uuid": {"duid-A": true, "duid-C": true}
+//    },
+//    friendsList:
+//    {
+//
+//    }
+//    documents:
+//    {
+//        "duid-A" : {
+//            public: Boolean,
+//            sharedWith: [friends_uuid, friends uuid]
+//        }
+//    }
+//}
+
+
+// -------- VERSION 3 SCHEMA -------------
+//{
+//    uuid : "some-uuid"
+//    firstName : "Wooyoung",
+//    lastName : "Kim",
+//    email : "123@123.com",
+//    password : "$2b$10$7aAW7A7/pWY5FSWzUjWCZONH8fSqAhiOP94mUEvO1mw21ke3JzrjG",
+//    organization : "Argosy University-Salt Lake City",
+//    friendToDocuments :
+//    {
+//        // the boolean here is useless, it is just a map for quick look up
+//        "friend-A-uuid":  {"duid-A" : true, "duid-B" : true]},
+//        "friend-B-uuid": ["duid-A": true, "duid-C": true]}
+//    },
+//    documentToFriends:
+//    {
+//        // the boolean here is useless, it is just a map for quick look up
+//        "duid-A" : { "friend-A-uuid" : true,  "friend-B-uuid" : true},
+//        "duid-B" : { "friend-A-uuid" : true },
+//        "duid-C": { "friend-B-uuid" : true }
+//    }.
+//    documents:
+//    {
+//        "duid-A" : false,
+//        "duid-B" : false,
+//        "duid-C": false,
+//        "duid-D": true,
+//        "duid-E": true, //true means it is public
+//    }
+//}
