@@ -23,13 +23,19 @@ enum FileType {
     VIDEO = 3;
 }
 
+enum AccessLevel{
+    PUBLIC = 0;
+    PRIVATE = 1;
+}
+
 // Request for AddFileMetadata & DeleteFileMetadata
 message FileMetadataTransaction {
     string url = 1;
     string fuid = 2;
     string duid = 3;
     string uuid = 4;
-    FileType media = 5;
+    AccessLevel access_level = 5;
+    FileType media = 6;
 }
 
 // Response for ListDistinctFieldValues
