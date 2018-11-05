@@ -4,7 +4,7 @@ package hwsc;
 
 message UserDocumentMetadata {
     bool is_public = 1;
-    // key = duid
+    // key = friend's uuid
     // value = this can be anything, helps O(1) lookup time for deletion and updating
     map<string, bool> shared_with = 2;
 }
