@@ -72,8 +72,8 @@ message Document {
     string sensor_type = 8;
     // @inject_tag: bson:"sensorName"
     string sensor_name = 9;
-    // @inject_tag: bson:"sampleRate"
-    uint32 sample_rate = 10;
+    // @inject_tag: bson:"samplingRate"
+    uint32 sampling_rate = 10;
     // @inject_tag: bson:"latitude"
     float latitude = 11;
     // @inject_tag: bson:"longitude"
