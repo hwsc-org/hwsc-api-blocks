@@ -1,0 +1,30 @@
+syntax="proto3";
+
+package hwsc;
+
+message UserDocumentMetadata {
+    bool is_public = 1;
+    // key = duid
+    // value = this can be anything, helps O(1) lookup time for deletion and updating
+    map<string, bool> shared_with = 2;
+}
+
+message UserFriendMetadata {
+    // key = friend's duid
+    // value = this can be anything, helps O(1) lookup time for deletion and updating
+    map<string, bool> shared_duid_to_me = 1;
+}
+
+message User {
+    string uuid = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    string password = 5;
+    string organization = 6;
+    // track this field (key = duid)
+    map<string, UserDocumentMetadata> user_documents = 7;
+
+    // key = friends uuid
+    map<string, UserFriendMetadata> shared_to_me = 8;
+}
