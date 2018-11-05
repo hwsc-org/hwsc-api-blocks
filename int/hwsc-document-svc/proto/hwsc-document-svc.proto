@@ -21,12 +21,16 @@ service DocumentService {
 
 message DocumentRequest {
     hwsc.Document data = 1;
+    repeated string image_urls = 2;
+    repeated string audio_urls = 3;
+    repeated string video_urls = 4;
+    repeated string file_urls = 5;
 
     // Request for AddFileMetadata & DeleteFileMetadata
-    hwsc.FileMetadataTransaction fileMetadata_parameters = 2;
+    hwsc.FileMetadataTransaction fileMetadata_parameters = 6;
 
     // Request for QueryDocument
-    hwsc.QueryTransaction query_parameters = 3;
+    hwsc.QueryTransaction query_parameters = 7;
 }
 
 message DocumentResponse {
