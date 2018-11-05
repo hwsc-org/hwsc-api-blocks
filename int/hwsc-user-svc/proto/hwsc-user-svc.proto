@@ -99,7 +99,7 @@ service UserService {
     //      2) User object
     // svc will go through users object documents map and delete key's (duid)
     // svc will...
-    rpc DeleteDocuments (UserRequest) returns (UserResponse) {}
+    //    rpc DeleteDocuments (UserRequest) returns (UserResponse) {}
 
 }
 
