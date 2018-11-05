@@ -65,7 +65,7 @@ service UserService {
     rpc AuthenticateUser (UserRequest) returns (UserResponse) {}
 
 
-
+    // get list of all users in user collection
     rpc ListUsers (UserRequest) returns (UserResponse) {}
 
 
@@ -113,6 +113,7 @@ message UserResponse {
     oneof status { uint32 code = 1; }
     string message = 2;
     hwsc.User user = 3;
+    repeated hwsc.User user_collection = 4; // for ListUsers response
 }
 
 
