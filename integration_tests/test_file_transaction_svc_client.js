@@ -10,8 +10,7 @@ function callback(err, response) {
 
 
 function main() {
-  index.demo.printMsg();
-  index.hwscFileTransactionSvc.getStatus(callback);
+  index.hwscFileTransactionSvc.uploadFile(callback);
 }
 
 main();
