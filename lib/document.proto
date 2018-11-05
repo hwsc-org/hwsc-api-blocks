@@ -79,14 +79,14 @@ message Document {
     // @inject_tag: bson:"longitude"
     float longitude = 12;
 
-    // @inject_tag: bson:"imageUrl"
-    map<string, string> image_url = 13;
-    // @inject_tag: bson:"audioUrl"
-    map<string, string> audio_url = 14;
-    // @inject_tag: bson:"videoUrl"
-    map<string, string> video_url = 15;
-    // @inject_tag: bson:"fileUrl"
-    map<string, string> file_url = 16;
+    // @inject_tag: bson:"imageUrlsMap"
+    map<string, string> image_urls_map = 13;
+    // @inject_tag: bson:"audioUrlsMap"
+    map<string, string> audio_urls_map = 14;
+    // @inject_tag: bson:"videoUrlsMap"
+    map<string, string> video_urls_map = 15;
+    // @inject_tag: bson:"fileUrlsMap"
+    map<string, string> file_urls_map = 16;
 
     // @inject_tag: bson:"recordTimestamp"
     int64 record_timestamp = 17;
