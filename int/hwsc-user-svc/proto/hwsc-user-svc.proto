@@ -9,7 +9,7 @@ option go_package="hwscUserSvcPb";
 
 // NOTES:
 // any user object returned by svc, will have password field empty string
-
+// use bson tags when objects get uploaded to mongodb
 
 service UserService {
     rpc GetStatus (UserRequest) returns (UserResponse) {}
