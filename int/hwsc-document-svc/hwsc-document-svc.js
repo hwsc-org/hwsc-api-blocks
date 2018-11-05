@@ -31,7 +31,7 @@ function getStatus(callback) {
   });
 }
 
-function createDocument(document, callback) {
+function createDocument(documentRequest, callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
@@ -41,7 +41,11 @@ function createDocument(document, callback) {
     grpc.credentials.createInsecure());
 
   const request = {
-    data: document,
+    data: documentRequest.data,
+    imageUrls: documentRequest.imageUrls,
+    audioUrls: documentRequest.audioUrls,
+    videoUrls: documentRequest.videoUrls,
+    fileUrls: documentRequest.fileUrls,
   };
 
   client.createDocument(request, (err, response) => {

@@ -12,8 +12,12 @@ message Publisher {
 message StudySite {
     // @inject_tag: bson:"city"
     string city = 1;
+    // @inject_tag: bson:"state"
+    string state = 2;
+    // @inject_tag: bson:"province"
+    string province = 3;
     // @inject_tag: bson:"country"
-    string country = 2;
+    string country = 4;
 }
 
 enum FileType {
