@@ -22,6 +22,29 @@ message FileTransactionResponse{
     int64 length = 4;
 }
 
-message Chunk{
+message Buffer{
     bytes buffer = 1;
+}
+
+message Metadata{
+    string fileName = 1;
+    string filePath = 2;
+    repeated string image = 3;
+    repeated string audio = 4;
+    repeated string video = 5;
+    repeated string file = 6;
+    //enum Type{
+      //  IMAGE = 0;
+      //  AUDIO = 1;
+      //  VIDEO = 2;
+      //  FILE = 3;
+    //}
+    //Type fileType = 3;
+}
+
+message Chunk{
+    oneof test_oneof{
+        Buffer buffer = 1;
+        Metadata meta = 2;
+    }
 }

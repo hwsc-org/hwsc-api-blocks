@@ -57,17 +57,11 @@ function getStatus(callback) {
 
 }*/
 
-function uploadFile(callback,fileName) {
+function uploadFile(filePath, fileName, callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
   }
-
-  if (typeof fileName !== 'function') {
-    console.error('fileName not a function');
-    return;
-  }
-
   // create a pointer from client in API-block to server in Pycharm
   const server = client.uploadFile((err, response) => {
     if (!err) {
@@ -76,11 +70,34 @@ function uploadFile(callback,fileName) {
     callback(err, response);
   });
 
+  var fileName = path.dirname(filePath)+fileName;
+
+  // client send the upload path to server
+  server.send({filePath : filePath})
+
   // client send the upload file name to server
-  server.send({name : fileName})
+  server.send({fileName : fileName})
 
   // read the upload file to stream
-  const readStream = fs.createReadStream('res/cat.jpg');
+  const readStream = fs.createReadStream(fileName);
+
+  // THE FOLLOWING CODES JUST A FRAME
+  // TO-DO
+  readStream.on('readable',function(){
+    let chunk;
+    while(null !== (chunk = readStream.read())){
+      server.send({buffer : chunk})
+    }
+  })
+
+  readStream.on('end', function(){
+    server.write({ buffer: buf });
+    server.end();
+  })
+
+  readStream.on('error', function(err){
+    server.end(err);
+  })
 }
 
 module.exports = {

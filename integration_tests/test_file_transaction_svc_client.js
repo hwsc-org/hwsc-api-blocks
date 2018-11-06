@@ -8,16 +8,16 @@ function callback(err, response) {
   }
 }
 
-function fileName(err, gotName) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('FileName ', gotName);
+const dataSet = [
+  {
+    fileName: 'cat.jpg',
+    filePath: '/res',
+    image: 'cat',
   }
-}
+]
 
 function main() {
-  index.hwscFileTransactionSvc.uploadFile(callback, fileName);
+  index.hwscFileTransactionSvc.uploadFile(filePath, fileName, callback);
 }
 
 main();
