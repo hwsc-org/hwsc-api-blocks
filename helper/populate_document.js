@@ -620,7 +620,6 @@ const items = [
       groundType: 'Atlas',
       studySite: {
         city: 'Alesund',
-        state: '',
         country: 'Norway',
       },
       ocean: 'Arctic Ocean',
@@ -655,7 +654,6 @@ const items = [
       groundType: 'Cold Ground',
       studySite: {
         city: 'Hoffland',
-        state: '',
         country: 'Norway',
       },
       ocean: 'Arctic Ocean',
@@ -690,7 +688,6 @@ const items = [
       groundType: 'Cold Ground',
       studySite: {
         city: 'Copenhagen',
-        state: '',
         country: 'Denmark',
       },
       ocean: 'Arctic Ocean',
