@@ -598,7 +598,7 @@ const items = [
       audioUrlsMap: {},
       videoUrlsMap: {},
       fileUrlsMap: {},
-      recordTimestamp: 145446636,
+      recordTimestamp: 1454466236,
       createTimestamp: 0,
       updateTimestamp: 0,
       isPublic: true,
@@ -1134,8 +1134,10 @@ const items = [
 ];
 
 function main() {
-  index.hwscDocumentSvc
-    .createDocument(items[0], callback);
+  for (let i = 0, len = items.length; i < len; i += 1){
+    index.hwscDocumentSvc
+      .createDocument(items[i], callback);
+  }
 }
 
 main();
