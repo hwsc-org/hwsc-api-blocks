@@ -518,7 +518,6 @@ const items = [
       groundType: 'Atlas',
       studySite: {
         city: 'McMurdo',
-        state: 'Antarctica',
         country: 'USA',
       },
       ocean: 'Southern Ocean',
@@ -553,7 +552,6 @@ const items = [
       groundType: 'Atlas',
       studySite: {
         city: 'McMurdo',
-        state: 'Antarctica',
         country: 'USA',
       },
       ocean: 'Southern Ocean',
@@ -588,7 +586,6 @@ const items = [
       groundType: 'Atlas',
       studySite: {
         city: 'McMurdo',
-        state: 'Antarctica',
         country: 'USA',
       },
       ocean: 'Southern Ocean',
