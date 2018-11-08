@@ -12,15 +12,14 @@ const options = {
 const hwscDocumentSvcProtoPkgDef = protoLoader.loadSync('hwsc-document-svc.proto', options);
 const hwscDocumentSvcPbJs = grpc.loadPackageDefinition(hwscDocumentSvcProtoPkgDef)
   .hwscDocumentSvc;
+const client = new hwscDocumentSvcPbJs.DocumentService('localhost:50051',
+  grpc.credentials.createInsecure());
 
 function getStatus(callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
   }
-
-  const client = new hwscDocumentSvcPbJs.DocumentService('localhost:50051',
-    grpc.credentials.createInsecure());
 
   client.getStatus({}, (err, response) => {
     if (!err) {
@@ -36,9 +35,6 @@ function createDocument(documentRequest, callback) {
     console.error('callback not a function');
     return;
   }
-
-  const client = new hwscDocumentSvcPbJs.DocumentService('localhost:50051',
-    grpc.credentials.createInsecure());
 
   const request = {
     data: documentRequest.data,
@@ -63,9 +59,6 @@ function listUserDocumentCollection(document, callback) {
     return;
   }
 
-  const client = new hwscDocumentSvcPbJs.DocumentService('localhost:50051',
-    grpc.credentials.createInsecure());
-
   const request = {
     data: document,
   };
@@ -85,9 +78,6 @@ function updateDocument(document, callback) {
     return;
   }
 
-  const client = new hwscDocumentSvcPbJs.DocumentService('localhost:50051',
-    grpc.credentials.createInsecure());
-
   const request = {
     data: document,
   };
@@ -106,9 +96,6 @@ function deleteDocument(document, callback) {
     console.error('callback not a function');
     return;
   }
-
-  const client = new hwscDocumentSvcPbJs.DocumentService('localhost:50051',
-    grpc.credentials.createInsecure());
 
   const request = {
     data: document,
