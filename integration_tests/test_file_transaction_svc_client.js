@@ -8,9 +8,11 @@ function callback(err, response) {
   }
 }
 
+const fileName = 'cat.jpg';
+const filePath = '/res';
 
 function main() {
-  index.hwscFileTransactionSvc.uploadFile(callback);
+  index.hwscFileTransactionSvc.uploadFile(filePath, fileName, callback);
 }
 
 main();
