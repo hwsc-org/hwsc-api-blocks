@@ -2,6 +2,7 @@ const HWSC_FILE_TRANSACTION_SVC_PROTO_PATH = `${__dirname}/proto/hwsc-file-trans
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 const fs = require('fs');
+const path = require('path');
 
 const options = {
   includeDirs: [
@@ -32,7 +33,7 @@ function getStatus(callback) {
   });
 }
 
-/*function uploadFile(callback) {
+/* function uploadFile(callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
@@ -55,14 +56,16 @@ function getStatus(callback) {
     server.end();
   });
 
-}*/
+} */
 
 function uploadFile(filePath, fileName, callback) {
+  const fileLocation = path.dirname(filePath) + fileName;
+
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
   }
-  // create a pointer from client in API-block to server in Pycharm
+  // create a connection from client in API-block to server in Pycharm
   const server = client.uploadFile((err, response) => {
     if (!err) {
       grpc.closeClient(client);
@@ -70,34 +73,38 @@ function uploadFile(filePath, fileName, callback) {
     callback(err, response);
   });
 
-  var fileName = path.dirname(filePath)+fileName;
-
-  // client send the upload path to server
-  server.send({filePath : filePath})
-
   // client send the upload file name to server
-  server.send({fileName : fileName})
+  server.send({ fileName: fileName });
 
-  // read the upload file to stream
-  const readStream = fs.createReadStream(fileName);
+  // open the file, and read/pipe the first 1024 bytes of the file
+  const readStream = fs.createReadStream(fileLocation, { hightWaterMark: 1024 });
 
-  // THE FOLLOWING CODES JUST A FRAME
-  // TO-DO
-  readStream.on('readable',function(){
+  // const readable = getReadableStreamSomehow();
+  readStream.on('readable', () => {
     let chunk;
-    while(null !== (chunk = readStream.read())){
-      server.send({buffer : chunk})
+    // set buffer = 1st 1024 bytes
+    readStream.pipe(server);
+    while ((chunk = readStream.read()) !== null) {
+      // send the buffer
+      server.send({ buffer: chunk });
+      // Read/pipe and send the next 1024 bytes
+      readStream.pipe(server);
     }
-  })
+  });
 
-  readStream.on('end', function(){
-    server.write({ buffer: buf });
+  readStream.on('end', () => {
     server.end();
-  })
+  });
 
-  readStream.on('error', function(err){
+  readStream.on('error', (err) => {
+    console.error('Error!');
     server.end(err);
-  })
+  });
+
+  readStream.on('cancel', (err) => {
+    console.error('Cancel!');
+    server.end(err);
+  });
 }
 
 module.exports = {

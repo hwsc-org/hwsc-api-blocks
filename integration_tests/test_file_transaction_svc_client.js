@@ -8,13 +8,8 @@ function callback(err, response) {
   }
 }
 
-const dataSet = [
-  {
-    fileName: 'cat.jpg',
-    filePath: '/res',
-    image: 'cat',
-  }
-]
+const fileName = 'cat.jpg';
+const filePath = '/res';
 
 function main() {
   index.hwscFileTransactionSvc.uploadFile(filePath, fileName, callback);
