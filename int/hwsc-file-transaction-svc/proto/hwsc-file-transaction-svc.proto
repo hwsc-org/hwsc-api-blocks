@@ -23,18 +23,10 @@ message FileTransactionResponse{
 }
 
 message Metadata{
-    //string filePath = 1;
     repeated string image = 1;
     repeated string audio = 2;
     repeated string video = 3;
     repeated string file = 4;
-    //enum Type{
-    //  IMAGE = 0;
-    //  AUDIO = 1;
-    //  VIDEO = 2;
-    //  FILE = 3;
-    //}
-    //Type fileType = 3;
 }
 
 message Chunk{
