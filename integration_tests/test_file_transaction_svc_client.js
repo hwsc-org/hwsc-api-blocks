@@ -12,7 +12,8 @@ const fileName = 'cat.jpg';
 const filePath = '/res';
 
 function main() {
-  index.hwscFileTransactionSvc.uploadFile(filePath, fileName, callback);
+  //index.hwscFileTransactionSvc.getStatus(callback);
+  index.hwscFileTransactionSvc.uploadFile(filePath, fileName);
 }
 
 main();
