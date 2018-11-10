@@ -8,12 +8,13 @@ function callback(err, response) {
   }
 }
 
-const fileName = 'cat.jpg';
-const filePath = '/res';
+const fileName = '/cat.jpg';
+const filePath = './res';
 
 function main() {
   //index.hwscFileTransactionSvc.getStatus(callback);
-  index.hwscFileTransactionSvc.uploadFile(filePath, fileName);
+  index.hwscFileTransactionSvc.uploadFile(filePath, fileName, callback);
+  //index.hwscFileTransactionSvc.uploadFile(callback);
 }
 
 main();
