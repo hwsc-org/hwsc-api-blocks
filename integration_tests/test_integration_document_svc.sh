@@ -8,24 +8,25 @@ UPDATE_DOC_SIGNAL=3
 DELETE_DOC_SIGNAL=4
 
 # Test variables for CreateDocument
-VALID_A=0
-VALID_B=1
-NULL=2
-GARBAGE_UUID=3
+VALID_DOC_REQ=0
+NULL=1
+INVALID_DOC_REQ=2
 
 # Test variables for ListUserDocumentCollection
-VALID_UUID_A=4
-VALID_UUID_B=5
-INVALID_UUID=6
-NON_EXISTENT_UUID=7
+VALID_UUID_A=3
+VALID_UUID_B=4
+INVALID_UUID=5
+NON_EXISTENT_UUID=6
 
 # Test variables for UpdateDocument
-VALID_UPDATE=8
-INVALID_UPDATE=9
+VALID_UPDATE=7
+INVALID_UPDATE=8
 
 # Test variables for DeleteDocument
-DEL_UUID="0000XSNJG0MQJHBF4QX1EFD6Y3"
-DEL_DUID=""
+DEL_UUID="abcfXSNJG0MQJHBF4QX1EFD443"
+
+# Test variable for UpdateDocument and DeleteDocument
+DUID=""
 
 echo "Integration Test for hwsc-document-svc"
 
@@ -40,35 +41,27 @@ else
 fi
 
 echo "Test CreateDocument"
-node test_document_svc_client.js $CREATE_DOC_SIGNAL $VALID_A | grep 'code: 0,' &> /dev/null
-if [ $? == 0 ]; then
-   echo "[SUCCESS] Inserted Valid A"
-else
-    echo "[FAILURE] Inserted Valid A"
-    echo "---------- Fatal Exit ----------"
-    exit 1
-fi
-node test_document_svc_client.js $CREATE_DOC_SIGNAL $VALID_B | grep 'code: 0,' &> /dev/null
-if [ $? == 0 ]; then
-   echo "[SUCCESS] Inserted Valid B"
-else
-    echo "[FAILURE] Inserted Valid B"
-    echo "---------- Fatal Exit ----------"
-    exit 1
-fi
 node test_document_svc_client.js $CREATE_DOC_SIGNAL $NULL | grep 'code: 3,' &> /dev/null
 if [ $? == 0 ]; then
-   echo "[SUCCESS] Handled Null"
+   echo "[SUCCESS] Handled Null Document Request"
 else
-    echo "[FAILURE] Handled Null"
+    echo "[FAILURE] Handled Null Document Request"
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
-node test_document_svc_client.js $CREATE_DOC_SIGNAL $GARBAGE_UUID | grep 'code: 3,' &> /dev/null
+node test_document_svc_client.js $CREATE_DOC_SIGNAL $INVALID_DOC_REQ | grep 'code: 3,' &> /dev/null
 if [ $? == 0 ]; then
-   echo "[SUCCESS] Handled Garbage UUID"
+   echo "[SUCCESS] Handled Document Request with Garbage UUID"
 else
-    echo "[FAILURE] Handled Garbage UUID"
+    echo "[FAILURE] Handled Document Request with Garbage UUID"
+    echo "---------- Fatal Exit ----------"
+    exit 1
+fi
+
+echo "Extracting DUID for DeleteDocument & UpdateDocument Using CreateDocument"
+DUID=$(node test_document_svc_client.js $CREATE_DOC_SIGNAL $VALID_DOC_REQ| grep -o 'duid: .*' | grep -o "\'.*\'" | sed "s/'//g")
+if ! [[ $DUID =~ ^[0-9A-Za-z]{27}$ ]]; then
+    echo "[FAILURE] Uninitialized variable DEL_DUID Using CreateDocument"
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
@@ -108,7 +101,7 @@ else
 fi
 
 echo "Test UpdateDocument"
-node test_document_svc_client.js $UPDATE_DOC_SIGNAL $VALID_UPDATE | grep 'code: 0,' &> /dev/null
+node test_document_svc_client.js $UPDATE_DOC_SIGNAL $VALID_UPDATE $DUID | grep 'code: 0,' &> /dev/null
 if [ $? == 0 ]; then
    echo "[SUCCESS] Valid Update Document"
 else
@@ -116,7 +109,7 @@ else
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
-node test_document_svc_client.js $UPDATE_DOC_SIGNAL $INVALID_UPDATE | grep 'code: 3,' &> /dev/null
+node test_document_svc_client.js $UPDATE_DOC_SIGNAL $INVALID_UPDATE 'garbage-duid' | grep 'code: 3,' &> /dev/null
 if [ $? == 0 ]; then
    echo "[SUCCESS] Invalid Update Document"
 else
@@ -125,16 +118,8 @@ else
     exit 1
 fi
 
-echo "Extracting DUID for DeleteDocument"
-DEL_DUID=$(node test_document_svc_client.js $CREATE_DOC_SIGNAL $VALID_A | grep -o 'duid: .*' | grep -o "\'.*\'" | sed "s/'//g")
-if [ "$DEL_DUID" = "" ]; then
-    echo "[FAILURE] Uninitialized variable DEL_DUID"
-    echo "---------- Fatal Exit ----------"
-    exit 1
-fi
-
 echo "Test DeleteDocument"
-node test_document_svc_client.js $DELETE_DOC_SIGNAL $DEL_DUID $DEL_UUID | grep 'code: 0,' &> /dev/null
+node test_document_svc_client.js $DELETE_DOC_SIGNAL $DUID $DEL_UUID | grep 'code: 0,' &> /dev/null
 if [ $? == 0 ]; then
    echo "[SUCCESS] DeleteDocument"
 else
@@ -143,7 +128,7 @@ else
     exit 1
 fi
 
-node test_document_svc_client.js $DELETE_DOC_SIGNAL $DEL_DUID $DEL_UUID| grep 'code: 3,' &> /dev/null
+node test_document_svc_client.js $DELETE_DOC_SIGNAL $DUID $DEL_UUID| grep 'code: 3,' &> /dev/null
 if [ $? == 0 ]; then
    echo "[SUCCESS] DeleteDocument non-existing DUID"
 else

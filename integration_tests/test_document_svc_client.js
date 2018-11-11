@@ -5,203 +5,183 @@ function callback(err, response) {
     console.log(err);
   } else {
     console.log('Response ', response);
-    // console.log('Length ', response.fileMetadataCollection.length)
   }
 }
 
 const dataSet = [
-  // valid A - 0
+  // valid doc req - 0
   {
-    duid: '',
-    uuid: '0000XSNJG0MQJHBF4QX1EFD6Y3',
-    lastName: 'Kim',
-    firstName: 'Lisa',
-    callTypeName: 'some call type name',
-    groundType: 'some ground type',
-    region: 'some region',
-    ocean: 'Pacific Ocean',
-    sensorType: 'some sensor type',
-    sensorName: 'some sensor name',
-    sampleRate: 100,
-    latitude: 89.12300109863281,
-    longitude: -100.12300109863281,
-    imageUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/image/hulkgif.png',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/image/Rotating_earth_(large).gif',
+    data: {
+      duid: '',
+      uuid: 'abcfXSNJG0MQJHBF4QX1EFD443',
+      publisherName: {
+        lastName: 'Doe',
+        firstName: 'John',
+      },
+      callTypeName: 'Conga',
+      groundType: 'Breeding Migrating',
+      studySite: {
+        city: 'Cabo Mexico',
+        state: 'Baja Calafornia',
+        country: 'Mexico',
+      },
+      ocean: 'Pacific Ocean',
+      sensorType: 'Tag',
+      sensorName: 'Acousonde',
+      samplingRate: 8000,
+      latitude: 21.37382047121921,
+      longitude: -109.9239326211374,
+      imageUrlsMap: {},
+      audioUrlsMap: {},
+      videoUrlsMap: {},
+      fileUrlsMap: {},
+      recordTimestamp: 1394709793,
+      createTimestamp: 0,
+      updateTimestamp: 0,
+      isPublic: true,
     },
-    audioUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/audio/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.wav',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/audio/Milad Hosseini - Deli Asheghetam [128].mp3',
-    },
-    videoUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4',
-    },
-    fileUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4',
-    },
-    recordTimestamp: 1514764800,
-    createTimestamp: 1541036514,
-    updateTimestamp: 0,
+    imageUrls: ['https://hwscdevstorage.blob.core.windows.net/images/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.jpg',
+      'https://hwscdevstorage.blob.core.windows.net/images/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.png'],
+    audioUrls: ['https://hwscdevstorage.blob.core.windows.net/audios/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.wav'],
+    videoUrls: [],
+    fileUrls: [],
   },
-  // valid B - 1
-  {
-    duid: '',
-    uuid: '0000XSNJG0MQJHBF4QX1EFD6Y5',
-    lastName: 'Faraon',
-    firstName: 'Conard',
-    callTypeName: 'some call type name',
-    groundType: 'some ground type',
-    region: 'some region',
-    ocean: 'Pacific Ocean',
-    sensorType: 'some sensor type',
-    sensorName: 'some sensor name',
-    sampleRate: 100,
-    latitude: 89.12300109863281,
-    longitude: -100.12300109863281,
-    imageUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/image/hulkgif.png',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/image/Rotating_earth_(large).gif',
-    },
-    audioUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/audio/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.wav',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/audio/Milad Hosseini - Deli Asheghetam [128].mp3',
-    },
-    videoUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4',
-    },
-    fileUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4',
-    },
-    recordTimestamp: 1514764800,
-    createTimestamp: 1541036514,
-    updateTimestamp: 0,
-  },
-  // null - 2
+  // null - 1
   null,
-  // garabage uuid - 3
+  // invalid doc req - 2
   {
-    duid: '',
-    uuid: '0000XSNJG0MQJHBF4QX1EFD6Y5asd',
-    lastName: 'Faraon',
-    firstName: 'Conard',
-    callTypeName: 'some call type name',
-    groundType: 'some ground type',
-    region: 'some region',
-    ocean: 'Pacific Ocean',
-    sensorType: 'some sensor type',
-    sensorName: 'some sensor name',
-    sampleRate: 100,
-    latitude: 89.12300109863281,
-    longitude: -100.12300109863281,
-    imageUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/image/hulkgif.png',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/image/Rotating_earth_(large).gif',
+    data: {
+      duid: '',
+      uuid: 'garbage',
+      publisherName: {
+        lastName: 'Doe',
+        firstName: 'Jane',
+      },
+      callTypeName: 'Fish Call',
+      groundType: 'Baja Ground',
+      studySite: {
+        city: 'Los Angeles',
+        state: 'California',
+        country: 'USA',
+      },
+      ocean: 'Pacific Ocean',
+      sensorType: 'Tag',
+      sensorName: 'Cprobe',
+      samplingRate: 8000,
+      latitude: 38.016498,
+      longitude: -120.400598,
+      imageUrlsMap: {},
+      audioUrlsMap: {},
+      videoUrlsMap: {},
+      fileUrlsMap: {},
+      recordTimestamp: 1496542237,
+      createTimestamp: 0,
+      updateTimestamp: 0,
+      isPublic: true,
     },
-    audioUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/audio/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.wav',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/audio/Milad Hosseini - Deli Asheghetam [128].mp3',
-    },
-    videoUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4',
-    },
-    fileUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4',
-    },
-    recordTimestamp: 1514764800,
-    createTimestamp: 1541036514,
-    updateTimestamp: 0,
+    imageUrls: ['https://hwscdevstorage.blob.core.windows.net/images/Seger_Unknown13_CaboMexico_Tag_Bprobe_20150324_142637_8000_3_BreedingMigrating.jpg',
+      'https://hwscdevstorage.blob.core.windows.net/images/Seger_Unknown13_CaboMexico_Tag_Bprobe_20150324_142637_8000_3_BreedingMigrating.png'],
+    audioUrls: ['https://hwscdevstorage.blob.core.windows.net/audios/Seger_Unknown13_CaboMexico_Tag_Bprobe_20150324_142637_8000_3_BreedingMigrating.wav'],
+    videoUrls: [],
+    fileUrls: [],
   },
-  // valid uuid - 4
+  // valid uuid A - 3
   {
-    uuid: '0000XSNJG0MQJHBF4QX1EFD6Y3',
+    data: {
+      uuid: '0XXXXSNJG0MQJHBF4QX1EFD6Y3',
+    },
   },
-  // valid uuid - 5
+  // valid uuid B - 4
   {
-    uuid: '0000XSNJG0MQJHBF4QX1EFD6Y5',
+    data: {
+      uuid: '123XXSNJG0MQASDF4QFFFFD6Y3',
+    },
   },
-  // invalid uuid - 6
+  // invalid uuid - 5
   {
-    uuid: '0000XSNJG0MQJHBF4QX1EFD6Y5asd',
+    data: {
+      uuid: '123XXSNJG0MQASDF4QFFFFD6Y3123',
+    },
   },
-  // non-existing uuid - 7
+  // non-existing uuid - 6
   {
-    uuid: 'xxx0XSNJG0MQJHBF4QX1EFD6Yx',
+    data: {
+      uuid: 'xxx0XSNJG0xxxxxF4QX1Exxxxx',
+    },
   },
-  // valid update - 8
+  // valid update - 7
   {
-    duid: '1CMjsoGz1cNOkIYaarbcSzmNg1n',
-    uuid: '0000XSNJG0MQJHBF4QX1EFD6Y3',
-    lastName: 'Keem',
-    firstName: 'Leesa',
-    callTypeName: 'some call type name',
-    groundType: 'some ground type',
-    region: 'ceej',
-    ocean: 'Pacific Ocean',
-    sensorType: 'some sensor type',
-    sensorName: 'some sensor name',
-    sampleRate: 100,
-    latitude: 89.12300109863281,
-    longitude: -100.12300109863281,
-    imageUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/image/hulkgif.png',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/image/Rotating_earth_(large).gif',
+    data: {
+      duid: '',
+      uuid: 'abcfXSNJG0MQJHBF4QX1EFD443',
+      publisherName: {
+        lastName: 'Doe',
+        firstName: 'John',
+      },
+      callTypeName: 'Conga',
+      groundType: 'Breeding Migrating',
+      studySite: {
+        city: 'Cabo Mexico',
+        state: 'Baja Calafornia',
+        country: 'Mexico',
+      },
+      ocean: 'Pacific Ocean',
+      sensorType: 'Tag',
+      sensorName: 'Acousonde',
+      samplingRate: 8000,
+      latitude: 21.37382047121921,
+      longitude: -109.9239326211374,
+      imageUrlsMap: {},
+      audioUrlsMap: {},
+      videoUrlsMap: {},
+      fileUrlsMap: {},
+      recordTimestamp: 1394709793,
+      createTimestamp: 0,
+      updateTimestamp: 0,
+      isPublic: true,
     },
-    audioUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/audio/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.wav',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/audio/Milad Hosseini - Deli Asheghetam [128].mp3',
-    },
-    videoUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4',
-    },
-    fileUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4',
-    },
-    recordTimestamp: 1514764800,
-    createTimestamp: 1541036514,
-    updateTimestamp: 0,
+    imageUrls: ['https://hwscdevstorage.blob.core.windows.net/images/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.jpg',
+      'https://hwscdevstorage.blob.core.windows.net/images/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.png'],
+    audioUrls: ['https://hwscdevstorage.blob.core.windows.net/audios/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.wav'],
+    videoUrls: [],
+    fileUrls: [],
   },
-  // invalid update - 9
+  // invalid update - 8
   {
-    duid: 'xxxjsoGz1cNOkIYaarbcSzmNg1n',
-    uuid: 'xxx0XSNJG0MQJHBF4QX1EFD6Y3',
-    lastName: 'Keem',
-    firstName: 'Leesa',
-    callTypeName: 'some call type name',
-    groundType: 'some ground type',
-    region: 'ceej',
-    ocean: 'Pacific Ocean',
-    sensorType: 'some sensor type',
-    sensorName: 'some sensor name',
-    sampleRate: 100,
-    latitude: 89.12300109863281,
-    longitude: -100.12300109863281,
-    imageUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/image/hulkgif.png',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/image/Rotating_earth_(large).gif',
+    data: {
+      duid: '',
+      uuid: 'garbage',
+      publisherName: {
+        lastName: 'Doe',
+        firstName: 'John',
+      },
+      callTypeName: 'Conga',
+      groundType: 'Breeding Migrating',
+      studySite: {
+        city: 'Cabo Mexico',
+        state: 'Baja Calafornia',
+        country: 'Mexico',
+      },
+      ocean: 'Pacific Ocean',
+      sensorType: 'Tag',
+      sensorName: 'Acousonde',
+      samplingRate: 8000,
+      latitude: 21.37382047121921,
+      longitude: -109.9239326211374,
+      imageUrlsMap: {},
+      audioUrlsMap: {},
+      videoUrlsMap: {},
+      fileUrlsMap: {},
+      recordTimestamp: 1394709793,
+      createTimestamp: 0,
+      updateTimestamp: 0,
+      isPublic: true,
     },
-    audioUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/audio/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.wav',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/audio/Milad Hosseini - Deli Asheghetam [128].mp3',
-    },
-    videoUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4',
-    },
-    fileUrl: {
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686de': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.wmv',
-      '4ff30392-8ec8-45a4-ba94-5e22c4a686df': 'https://hwssappstorage.blob.core.windows.net/video/videoplayback.mp4',
-    },
-    recordTimestamp: 1514764800,
-    createTimestamp: 1541036514,
-    updateTimestamp: 0,
+    imageUrls: ['https://hwscdevstorage.blob.core.windows.net/images/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.jpg',
+      'https://hwscdevstorage.blob.core.windows.net/images/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.png'],
+    audioUrls: ['https://hwscdevstorage.blob.core.windows.net/audios/Seger_Conga_CaboMexico_Tag_Acousonde_20140313_112313_8000_3_BreedingMigrating.wav'],
+    videoUrls: [],
+    fileUrls: [],
   },
 ];
 
@@ -221,12 +201,13 @@ function main() {
         .listUserDocumentCollection(dataSet[parseInt(process.argv[3])], callback);
       break;
     case '3':
+      dataSet[parseInt(process.argv[3])].data.duid = process.argv[4];
       index.hwscDocumentSvc
         .updateDocument(dataSet[parseInt(process.argv[3])], callback);
       break;
     case '4':
       index.hwscDocumentSvc
-        .deleteDocument({ duid: process.argv[3], uuid: process.argv[4] }, callback);
+        .deleteDocument({ data: { duid: process.argv[3], uuid: process.argv[4] } }, callback);
       break;
     default:
       console.error('Invalid arg');

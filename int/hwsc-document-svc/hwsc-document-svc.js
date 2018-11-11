@@ -35,16 +35,11 @@ function createDocument(documentRequest, callback) {
     console.error('callback not a function');
     return;
   }
+  if (documentRequest === null) {
+    documentRequest = {};
+  }
 
-  const request = {
-    data: documentRequest.data,
-    imageUrls: documentRequest.imageUrls,
-    audioUrls: documentRequest.audioUrls,
-    videoUrls: documentRequest.videoUrls,
-    fileUrls: documentRequest.fileUrls,
-  };
-
-  client.createDocument(request, (err, response) => {
+  client.createDocument(documentRequest, (err, response) => {
     if (!err) {
       grpc.closeClient(client);
     }
@@ -53,17 +48,13 @@ function createDocument(documentRequest, callback) {
   });
 }
 
-function listUserDocumentCollection(document, callback) {
+function listUserDocumentCollection(documentRequest, callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
   }
 
-  const request = {
-    data: document,
-  };
-
-  client.listUserDocumentCollection(request, (err, response) => {
+  client.listUserDocumentCollection(documentRequest, (err, response) => {
     if (!err) {
       grpc.closeClient(client);
     }
@@ -72,17 +63,13 @@ function listUserDocumentCollection(document, callback) {
   });
 }
 
-function updateDocument(document, callback) {
+function updateDocument(documentRequest, callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
   }
 
-  const request = {
-    data: document,
-  };
-
-  client.updateDocument(request, (err, response) => {
+  client.updateDocument(documentRequest, (err, response) => {
     if (!err) {
       grpc.closeClient(client);
     }
@@ -91,17 +78,13 @@ function updateDocument(document, callback) {
   });
 }
 
-function deleteDocument(document, callback) {
+function deleteDocument(documentRequest, callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
   }
 
-  const request = {
-    data: document,
-  };
-
-  client.deleteDocument(request, (err, response) => {
+  client.deleteDocument(documentRequest, (err, response) => {
     if (!err) {
       grpc.closeClient(client);
     }
