@@ -5,7 +5,7 @@ function callback(err, response) {
     console.log(err);
   } else {
     console.log('Response ', response);
-    // console.log('Response ', response.documentCollection[0].publisherName);
+    console.log('Response ', response.documentCollection.length);
     // console.log('Response ', response.documentCollection[1].publisherName);
   }
 }
@@ -217,10 +217,10 @@ function main() {
           {
             queryParameters:
               {
-                publishers: [],
+                publishers: [{ lastName: 'Seger', firstName: 'Kerri' }],
                 studySites: [],
-                callTypes: ['Conga'],
-                groundTypes: ['Breeding Migrating'],
+                callTypes: ['Wookie'],
+                groundTypes: [],
                 sensorTypes: [],
                 sensorNames: [],
                 minRecordTimestamp: 0,
