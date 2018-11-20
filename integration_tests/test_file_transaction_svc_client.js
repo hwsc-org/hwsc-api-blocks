@@ -13,8 +13,9 @@ const filePath = './res';
 
 function main() {
   //index.hwscFileTransactionSvc.getStatus(callback);
+  index.demo.printMsg();
+  //index.hwscFileTransactionSvc.uploadFile(filePath, fileName, callback);
   index.hwscFileTransactionSvc.uploadFile(filePath, fileName, callback);
-  //index.hwscFileTransactionSvc.uploadFile(callback);
 }
 
 main();
