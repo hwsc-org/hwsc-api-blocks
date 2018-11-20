@@ -71,38 +71,40 @@ function uploadFile(filePath, fileName, callback) {
     callback(err, response);
   });
 
+  const name = fileName;
   // client send the upload file name to server
-  server.send({ fileName });
+  server.write({ fileName: name });
+  server.end();
 
   // open the file, and read/pipe the first 1024 bytes of the file
-  const readStream = fs.createReadStream(fileLocation, { hightWaterMark: 1024 });
-
-  // const readable = getReadableStreamSomehow();
-  readStream.on('readable', () => {
-    let chunk;
-    // set buffer = 1st 1024 bytes
-    readStream.pipe(server);
-    while ((chunk = readStream.read()) !== null) {
-      // send the buffer
-      server.send({ buffer: chunk });
-      // Read/pipe and send the next 1024 bytes
-      readStream.pipe(server);
-    }
-  });
-
-  readStream.on('end', () => {
-    server.end();
-  });
-
-  readStream.on('error', (err) => {
-    console.error('Error!');
-    server.end(err);
-  });
-
-  readStream.on('cancel', (err) => {
-    console.error('Cancel!');
-    server.end(err);
-  });
+  // const readStream = fs.createReadStream(fileLocation, { hightWaterMark: 1024 });
+  //
+  // // const readable = getReadableStreamSomehow();
+  // readStream.on('readable', () => {
+  //   let chunk;
+  //   // set buffer = 1st 1024 bytes
+  //   readStream.pipe(server);
+  //   while ((chunk = readStream.read()) !== null) {
+  //     // send the buffer
+  //     server.write({ buffer: chunk });
+  //     // Read/pipe and send the next 1024 bytes
+  //     readStream.pipe(server);
+  //   }
+  // });
+  //
+  // readStream.on('end', () => {
+  //   server.end();
+  // });
+  //
+  // readStream.on('error', (err) => {
+  //   console.error('Error!');
+  //   server.end(err);
+  // });
+  //
+  // readStream.on('cancel', (err) => {
+  //   console.error('Cancel!');
+  //   server.end(err);
+  // });
 }
 
 module.exports = {

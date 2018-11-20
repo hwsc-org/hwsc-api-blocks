@@ -4,9 +4,9 @@ package hwscFileTransactionSvc;
 
 // Service: define the methods that gRPC server can expose to the client
 service FileTransactionService{
-    rpc GetStatus (FileTransactionRequest) returns (FileTransactionResponse){}
-    rpc UploadFile (stream Chunk) returns (FileTransactionResponse){}
-    rpc DownloadZipFiles (FileTransactionRequest) returns (stream Chunk){}
+    rpc get_status (FileTransactionRequest) returns (FileTransactionResponse){}
+    rpc upload_file (stream Chunk) returns (FileTransactionResponse){}
+    rpc download_zip_files (FileTransactionRequest) returns (stream Chunk){}
 }
 
 message FileTransactionRequest{
