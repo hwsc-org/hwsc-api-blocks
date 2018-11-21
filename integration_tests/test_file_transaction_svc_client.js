@@ -7,9 +7,12 @@ function callback(err, response) {
     console.log('Response ', response);
   }
 }
-
+const filePath = './res';
 const fileName = 'cat.jpg';
-const filePath = '/res';
+//const fileName = 'dummy.txt';
+//const fileName = 'dummy_img.jpg';
+//const fileName = 'cat.mp3';
+//const fileName = 'videoplayback.mp4';
 
 function main() {
   index.hwscFileTransactionSvc.uploadFile(filePath, fileName, callback);
