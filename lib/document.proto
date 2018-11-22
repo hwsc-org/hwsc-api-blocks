@@ -43,8 +43,8 @@ message QueryTransaction {
     repeated Publisher publishers = 1;
     // @inject_tag: bson:"studySites"
     repeated StudySite study_sites = 2;
-    // @inject_tag: bson:"callTypes"
-    repeated string call_types = 3;
+    // @inject_tag: bson:"callTypeNames"
+    repeated string call_type_names = 3;
     // @inject_tag: bson:"groundTypes"
     repeated string ground_types = 4;
     // @inject_tag: bson:"sensorTypes"

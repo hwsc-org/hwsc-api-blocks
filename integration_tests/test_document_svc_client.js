@@ -5,6 +5,8 @@ function callback(err, response) {
     console.log(err);
   } else {
     console.log('Response ', response);
+    console.log('Response ', response.documentCollection.length);
+    // console.log('Response ', response.documentCollection[1].publisherName);
   }
 }
 
@@ -208,6 +210,24 @@ function main() {
     case '4':
       index.hwscDocumentSvc
         .deleteDocument({ data: { duid: process.argv[3], uuid: process.argv[4] } }, callback);
+      break;
+    case '5':
+      index.hwscDocumentSvc
+        .queryDocument(
+          {
+            queryParameters:
+              {
+                publishers: [{ lastName: 'Seger', firstName: 'Kerri' }],
+                studySites: [],
+                callTypeNames: ['Wookie'],
+                groundTypes: [],
+                sensorTypes: [],
+                sensorNames: [],
+                minRecordTimestamp: 0,
+                maxRecordTimestamp: 0,
+              },
+          }, callback,
+        );
       break;
     default:
       console.error('Invalid arg');

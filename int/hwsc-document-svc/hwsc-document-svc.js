@@ -93,10 +93,26 @@ function deleteDocument(documentRequest, callback) {
   });
 }
 
+function queryDocument(documentRequest, callback) {
+  if (typeof callback !== 'function') {
+    console.error('callback not a function');
+    return;
+  }
+
+  client.queryDocument(documentRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response);
+  });
+}
+
 module.exports = {
   getStatus,
   createDocument,
   listUserDocumentCollection,
   updateDocument,
   deleteDocument,
+  queryDocument,
 };
