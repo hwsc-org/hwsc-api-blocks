@@ -219,7 +219,7 @@ function main() {
               {
                 publishers: [{ lastName: 'Seger', firstName: 'Kerri' }],
                 studySites: [],
-                callTypes: ['Wookie'],
+                callTypeNames: ['Wookie'],
                 groundTypes: [],
                 sensorTypes: [],
                 sensorNames: [],
