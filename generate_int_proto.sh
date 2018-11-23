@@ -39,6 +39,7 @@ protoc \
 protoc-go-inject-tag -input=./int/hwsc-document-svc/proto/hwsc-document-svc.pb.go
 protoc-go-inject-tag -input=./int/hwsc-document-svc/proto/document.pb.go
 sed -i'.orig' -e 's/`json:"-"`/`json:"-" bson:"-"`/g' int/hwsc-document-svc/proto/*.pb.go
+sed -i'.orig' -e 's/json:"is_public,omitempty" bson:"isPublic"/json:"is_public" bson:"isPublic"/g' int/hwsc-document-svc/proto/*.pb.go
 
 
 
