@@ -26,6 +26,8 @@ INVALID_UPDATE=8
 # Test variables for QueryDocument
 ALL_DOC=9
 SEGER_WOOKIE=10
+TIME_CONSTRAINT=11
+TIME_ISSUE=12
 
 # Test variables for DeleteDocument
 DEL_UUID="abcfXSNJG0MQJHBF4QX1EFD443"
@@ -133,7 +135,7 @@ else
     exit 1
 fi
 
-node test_document_svc_client.js $DELETE_DOC_SIGNAL $DUID $DEL_UUID| grep 'code: 3,' &> /dev/null
+node test_document_svc_client.js $DELETE_DOC_SIGNAL $DUID $DEL_UUID | grep 'code: 3,' &> /dev/null
 if [ $? == 0 ]; then
    echo "[SUCCESS] DeleteDocument non-existing DUID"
 else
@@ -159,6 +161,23 @@ else
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
+TC=$(node test_document_svc_client.js $QUERY_DOC_SIGNAL $TIME_CONSTRAINT | grep 'duid' | wc -l)
+if [ $TC == 12  ]; then
+   echo "[SUCCESS] QueryDocument Time Constraint"
+else
+    echo "[FAILURE] QueryDocument Time Constraint"
+    echo "---------- Fatal Exit ----------"
+    exit 1
+fi
+node test_document_svc_client.js $QUERY_DOC_SIGNAL $TIME_ISSUE | grep 'code: 3,' &> /dev/null
+if [ $? == 0  ]; then
+   echo "[SUCCESS] QueryDocument Time Issue"
+else
+    echo "[FAILURE] QueryDocument Time Issue"
+    echo "---------- Fatal Exit ----------"
+    exit 1
+fi
+
 
 echo "---------- Success Exit ----------"
 exit 0
