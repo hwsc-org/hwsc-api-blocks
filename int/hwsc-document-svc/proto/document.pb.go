@@ -384,7 +384,7 @@ type Document struct {
 	// @inject_tag: bson:"updateTimestamp"
 	UpdateTimestamp int64 `protobuf:"varint,19,opt,name=update_timestamp,json=updateTimestamp,proto3" json:"update_timestamp,omitempty" bson:"updateTimestamp"`
 	// @inject_tag: bson:"isPublic"
-	IsPublic             bool     `protobuf:"varint,20,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty" bson:"isPublic"`
+	IsPublic             bool     `protobuf:"varint,20,opt,name=is_public,json=isPublic,proto3" json:"is_public" bson:"isPublic"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`

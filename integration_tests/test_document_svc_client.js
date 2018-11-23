@@ -5,8 +5,6 @@ function callback(err, response) {
     console.log(err);
   } else {
     console.log('Response ', response);
-    console.log('Response ', response.documentCollection.length);
-    // console.log('Response ', response.documentCollection[1].publisherName);
   }
 }
 
@@ -185,6 +183,19 @@ const dataSet = [
     videoUrls: [],
     fileUrls: [],
   },
+  // query param ALL doc - 32
+  {},
+  // query param - 10
+  {
+    publishers: [],
+    studySites: [],
+    callTypeNames: ['Wookie'],
+    groundTypes: [],
+    sensorTypes: [],
+    sensorNames: [],
+    minRecordTimestamp: 0,
+    maxRecordTimestamp: 0,
+  },
 ];
 
 
@@ -215,17 +226,7 @@ function main() {
       index.hwscDocumentSvc
         .queryDocument(
           {
-            queryParameters:
-              {
-                publishers: [{ lastName: 'Seger', firstName: 'Kerri' }],
-                studySites: [],
-                callTypeNames: ['Wookie'],
-                groundTypes: [],
-                sensorTypes: [],
-                sensorNames: [],
-                minRecordTimestamp: 0,
-                maxRecordTimestamp: 0,
-              },
+            queryParameters: dataSet[parseInt(process.argv[3])],
           }, callback,
         );
       break;

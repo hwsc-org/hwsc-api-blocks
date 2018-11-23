@@ -6,6 +6,7 @@ CREATE_DOC_SIGNAL=1
 LIST_DOCS_SIGNAL=2
 UPDATE_DOC_SIGNAL=3
 DELETE_DOC_SIGNAL=4
+QUERY_DOC_SIGNAL=5
 
 # Test variables for CreateDocument
 VALID_DOC_REQ=0
@@ -21,6 +22,10 @@ NON_EXISTENT_UUID=6
 # Test variables for UpdateDocument
 VALID_UPDATE=7
 INVALID_UPDATE=8
+
+# Test variables for QueryDocument
+ALL_DOC=9
+SEGER_WOOKIE=10
 
 # Test variables for DeleteDocument
 DEL_UUID="abcfXSNJG0MQJHBF4QX1EFD443"
@@ -137,6 +142,24 @@ else
     exit 1
 fi
 
+echo "Test QueryDocument"
+ALL=$(node test_document_svc_client.js $QUERY_DOC_SIGNAL $ALL_DOC | grep 'isPublic' | wc -l)
+echo $ALL
+if [ $ALL == 32  ]; then
+   echo "[SUCCESS] QueryDocument All"
+else
+    echo "[FAILURE] QueryDocument All"
+    echo "---------- Fatal Exit ----------"
+    exit 1
+fi
+WOOKIE=$(node test_document_svc_client.js $QUERY_DOC_SIGNAL $SEGER_WOOKIE | grep 'Wookie' | wc -l)
+if [ $WOOKIE == 2  ]; then
+   echo "[SUCCESS] QueryDocument Wookie"
+else
+    echo "[FAILURE] QueryDocument Wookie"
+    echo "---------- Fatal Exit ----------"
+    exit 1
+fi
 
 echo "---------- Success Exit ----------"
 exit 0
