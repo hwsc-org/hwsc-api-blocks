@@ -239,10 +239,11 @@ function main() {
     case '5':
       index.hwscDocumentSvc
         .queryDocument(
-          {
-            queryParameters: dataSet[parseInt(process.argv[3])],
-          }, callback,
-        );
+          { queryParameters: dataSet[parseInt(process.argv[3])] }, callback);
+      break;
+    case '6':
+      index.hwscDocumentSvc
+        .listDistinctFieldValues({}, callback);
       break;
     default:
       console.error('Invalid arg');

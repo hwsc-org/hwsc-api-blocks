@@ -93,6 +93,21 @@ function deleteDocument(documentRequest, callback) {
   });
 }
 
+function listDistinctFieldValues(documentRequest, callback) {
+  if (typeof callback !== 'function') {
+    console.error('callback not a function');
+    return;
+  }
+
+  client.listDistinctFieldValues(documentRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response);
+  });
+}
+
 function queryDocument(documentRequest, callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
@@ -114,5 +129,6 @@ module.exports = {
   listUserDocumentCollection,
   updateDocument,
   deleteDocument,
+  listDistinctFieldValues,
   queryDocument,
 };
