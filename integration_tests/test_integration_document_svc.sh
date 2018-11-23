@@ -143,8 +143,7 @@ else
 fi
 
 echo "Test QueryDocument"
-ALL=$(node test_document_svc_client.js $QUERY_DOC_SIGNAL $ALL_DOC | grep 'isPublic' | wc -l)
-echo $ALL
+ALL=$(node test_document_svc_client.js $QUERY_DOC_SIGNAL $ALL_DOC | grep 'duid' | wc -l)
 if [ $ALL == 32  ]; then
    echo "[SUCCESS] QueryDocument All"
 else
