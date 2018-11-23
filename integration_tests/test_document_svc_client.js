@@ -1,3 +1,4 @@
+const moment = require('moment');
 const index = require('../index.js');
 
 function callback(err, response) {
@@ -183,8 +184,11 @@ const dataSet = [
     videoUrls: [],
     fileUrls: [],
   },
-  // query param ALL doc - 32
-  {},
+  // query param ALL doc - 9
+  {
+    minRecordTimestamp: 631152000,
+    maxRecordTimestamp: moment.utc().unix(),
+  },
   // query param - 10
   {
     publishers: [],
@@ -193,6 +197,16 @@ const dataSet = [
     groundTypes: [],
     sensorTypes: [],
     sensorNames: [],
+    minRecordTimestamp: 631152000,
+    maxRecordTimestamp: moment.utc().unix(),
+  },
+  // query param time constraint - 11
+  {
+    minRecordTimestamp: 1446744336,
+    maxRecordTimestamp: 1510287809,
+  },
+  // query param time issue - 12
+  {
     minRecordTimestamp: 0,
     maxRecordTimestamp: 0,
   },
