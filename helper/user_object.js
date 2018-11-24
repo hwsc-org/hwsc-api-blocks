@@ -1,103 +1,72 @@
+/* eslint no-underscore-dangle: 0 */
+
 // provides factory to create new users
 
-// sharedWith?: friend's uuid = boolean
 class UserDocumentMetadata {
   constructor(isPublic, sharedWith) {
-    this.userDocObject = {
+    this._myDocumentMetadata = {
       isPublic,
-      sharedWidth: Object.assign({}, sharedWith),
+      sharedWith: Object.assign({}, sharedWith),
     };
   }
 
-  get getUserDocObject() {
-    return this.userDocObject;
+  get myDocumentMetadata() {
+    return this._myDocumentMetadata;
   }
 }
 
 class User {
   constructor() {
-    this.user = {
-      uuid: [],
+    this._user = {
+      uuid: '',
       firstName: '',
       lastName: '',
       email: '',
       password: '',
       organization: '',
-      userDocuments: {}, // keys are duids
+      myDocuments: {}, // keys are duids
       sharedToMe: {}, // keys are friends uuid
     };
   }
 
-  set setUuid(value) {
-    this.user.uuid = value;
+  set uuid(value) {
+    this._user.uuid = value;
   }
 
-  set setFirstName(firstName) {
-    this.user.firstName = firstName;
+  set firstName(firstName) {
+    this._user.firstName = firstName;
   }
 
-  set setLastName(lastName) {
-    this.user.lastName = lastName;
+  set lastName(lastName) {
+    this._user.lastName = lastName;
   }
 
-  set setEmail(email) {
-    this.user.email = email;
+  set email(email) {
+    this._user.email = email;
   }
 
-  set setPassword(password) {
-    this.user.password = password;
+  set password(password) {
+    this._user.password = password;
   }
 
-  set setOrganization(organization) {
-    this.user.organization = organization;
+  set organization(organization) {
+    this._user.organization = organization;
   }
 
-  set setUserDocuments(data) {
+  set myDocuments(data) {
     // data has duid and userDocumentMetadata Object
-    this.user.userDocuments[data.duid] = Object.assign({}, data.docMetadata);
+    this._user.myDocuments[data.duid] = Object.assign({}, data.docMetadata);
   }
 
-  set setSharedToMe(data) {
-    this.user.sharedToMe[data.uuid] = {};
+  set sharedToMe(data) {
+    this._user.sharedToMe[data.uuid] = {};
     data.duidList.forEach((duid) => {
-      this.user.sharedToMe[data.uuid][duid] = false;
+      this._user.sharedToMe[data.uuid][duid] = false;
     });
   }
 
-  get getUuid() {
-    return this.user.uuid;
-  }
-
-  get getFirstName() {
-    return this.user.firstName;
-  }
-
-  get getLastName() {
-    return this.user.lastName;
-  }
-
-  get getEmail() {
-    return this.user.email;
-  }
-
-  get getPassword() {
-    return this.user.password;
-  }
-
-  get getOrganization() {
-    return this.user.organization;
-  }
-
-  get getUserDocuments() {
-    return this.user.userDocuments;
-  }
-
-  get getSharedToMe() {
-    return this.user.sharedToMe;
-  }
-
-  get getUser() {
-    return this.user;
+  get user() {
+    return this._user;
   }
 }
 
@@ -105,3 +74,36 @@ module.exports = {
   User,
   UserDocumentMetadata,
 };
+
+
+// EXAMPLE USE CASES
+
+
+// my_documents: {
+//   duid: {
+//     is_public: true,
+//       shared_with: {
+//       uuid: true,
+//         uuid: true
+//     }
+//   },
+//   duid: {
+//     is_public: true,
+//       shared_width: {
+//       uuid: true,
+//         uuid: true,
+//     }
+//   }
+// }
+
+
+// shared_to_me: {
+//   uuid: {
+//     duid: true,
+//       duid: true,
+//       duid: true,
+//   },
+//   uuid: {
+//     duid: true,
+//   }
+// }
