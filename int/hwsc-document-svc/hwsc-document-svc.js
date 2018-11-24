@@ -93,6 +93,21 @@ function deleteDocument(documentRequest, callback) {
   });
 }
 
+function addFileMetadata(documentRequest, callback) {
+  if (typeof callback !== 'function') {
+    console.error('callback not a function');
+    return;
+  }
+
+  client.addFileMetadata(documentRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response);
+  });
+}
+
 function listDistinctFieldValues(documentRequest, callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
@@ -129,6 +144,7 @@ module.exports = {
   listUserDocumentCollection,
   updateDocument,
   deleteDocument,
+  addFileMetadata,
   listDistinctFieldValues,
   queryDocument,
 };

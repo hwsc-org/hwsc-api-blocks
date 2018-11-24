@@ -258,6 +258,10 @@ function main() {
       index.hwscDocumentSvc
         .listDistinctFieldValues({}, countDistinct);
       break;
+    case '7':
+      index.hwscDocumentSvc
+        .addFileMetadata({ fileMetadataParameters: {} }, callback);
+      break;
     default:
       console.error('Invalid arg');
   }
