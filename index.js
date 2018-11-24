@@ -5,4 +5,5 @@ module.exports = {
   hwscDocumentSvc: require('./int/hwsc-document-svc/hwsc-document-svc.js'),
   hwscFileTransactionSvc: require('./int/hwsc-file-transaction-svc/hwsc-file-transaction-svc.js'),
   hwscAppGatewaySvc: require('./int/hwsc-app-gateway-svc/hws-app-gateway-svc.js'),
+  hwscUserSvc: require('./int/hwsc-user-svc/hwsc-user-svc.js'),
 };
