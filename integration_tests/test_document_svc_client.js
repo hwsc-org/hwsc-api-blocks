@@ -9,6 +9,19 @@ function callback(err, response) {
   }
 }
 
+function countDistinct(err, response) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('Distinct length', response.queryResults.publishers.length
+    + response.queryResults.studySites.length
+    + response.queryResults.callTypeNames.length
+    + response.queryResults.groundTypes.length
+    + response.queryResults.sensorTypes.length
+    + response.queryResults.sensorNames.length);
+  }
+}
+
 const dataSet = [
   // valid doc req - 0
   {
@@ -239,10 +252,11 @@ function main() {
     case '5':
       index.hwscDocumentSvc
         .queryDocument(
-          {
-            queryParameters: dataSet[parseInt(process.argv[3])],
-          }, callback,
-        );
+          { queryParameters: dataSet[parseInt(process.argv[3])] }, callback);
+      break;
+    case '6':
+      index.hwscDocumentSvc
+        .listDistinctFieldValues({}, countDistinct);
       break;
     default:
       console.error('Invalid arg');
