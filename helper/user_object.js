@@ -55,13 +55,13 @@ class User {
 
   set myDocuments(data) {
     // data has duid and userDocumentMetadata Object
-    this._user.myDocuments[data.duid] = Object.assign({}, data.docMetadata);
+    this._user.myDocuments[data.duid] = Object.assign({}, data.myDocumentMetadata);
   }
 
   set sharedToMe(data) {
     this._user.sharedToMe[data.uuid] = {};
     data.duidList.forEach((duid) => {
-      this._user.sharedToMe[data.uuid][duid] = false;
+      this._user.sharedToMe[data.uuid][duid] = true;
     });
   }
 
