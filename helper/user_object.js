@@ -1,29 +1,107 @@
-const UserDocumentMetadata = {
-  is_public: false,
-  shared_with: {
-    uuid: false,
-  },
-};
+// provides factory to create new users
 
-const UserFriendMetadata = {
-  shared_duid_to_me: {
-    duid: false,
-  },
-};
+// sharedWith?: friend's uuid = boolean
+class UserDocumentMetadata {
+  constructor(isPublic, sharedWith) {
+    this.userDocObject = {
+      isPublic,
+      sharedWidth: Object.assign({}, sharedWith),
+    };
+  }
 
-const User = {
-  uuid: '',
-  first_name: '',
-  last_name: '',
-  email: '',
-  password: '',
-  organization: '',
-  user_documents: {
-    duid: UserDocumentMetadata,
-  },
-  shared_to_me: {
-    uuid: UserFriendMetadata,
-  },
-};
+  get getUserDocObject() {
+    return this.userDocObject;
+  }
+}
 
-export default User;
+class User {
+  constructor() {
+    this.user = {
+      uuid: [],
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      organization: '',
+      userDocuments: {}, // keys are duids
+      sharedToMe: {}, // keys are friends uuid
+    };
+  }
+
+  set setUuid(value) {
+    this.user.uuid = value;
+  }
+
+  set setFirstName(firstName) {
+    this.user.firstName = firstName;
+  }
+
+  set setLastName(lastName) {
+    this.user.lastName = lastName;
+  }
+
+  set setEmail(email) {
+    this.user.email = email;
+  }
+
+  set setPassword(password) {
+    this.user.password = password;
+  }
+
+  set setOrganization(organization) {
+    this.user.organization = organization;
+  }
+
+  set setUserDocuments(data) {
+    // data has duid and userDocumentMetadata Object
+    this.user.userDocuments[data.duid] = Object.assign({}, data.docMetadata);
+  }
+
+  set setSharedToMe(data) {
+    this.user.sharedToMe[data.uuid] = {};
+    data.duidList.forEach((duid) => {
+      this.user.sharedToMe[data.uuid][duid] = false;
+    });
+  }
+
+  get getUuid() {
+    return this.user.uuid;
+  }
+
+  get getFirstName() {
+    return this.user.firstName;
+  }
+
+  get getLastName() {
+    return this.user.lastName;
+  }
+
+  get getEmail() {
+    return this.user.email;
+  }
+
+  get getPassword() {
+    return this.user.password;
+  }
+
+  get getOrganization() {
+    return this.user.organization;
+  }
+
+  get getUserDocuments() {
+    return this.user.userDocuments;
+  }
+
+  get getSharedToMe() {
+    return this.user.sharedToMe;
+  }
+
+  get getUser() {
+    return this.user;
+  }
+}
+
+module.exports = {
+  User,
+  UserDocumentMetadata,
+};
