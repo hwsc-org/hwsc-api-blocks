@@ -1,6 +1,11 @@
 const moment = require('moment');
 const index = require('../index.js');
 
+const FILE = 0;
+const AUDIO = 1;
+const IMAGE = 2;
+const VIDEO = 3;
+
 function callback(err, response) {
   if (err) {
     console.log(err);
@@ -251,8 +256,7 @@ function main() {
       break;
     case '5':
       index.hwscDocumentSvc
-        .queryDocument(
-          { queryParameters: dataSet[parseInt(process.argv[3])] }, callback);
+        .queryDocument({ queryParameters: dataSet[parseInt(process.argv[3])] }, callback);
       break;
     case '6':
       index.hwscDocumentSvc
@@ -260,7 +264,15 @@ function main() {
       break;
     case '7':
       index.hwscDocumentSvc
-        .addFileMetadata({ fileMetadataParameters: {} }, callback);
+        .addFileMetadata(
+          {
+            fileMetadataParameters: {
+              duid: '1ChHfmKs8GX7D1XVf61lwVdisWf',
+              uuid: '0XXXXSNJG0MQJHBF4QX1EFD6Y3',
+              url: 'https://hwscdevstorage.blob.core.windows.net/images/pusheen.jpg',
+            },
+          }, IMAGE, callback,
+        );
       break;
     default:
       console.error('Invalid arg');
