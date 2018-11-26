@@ -1,11 +1,6 @@
 const moment = require('moment');
 const index = require('../index.js');
 
-const FILE = 0;
-const AUDIO = 1;
-const IMAGE = 2;
-const VIDEO = 3;
-
 function callback(err, response) {
   if (err) {
     console.log(err);
@@ -24,6 +19,36 @@ function countDistinct(err, response) {
     + response.queryResults.groundTypes.length
     + response.queryResults.sensorTypes.length
     + response.queryResults.sensorNames.length);
+  }
+}
+
+function extractFuid(err, response, url, media) {
+  if (err) {
+    console.log(err);
+  } else {
+    let map;
+    switch (media) {
+      case '0':
+        map = response.data.fileUrlsMap;
+        break;
+      case '1':
+        map = response.data.audioUrlsMap;
+        break;
+      case '2':
+        map = response.data.imageUrlsMap;
+        break;
+      case '3':
+        map = response.data.videoUrlsMap;
+        break;
+      default:
+        console.error('unsupported media type');
+        return;
+    }
+    for (const key of Object.keys(map)) {
+      if (map[key] === url) {
+        console.log(key);
+      }
+    }
   }
 }
 
@@ -267,15 +292,27 @@ function main() {
         .addFileMetadata(
           {
             fileMetadataParameters: {
-              duid: '1ChHfmKs8GX7D1XVf61lwVdisWf',
-              uuid: '0XXXXSNJG0MQJHBF4QX1EFD6Y3',
-              url: 'https://hwscdevstorage.blob.core.windows.net/images/pusheen.jpg',
+              duid: process.argv[3],
+              uuid: process.argv[4],
+              url: process.argv[5],
             },
-          }, IMAGE, callback,
+          }, process.argv[6], extractFuid,
+        );
+      break;
+    case '8':
+      index.hwscDocumentSvc
+        .deleteFileMetadata(
+          {
+            fileMetadataParameters: {
+              duid: process.argv[3],
+              uuid: process.argv[4],
+              fuid: process.argv[5],
+            },
+          }, process.argv[6], callback,
         );
       break;
     default:
-      console.error('Invalid arg');
+      console.error('invalid arg');
   }
 }
 

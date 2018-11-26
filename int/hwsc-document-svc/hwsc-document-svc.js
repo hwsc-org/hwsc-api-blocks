@@ -100,16 +100,16 @@ function addFileMetadata(documentRequest, media, callback) {
   }
 
   switch (media) {
-    case 0:
+    case '0':
       documentRequest.fileMetadataParameters.media = 0;
       break;
-    case 1:
+    case '1':
       documentRequest.fileMetadataParameters.media = 1;
       break;
-    case 2:
+    case '2':
       documentRequest.fileMetadataParameters.media = 2;
       break;
-    case 3:
+    case '3':
       documentRequest.fileMetadataParameters.media = 3;
       break;
     default:
@@ -118,6 +118,41 @@ function addFileMetadata(documentRequest, media, callback) {
   }
 
   client.addFileMetadata(documentRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response,
+      documentRequest.fileMetadataParameters.url,
+      documentRequest.fileMetadataParameters.media.toString());
+  });
+}
+
+function deleteFileMetadata(documentRequest, media, callback) {
+  if (typeof callback !== 'function') {
+    console.error('callback not a function');
+    return;
+  }
+
+  switch (media) {
+    case '0':
+      documentRequest.fileMetadataParameters.media = 0;
+      break;
+    case '1':
+      documentRequest.fileMetadataParameters.media = 1;
+      break;
+    case '2':
+      documentRequest.fileMetadataParameters.media = 2;
+      break;
+    case '3':
+      documentRequest.fileMetadataParameters.media = 3;
+      break;
+    default:
+      console.error('unsupported media type');
+      return;
+  }
+
+  client.deleteFileMetadata(documentRequest, (err, response) => {
     if (!err) {
       grpc.closeClient(client);
     }
@@ -163,6 +198,7 @@ module.exports = {
   updateDocument,
   deleteDocument,
   addFileMetadata,
+  deleteFileMetadata,
   listDistinctFieldValues,
   queryDocument,
 };
