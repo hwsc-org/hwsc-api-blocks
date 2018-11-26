@@ -93,6 +93,74 @@ function deleteDocument(documentRequest, callback) {
   });
 }
 
+function addFileMetadata(documentRequest, media, callback) {
+  if (typeof callback !== 'function') {
+    console.error('callback not a function');
+    return;
+  }
+
+  switch (media) {
+    case '0':
+      documentRequest.fileMetadataParameters.media = 0;
+      break;
+    case '1':
+      documentRequest.fileMetadataParameters.media = 1;
+      break;
+    case '2':
+      documentRequest.fileMetadataParameters.media = 2;
+      break;
+    case '3':
+      documentRequest.fileMetadataParameters.media = 3;
+      break;
+    default:
+      console.error('unsupported media type');
+      return;
+  }
+
+  client.addFileMetadata(documentRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response,
+      documentRequest.fileMetadataParameters.url,
+      documentRequest.fileMetadataParameters.media.toString());
+  });
+}
+
+function deleteFileMetadata(documentRequest, media, callback) {
+  if (typeof callback !== 'function') {
+    console.error('callback not a function');
+    return;
+  }
+
+  switch (media) {
+    case '0':
+      documentRequest.fileMetadataParameters.media = 0;
+      break;
+    case '1':
+      documentRequest.fileMetadataParameters.media = 1;
+      break;
+    case '2':
+      documentRequest.fileMetadataParameters.media = 2;
+      break;
+    case '3':
+      documentRequest.fileMetadataParameters.media = 3;
+      break;
+    default:
+      console.error('unsupported media type');
+      return;
+  }
+
+  client.deleteFileMetadata(documentRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response);
+  });
+}
+
 function listDistinctFieldValues(documentRequest, callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
@@ -129,6 +197,8 @@ module.exports = {
   listUserDocumentCollection,
   updateDocument,
   deleteDocument,
+  addFileMetadata,
+  deleteFileMetadata,
   listDistinctFieldValues,
   queryDocument,
 };

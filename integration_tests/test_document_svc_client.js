@@ -22,6 +22,36 @@ function countDistinct(err, response) {
   }
 }
 
+function extractFuid(err, response, url, media) {
+  if (err) {
+    console.log(err);
+  } else {
+    let map;
+    switch (media) {
+      case '0':
+        map = response.data.fileUrlsMap;
+        break;
+      case '1':
+        map = response.data.audioUrlsMap;
+        break;
+      case '2':
+        map = response.data.imageUrlsMap;
+        break;
+      case '3':
+        map = response.data.videoUrlsMap;
+        break;
+      default:
+        console.error('unsupported media type');
+        return;
+    }
+    for (const key of Object.keys(map)) {
+      if (map[key] === url) {
+        console.log(key);
+      }
+    }
+  }
+}
+
 const dataSet = [
   // valid doc req - 0
   {
@@ -251,15 +281,38 @@ function main() {
       break;
     case '5':
       index.hwscDocumentSvc
-        .queryDocument(
-          { queryParameters: dataSet[parseInt(process.argv[3])] }, callback);
+        .queryDocument({ queryParameters: dataSet[parseInt(process.argv[3])] }, callback);
       break;
     case '6':
       index.hwscDocumentSvc
         .listDistinctFieldValues({}, countDistinct);
       break;
+    case '7':
+      index.hwscDocumentSvc
+        .addFileMetadata(
+          {
+            fileMetadataParameters: {
+              duid: process.argv[3],
+              uuid: process.argv[4],
+              url: process.argv[5],
+            },
+          }, process.argv[6], extractFuid,
+        );
+      break;
+    case '8':
+      index.hwscDocumentSvc
+        .deleteFileMetadata(
+          {
+            fileMetadataParameters: {
+              duid: process.argv[3],
+              uuid: process.argv[4],
+              fuid: process.argv[5],
+            },
+          }, process.argv[6], callback,
+        );
+      break;
     default:
-      console.error('Invalid arg');
+      console.error('invalid arg');
   }
 }
 
