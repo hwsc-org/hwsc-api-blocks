@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/faraonc/hwsc-api-blocks.git"
+    "url": "git+https://github.com/hwsc-org/hwsc-api-blocks.git"
   },
   "author": "Conard Faraon",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/faraonc/hwsc-api-blocks/issues"
+    "url": "https://github.com/hwsc-org/hwsc-api-blocks/issues"
   },
-  "homepage": "https://github.com/faraonc/hwsc-api-blocks#readme",
+  "homepage": "https://github.com/hwsc-org/hwsc-api-blocks#readme",
   "dependencies": {
     "@grpc/proto-loader": "^0.3.0",
     "grpc": "^1.15.1",
