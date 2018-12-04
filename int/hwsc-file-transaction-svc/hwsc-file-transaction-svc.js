@@ -21,88 +21,56 @@ function getStatus(callback) {
     console.error('callback not a function');
     return;
   }
-
   const request = {};
-
   client.getStatus(request, (err, response) => {
     if (!err) {
       grpc.closeClient(client);
     }
-
     callback(err, response);
   });
 }
 
-/* function uploadFile(callback) {
-  if (typeof callback !== 'function') {
-    console.error('callback not a function');
-    return;
-  }
-  // 'utf8'
-  fs.readFile('res/cat.jpg', 'binary', (errFile, contents) => {
-    if (!errFile) {
-      // grpc.closeClient(client);
-    }
-    var server = client.uploadFile((err, response) => {
-      if (!err) {
-        // grpc.closeClient(client);
-      }
-      callback(err, response);
-    });
-    var buf = Buffer.from(contents, 'binary');
-    //console.log(buf);
-    server.write({ buffer: buf });
-    server.end();
-  });
-} */
-
 function uploadFile(filePath, fileName, callback) {
-  const fileLocation = path.dirname(filePath) + fileName;
+  const fileLocation = filePath + '/' + fileName;
 
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
   }
+
   // create a connection from client in API-block to server in Pycharm
   const server = client.uploadFile((err, response) => {
     if (!err) {
-      grpc.closeClient(client);
+      // grpc.closeClient(client);
     }
     callback(err, response);
   });
-
   // client send the upload file name to server
-  server.send({ fileName });
+  server.write({ fileName: fileName });
 
   // open the file, and read/pipe the first 1024 bytes of the file
   const readStream = fs.createReadStream(fileLocation, { hightWaterMark: 1024 });
 
-  // const readable = getReadableStreamSomehow();
   readStream.on('readable', () => {
     let chunk;
-    // set buffer = 1st 1024 bytes
-    readStream.pipe(server);
     while ((chunk = readStream.read()) !== null) {
-      // send the buffer
-      server.send({ buffer: chunk });
-      // Read/pipe and send the next 1024 bytes
-      readStream.pipe(server);
+      server.write({ buffer: chunk });
     }
   });
-
   readStream.on('end', () => {
     server.end();
+    //   callback(err, response);
   });
 
-  readStream.on('error', (err) => {
-    console.error('Error!');
-    server.end(err);
-  });
+  //readStream.on('error', (err, response) => {
+  //server.end();
+  //callback(err, response);
+  //});
 
-  readStream.on('cancel', (err) => {
-    console.error('Cancel!');
-    server.end(err);
-  });
+  //readStream.on('cancel', (err) => {
+  //server.end(err);
+  //console.error('Cancel!');
+  //});
 }
 
 module.exports = {
