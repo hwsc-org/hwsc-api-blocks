@@ -31,12 +31,13 @@ function getStatus(callback) {
 }
 
 function uploadFile(filePath, fileName, callback) {
-  const fileLocation = filePath + '/' + fileName;
 
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
   }
+
+  const fileLocation = filePath + '/' + fileName;
 
   // create a connection from client in API-block to server in Pycharm
   const server = client.uploadFile((err, response) => {
@@ -62,15 +63,16 @@ function uploadFile(filePath, fileName, callback) {
     //   callback(err, response);
   });
 
-  //readStream.on('error', (err, response) => {
-  //server.end();
-  //callback(err, response);
-  //});
+  //TODO
+  /*readStream.on('error', (err, response) => {
+    server.end();
+    callback(err, response);
+    });
 
-  //readStream.on('cancel', (err) => {
-  //server.end(err);
-  //console.error('Cancel!');
-  //});
+    readStream.on('cancel', (err) => {
+    server.end(err);
+    console.error('Cancel!');
+    });*/
 }
 
 module.exports = {
