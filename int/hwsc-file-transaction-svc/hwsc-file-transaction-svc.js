@@ -31,7 +31,6 @@ function getStatus(callback) {
 }
 
 function uploadFile(filePath, fileName, callback) {
-
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
