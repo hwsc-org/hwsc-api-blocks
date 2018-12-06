@@ -5,8 +5,8 @@ import hwsc_file_transaction_svc_pb2 as hwsc__file__transaction__svc__pb2
 
 
 class FileTransactionServiceStub(object):
-  """Service: define the methods that gRPC server can expose to the client
-  """
+  # missing associated documentation comment in .proto file
+  pass
 
   def __init__(self, channel):
     """Constructor.
@@ -24,16 +24,16 @@ class FileTransactionServiceStub(object):
         request_serializer=hwsc__file__transaction__svc__pb2.Chunk.SerializeToString,
         response_deserializer=hwsc__file__transaction__svc__pb2.FileTransactionResponse.FromString,
         )
-    self.DownloadZipFiles = channel.unary_stream(
-        '/hwscFileTransactionSvc.FileTransactionService/DownloadZipFiles',
+    self.DownloadZippedFiles = channel.unary_stream(
+        '/hwscFileTransactionSvc.FileTransactionService/DownloadZippedFiles',
         request_serializer=hwsc__file__transaction__svc__pb2.FileTransactionRequest.SerializeToString,
         response_deserializer=hwsc__file__transaction__svc__pb2.Chunk.FromString,
         )
 
 
 class FileTransactionServiceServicer(object):
-  """Service: define the methods that gRPC server can expose to the client
-  """
+  # missing associated documentation comment in .proto file
+  pass
 
   def GetStatus(self, request, context):
     # missing associated documentation comment in .proto file
@@ -49,7 +49,7 @@ class FileTransactionServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def DownloadZipFiles(self, request, context):
+  def DownloadZippedFiles(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -69,8 +69,8 @@ def add_FileTransactionServiceServicer_to_server(servicer, server):
           request_deserializer=hwsc__file__transaction__svc__pb2.Chunk.FromString,
           response_serializer=hwsc__file__transaction__svc__pb2.FileTransactionResponse.SerializeToString,
       ),
-      'DownloadZipFiles': grpc.unary_stream_rpc_method_handler(
-          servicer.DownloadZipFiles,
+      'DownloadZippedFiles': grpc.unary_stream_rpc_method_handler(
+          servicer.DownloadZippedFiles,
           request_deserializer=hwsc__file__transaction__svc__pb2.FileTransactionRequest.FromString,
           response_serializer=hwsc__file__transaction__svc__pb2.Chunk.SerializeToString,
       ),

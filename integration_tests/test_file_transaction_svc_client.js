@@ -7,14 +7,11 @@ function callback(err, response) {
     console.log('Response ', response);
   }
 }
-
-const fileName = '/cat.jpg';
 const filePath = './res';
+const fileName = 'cat.jpg';
 
 function main() {
-  //index.hwscFileTransactionSvc.getStatus(callback);
   index.hwscFileTransactionSvc.uploadFile(filePath, fileName, callback);
-  //index.hwscFileTransactionSvc.uploadFile(callback);
 }
 
 main();

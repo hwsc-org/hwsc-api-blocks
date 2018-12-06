@@ -2,11 +2,10 @@ syntax = "proto3";
 
 package hwscFileTransactionSvc;
 
-// Service: define the methods that gRPC server can expose to the client
 service FileTransactionService{
     rpc GetStatus (FileTransactionRequest) returns (FileTransactionResponse){}
     rpc UploadFile (stream Chunk) returns (FileTransactionResponse){}
-    rpc DownloadZipFiles (FileTransactionRequest) returns (stream Chunk){}
+    rpc DownloadZippedFiles (FileTransactionRequest) returns (stream Chunk){}
 }
 
 message FileTransactionRequest{
@@ -19,20 +18,12 @@ message FileTransactionResponse{
     oneof status {uint32 code = 1;}
     string message = 2;
     string url = 3;
-    int64 length = 4;
-}
-
-message Metadata{
-    repeated string image = 1;
-    repeated string audio = 2;
-    repeated string video = 3;
-    repeated string file = 4;
 }
 
 message Chunk{
     oneof test_oneof{
         bytes buffer = 1;
         string fileName = 2;
+        int64 length = 3;
     }
-    Metadata meta = 3;
 }
