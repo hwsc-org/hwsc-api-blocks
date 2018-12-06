@@ -3,9 +3,9 @@ syntax = "proto3";
 package hwscFileTransactionSvc;
 
 service FileTransactionService{
-    rpc get_status (FileTransactionRequest) returns (FileTransactionResponse){}
-    rpc upload_file (stream Chunk) returns (FileTransactionResponse){}
-    rpc download_zip_files (FileTransactionRequest) returns (stream Chunk){}
+    rpc getStatus (FileTransactionRequest) returns (FileTransactionResponse){}
+    rpc uploadFile (stream Chunk) returns (FileTransactionResponse){}
+    rpc downloadZippedFiles (FileTransactionRequest) returns (stream Chunk){}
 }
 
 message FileTransactionRequest{
@@ -18,13 +18,12 @@ message FileTransactionResponse{
     oneof status {uint32 code = 1;}
     string message = 2;
     string url = 3;
-    int64 length = 4; //remove later
 }
 
 message Chunk{
     oneof test_oneof{
         bytes buffer = 1;
         string fileName = 2;
-        //add length here
+        int64 length = 3;
     }
 }
