@@ -12,8 +12,8 @@ service FileTransactionService{
 message FileTransactionRequest{
     string message = 1;
     string name = 2;
-    repeated string urls = 3;
-    string uuid = 4;
+    string uuid = 3;
+    repeated string urls = 4;
 }
 
 message FileTransactionResponse{
@@ -25,8 +25,8 @@ message FileTransactionResponse{
 message Chunk{
     oneof test_oneof{
         bytes buffer = 1;
-        string file_name = 2;
-        int64 length = 3;
+        int64 length = 2;
+        string file_name = 3;
         string uuid = 4;
     }
 }
