@@ -104,7 +104,7 @@ service UserService {
 }
 
 message UserRequest {
-    repeated hwsc.User user = 1;
+    hwsc.User user = 1;
     string duid = 2;
     repeated string uuids_to_share_duid = 3;
 }
