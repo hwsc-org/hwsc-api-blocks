@@ -1,6 +1,10 @@
+# test files
+audio_test.mp3
+file_test.mat
+video_test.mp4
+
 # JetBrains
 .idea
-
 # macOS
 .DS_Store
 

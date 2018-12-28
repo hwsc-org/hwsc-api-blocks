@@ -9,9 +9,11 @@ function callback(err, response) {
 }
 const filePath = './res';
 const fileName = 'cat.jpg';
+const uuid = 'u-1234abcd5454efef8842ll3fsf';
 
 function main() {
-  index.hwscFileTransactionSvc.uploadFile(filePath, fileName, callback);
+  index.hwscFileTransactionSvc.uploadFile(filePath, fileName, uuid, callback);
+  //index.hwscFileTransactionSvc.createUserFolder(uuid, callback);
 }
 
 main();
