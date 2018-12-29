@@ -21,24 +21,24 @@ message UserFriendMetadata {
 }
 
 message User {
-    // @inject_tag: bson:"uuid"
+    // @inject_tag: bson:"uuid" db:"uuid"
     string uuid = 1;
-    // @inject_tag: bson:"firstName"
+    // @inject_tag: bson:"firstName" db:"first_name"
     string first_name = 2;
-    // @inject_tag: bson:"lastName"
+    // @inject_tag: bson:"lastName" db:"last_name"
     string last_name = 3;
-    // @inject_tag: bson:"email"
+    // @inject_tag: bson:"email" db:"email"
     string email = 4;
-    // @inject_tag: bson:"password"
+    // @inject_tag: bson:"password" db:"password"
     string password = 5;
-    // @inject_tag: bson:"organization"
+    // @inject_tag: bson:"organization" db:"organization"
     string organization = 6;
     // @inject_tag: bson:"userDocuments"
     map<string, UserDocumentMetadata> user_documents = 7; // track this field (key = duid)
     // @inject_tag: bson:"sharedToMe"
     map<string, UserFriendMetadata> shared_to_me = 8; // key = friends uuid
-    // @inject_tag: bson:"createTimestamp"
-    int64 create_timestamp = 9;
-    // @inject_tag: bson:"isVerified"
+    // @inject_tag: bson:"createdDate" db:"created_date"
+    int64 created_date = 9;
+    // @inject_tag: bson:"isVerified" db:"is_verified"
     bool is_verified = 10;
 }
