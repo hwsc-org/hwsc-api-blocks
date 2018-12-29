@@ -116,26 +116,26 @@ func (m *UserFriendMetadata) GetSharedDuidToMe() map[string]bool {
 }
 
 type User struct {
-	// @inject_tag: bson:"uuid" db:"uuid"
-	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty" bson:"uuid" db:"uuid"`
-	// @inject_tag: bson:"firstName" db:"first_name"
-	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" bson:"firstName" db:"first_name"`
-	// @inject_tag: bson:"lastName" db:"last_name"
-	LastName string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" bson:"lastName" db:"last_name"`
-	// @inject_tag: bson:"email" db:"email"
-	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty" bson:"email" db:"email"`
-	// @inject_tag: bson:"password" db:"password"
-	Password string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty" bson:"password" db:"password"`
-	// @inject_tag: bson:"organization" db:"organization"
-	Organization string `protobuf:"bytes,6,opt,name=organization,proto3" json:"organization,omitempty" bson:"organization" db:"organization"`
+	// @inject_tag: bson:"uuid"
+	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty" bson:"uuid"`
+	// @inject_tag: bson:"firstName"
+	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" bson:"firstName"`
+	// @inject_tag: bson:"lastName"
+	LastName string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" bson:"lastName"`
+	// @inject_tag: bson:"email"
+	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty" bson:"email"`
+	// @inject_tag: bson:"password"
+	Password string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty" bson:"password"`
+	// @inject_tag: bson:"organization"
+	Organization string `protobuf:"bytes,6,opt,name=organization,proto3" json:"organization,omitempty" bson:"organization"`
 	// @inject_tag: bson:"userDocuments"
 	UserDocuments map[string]*UserDocumentMetadata `protobuf:"bytes,7,rep,name=user_documents,json=userDocuments,proto3" json:"user_documents,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"userDocuments"`
 	// @inject_tag: bson:"sharedToMe"
 	SharedToMe map[string]*UserFriendMetadata `protobuf:"bytes,8,rep,name=shared_to_me,json=sharedToMe,proto3" json:"shared_to_me,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"sharedToMe"`
-	// @inject_tag: bson:"createdDate" db:"created_date"
-	CreatedDate int64 `protobuf:"varint,9,opt,name=created_date,json=createdDate,proto3" json:"created_date,omitempty" bson:"createdDate" db:"created_date"`
-	// @inject_tag: bson:"isVerified" db:"is_verified"
-	IsVerified           bool     `protobuf:"varint,10,opt,name=is_verified,json=isVerified,proto3" json:"is_verified,omitempty" bson:"isVerified" db:"is_verified"`
+	// @inject_tag: bson:"createdDate"
+	CreatedDate int64 `protobuf:"varint,9,opt,name=created_date,json=createdDate,proto3" json:"created_date,omitempty" bson:"createdDate"`
+	// @inject_tag: bson:"isVerified"
+	IsVerified           bool     `protobuf:"varint,10,opt,name=is_verified,json=isVerified,proto3" json:"is_verified,omitempty" bson:"isVerified"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
