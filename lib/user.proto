@@ -37,6 +37,8 @@ message User {
     map<string, UserDocumentMetadata> user_documents = 7; // track this field (key = duid)
     // @inject_tag: bson:"sharedToMe"
     map<string, UserFriendMetadata> shared_to_me = 8; // key = friends uuid
-    // @inject_tag: bson:"joinedTimestamp"
-    int64 joined_timestamp = 9;
+    // @inject_tag: bson:"createTimestamp"
+    int64 create_timestamp = 9;
+    // @inject_tag: bson:"isVerified"
+    bool is_verified = 10;
 }
