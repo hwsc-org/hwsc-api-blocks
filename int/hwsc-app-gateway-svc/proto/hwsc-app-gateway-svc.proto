@@ -5,14 +5,28 @@ package hwscAppGatewaySvc;
 option go_package = "hwscAppGatewaySvc";
 
 service AppGatewayService {
-    // rpc == methods
-    // GetStatus accepts Request, returns response
     rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}g
+
+    // hwsc-user-svc
+    rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc DeleteUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc UpdateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc AuthenticateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc ListUsers (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc GeteUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc ShareDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+
+    // hwsc-document-svc
+    rpc CreateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc ListUserDocumentCollection (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc UpdateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc DeleteDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc AddFileMetadata (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc DeleteFileMetadata (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc ListDistinctFieldValues (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc QueryDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
 }
 
-
-// data struct that accepts the follwogin
 message AppGatewayServiceRequest {
     string message = 1;
 }
