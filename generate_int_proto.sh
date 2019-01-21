@@ -1,10 +1,10 @@
 #!/bin/bash
 
 
-LIB_ROOT="/lib/"
+LIB_ROOT="./lib/"
 USER_ROOT="./int/hwsc-user-svc/proto/"
 DOCUMENT_ROOT="./int/hwsc-document-svc/proto/"
-FILE_ROOT="./int/hwsc-file-transaction-svc/proto"
+FILE_ROOT="./int/hwsc-file-transaction-svc/proto/"
 APP_ROOT="./int/hwsc-app-gateway-svc/proto/"
 
 # generate protoc for our service
@@ -21,7 +21,7 @@ echo "------------------------------------------------------------"
 # USER SERVICE
 echo "Generating hwsc-user-svc.pb.go, user.pb.go..."
 protoc \
-    -I ./lib/ \
+    -I ${LIB_ROOT} \
     -I ${USER_ROOT} \
     --go_out=plugins=grpc:${USER_ROOT} \
     user.proto hwsc-user-svc.proto
@@ -35,7 +35,7 @@ echo "------------------------------------------------------------"
 # DOCUMENT SERVICE
 echo "Generating hwsc-document-svc.pb.go, document.pb.go..."
 protoc \
-    -I ./lib/ \
+    -I ${LIB_ROOT} \
     -I ${DOCUMENT_ROOT} \
     --go_out=plugins=grpc:${DOCUMENT_ROOT} \
     document.proto hwsc-document-svc.proto
@@ -62,7 +62,7 @@ echo "Generating hwsc-app-gateway .ts, .js, .pb"
 protoc \
   --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
   --plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-  -I ./lib/ \
+  -I ${LIB_ROOT} \
   -I ${USER_ROOT} \
   -I ${DOCUMENT_ROOT} \
   -I ${FILE_ROOT} \
@@ -70,4 +70,4 @@ protoc \
   --js_out=import_style=commonjs,binary:${APP_ROOT} \
   --go_out=plugins=grpc:${APP_ROOT} \
   --ts_out=service=true:${APP_ROOT} \
-  ${APP_ROOT}hwsc-app-gateway-svc.proto
+  hwsc-app-gateway-svc.proto
