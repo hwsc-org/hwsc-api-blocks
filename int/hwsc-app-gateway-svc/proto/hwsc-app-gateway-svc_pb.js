@@ -11,6 +11,11 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var hwsc$user$svc_pb = require('./hwsc-user-svc_pb.js');
+var user_pb = require('./user_pb.js');
+var hwsc$document$svc_pb = require('./hwsc-document-svc_pb.js');
+var document_pb = require('./document_pb.js');
+var hwsc$file$transaction$svc_pb = require('./hwsc-file-transaction-svc_pb.js');
 goog.exportSymbol('proto.hwscAppGatewaySvc.AppGatewayServiceRequest', null, global);
 goog.exportSymbol('proto.hwscAppGatewaySvc.AppGatewayServiceResponse', null, global);
 
@@ -60,7 +65,9 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.toObject = function(o
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    message: jspb.Message.getFieldWithDefault(msg, 1, "")
+    userRequest: (f = msg.getUserRequest()) && hwsc$user$svc_pb.UserRequest.toObject(includeInstance, f),
+    documentRequest: (f = msg.getDocumentRequest()) && hwsc$document$svc_pb.DocumentRequest.toObject(includeInstance, f),
+    chunk: (f = msg.getChunk()) && hwsc$file$transaction$svc_pb.Chunk.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -98,8 +105,19 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.deserializeBinaryFromReader = f
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
+      var value = new hwsc$user$svc_pb.UserRequest;
+      reader.readMessage(value,hwsc$user$svc_pb.UserRequest.deserializeBinaryFromReader);
+      msg.setUserRequest(value);
+      break;
+    case 2:
+      var value = new hwsc$document$svc_pb.DocumentRequest;
+      reader.readMessage(value,hwsc$document$svc_pb.DocumentRequest.deserializeBinaryFromReader);
+      msg.setDocumentRequest(value);
+      break;
+    case 3:
+      var value = new hwsc$file$transaction$svc_pb.Chunk;
+      reader.readMessage(value,hwsc$file$transaction$svc_pb.Chunk.deserializeBinaryFromReader);
+      msg.setChunk(value);
       break;
     default:
       reader.skipField();
@@ -130,28 +148,120 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.serializeBinary = fun
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMessage();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getUserRequest();
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
+      f,
+      hwsc$user$svc_pb.UserRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getDocumentRequest();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      hwsc$document$svc_pb.DocumentRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getChunk();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      hwsc$file$transaction$svc_pb.Chunk.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string message = 1;
- * @return {string}
+ * optional hwscUserSvc.UserRequest user_request = 1;
+ * @return {?proto.hwscUserSvc.UserRequest}
  */
-proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.getUserRequest = function() {
+  return /** @type{?proto.hwscUserSvc.UserRequest} */ (
+    jspb.Message.getWrapperField(this, hwsc$user$svc_pb.UserRequest, 1));
 };
 
 
-/** @param {string} value */
-proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.setMessage = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+/** @param {?proto.hwscUserSvc.UserRequest|undefined} value */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.setUserRequest = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.clearUserRequest = function() {
+  this.setUserRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.hasUserRequest = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional hwscDocumentSvc.DocumentRequest document_request = 2;
+ * @return {?proto.hwscDocumentSvc.DocumentRequest}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.getDocumentRequest = function() {
+  return /** @type{?proto.hwscDocumentSvc.DocumentRequest} */ (
+    jspb.Message.getWrapperField(this, hwsc$document$svc_pb.DocumentRequest, 2));
+};
+
+
+/** @param {?proto.hwscDocumentSvc.DocumentRequest|undefined} value */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.setDocumentRequest = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.clearDocumentRequest = function() {
+  this.setDocumentRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.hasDocumentRequest = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional hwscFileTransactionSvc.Chunk chunk = 3;
+ * @return {?proto.hwscFileTransactionSvc.Chunk}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.getChunk = function() {
+  return /** @type{?proto.hwscFileTransactionSvc.Chunk} */ (
+    jspb.Message.getWrapperField(this, hwsc$file$transaction$svc_pb.Chunk, 3));
+};
+
+
+/** @param {?proto.hwscFileTransactionSvc.Chunk|undefined} value */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.setChunk = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.clearChunk = function() {
+  this.setChunk(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.hasChunk = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -167,12 +277,19 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.setMessage = function
  * @constructor
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.hwscAppGatewaySvc.AppGatewayServiceResponse.oneofGroups_);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.hwscAppGatewaySvc.AppGatewayServiceResponse.repeatedFields_, proto.hwscAppGatewaySvc.AppGatewayServiceResponse.oneofGroups_);
 };
 goog.inherits(proto.hwscAppGatewaySvc.AppGatewayServiceResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.hwscAppGatewaySvc.AppGatewayServiceResponse.displayName = 'proto.hwscAppGatewaySvc.AppGatewayServiceResponse';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.repeatedFields_ = [4,6];
+
 /**
  * Oneof group definitions for this message. Each group defines the field
  * numbers belonging to that group. When of these fields' value is set, all
@@ -228,7 +345,14 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.toObject = function(
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    message: jspb.Message.getFieldWithDefault(msg, 2, "")
+    message: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    user: (f = msg.getUser()) && user_pb.User.toObject(includeInstance, f),
+    userCollectionList: jspb.Message.toObjectList(msg.getUserCollectionList(),
+    user_pb.User.toObject, includeInstance),
+    document: (f = msg.getDocument()) && document_pb.Document.toObject(includeInstance, f),
+    documentCollectionList: jspb.Message.toObjectList(msg.getDocumentCollectionList(),
+    document_pb.Document.toObject, includeInstance),
+    queryResults: (f = msg.getQueryResults()) && document_pb.QueryTransaction.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -273,6 +397,31 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.deserializeBinaryFromReader = 
       var value = /** @type {string} */ (reader.readString());
       msg.setMessage(value);
       break;
+    case 3:
+      var value = new user_pb.User;
+      reader.readMessage(value,user_pb.User.deserializeBinaryFromReader);
+      msg.setUser(value);
+      break;
+    case 4:
+      var value = new user_pb.User;
+      reader.readMessage(value,user_pb.User.deserializeBinaryFromReader);
+      msg.addUserCollection(value);
+      break;
+    case 5:
+      var value = new document_pb.Document;
+      reader.readMessage(value,document_pb.Document.deserializeBinaryFromReader);
+      msg.setDocument(value);
+      break;
+    case 6:
+      var value = new document_pb.Document;
+      reader.readMessage(value,document_pb.Document.deserializeBinaryFromReader);
+      msg.addDocumentCollection(value);
+      break;
+    case 7:
+      var value = new document_pb.QueryTransaction;
+      reader.readMessage(value,document_pb.QueryTransaction.deserializeBinaryFromReader);
+      msg.setQueryResults(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -314,6 +463,46 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.serializeBinaryToWriter = func
     writer.writeString(
       2,
       f
+    );
+  }
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      user_pb.User.serializeBinaryToWriter
+    );
+  }
+  f = message.getUserCollectionList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      user_pb.User.serializeBinaryToWriter
+    );
+  }
+  f = message.getDocument();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      document_pb.Document.serializeBinaryToWriter
+    );
+  }
+  f = message.getDocumentCollectionList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      6,
+      f,
+      document_pb.Document.serializeBinaryToWriter
+    );
+  }
+  f = message.getQueryResults();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      document_pb.QueryTransaction.serializeBinaryToWriter
     );
   }
 };
@@ -360,6 +549,158 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getMessage = functio
 /** @param {string} value */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setMessage = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional hwsc.User user = 3;
+ * @return {?proto.hwsc.User}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getUser = function() {
+  return /** @type{?proto.hwsc.User} */ (
+    jspb.Message.getWrapperField(this, user_pb.User, 3));
+};
+
+
+/** @param {?proto.hwsc.User|undefined} value */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setUser = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearUser = function() {
+  this.setUser(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.hasUser = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * repeated hwsc.User user_collection = 4;
+ * @return {!Array<!proto.hwsc.User>}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getUserCollectionList = function() {
+  return /** @type{!Array<!proto.hwsc.User>} */ (
+    jspb.Message.getRepeatedWrapperField(this, user_pb.User, 4));
+};
+
+
+/** @param {!Array<!proto.hwsc.User>} value */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setUserCollectionList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.hwsc.User=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hwsc.User}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.addUserCollection = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.hwsc.User, opt_index);
+};
+
+
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearUserCollectionList = function() {
+  this.setUserCollectionList([]);
+};
+
+
+/**
+ * optional hwsc.Document document = 5;
+ * @return {?proto.hwsc.Document}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getDocument = function() {
+  return /** @type{?proto.hwsc.Document} */ (
+    jspb.Message.getWrapperField(this, document_pb.Document, 5));
+};
+
+
+/** @param {?proto.hwsc.Document|undefined} value */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setDocument = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearDocument = function() {
+  this.setDocument(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.hasDocument = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * repeated hwsc.Document document_collection = 6;
+ * @return {!Array<!proto.hwsc.Document>}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getDocumentCollectionList = function() {
+  return /** @type{!Array<!proto.hwsc.Document>} */ (
+    jspb.Message.getRepeatedWrapperField(this, document_pb.Document, 6));
+};
+
+
+/** @param {!Array<!proto.hwsc.Document>} value */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setDocumentCollectionList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 6, value);
+};
+
+
+/**
+ * @param {!proto.hwsc.Document=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.hwsc.Document}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.addDocumentCollection = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.hwsc.Document, opt_index);
+};
+
+
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearDocumentCollectionList = function() {
+  this.setDocumentCollectionList([]);
+};
+
+
+/**
+ * optional hwsc.QueryTransaction query_results = 7;
+ * @return {?proto.hwsc.QueryTransaction}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getQueryResults = function() {
+  return /** @type{?proto.hwsc.QueryTransaction} */ (
+    jspb.Message.getWrapperField(this, document_pb.QueryTransaction, 7));
+};
+
+
+/** @param {?proto.hwsc.QueryTransaction|undefined} value */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setQueryResults = function(value) {
+  jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearQueryResults = function() {
+  this.setQueryResults(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.hasQueryResults = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 

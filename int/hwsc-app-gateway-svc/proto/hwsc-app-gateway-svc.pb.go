@@ -22,12 +22,13 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
-// data struct that accepts the follwogin
 type AppGatewayServiceRequest struct {
-	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	UserRequest          *UserRequest     `protobuf:"bytes,1,opt,name=user_request,json=userRequest,proto3" json:"user_request,omitempty"`
+	DocumentRequest      *DocumentRequest `protobuf:"bytes,2,opt,name=document_request,json=documentRequest,proto3" json:"document_request,omitempty"`
+	Chunk                *Chunk           `protobuf:"bytes,3,opt,name=chunk,proto3" json:"chunk,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
 }
 
 func (m *AppGatewayServiceRequest) Reset()         { *m = AppGatewayServiceRequest{} }
@@ -55,21 +56,44 @@ func (m *AppGatewayServiceRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_AppGatewayServiceRequest proto.InternalMessageInfo
 
-func (m *AppGatewayServiceRequest) GetMessage() string {
+func (m *AppGatewayServiceRequest) GetUserRequest() *UserRequest {
 	if m != nil {
-		return m.Message
+		return m.UserRequest
 	}
-	return ""
+	return nil
+}
+
+func (m *AppGatewayServiceRequest) GetDocumentRequest() *DocumentRequest {
+	if m != nil {
+		return m.DocumentRequest
+	}
+	return nil
+}
+
+func (m *AppGatewayServiceRequest) GetChunk() *Chunk {
+	if m != nil {
+		return m.Chunk
+	}
+	return nil
 }
 
 type AppGatewayServiceResponse struct {
 	// Types that are valid to be assigned to Status:
 	//	*AppGatewayServiceResponse_Code
-	Status               isAppGatewayServiceResponse_Status `protobuf_oneof:"status"`
-	Message              string                             `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                           `json:"-"`
-	XXX_unrecognized     []byte                             `json:"-"`
-	XXX_sizecache        int32                              `json:"-"`
+	Status  isAppGatewayServiceResponse_Status `protobuf_oneof:"status"`
+	Message string                             `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	User    *User                              `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
+	// for ListUsers response
+	UserCollection []*User   `protobuf:"bytes,4,rep,name=user_collection,json=userCollection,proto3" json:"user_collection,omitempty"`
+	Document       *Document `protobuf:"bytes,5,opt,name=document,proto3" json:"document,omitempty"`
+	// Response for ListUserDocumentCollection
+	// Response for QueryDocument
+	DocumentCollection []*Document `protobuf:"bytes,6,rep,name=document_collection,json=documentCollection,proto3" json:"document_collection,omitempty"`
+	// Response for ListDistinctFieldValues
+	QueryResults         *QueryTransaction `protobuf:"bytes,7,opt,name=query_results,json=queryResults,proto3" json:"query_results,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
 }
 
 func (m *AppGatewayServiceResponse) Reset()         { *m = AppGatewayServiceResponse{} }
@@ -126,6 +150,41 @@ func (m *AppGatewayServiceResponse) GetMessage() string {
 		return m.Message
 	}
 	return ""
+}
+
+func (m *AppGatewayServiceResponse) GetUser() *User {
+	if m != nil {
+		return m.User
+	}
+	return nil
+}
+
+func (m *AppGatewayServiceResponse) GetUserCollection() []*User {
+	if m != nil {
+		return m.UserCollection
+	}
+	return nil
+}
+
+func (m *AppGatewayServiceResponse) GetDocument() *Document {
+	if m != nil {
+		return m.Document
+	}
+	return nil
+}
+
+func (m *AppGatewayServiceResponse) GetDocumentCollection() []*Document {
+	if m != nil {
+		return m.DocumentCollection
+	}
+	return nil
+}
+
+func (m *AppGatewayServiceResponse) GetQueryResults() *QueryTransaction {
+	if m != nil {
+		return m.QueryResults
+	}
+	return nil
 }
 
 // XXX_OneofFuncs is for the internal use of the proto package.
@@ -186,19 +245,43 @@ func init() {
 func init() { proto.RegisterFile("hwsc-app-gateway-svc.proto", fileDescriptor_1f25123fc1481ece) }
 
 var fileDescriptor_1f25123fc1481ece = []byte{
-	// 191 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0xca, 0x28, 0x2f, 0x4e,
-	0xd6, 0x4d, 0x2c, 0x28, 0xd0, 0x4d, 0x4f, 0x2c, 0x49, 0x2d, 0x4f, 0xac, 0xd4, 0x2d, 0x2e, 0x4b,
-	0xd6, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12, 0x04, 0xc9, 0x39, 0x16, 0x14, 0xb8, 0x43, 0x64,
-	0x82, 0xcb, 0x92, 0x95, 0x4c, 0xb8, 0x24, 0x90, 0x04, 0x52, 0x8b, 0xca, 0x32, 0x93, 0x53, 0x83,
-	0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x84, 0x24, 0xb8, 0xd8, 0x73, 0x53, 0x8b, 0x8b, 0x13, 0xd3,
-	0x53, 0x25, 0x18, 0x15, 0x18, 0x35, 0x38, 0x83, 0x60, 0x5c, 0xa5, 0x50, 0x2e, 0x49, 0x2c, 0xba,
-	0x8a, 0x0b, 0xf2, 0xf3, 0x8a, 0x53, 0x85, 0x44, 0xb8, 0x58, 0x92, 0xf3, 0x53, 0x20, 0x7a, 0x78,
-	0x3d, 0x18, 0x82, 0xc0, 0x3c, 0x64, 0xc3, 0x98, 0x50, 0x0c, 0x73, 0xe2, 0xe0, 0x62, 0x2b, 0x2e,
-	0x49, 0x2c, 0x29, 0x2d, 0x36, 0xaa, 0xe5, 0x12, 0xc4, 0x30, 0x56, 0x28, 0x83, 0x8b, 0xd3, 0x3d,
-	0xb5, 0x24, 0x18, 0xac, 0x42, 0x48, 0x5b, 0x0f, 0xc3, 0x0b, 0x7a, 0xb8, 0xdc, 0x2f, 0xa5, 0x43,
-	0x9c, 0x62, 0x88, 0xb3, 0x95, 0x18, 0x9c, 0x84, 0xa3, 0x30, 0x03, 0x28, 0x89, 0x0d, 0x1c, 0x74,
-	0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x4a, 0x5a, 0x20, 0xf2, 0x58, 0x01, 0x00, 0x00,
+	// 562 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x56, 0x4d, 0x6f, 0xd3, 0x40,
+	0x10, 0xed, 0x47, 0x9a, 0x34, 0xd3, 0x26, 0x6d, 0x37, 0x88, 0x9a, 0x48, 0x40, 0x94, 0x13, 0x02,
+	0x92, 0x43, 0x73, 0xec, 0x01, 0xa5, 0x89, 0x1a, 0x24, 0xb8, 0xe0, 0x50, 0x0e, 0x5c, 0x2a, 0xb3,
+	0x9e, 0xd4, 0x16, 0x8e, 0xed, 0xee, 0x47, 0xaa, 0xfc, 0x4f, 0x2e, 0xfc, 0x0b, 0x7e, 0x02, 0xda,
+	0xd9, 0x38, 0x31, 0x0d, 0x48, 0x5c, 0xec, 0x53, 0x32, 0x3b, 0x6f, 0xdf, 0x9b, 0x37, 0x3b, 0x6b,
+	0x1b, 0xda, 0xc1, 0x83, 0xe4, 0x3d, 0x2f, 0x4d, 0x7b, 0x77, 0x9e, 0xc2, 0x07, 0x6f, 0xd9, 0x93,
+	0x0b, 0xde, 0x4f, 0x45, 0xa2, 0x12, 0x76, 0x66, 0x72, 0xc3, 0x34, 0x9d, 0xd8, 0xcc, 0x74, 0xc1,
+	0xdb, 0x2d, 0x82, 0x6b, 0x89, 0x62, 0x83, 0x6b, 0x83, 0x89, 0x57, 0xff, 0xcf, 0x09, 0xe0, 0x27,
+	0x5c, 0xcf, 0x31, 0x56, 0x39, 0x50, 0x33, 0x5b, 0x5b, 0xc5, 0x2f, 0x09, 0x38, 0x0b, 0x23, 0xec,
+	0x29, 0xe1, 0xc5, 0xd2, 0xe3, 0x2a, 0x4c, 0xe2, 0xcd, 0x86, 0xee, 0xcf, 0x5d, 0x70, 0x72, 0xe2,
+	0x28, 0x16, 0x21, 0x47, 0x17, 0xef, 0x35, 0x4a, 0xc5, 0x2e, 0xe1, 0xd8, 0x88, 0xde, 0x0a, 0x1b,
+	0x3b, 0xbb, 0x9d, 0xdd, 0x57, 0x47, 0x17, 0x4e, 0xdf, 0x90, 0xde, 0x48, 0x14, 0xd3, 0x05, 0xef,
+	0x9b, 0xdf, 0x15, 0xde, 0x3d, 0xd2, 0x9b, 0x80, 0x7d, 0x80, 0xd3, 0xac, 0x98, 0x35, 0xc1, 0x1e,
+	0x11, 0x74, 0x88, 0x60, 0xbc, 0x4a, 0x1a, 0x92, 0xec, 0x7f, 0x46, 0x74, 0xe2, 0xff, 0xb9, 0xc0,
+	0x06, 0x70, 0xc0, 0x03, 0x1d, 0x7f, 0x77, 0xf6, 0x89, 0xe1, 0x39, 0x31, 0x5c, 0x87, 0x11, 0x7e,
+	0xde, 0xb8, 0x32, 0x44, 0x23, 0x03, 0x72, 0x2d, 0xb6, 0xfb, 0x63, 0x0f, 0x9e, 0xfd, 0xc5, 0x9b,
+	0x4c, 0x93, 0x58, 0x22, 0x7b, 0x02, 0x15, 0x9e, 0xf8, 0x48, 0xa6, 0x1a, 0xef, 0x77, 0x5c, 0x8a,
+	0x98, 0x03, 0xb5, 0x39, 0x4a, 0xe9, 0xdd, 0x21, 0x15, 0x5b, 0x77, 0xb3, 0x90, 0xbd, 0x80, 0x8a,
+	0xb1, 0xb7, 0xaa, 0x00, 0xa8, 0x02, 0xeb, 0x9e, 0xd6, 0xd9, 0x00, 0x4e, 0xa8, 0x59, 0x3c, 0x89,
+	0x22, 0xa4, 0x82, 0x9c, 0x4a, 0x67, 0xff, 0x11, 0xb4, 0x69, 0x20, 0xa3, 0x35, 0x82, 0xbd, 0x86,
+	0xc3, 0xcc, 0xaa, 0x73, 0x40, 0xc4, 0x4d, 0x8b, 0x5e, 0x77, 0x64, 0x9d, 0x67, 0xef, 0xa0, 0xb5,
+	0x6e, 0x68, 0x4e, 0xa4, 0x4a, 0x22, 0x8f, 0xb7, 0xb1, 0x0c, 0x9a, 0x13, 0xbb, 0x84, 0xc6, 0xbd,
+	0x46, 0xb1, 0xbc, 0x15, 0x28, 0x75, 0xa4, 0xa4, 0x53, 0x23, 0xc5, 0xa7, 0x76, 0xeb, 0x27, 0x93,
+	0xca, 0xb5, 0xd3, 0x3d, 0x26, 0xb0, 0x6b, 0xb1, 0x57, 0x87, 0x50, 0x95, 0xca, 0x53, 0x5a, 0x5e,
+	0xfc, 0x6a, 0xc0, 0xd9, 0x56, 0x5b, 0x59, 0x00, 0xf5, 0x09, 0xaa, 0x29, 0x41, 0xd8, 0x9b, 0xfe,
+	0xd6, 0x50, 0xf7, 0xff, 0x35, 0x65, 0xed, 0xb7, 0xff, 0x07, 0xb6, 0xc7, 0xd6, 0xdd, 0x61, 0x21,
+	0xc0, 0x48, 0xa0, 0xa7, 0xd0, 0x74, 0xb4, 0x70, 0xa9, 0x31, 0x46, 0x58, 0x92, 0xd4, 0x4d, 0xea,
+	0x97, 0xe2, 0x2a, 0x81, 0xd3, 0xa1, 0x56, 0x01, 0xc6, 0x2a, 0xe4, 0xa5, 0x08, 0x06, 0x50, 0xff,
+	0x18, 0x4a, 0x65, 0x84, 0x0a, 0x9e, 0x8d, 0x19, 0xd4, 0x26, 0xa8, 0x8a, 0x77, 0x14, 0x41, 0x63,
+	0x1a, 0x78, 0x02, 0xb3, 0xfb, 0x56, 0xac, 0xda, 0x1c, 0x9a, 0x76, 0xe2, 0xcb, 0x91, 0x5b, 0x42,
+	0x3b, 0x3b, 0xae, 0xf1, 0xf6, 0x53, 0xa4, 0x68, 0xa7, 0xf6, 0x16, 0x94, 0xd6, 0x58, 0x7b, 0xbf,
+	0xcb, 0x91, 0x9b, 0x41, 0x6d, 0xe8, 0xfb, 0xe6, 0xb5, 0x55, 0xd2, 0x63, 0xab, 0x78, 0xa9, 0x05,
+	0x9c, 0x9b, 0x59, 0x19, 0x87, 0x52, 0x85, 0x31, 0x57, 0xd7, 0x21, 0x46, 0xfe, 0x17, 0x2f, 0xd2,
+	0x28, 0x0b, 0xbf, 0x80, 0xf4, 0xc2, 0x2a, 0xe5, 0xe0, 0xae, 0x5a, 0x5f, 0xb7, 0xbf, 0xd2, 0xbe,
+	0x55, 0xe9, 0x0b, 0x6a, 0xf0, 0x3b, 0x00, 0x00, 0xff, 0xff, 0xd4, 0xfa, 0xc5, 0x47, 0xdd, 0x09,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -213,9 +296,22 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AppGatewayServiceClient interface {
-	// rpc == methods
-	// GetStatus accepts Request, returns response
 	GetStatus(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	CreateUser(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	DeleteUser(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	UpdateUser(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	AuthenticateUser(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	ListUsers(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	GetUser(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	ShareDocument(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	CreateDocument(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	ListUserDocumentCollection(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	UpdateDocument(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	DeleteDocument(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	AddFile(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	DeleteFile(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	ListDistinctFieldValues(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
+	QueryDocument(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error)
 }
 
 type appGatewayServiceClient struct {
@@ -235,11 +331,159 @@ func (c *appGatewayServiceClient) GetStatus(ctx context.Context, in *AppGatewayS
 	return out, nil
 }
 
+func (c *appGatewayServiceClient) CreateUser(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/CreateUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) DeleteUser(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/DeleteUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) UpdateUser(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/UpdateUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) AuthenticateUser(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/AuthenticateUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) ListUsers(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/ListUsers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) GetUser(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/GetUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) ShareDocument(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/ShareDocument", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) CreateDocument(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/CreateDocument", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) ListUserDocumentCollection(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/ListUserDocumentCollection", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) UpdateDocument(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/UpdateDocument", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) DeleteDocument(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/DeleteDocument", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) AddFile(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/AddFile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) DeleteFile(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/DeleteFile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) ListDistinctFieldValues(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/ListDistinctFieldValues", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appGatewayServiceClient) QueryDocument(ctx context.Context, in *AppGatewayServiceRequest, opts ...grpc.CallOption) (*AppGatewayServiceResponse, error) {
+	out := new(AppGatewayServiceResponse)
+	err := c.cc.Invoke(ctx, "/hwscAppGatewaySvc.AppGatewayService/QueryDocument", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppGatewayServiceServer is the server API for AppGatewayService service.
 type AppGatewayServiceServer interface {
-	// rpc == methods
-	// GetStatus accepts Request, returns response
 	GetStatus(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	CreateUser(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	DeleteUser(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	UpdateUser(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	AuthenticateUser(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	ListUsers(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	GetUser(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	ShareDocument(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	CreateDocument(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	ListUserDocumentCollection(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	UpdateDocument(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	DeleteDocument(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	AddFile(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	DeleteFile(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	ListDistinctFieldValues(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+	QueryDocument(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
 }
 
 func RegisterAppGatewayServiceServer(s *grpc.Server, srv AppGatewayServiceServer) {
@@ -264,6 +508,276 @@ func _AppGatewayService_GetStatus_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppGatewayService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).CreateUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/CreateUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).CreateUser(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).DeleteUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/DeleteUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).DeleteUser(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).UpdateUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/UpdateUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).UpdateUser(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_AuthenticateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).AuthenticateUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/AuthenticateUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).AuthenticateUser(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_ListUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).ListUsers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/ListUsers",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).ListUsers(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).GetUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/GetUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).GetUser(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_ShareDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).ShareDocument(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/ShareDocument",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).ShareDocument(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_CreateDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).CreateDocument(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/CreateDocument",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).CreateDocument(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_ListUserDocumentCollection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).ListUserDocumentCollection(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/ListUserDocumentCollection",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).ListUserDocumentCollection(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_UpdateDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).UpdateDocument(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/UpdateDocument",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).UpdateDocument(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_DeleteDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).DeleteDocument(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/DeleteDocument",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).DeleteDocument(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_AddFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).AddFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/AddFile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).AddFile(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_DeleteFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).DeleteFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/DeleteFile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).DeleteFile(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_ListDistinctFieldValues_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).ListDistinctFieldValues(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/ListDistinctFieldValues",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).ListDistinctFieldValues(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AppGatewayService_QueryDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AppGatewayServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppGatewayServiceServer).QueryDocument(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscAppGatewaySvc.AppGatewayService/QueryDocument",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppGatewayServiceServer).QueryDocument(ctx, req.(*AppGatewayServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _AppGatewayService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "hwscAppGatewaySvc.AppGatewayService",
 	HandlerType: (*AppGatewayServiceServer)(nil),
@@ -271,6 +785,66 @@ var _AppGatewayService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStatus",
 			Handler:    _AppGatewayService_GetStatus_Handler,
+		},
+		{
+			MethodName: "CreateUser",
+			Handler:    _AppGatewayService_CreateUser_Handler,
+		},
+		{
+			MethodName: "DeleteUser",
+			Handler:    _AppGatewayService_DeleteUser_Handler,
+		},
+		{
+			MethodName: "UpdateUser",
+			Handler:    _AppGatewayService_UpdateUser_Handler,
+		},
+		{
+			MethodName: "AuthenticateUser",
+			Handler:    _AppGatewayService_AuthenticateUser_Handler,
+		},
+		{
+			MethodName: "ListUsers",
+			Handler:    _AppGatewayService_ListUsers_Handler,
+		},
+		{
+			MethodName: "GetUser",
+			Handler:    _AppGatewayService_GetUser_Handler,
+		},
+		{
+			MethodName: "ShareDocument",
+			Handler:    _AppGatewayService_ShareDocument_Handler,
+		},
+		{
+			MethodName: "CreateDocument",
+			Handler:    _AppGatewayService_CreateDocument_Handler,
+		},
+		{
+			MethodName: "ListUserDocumentCollection",
+			Handler:    _AppGatewayService_ListUserDocumentCollection_Handler,
+		},
+		{
+			MethodName: "UpdateDocument",
+			Handler:    _AppGatewayService_UpdateDocument_Handler,
+		},
+		{
+			MethodName: "DeleteDocument",
+			Handler:    _AppGatewayService_DeleteDocument_Handler,
+		},
+		{
+			MethodName: "AddFile",
+			Handler:    _AppGatewayService_AddFile_Handler,
+		},
+		{
+			MethodName: "DeleteFile",
+			Handler:    _AppGatewayService_DeleteFile_Handler,
+		},
+		{
+			MethodName: "ListDistinctFieldValues",
+			Handler:    _AppGatewayService_ListDistinctFieldValues_Handler,
+		},
+		{
+			MethodName: "QueryDocument",
+			Handler:    _AppGatewayService_QueryDocument_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
