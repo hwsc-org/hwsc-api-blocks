@@ -1,3 +1,5 @@
+/* eslint no-param-reassign */
+
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
@@ -20,10 +22,11 @@ const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).hwscUserSv
 // to call service methods, create a stub
 const client = new protoDescriptor.UserService('localhost:50051', grpc.credentials.createInsecure());
 
+const callbackErr = () => console.error('callback not a function');
+
 function getStatus(callback) {
-  console.log('at clients getStatus');
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
 
@@ -34,9 +37,71 @@ function getStatus(callback) {
 
     callback(err, response);
   });
+}
 
+function createUser(request, callback) {
+  if (typeof callback !== 'function') {
+    callbackErr();
+    return;
+  }
+
+  let userRequest = request;
+  if (userRequest == null) {
+    userRequest = {};
+  }
+
+  client.createUser(userRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response);
+  });
+}
+
+function getUser(request, callback) {
+  if (typeof callback !== 'function') {
+    callbackErr();
+    return;
+  }
+
+  let userRequest = request;
+  if (userRequest == null) {
+    userRequest = {};
+  }
+
+  client.getUser(userRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response);
+  });
+}
+
+function deleteUser(request, callback) {
+  if (typeof callback !== 'function') {
+    callbackErr();
+    return;
+  }
+
+  let userRequest = request;
+  if (userRequest == null) {
+    userRequest = {};
+  }
+
+  client.deleteUser(userRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response);
+  });
 }
 
 module.exports = {
   getStatus,
+  createUser,
+  getUser,
+  deleteUser,
 };
