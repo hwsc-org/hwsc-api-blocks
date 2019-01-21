@@ -8,6 +8,7 @@ service AppGatewayService {
     // rpc == methods
     // GetStatus accepts Request, returns response
     rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
 }
 
 
