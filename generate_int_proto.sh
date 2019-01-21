@@ -70,4 +70,4 @@ protoc \
   --js_out=import_style=commonjs,binary:${APP_ROOT} \
   --go_out=plugins=grpc:${APP_ROOT} \
   --ts_out=service=true:${APP_ROOT} \
-  hwsc-app-gateway-svc.proto
+  hwsc-app-gateway-svc.proto document.proto hwsc-document-svc.proto user.proto hwsc-user-svc.proto hwsc-file-transaction-svc.proto

@@ -4,7 +4,7 @@ package hwscDocumentSvc;
 
 import "document.proto";
 
-option go_package = "hwscDocumentSvcPb";
+option go_package = "hwsc";
 
 service DocumentService {
     rpc GetStatus (DocumentRequest) returns (DocumentResponse) {}

@@ -25,12 +25,12 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 // value = this can be anything, helps O(1) lookup time for deletion and updating
 type UserDocumentMetadata struct {
 	// @inject_tag: bson:"isPublic"
-	IsPublic bool `protobuf:"varint,1,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty" bson:"isPublic"`
+	IsPublic bool `protobuf:"varint,1,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`
 	// @inject_tag: bson:"sharedWith"
-	SharedWith           map[string]bool `protobuf:"bytes,2,rep,name=shared_with,json=sharedWith,proto3" json:"shared_with,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3" bson:"sharedWith"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-" bson:"-"`
-	XXX_unrecognized     []byte          `json:"-" bson:"-"`
-	XXX_sizecache        int32           `json:"-" bson:"-"`
+	SharedWith           map[string]bool `protobuf:"bytes,2,rep,name=shared_with,json=sharedWith,proto3" json:"shared_with,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
 }
 
 func (m *UserDocumentMetadata) Reset()         { *m = UserDocumentMetadata{} }
@@ -77,10 +77,10 @@ func (m *UserDocumentMetadata) GetSharedWith() map[string]bool {
 // value = this can be anything, helps O(1) lookup time for deletion and updating
 type UserFriendMetadata struct {
 	// @inject_tag: bson:"sharedDuidToMe"
-	SharedDuidToMe       map[string]bool `protobuf:"bytes,1,rep,name=shared_duid_to_me,json=sharedDuidToMe,proto3" json:"shared_duid_to_me,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3" bson:"sharedDuidToMe"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-" bson:"-"`
-	XXX_unrecognized     []byte          `json:"-" bson:"-"`
-	XXX_sizecache        int32           `json:"-" bson:"-"`
+	SharedDuidToMe       map[string]bool `protobuf:"bytes,1,rep,name=shared_duid_to_me,json=sharedDuidToMe,proto3" json:"shared_duid_to_me,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
 }
 
 func (m *UserFriendMetadata) Reset()         { *m = UserFriendMetadata{} }
@@ -117,28 +117,28 @@ func (m *UserFriendMetadata) GetSharedDuidToMe() map[string]bool {
 
 type User struct {
 	// @inject_tag: bson:"uuid"
-	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty" bson:"uuid"`
+	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// @inject_tag: bson:"firstName"
-	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" bson:"firstName"`
+	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	// @inject_tag: bson:"lastName"
-	LastName string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" bson:"lastName"`
+	LastName string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	// @inject_tag: bson:"email"
-	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty" bson:"email"`
+	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
 	// @inject_tag: bson:"password"
-	Password string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty" bson:"password"`
+	Password string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
 	// @inject_tag: bson:"organization"
-	Organization string `protobuf:"bytes,6,opt,name=organization,proto3" json:"organization,omitempty" bson:"organization"`
+	Organization string `protobuf:"bytes,6,opt,name=organization,proto3" json:"organization,omitempty"`
 	// @inject_tag: bson:"userDocuments"
-	UserDocuments map[string]*UserDocumentMetadata `protobuf:"bytes,7,rep,name=user_documents,json=userDocuments,proto3" json:"user_documents,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"userDocuments"`
+	UserDocuments map[string]*UserDocumentMetadata `protobuf:"bytes,7,rep,name=user_documents,json=userDocuments,proto3" json:"user_documents,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// @inject_tag: bson:"sharedToMe"
-	SharedToMe map[string]*UserFriendMetadata `protobuf:"bytes,8,rep,name=shared_to_me,json=sharedToMe,proto3" json:"shared_to_me,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"sharedToMe"`
+	SharedToMe map[string]*UserFriendMetadata `protobuf:"bytes,8,rep,name=shared_to_me,json=sharedToMe,proto3" json:"shared_to_me,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// @inject_tag: bson:"createdDate"
-	CreatedDate int64 `protobuf:"varint,9,opt,name=created_date,json=createdDate,proto3" json:"created_date,omitempty" bson:"createdDate"`
+	CreatedDate int64 `protobuf:"varint,9,opt,name=created_date,json=createdDate,proto3" json:"created_date,omitempty"`
 	// @inject_tag: bson:"isVerified"
-	IsVerified           bool     `protobuf:"varint,10,opt,name=is_verified,json=isVerified,proto3" json:"is_verified,omitempty" bson:"isVerified"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-"`
+	IsVerified           bool     `protobuf:"varint,10,opt,name=is_verified,json=isVerified,proto3" json:"is_verified,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *User) Reset()         { *m = User{} }

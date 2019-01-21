@@ -8,7 +8,7 @@ import "hwsc-document-svc.proto";
 import "document.proto";
 import "hwsc-file-transaction-svc.proto";
 
-option go_package = "hwscAppGatewaySvc";
+option go_package = "hwsc";
 
 service AppGatewayService {
     rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}

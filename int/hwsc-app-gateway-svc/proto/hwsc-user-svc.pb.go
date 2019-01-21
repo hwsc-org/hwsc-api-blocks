@@ -26,9 +26,9 @@ type UserRequest struct {
 	User                 *User    `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	Duid                 string   `protobuf:"bytes,2,opt,name=duid,proto3" json:"duid,omitempty"`
 	UuidsToShareDuid     []string `protobuf:"bytes,3,rep,name=uuids_to_share_duid,json=uuidsToShareDuid,proto3" json:"uuids_to_share_duid,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *UserRequest) Reset()         { *m = UserRequest{} }
@@ -84,9 +84,9 @@ type UserResponse struct {
 	Message              string                `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	User                 *User                 `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
 	UserCollection       []*User               `protobuf:"bytes,4,rep,name=user_collection,json=userCollection,proto3" json:"user_collection,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-" bson:"-"`
-	XXX_unrecognized     []byte                `json:"-" bson:"-"`
-	XXX_sizecache        int32                 `json:"-" bson:"-"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *UserResponse) Reset()         { *m = UserResponse{} }

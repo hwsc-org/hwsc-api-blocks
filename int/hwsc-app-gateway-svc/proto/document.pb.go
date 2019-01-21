@@ -53,12 +53,12 @@ func (FileType) EnumDescriptor() ([]byte, []int) {
 
 type Publisher struct {
 	// @inject_tag: bson:"lastName"
-	LastName string `protobuf:"bytes,1,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty" bson:"lastName"`
+	LastName string `protobuf:"bytes,1,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	// @inject_tag: bson:"firstName"
-	FirstName            string   `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty" bson:"firstName"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-"`
+	FirstName            string   `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *Publisher) Reset()         { *m = Publisher{} }
@@ -102,16 +102,16 @@ func (m *Publisher) GetFirstName() string {
 
 type StudySite struct {
 	// @inject_tag: bson:"city"
-	City string `protobuf:"bytes,1,opt,name=city,proto3" json:"city,omitempty" bson:"city"`
+	City string `protobuf:"bytes,1,opt,name=city,proto3" json:"city,omitempty"`
 	// @inject_tag: bson:"state"
-	State string `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty" bson:"state"`
+	State string `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
 	// @inject_tag: bson:"province"
-	Province string `protobuf:"bytes,3,opt,name=province,proto3" json:"province,omitempty" bson:"province"`
+	Province string `protobuf:"bytes,3,opt,name=province,proto3" json:"province,omitempty"`
 	// @inject_tag: bson:"country"
-	Country              string   `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty" bson:"country"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-"`
+	Country              string   `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *StudySite) Reset()         { *m = StudySite{} }
@@ -174,9 +174,9 @@ type FileMetadataTransaction struct {
 	Duid                 string   `protobuf:"bytes,3,opt,name=duid,proto3" json:"duid,omitempty"`
 	Uuid                 string   `protobuf:"bytes,4,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	Media                FileType `protobuf:"varint,5,opt,name=media,proto3,enum=hwsc.FileType" json:"media,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *FileMetadataTransaction) Reset()         { *m = FileMetadataTransaction{} }
@@ -243,24 +243,24 @@ func (m *FileMetadataTransaction) GetMedia() FileType {
 // Request for QueryDocument
 type QueryTransaction struct {
 	// @inject_tag: bson:"publishers"
-	Publishers []*Publisher `protobuf:"bytes,1,rep,name=publishers,proto3" json:"publishers,omitempty" bson:"publishers"`
+	Publishers []*Publisher `protobuf:"bytes,1,rep,name=publishers,proto3" json:"publishers,omitempty"`
 	// @inject_tag: bson:"studySites"
-	StudySites []*StudySite `protobuf:"bytes,2,rep,name=study_sites,json=studySites,proto3" json:"study_sites,omitempty" bson:"studySites"`
+	StudySites []*StudySite `protobuf:"bytes,2,rep,name=study_sites,json=studySites,proto3" json:"study_sites,omitempty"`
 	// @inject_tag: bson:"callTypeNames"
-	CallTypeNames []string `protobuf:"bytes,3,rep,name=call_type_names,json=callTypeNames,proto3" json:"call_type_names,omitempty" bson:"callTypeNames"`
+	CallTypeNames []string `protobuf:"bytes,3,rep,name=call_type_names,json=callTypeNames,proto3" json:"call_type_names,omitempty"`
 	// @inject_tag: bson:"groundTypes"
-	GroundTypes []string `protobuf:"bytes,4,rep,name=ground_types,json=groundTypes,proto3" json:"ground_types,omitempty" bson:"groundTypes"`
+	GroundTypes []string `protobuf:"bytes,4,rep,name=ground_types,json=groundTypes,proto3" json:"ground_types,omitempty"`
 	// @inject_tag: bson:"sensorTypes"
-	SensorTypes []string `protobuf:"bytes,5,rep,name=sensor_types,json=sensorTypes,proto3" json:"sensor_types,omitempty" bson:"sensorTypes"`
+	SensorTypes []string `protobuf:"bytes,5,rep,name=sensor_types,json=sensorTypes,proto3" json:"sensor_types,omitempty"`
 	// @inject_tag: bson:"sensorNames"
-	SensorNames []string `protobuf:"bytes,6,rep,name=sensor_names,json=sensorNames,proto3" json:"sensor_names,omitempty" bson:"sensorNames"`
+	SensorNames []string `protobuf:"bytes,6,rep,name=sensor_names,json=sensorNames,proto3" json:"sensor_names,omitempty"`
 	// @inject_tag: bson:"minRecordTimestamp"
-	MinRecordTimestamp int64 `protobuf:"varint,7,opt,name=min_record_timestamp,json=minRecordTimestamp,proto3" json:"min_record_timestamp,omitempty" bson:"minRecordTimestamp"`
+	MinRecordTimestamp int64 `protobuf:"varint,7,opt,name=min_record_timestamp,json=minRecordTimestamp,proto3" json:"min_record_timestamp,omitempty"`
 	// @inject_tag: bson:"maxRecordTimestamp"
-	MaxRecordTimestamp   int64    `protobuf:"varint,8,opt,name=max_record_timestamp,json=maxRecordTimestamp,proto3" json:"max_record_timestamp,omitempty" bson:"maxRecordTimestamp"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-"`
+	MaxRecordTimestamp   int64    `protobuf:"varint,8,opt,name=max_record_timestamp,json=maxRecordTimestamp,proto3" json:"max_record_timestamp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *QueryTransaction) Reset()         { *m = QueryTransaction{} }
@@ -346,48 +346,48 @@ func (m *QueryTransaction) GetMaxRecordTimestamp() int64 {
 
 type Document struct {
 	// @inject_tag: bson:"duid"
-	Duid string `protobuf:"bytes,1,opt,name=duid,proto3" json:"duid,omitempty" bson:"duid"`
+	Duid string `protobuf:"bytes,1,opt,name=duid,proto3" json:"duid,omitempty"`
 	// @inject_tag: bson:"uuid"
-	Uuid string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty" bson:"uuid"`
+	Uuid string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// @inject_tag: bson:"publisherName"
-	PublisherName *Publisher `protobuf:"bytes,3,opt,name=publisher_name,json=publisherName,proto3" json:"publisher_name,omitempty" bson:"publisherName"`
+	PublisherName *Publisher `protobuf:"bytes,3,opt,name=publisher_name,json=publisherName,proto3" json:"publisher_name,omitempty"`
 	// @inject_tag: bson:"callTypeName"
-	CallTypeName string `protobuf:"bytes,4,opt,name=call_type_name,json=callTypeName,proto3" json:"call_type_name,omitempty" bson:"callTypeName"`
+	CallTypeName string `protobuf:"bytes,4,opt,name=call_type_name,json=callTypeName,proto3" json:"call_type_name,omitempty"`
 	// @inject_tag: bson:"groundType"
-	GroundType string `protobuf:"bytes,5,opt,name=ground_type,json=groundType,proto3" json:"ground_type,omitempty" bson:"groundType"`
+	GroundType string `protobuf:"bytes,5,opt,name=ground_type,json=groundType,proto3" json:"ground_type,omitempty"`
 	// @inject_tag: bson:"studySite"
-	StudySite *StudySite `protobuf:"bytes,6,opt,name=study_site,json=studySite,proto3" json:"study_site,omitempty" bson:"studySite"`
+	StudySite *StudySite `protobuf:"bytes,6,opt,name=study_site,json=studySite,proto3" json:"study_site,omitempty"`
 	// @inject_tag: bson:"ocean"
-	Ocean string `protobuf:"bytes,7,opt,name=ocean,proto3" json:"ocean,omitempty" bson:"ocean"`
+	Ocean string `protobuf:"bytes,7,opt,name=ocean,proto3" json:"ocean,omitempty"`
 	// @inject_tag: bson:"sensorType"
-	SensorType string `protobuf:"bytes,8,opt,name=sensor_type,json=sensorType,proto3" json:"sensor_type,omitempty" bson:"sensorType"`
+	SensorType string `protobuf:"bytes,8,opt,name=sensor_type,json=sensorType,proto3" json:"sensor_type,omitempty"`
 	// @inject_tag: bson:"sensorName"
-	SensorName string `protobuf:"bytes,9,opt,name=sensor_name,json=sensorName,proto3" json:"sensor_name,omitempty" bson:"sensorName"`
+	SensorName string `protobuf:"bytes,9,opt,name=sensor_name,json=sensorName,proto3" json:"sensor_name,omitempty"`
 	// @inject_tag: bson:"samplingRate"
-	SamplingRate uint32 `protobuf:"varint,10,opt,name=sampling_rate,json=samplingRate,proto3" json:"sampling_rate,omitempty" bson:"samplingRate"`
+	SamplingRate uint32 `protobuf:"varint,10,opt,name=sampling_rate,json=samplingRate,proto3" json:"sampling_rate,omitempty"`
 	// @inject_tag: bson:"latitude"
-	Latitude float32 `protobuf:"fixed32,11,opt,name=latitude,proto3" json:"latitude,omitempty" bson:"latitude"`
+	Latitude float32 `protobuf:"fixed32,11,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	// @inject_tag: bson:"longitude"
-	Longitude float32 `protobuf:"fixed32,12,opt,name=longitude,proto3" json:"longitude,omitempty" bson:"longitude"`
+	Longitude float32 `protobuf:"fixed32,12,opt,name=longitude,proto3" json:"longitude,omitempty"`
 	// @inject_tag: bson:"imageUrlsMap"
-	ImageUrlsMap map[string]string `protobuf:"bytes,13,rep,name=image_urls_map,json=imageUrlsMap,proto3" json:"image_urls_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"imageUrlsMap"`
+	ImageUrlsMap map[string]string `protobuf:"bytes,13,rep,name=image_urls_map,json=imageUrlsMap,proto3" json:"image_urls_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// @inject_tag: bson:"audioUrlsMap"
-	AudioUrlsMap map[string]string `protobuf:"bytes,14,rep,name=audio_urls_map,json=audioUrlsMap,proto3" json:"audio_urls_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"audioUrlsMap"`
+	AudioUrlsMap map[string]string `protobuf:"bytes,14,rep,name=audio_urls_map,json=audioUrlsMap,proto3" json:"audio_urls_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// @inject_tag: bson:"videoUrlsMap"
-	VideoUrlsMap map[string]string `protobuf:"bytes,15,rep,name=video_urls_map,json=videoUrlsMap,proto3" json:"video_urls_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"videoUrlsMap"`
+	VideoUrlsMap map[string]string `protobuf:"bytes,15,rep,name=video_urls_map,json=videoUrlsMap,proto3" json:"video_urls_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// @inject_tag: bson:"fileUrlsMap"
-	FileUrlsMap map[string]string `protobuf:"bytes,16,rep,name=file_urls_map,json=fileUrlsMap,proto3" json:"file_urls_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"fileUrlsMap"`
+	FileUrlsMap map[string]string `protobuf:"bytes,16,rep,name=file_urls_map,json=fileUrlsMap,proto3" json:"file_urls_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// @inject_tag: bson:"recordTimestamp"
-	RecordTimestamp int64 `protobuf:"varint,17,opt,name=record_timestamp,json=recordTimestamp,proto3" json:"record_timestamp,omitempty" bson:"recordTimestamp"`
+	RecordTimestamp int64 `protobuf:"varint,17,opt,name=record_timestamp,json=recordTimestamp,proto3" json:"record_timestamp,omitempty"`
 	// @inject_tag: bson:"createTimestamp"
-	CreateTimestamp int64 `protobuf:"varint,18,opt,name=create_timestamp,json=createTimestamp,proto3" json:"create_timestamp,omitempty" bson:"createTimestamp"`
+	CreateTimestamp int64 `protobuf:"varint,18,opt,name=create_timestamp,json=createTimestamp,proto3" json:"create_timestamp,omitempty"`
 	// @inject_tag: bson:"updateTimestamp"
-	UpdateTimestamp int64 `protobuf:"varint,19,opt,name=update_timestamp,json=updateTimestamp,proto3" json:"update_timestamp,omitempty" bson:"updateTimestamp"`
+	UpdateTimestamp int64 `protobuf:"varint,19,opt,name=update_timestamp,json=updateTimestamp,proto3" json:"update_timestamp,omitempty"`
 	// @inject_tag: bson:"isPublic"
-	IsPublic             bool     `protobuf:"varint,20,opt,name=is_public,json=isPublic,proto3" json:"is_public" bson:"isPublic"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-"`
+	IsPublic             bool     `protobuf:"varint,20,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *Document) Reset()         { *m = Document{} }

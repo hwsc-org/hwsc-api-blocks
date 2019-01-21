@@ -4,7 +4,7 @@ package hwscUserSvc;
 
 import "user.proto";
 
-option go_package="hwscUserSvcPb";
+option go_package="hwsc";
 
 
 // NOTES:

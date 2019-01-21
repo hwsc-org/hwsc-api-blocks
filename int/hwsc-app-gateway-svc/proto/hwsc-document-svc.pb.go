@@ -32,9 +32,9 @@ type DocumentRequest struct {
 	FileMetadataParameters *FileMetadataTransaction `protobuf:"bytes,6,opt,name=fileMetadata_parameters,json=fileMetadataParameters,proto3" json:"fileMetadata_parameters,omitempty"`
 	// Request for QueryDocument
 	QueryParameters      *QueryTransaction `protobuf:"bytes,7,opt,name=query_parameters,json=queryParameters,proto3" json:"query_parameters,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-" bson:"-"`
-	XXX_unrecognized     []byte            `json:"-" bson:"-"`
-	XXX_sizecache        int32             `json:"-" bson:"-"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
 }
 
 func (m *DocumentRequest) Reset()         { *m = DocumentRequest{} }
@@ -122,9 +122,9 @@ type DocumentResponse struct {
 	DocumentCollection []*Document `protobuf:"bytes,4,rep,name=document_collection,json=documentCollection,proto3" json:"document_collection,omitempty"`
 	// Response for ListDistinctFieldValues
 	QueryResults         *QueryTransaction `protobuf:"bytes,5,opt,name=query_results,json=queryResults,proto3" json:"query_results,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-" bson:"-"`
-	XXX_unrecognized     []byte            `json:"-" bson:"-"`
-	XXX_sizecache        int32             `json:"-" bson:"-"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
 }
 
 func (m *DocumentResponse) Reset()         { *m = DocumentResponse{} }
