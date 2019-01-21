@@ -1,7 +1,7 @@
 const index = require('../index.js');
 
-const users = [
-  // valid user
+const dataSet = [
+  // createUser - 0
   {
     user: {
       firstName: 'Lisa',
@@ -11,7 +11,20 @@ const users = [
       organization: 'uwb',
     },
   },
+  // getUser - 1
+  {
+    user: {
+      uuid: '0000xsnjg0mqjhbf4qx1efd6y5',
+    },
+  },
+  // deleteUser - 2
+  {
+    user: {
+      uuid: '0000xsnjg0mqjhbf4qx1efd6y6',
+    },
+  },
 ];
+
 
 function callback(err, response) {
   if (err) {
@@ -23,7 +36,9 @@ function callback(err, response) {
 
 function main() {
   index.hwscUserSvc.getStatus(callback);
-  index.hwscUserSvc.createUser(users[0], callback);
+  index.hwscUserSvc.createUser(dataSet[0], callback);
+  index.hwscUserSvc.getUser(dataSet[1], callback);
+  index.hwscUserSvc.deleteUser(dataSet[2], callback);
 }
 
 main();
