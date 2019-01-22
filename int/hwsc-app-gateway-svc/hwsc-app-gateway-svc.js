@@ -10,7 +10,7 @@ const options = {
 };
 
 // runtime dynamic compialation proto file, creates pb file dynamically
-const hwscAppGatewaySvcProtoPkgDef = protoLoader.loadSync('', options);
+const hwscAppGatewaySvcProtoPkgDef = protoLoader.loadSync('hwsc-app-gateway-svc.proto', options);
 
 // pointing to pb file in memory
 const hwscAppGatewaySvcPbJs = grpc.loadPackageDefinition(hwscAppGatewaySvcProtoPkgDef)
