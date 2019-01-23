@@ -97,9 +97,30 @@ function deleteUser(request, callback) {
   });
 }
 
+function updateUser(request, callback) {
+  if (typeof callback !== 'function') {
+    callbackErr();
+    return;
+  }
+
+  let userRequest = request;
+  if (userRequest == null) {
+    userRequest = {};
+  }
+
+  client.updateUser(userRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response);
+  });
+}
+
 module.exports = {
   getStatus,
   createUser,
   getUser,
   deleteUser,
+  updateUser,
 };
