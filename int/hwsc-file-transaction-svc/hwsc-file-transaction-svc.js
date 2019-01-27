@@ -27,6 +27,7 @@ function getStatus(callback) {
       grpc.closeClient(client);
     }
     callback(err, response);
+    console.log(err);
   });
 }
 
