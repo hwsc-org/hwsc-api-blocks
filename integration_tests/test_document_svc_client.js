@@ -277,7 +277,7 @@ function main() {
       break;
     case '4':
       index.hwscDocumentSvc
-        .deleteDocument({ data: { duid: process.argv[3], uuid: process.argv[4] } }, callback);
+        .deleteDocument({ data: { duid: process.argv[3] } }, callback);
       break;
     case '5':
       index.hwscDocumentSvc
@@ -293,10 +293,9 @@ function main() {
           {
             fileMetadataParameters: {
               duid: process.argv[3],
-              uuid: process.argv[4],
-              url: process.argv[5],
+              url: process.argv[4],
             },
-          }, process.argv[6], extractFuid,
+          }, process.argv[5], extractFuid,
         );
       break;
     case '8':
@@ -305,10 +304,9 @@ function main() {
           {
             fileMetadataParameters: {
               duid: process.argv[3],
-              uuid: process.argv[4],
-              fuid: process.argv[5],
+              fuid: process.argv[4],
             },
-          }, process.argv[6], callback,
+          }, process.argv[5], callback,
         );
       break;
     default:
