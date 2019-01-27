@@ -24,10 +24,10 @@ function getStatus(callback) {
   const request = {};
   client.getStatus(request, (err, response) => {
     if (!err) {
-    grpc.closeClient(client);
-  }
-  callback(err, response);
-});
+      grpc.closeClient(client);
+    }
+    callback(err, response);
+  });
 }
 
 function createUserFolder(uuid, callback) {
@@ -41,10 +41,10 @@ function createUserFolder(uuid, callback) {
   request.uuid = uuid;
   const server = client.createUserFolder(request, (err, response) => {
     if (!err) {
-    grpc.closeClient(client);
-  }
-  callback(err, response);
-});
+      grpc.closeClient(client);
+    }
+    callback(err, response);
+  });
 }
 
 function uploadFile(filePath, fileName, uuid, callback) {
@@ -60,35 +60,36 @@ function uploadFile(filePath, fileName, uuid, callback) {
   const server = client.uploadFile((err, response) => {
     if (!err) {
     // grpc.closeClient(client);
-  }
-  callback(err, response);
-});
+    }
+    callback(err, response);
+    console.log(err);
+  });
   // client send the upload file name to server
-  server.write({ fileName: fileName });
-  server.write({ uuid: uuid });
+  server.write({ fileName });
+  server.write({ uuid });
   // open the file, and read/pipe the first 1024 bytes of the file
   const readStream = fs.createReadStream(fileLocation, { hightWaterMark: 1024 });
 
   readStream.on('readable', () => {
     let chunk;
-  while ((chunk = readStream.read()) !== null) {
-    server.write({ buffer: chunk });
-  }
-});
+    while ((chunk = readStream.read()) !== null) {
+      server.write({ buffer: chunk });
+    }
+  });
   readStream.on('end', () => {
     server.end();
   //   callback(err, response);
-});
+  });
 
-  //TODO
-  /*readStream.on('error', (err, response) => {
+  // TODO
+  /* readStream.on('error', (err, response) => {
     server.end();
     callback(err, response);
     });
     readStream.on('cancel', (err) => {
     server.end(err);
     console.error('Cancel!');
-    });*/
+    }); */
 }
 
 module.exports = {
@@ -96,4 +97,3 @@ module.exports = {
   uploadFile,
   createUserFolder,
 };
-
