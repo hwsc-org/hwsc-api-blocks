@@ -32,15 +32,11 @@ SEGER_WOOKIE=10
 TIME_CONSTRAINT=11
 TIME_ISSUE=12
 
-# Test variables for DeleteDocument
-DEL_UUID="abcfXSNJG0MQJHBF4QX1EFD443"
-
 # Test variable for UpdateDocument and DeleteDocument
 DUID=""
 
 # Test variable for AddFileMetadata and DeleteFileMetadata
 FM_DUID="1ChHfmKs8GX7D1XVf61lwVdisWf"
-FM_UUID="0XXXXSNJG0MQJHBF4QX1EFD6Y3"
 FM_URL="https://hwscdevstorage.blob.core.windows.net/images/pusheen.jpg"
 FM_FUID=""
 
@@ -140,7 +136,7 @@ else
 fi
 
 echo "Test DeleteDocument"
-node test_document_svc_client.js $DELETE_DOC_SIGNAL $DUID $DEL_UUID | grep 'code: 0,' &> /dev/null
+node test_document_svc_client.js $DELETE_DOC_SIGNAL $DUID | grep 'code: 0,' &> /dev/null
 if [ $? == 0 ]; then
    echo -e  "😃 [SUCCESS] DeleteDocument"
 else
@@ -149,7 +145,7 @@ else
     exit 1
 fi
 
-node test_document_svc_client.js $DELETE_DOC_SIGNAL $DUID $DEL_UUID | grep 'code: 3,' &> /dev/null
+node test_document_svc_client.js $DELETE_DOC_SIGNAL $DUID | grep 'code: 3,' &> /dev/null
 if [ $? == 0 ]; then
    echo -e  "😃 [SUCCESS] DeleteDocument non-existing DUID"
 else
@@ -211,7 +207,7 @@ else
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
-node test_document_svc_client.js $ADD_FM_SIGNAL $FM_DUID $FM_UUID $FM_URL $FM_AUDIO | grep 'code: 3,' &> /dev/null
+node test_document_svc_client.js $ADD_FM_SIGNAL $FM_DUID $FM_URL $FM_AUDIO | grep 'code: 3,' &> /dev/null
 if [ $? == 0  ]; then
    echo -e  "😃 [SUCCESS] AddFileMetadata with invalid type"
 else
@@ -219,7 +215,7 @@ else
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
-node test_document_svc_client.js $ADD_FM_SIGNAL garbage $FM_UUID $FM_URL $FM_AUDIO | grep 'code: 3,' &> /dev/null
+node test_document_svc_client.js $ADD_FM_SIGNAL garbage $FM_URL $FM_AUDIO | grep 'code: 3,' &> /dev/null
 if [ $? == 0  ]; then
    echo -e  "😃 [SUCCESS] AddFileMetadata with invalid duid"
 else
@@ -227,15 +223,7 @@ else
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
-node test_document_svc_client.js $ADD_FM_SIGNAL $FM_DUID garbage $FM_URL $FM_AUDIO | grep 'code: 3,' &> /dev/null
-if [ $? == 0  ]; then
-   echo -e  "😃 [SUCCESS] AddFileMetadata with invalid uuid"
-else
-    echo -e "👻 [FAILURE] AddFileMetadata with invalid uuid"
-    echo "---------- Fatal Exit ----------"
-    exit 1
-fi
-node test_document_svc_client.js $ADD_FM_SIGNAL $FM_DUID $FM_UUID garbage $FM_AUDIO | grep 'code: 3,' &> /dev/null
+node test_document_svc_client.js $ADD_FM_SIGNAL $FM_DUID garbage $FM_AUDIO | grep 'code: 3,' &> /dev/null
 if [ $? == 0  ]; then
    echo -e  "😃 [SUCCESS] AddFileMetadata with invalid url"
 else
@@ -245,7 +233,7 @@ else
 fi
 
 echo "Test DeleteFileMetadata"
-node test_document_svc_client.js $DEL_FM_SIGNAL $FM_DUID $FM_UUID $FM_FUID $FM_IMAGE | grep 'code: 0,' &> /dev/null
+node test_document_svc_client.js $DEL_FM_SIGNAL $FM_DUID $FM_FUID $FM_IMAGE | grep 'code: 0,' &> /dev/null
 if [ $? == 0 ]; then
    echo -e  "😃 [SUCCESS] DeleteFileMetadata"
 else
@@ -253,7 +241,7 @@ else
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
-node test_document_svc_client.js $DEL_FM_SIGNAL garbage $FM_UUID $FM_FUID $FM_AUDIO | grep 'code: 3,' &> /dev/null
+node test_document_svc_client.js $DEL_FM_SIGNAL garbage $FM_FUID $FM_AUDIO | grep 'code: 3,' &> /dev/null
 if [ $? == 0  ]; then
    echo -e  "😃 [SUCCESS] DeleteFileMetadata with invalid duid"
 else
@@ -261,15 +249,7 @@ else
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
-node test_document_svc_client.js $DEL_FM_SIGNAL $FM_DUID garbage $FM_FUID $FM_AUDIO | grep 'code: 3,' &> /dev/null
-if [ $? == 0  ]; then
-   echo -e  "😃 [SUCCESS] DeleteFileMetadata with invalid uuid"
-else
-    echo -e "👻 [FAILURE] DeleteFileMetadata with invalid uuid"
-    echo "---------- Fatal Exit ----------"
-    exit 1
-fi
-node test_document_svc_client.js $DEL_FM_SIGNAL $FM_DUID $FM_UUID garbage $FM_AUDIO | grep 'code: 3,' &> /dev/null
+node test_document_svc_client.js $DEL_FM_SIGNAL $FM_DUID garbage $FM_AUDIO | grep 'code: 3,' &> /dev/null
 if [ $? == 0  ]; then
    echo -e  "😃 [SUCCESS] DeleteFileMetadata with invalid fuid"
 else
