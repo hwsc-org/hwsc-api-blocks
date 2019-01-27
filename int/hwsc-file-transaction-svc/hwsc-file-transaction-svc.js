@@ -27,27 +27,47 @@ function getStatus(callback) {
       grpc.closeClient(client);
     }
     callback(err, response);
+    console.log(err);
   });
 }
 
-function uploadFile(filePath, fileName, callback) {
+function createUserFolder(uuid, callback) {
   if (typeof callback !== 'function') {
     console.error('callback not a function');
     return;
   }
-
-  const fileLocation = filePath + '/' + fileName;
-
-  // create a connection from client in API-block to server in Pycharm
-  const server = client.uploadFile((err, response) => {
+  const id = uuid;
+  console.log(id);
+  const request = {};
+  request.uuid = uuid;
+  client.createUserFolder(request, (err, response) => {
     if (!err) {
-      // grpc.closeClient(client);
+      grpc.closeClient(client);
     }
     callback(err, response);
   });
-  // client send the upload file name to server
-  server.write({ fileName: fileName });
+}
 
+function uploadFile(filePath, fileName, uuid, callback) {
+  if (typeof callback !== 'function') {
+    console.error('callback not a function');
+    return;
+  }
+  const id = uuid;
+  console.log(id);
+  const fileLocation = filePath + '/' + fileName;
+  console.log(fileLocation);
+  // create a connection from client in API-block to server in Pycharm
+  client.uploadFile((err, response) => {
+    if (!err) {
+    // grpc.closeClient(client);
+    }
+    callback(err, response);
+    console.log(err);
+  });
+  // client send the upload file name to server
+  server.write({ fileName });
+  server.write({ uuid });
   // open the file, and read/pipe the first 1024 bytes of the file
   const readStream = fs.createReadStream(fileLocation, { hightWaterMark: 1024 });
 
@@ -59,22 +79,22 @@ function uploadFile(filePath, fileName, callback) {
   });
   readStream.on('end', () => {
     server.end();
-    //   callback(err, response);
+  //   callback(err, response);
   });
 
-  //TODO
-  /*readStream.on('error', (err, response) => {
+  // TODO
+  /* readStream.on('error', (err, response) => {
     server.end();
     callback(err, response);
     });
-
     readStream.on('cancel', (err) => {
     server.end(err);
     console.error('Cancel!');
-    });*/
+    }); */
 }
 
 module.exports = {
   getStatus,
   uploadFile,
+  createUserFolder,
 };
