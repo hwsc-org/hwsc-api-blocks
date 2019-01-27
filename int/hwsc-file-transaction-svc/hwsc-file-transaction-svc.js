@@ -40,7 +40,7 @@ function createUserFolder(uuid, callback) {
   console.log(id);
   const request = {};
   request.uuid = uuid;
-  const server = client.createUserFolder(request, (err, response) => {
+  client.createUserFolder(request, (err, response) => {
     if (!err) {
       grpc.closeClient(client);
     }
@@ -58,7 +58,7 @@ function uploadFile(filePath, fileName, uuid, callback) {
   const fileLocation = filePath + '/' + fileName;
   console.log(fileLocation);
   // create a connection from client in API-block to server in Pycharm
-  const server = client.uploadFile((err, response) => {
+  client.uploadFile((err, response) => {
     if (!err) {
     // grpc.closeClient(client);
     }
