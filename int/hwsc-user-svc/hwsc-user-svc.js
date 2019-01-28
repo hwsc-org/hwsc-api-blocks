@@ -18,7 +18,7 @@ const packageDefinition = protoLoader.loadSync('hwsc-user-svc.proto', options);
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).hwscUserSvc;
 
 // to call service methods, create a stub
-const client = new protoDescriptor.UserService('localhost:50051', grpc.credentials.createInsecure());
+const client = new protoDescriptor.UserService('localhost:50052', grpc.credentials.createInsecure());
 
 const callbackErr = () => console.error('callback not a function');
 
