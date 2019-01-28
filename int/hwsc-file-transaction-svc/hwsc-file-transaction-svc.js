@@ -54,11 +54,9 @@ function uploadFile(filePath, fileName, uuid, callback) {
     return;
   }
   const id = uuid;
-  console.log(id);
   const fileLocation = filePath + '/' + fileName;
-  console.log(fileLocation);
   // create a connection from client in API-block to server in Pycharm
-  client.uploadFile((err, response) => {
+  const server = client.uploadFile((err, response) => {
     if (!err) {
     // grpc.closeClient(client);
     }
