@@ -27,7 +27,6 @@ function getStatus(callback) {
       grpc.closeClient(client);
     }
     callback(err, response);
-    console.log(err);
   });
 }
 
@@ -55,15 +54,14 @@ function uploadFile(filePath, fileName, uuid, callback) {
   }
   const id = uuid;
   console.log(id);
-  const fileLocation = filePath + '/' + fileName;
+  const fileLocation = `${filePath}/${fileName}`;
   console.log(fileLocation);
   // create a connection from client in API-block to server in Pycharm
-  client.uploadFile((err, response) => {
+  const server = client.uploadFile((err, response) => {
     if (!err) {
-    // grpc.closeClient(client);
+      grpc.closeClient(client);
     }
     callback(err, response);
-    console.log(err);
   });
   // client send the upload file name to server
   server.write({ fileName });
@@ -79,18 +77,12 @@ function uploadFile(filePath, fileName, uuid, callback) {
   });
   readStream.on('end', () => {
     server.end();
-  //   callback(err, response);
   });
 
-  // TODO
-  /* readStream.on('error', (err, response) => {
+  readStream.on('error', (err, response) => {
     server.end();
     callback(err, response);
-    });
-    readStream.on('cancel', (err) => {
-    server.end(err);
-    console.error('Cancel!');
-    }); */
+  });
 }
 
 module.exports = {
