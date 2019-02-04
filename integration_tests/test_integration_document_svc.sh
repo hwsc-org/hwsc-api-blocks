@@ -76,9 +76,17 @@ else
 fi
 
 echo "Extracting DUID for DeleteDocument & UpdateDocument Using CreateDocument"
-DUID=$(node test_document_svc_client.js $CREATE_DOC_SIGNAL $VALID_DOC_REQ| grep -o 'duid: .*' | grep -o "\'.*\'" | sed "s/'//g")
+if [ "$(uname)" == "Darwin" ]; then
+    echo -e "😃 [INFO] grep using MacOS"
+    DUID=$(node test_document_svc_client.js $CREATE_DOC_SIGNAL $VALID_DOC_REQ| grep -o 'duid: .*' | grep -o "\'.*\'" | sed "s/'//g")
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    echo -e "😃 [INFO] grep using Linux OS"
+    DUID=$(node test_document_svc_client.js $CREATE_DOC_SIGNAL $VALID_DOC_REQ| grep -o 'duid: .*' | grep -oP "'[^'].*[^,]" | sed "s/'//g")
+
+fi
+
 if ! [[ $DUID =~ ^[0-9A-Za-z]{27}$ ]]; then
-    echo -e "👻 [FAILURE] Uninitialized variable DEL_DUID Using CreateDocument"
+    echo -e "👻 [FAILURE] Uninitialized variable DUID Using CreateDocument"
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
