@@ -13,6 +13,7 @@ var global = Function('return this')();
 
 var user_pb = require('./user_pb.js');
 var token_pb = require('./token_pb.js');
+var secret_pb = require('./secret_pb.js');
 goog.exportSymbol('proto.hwscUserSvc.UserRequest', null, global);
 goog.exportSymbol('proto.hwscUserSvc.UserResponse', null, global);
 
@@ -38,7 +39,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hwscUserSvc.UserRequest.repeatedFields_ = [4];
+proto.hwscUserSvc.UserRequest.repeatedFields_ = [5];
 
 
 
@@ -70,9 +71,10 @@ proto.hwscUserSvc.UserRequest.prototype.toObject = function(opt_includeInstance)
 proto.hwscUserSvc.UserRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     token: (f = msg.getToken()) && token_pb.Token.toObject(includeInstance, f),
+    secret: (f = msg.getSecret()) && secret_pb.Secret.toObject(includeInstance, f),
     user: (f = msg.getUser()) && user_pb.User.toObject(includeInstance, f),
-    duid: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    uuidsToShareDuidList: jspb.Message.getRepeatedField(msg, 4)
+    duid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    uuidsToShareDuidList: jspb.Message.getRepeatedField(msg, 5)
   };
 
   if (includeInstance) {
@@ -115,15 +117,20 @@ proto.hwscUserSvc.UserRequest.deserializeBinaryFromReader = function(msg, reader
       msg.setToken(value);
       break;
     case 2:
+      var value = new secret_pb.Secret;
+      reader.readMessage(value,secret_pb.Secret.deserializeBinaryFromReader);
+      msg.setSecret(value);
+      break;
+    case 3:
       var value = new user_pb.User;
       reader.readMessage(value,user_pb.User.deserializeBinaryFromReader);
       msg.setUser(value);
       break;
-    case 3:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setDuid(value);
       break;
-    case 4:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.addUuidsToShareDuid(value);
       break;
@@ -164,10 +171,18 @@ proto.hwscUserSvc.UserRequest.serializeBinaryToWriter = function(message, writer
       token_pb.Token.serializeBinaryToWriter
     );
   }
-  f = message.getUser();
+  f = message.getSecret();
   if (f != null) {
     writer.writeMessage(
       2,
+      f,
+      secret_pb.Secret.serializeBinaryToWriter
+    );
+  }
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      3,
       f,
       user_pb.User.serializeBinaryToWriter
     );
@@ -175,14 +190,14 @@ proto.hwscUserSvc.UserRequest.serializeBinaryToWriter = function(message, writer
   f = message.getDuid();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      4,
       f
     );
   }
   f = message.getUuidsToShareDuidList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      4,
+      5,
       f
     );
   }
@@ -220,18 +235,48 @@ proto.hwscUserSvc.UserRequest.prototype.hasToken = function() {
 
 
 /**
- * optional hwsc.User user = 2;
+ * optional hwsc.Secret secret = 2;
+ * @return {?proto.hwsc.Secret}
+ */
+proto.hwscUserSvc.UserRequest.prototype.getSecret = function() {
+  return /** @type{?proto.hwsc.Secret} */ (
+    jspb.Message.getWrapperField(this, secret_pb.Secret, 2));
+};
+
+
+/** @param {?proto.hwsc.Secret|undefined} value */
+proto.hwscUserSvc.UserRequest.prototype.setSecret = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.hwscUserSvc.UserRequest.prototype.clearSecret = function() {
+  this.setSecret(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hwscUserSvc.UserRequest.prototype.hasSecret = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional hwsc.User user = 3;
  * @return {?proto.hwsc.User}
  */
 proto.hwscUserSvc.UserRequest.prototype.getUser = function() {
   return /** @type{?proto.hwsc.User} */ (
-    jspb.Message.getWrapperField(this, user_pb.User, 2));
+    jspb.Message.getWrapperField(this, user_pb.User, 3));
 };
 
 
 /** @param {?proto.hwsc.User|undefined} value */
 proto.hwscUserSvc.UserRequest.prototype.setUser = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -245,37 +290,37 @@ proto.hwscUserSvc.UserRequest.prototype.clearUser = function() {
  * @return {!boolean}
  */
 proto.hwscUserSvc.UserRequest.prototype.hasUser = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional string duid = 3;
+ * optional string duid = 4;
  * @return {string}
  */
 proto.hwscUserSvc.UserRequest.prototype.getDuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
 proto.hwscUserSvc.UserRequest.prototype.setDuid = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * repeated string uuids_to_share_duid = 4;
+ * repeated string uuids_to_share_duid = 5;
  * @return {!Array<string>}
  */
 proto.hwscUserSvc.UserRequest.prototype.getUuidsToShareDuidList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
 
 /** @param {!Array<string>} value */
 proto.hwscUserSvc.UserRequest.prototype.setUuidsToShareDuidList = function(value) {
-  jspb.Message.setField(this, 4, value || []);
+  jspb.Message.setField(this, 5, value || []);
 };
 
 
@@ -284,7 +329,7 @@ proto.hwscUserSvc.UserRequest.prototype.setUuidsToShareDuidList = function(value
  * @param {number=} opt_index
  */
 proto.hwscUserSvc.UserRequest.prototype.addUuidsToShareDuid = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 5, value, opt_index);
 };
 
 
@@ -316,7 +361,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hwscUserSvc.UserResponse.repeatedFields_ = [5];
+proto.hwscUserSvc.UserResponse.repeatedFields_ = [6];
 
 /**
  * Oneof group definitions for this message. Each group defines the field
@@ -375,6 +420,7 @@ proto.hwscUserSvc.UserResponse.toObject = function(includeInstance, msg) {
     code: jspb.Message.getFieldWithDefault(msg, 1, 0),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
     token: (f = msg.getToken()) && token_pb.Token.toObject(includeInstance, f),
+    secret: (f = msg.getSecret()) && secret_pb.Secret.toObject(includeInstance, f),
     user: (f = msg.getUser()) && user_pb.User.toObject(includeInstance, f),
     userCollectionList: jspb.Message.toObjectList(msg.getUserCollectionList(),
     user_pb.User.toObject, includeInstance)
@@ -428,11 +474,16 @@ proto.hwscUserSvc.UserResponse.deserializeBinaryFromReader = function(msg, reade
       msg.setToken(value);
       break;
     case 4:
+      var value = new secret_pb.Secret;
+      reader.readMessage(value,secret_pb.Secret.deserializeBinaryFromReader);
+      msg.setSecret(value);
+      break;
+    case 5:
       var value = new user_pb.User;
       reader.readMessage(value,user_pb.User.deserializeBinaryFromReader);
       msg.setUser(value);
       break;
-    case 5:
+    case 6:
       var value = new user_pb.User;
       reader.readMessage(value,user_pb.User.deserializeBinaryFromReader);
       msg.addUserCollection(value);
@@ -488,10 +539,18 @@ proto.hwscUserSvc.UserResponse.serializeBinaryToWriter = function(message, write
       token_pb.Token.serializeBinaryToWriter
     );
   }
-  f = message.getUser();
+  f = message.getSecret();
   if (f != null) {
     writer.writeMessage(
       4,
+      f,
+      secret_pb.Secret.serializeBinaryToWriter
+    );
+  }
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      5,
       f,
       user_pb.User.serializeBinaryToWriter
     );
@@ -499,7 +558,7 @@ proto.hwscUserSvc.UserResponse.serializeBinaryToWriter = function(message, write
   f = message.getUserCollectionList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      5,
+      6,
       f,
       user_pb.User.serializeBinaryToWriter
     );
@@ -582,18 +641,48 @@ proto.hwscUserSvc.UserResponse.prototype.hasToken = function() {
 
 
 /**
- * optional hwsc.User user = 4;
+ * optional hwsc.Secret secret = 4;
+ * @return {?proto.hwsc.Secret}
+ */
+proto.hwscUserSvc.UserResponse.prototype.getSecret = function() {
+  return /** @type{?proto.hwsc.Secret} */ (
+    jspb.Message.getWrapperField(this, secret_pb.Secret, 4));
+};
+
+
+/** @param {?proto.hwsc.Secret|undefined} value */
+proto.hwscUserSvc.UserResponse.prototype.setSecret = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.hwscUserSvc.UserResponse.prototype.clearSecret = function() {
+  this.setSecret(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hwscUserSvc.UserResponse.prototype.hasSecret = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional hwsc.User user = 5;
  * @return {?proto.hwsc.User}
  */
 proto.hwscUserSvc.UserResponse.prototype.getUser = function() {
   return /** @type{?proto.hwsc.User} */ (
-    jspb.Message.getWrapperField(this, user_pb.User, 4));
+    jspb.Message.getWrapperField(this, user_pb.User, 5));
 };
 
 
 /** @param {?proto.hwsc.User|undefined} value */
 proto.hwscUserSvc.UserResponse.prototype.setUser = function(value) {
-  jspb.Message.setWrapperField(this, 4, value);
+  jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -607,23 +696,23 @@ proto.hwscUserSvc.UserResponse.prototype.clearUser = function() {
  * @return {!boolean}
  */
 proto.hwscUserSvc.UserResponse.prototype.hasUser = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * repeated hwsc.User user_collection = 5;
+ * repeated hwsc.User user_collection = 6;
  * @return {!Array<!proto.hwsc.User>}
  */
 proto.hwscUserSvc.UserResponse.prototype.getUserCollectionList = function() {
   return /** @type{!Array<!proto.hwsc.User>} */ (
-    jspb.Message.getRepeatedWrapperField(this, user_pb.User, 5));
+    jspb.Message.getRepeatedWrapperField(this, user_pb.User, 6));
 };
 
 
 /** @param {!Array<!proto.hwsc.User>} value */
 proto.hwscUserSvc.UserResponse.prototype.setUserCollectionList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 5, value);
+  jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
 
 
@@ -633,7 +722,7 @@ proto.hwscUserSvc.UserResponse.prototype.setUserCollectionList = function(value)
  * @return {!proto.hwsc.User}
  */
 proto.hwscUserSvc.UserResponse.prototype.addUserCollection = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.hwsc.User, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.hwsc.User, opt_index);
 };
 
 
