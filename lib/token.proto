@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package hwsc;
+
+enum Permission {
+    ADMIN = 0;
+    USER = 1;
+}
+
+message Token {
+    string uuid = 1;
+    string token_string = 2;
+    Permission permission_level = 3;
+    int64 expiration_timestamp = 4;
+}

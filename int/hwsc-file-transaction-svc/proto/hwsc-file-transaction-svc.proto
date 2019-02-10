@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package hwscFileTransactionSvc;
 
+import "token.proto";
+
 // The file transaction service definition
 service FileTransactionService{
     // Gets status for user
@@ -15,10 +17,11 @@ service FileTransactionService{
 }
 
 message FileTransactionRequest{
-    string message = 1;
-    string name = 2;
-    string uuid = 3;
-    repeated string urls = 4;
+    hwsc.Token token = 1;
+    string message = 2;
+    string name = 3;
+    string uuid = 4;
+    repeated string urls = 5;
 }
 
 message FileTransactionResponse{
@@ -29,9 +32,10 @@ message FileTransactionResponse{
 
 message Chunk{
     oneof test_oneof{
-        bytes buffer = 1;
-        int64 length = 2;
-        string file_name = 3;
-        string uuid = 4;
+        hwsc.Token token = 1;
+        bytes buffer = 2;
+        int64 length = 3;
+        string file_name = 4;
+        string uuid = 5;
     }
 }

@@ -3,6 +3,7 @@ syntax="proto3";
 package hwscUserSvc;
 
 import "user.proto";
+import "token.proto";
 
 option go_package="hwsc";
 
@@ -101,17 +102,23 @@ service UserService {
     // svc will...
     //    rpc DeleteDocuments (UserRequest) returns (UserResponse) {}
 
+    rpc GetToken (UserRequest) returns (UserResponse) {}
+    rpc VerifyToken (UserRequest) returns (UserResponse) {}
+    rpc GetSecret (UserRequest) returns (UserResponse) {}
+    rpc NewSecret (UserRequest) returns (UserResponse) {}
 }
 
 message UserRequest {
-    hwsc.User user = 1;
-    string duid = 2;
-    repeated string uuids_to_share_duid = 3;
+    hwsc.Token token = 1;
+    hwsc.User user = 2;
+    string duid = 3;
+    repeated string uuids_to_share_duid = 4;
 }
 
 message UserResponse {
     oneof status { uint32 code = 1; }
     string message = 2;
-    hwsc.User user = 3;
-    repeated hwsc.User user_collection = 4; // for ListUsers response
+    hwsc.Token token = 3;
+    hwsc.User user = 4;
+    repeated hwsc.User user_collection = 5; // for ListUsers response
 }
