@@ -44,7 +44,7 @@ protoc-go-inject-tag -input=${DOCUMENT_ROOT}hwsc-document-svc.pb.go
 protoc-go-inject-tag -input=${DOCUMENT_ROOT}document.pb.go
 sed -i'.orig' -e 's/`json:"-"`/`json:"-" bson:"-"`/g' int/hwsc-document-svc/proto/*.pb.go
 sed -i'.orig' -e 's/json:"is_public,omitempty" bson:"isPublic"/json:"is_public" bson:"isPublic"/g' int/hwsc-document-svc/proto/*.pb.go
-echo "Done geenerating DOCUMENT SERVICE"
+echo "Done generating DOCUMENT SERVICE"
 echo "------------------------------------------------------------"
 
 # FILE TRANSACTION SERVICE
