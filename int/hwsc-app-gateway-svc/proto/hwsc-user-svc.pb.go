@@ -4,9 +4,9 @@
 package hwsc
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	context "golang.org/x/net/context"
 	grpc "google.golang.org/grpc"
 	math "math"
 )
@@ -20,12 +20,13 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type UserRequest struct {
-	User                 *User    `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	Duid                 string   `protobuf:"bytes,2,opt,name=duid,proto3" json:"duid,omitempty"`
-	UuidsToShareDuid     []string `protobuf:"bytes,3,rep,name=uuids_to_share_duid,json=uuidsToShareDuid,proto3" json:"uuids_to_share_duid,omitempty"`
+	Token                *Token   `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	User                 *User    `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	Duid                 string   `protobuf:"bytes,3,opt,name=duid,proto3" json:"duid,omitempty"`
+	UuidsToShareDuid     []string `protobuf:"bytes,4,rep,name=uuids_to_share_duid,json=uuidsToShareDuid,proto3" json:"uuids_to_share_duid,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -56,6 +57,13 @@ func (m *UserRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_UserRequest proto.InternalMessageInfo
 
+func (m *UserRequest) GetToken() *Token {
+	if m != nil {
+		return m.Token
+	}
+	return nil
+}
+
 func (m *UserRequest) GetUser() *User {
 	if m != nil {
 		return m.User
@@ -82,8 +90,9 @@ type UserResponse struct {
 	//	*UserResponse_Code
 	Status               isUserResponse_Status `protobuf_oneof:"status"`
 	Message              string                `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	User                 *User                 `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
-	UserCollection       []*User               `protobuf:"bytes,4,rep,name=user_collection,json=userCollection,proto3" json:"user_collection,omitempty"`
+	Token                *Token                `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
+	User                 *User                 `protobuf:"bytes,4,opt,name=user,proto3" json:"user,omitempty"`
+	UserCollection       []*User               `protobuf:"bytes,5,rep,name=user_collection,json=userCollection,proto3" json:"user_collection,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
 	XXX_unrecognized     []byte                `json:"-"`
 	XXX_sizecache        int32                 `json:"-"`
@@ -145,6 +154,13 @@ func (m *UserResponse) GetMessage() string {
 	return ""
 }
 
+func (m *UserResponse) GetToken() *Token {
+	if m != nil {
+		return m.Token
+	}
+	return nil
+}
+
 func (m *UserResponse) GetUser() *User {
 	if m != nil {
 		return m.User
@@ -159,54 +175,11 @@ func (m *UserResponse) GetUserCollection() []*User {
 	return nil
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*UserResponse) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _UserResponse_OneofMarshaler, _UserResponse_OneofUnmarshaler, _UserResponse_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*UserResponse) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*UserResponse_Code)(nil),
 	}
-}
-
-func _UserResponse_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*UserResponse)
-	// status
-	switch x := m.Status.(type) {
-	case *UserResponse_Code:
-		b.EncodeVarint(1<<3 | proto.WireVarint)
-		b.EncodeVarint(uint64(x.Code))
-	case nil:
-	default:
-		return fmt.Errorf("UserResponse.Status has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _UserResponse_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*UserResponse)
-	switch tag {
-	case 1: // status.code
-		if wire != proto.WireVarint {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeVarint()
-		m.Status = &UserResponse_Code{uint32(x)}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _UserResponse_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*UserResponse)
-	// status
-	switch x := m.Status.(type) {
-	case *UserResponse_Code:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(x.Code))
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
 }
 
 func init() {
@@ -217,29 +190,33 @@ func init() {
 func init() { proto.RegisterFile("hwsc-user-svc.proto", fileDescriptor_dc3f735c05652365) }
 
 var fileDescriptor_dc3f735c05652365 = []byte{
-	// 343 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x93, 0xc1, 0x4e, 0x83, 0x40,
-	0x10, 0x86, 0x8b, 0x90, 0x56, 0xa6, 0x56, 0x9b, 0xad, 0x07, 0xec, 0xc1, 0x90, 0x9e, 0x7a, 0x29,
-	0x87, 0xf6, 0x05, 0x94, 0x36, 0x56, 0x13, 0x4f, 0x60, 0x2f, 0x5e, 0x08, 0x2e, 0x13, 0x4b, 0xd2,
-	0xb2, 0xc8, 0xec, 0xd6, 0xa7, 0xf1, 0x41, 0x7c, 0x3b, 0xb3, 0x8b, 0x36, 0x8d, 0xd1, 0x4b, 0x39,
-	0xc1, 0xfe, 0xdf, 0xcf, 0xcc, 0xcf, 0x1f, 0x80, 0xc1, 0xfa, 0x9d, 0xf8, 0x44, 0x11, 0x56, 0x13,
-	0xda, 0xf1, 0xa0, 0xac, 0x84, 0x14, 0xac, 0xab, 0xc5, 0x15, 0x61, 0x15, 0xef, 0xf8, 0x10, 0x34,
-	0xac, 0xc1, 0xa8, 0x84, 0xae, 0x96, 0x23, 0x7c, 0x53, 0x48, 0x92, 0x5d, 0x83, 0xa3, 0xa1, 0x67,
-	0xf9, 0xd6, 0xb8, 0x3b, 0x85, 0x40, 0x3f, 0x16, 0x18, 0x83, 0xd1, 0x19, 0x03, 0x27, 0x53, 0x79,
-	0xe6, 0x9d, 0xf8, 0xd6, 0xd8, 0x8d, 0xcc, 0x3d, 0x9b, 0xc0, 0x40, 0xa9, 0x3c, 0xa3, 0x44, 0x8a,
-	0x84, 0xd6, 0x69, 0x85, 0x89, 0xb1, 0xd8, 0xbe, 0x3d, 0x76, 0xa3, 0xbe, 0x41, 0x4f, 0x22, 0xd6,
-	0x60, 0xa1, 0xf2, 0x6c, 0xf4, 0x61, 0xc1, 0x59, 0xbd, 0x92, 0x4a, 0x51, 0x10, 0xb2, 0x4b, 0x70,
-	0xb8, 0xc8, 0xd0, 0xec, 0xec, 0xdd, 0xb7, 0x22, 0x73, 0x62, 0x1e, 0x74, 0xb6, 0x48, 0x94, 0xbe,
-	0xe2, 0xf7, 0xb2, 0x9f, 0xe3, 0x3e, 0xa3, 0xfd, 0x4f, 0xc6, 0x19, 0x5c, 0xe8, 0x6b, 0xc2, 0xc5,
-	0x66, 0x83, 0x5c, 0xe6, 0xa2, 0xf0, 0x1c, 0xdf, 0xfe, 0x65, 0x3d, 0xd7, 0x96, 0xf9, 0xde, 0x11,
-	0x9e, 0x42, 0x9b, 0x64, 0x2a, 0x15, 0x4d, 0x3f, 0x9d, 0xba, 0x92, 0x18, 0xab, 0x5d, 0xce, 0x91,
-	0x85, 0xe0, 0x2e, 0x51, 0xc6, 0x06, 0x32, 0x2f, 0x38, 0x28, 0x32, 0x38, 0x68, 0x6e, 0x78, 0xf5,
-	0x07, 0xa9, 0x5f, 0x70, 0xd4, 0x62, 0x73, 0x80, 0x79, 0x85, 0xa9, 0x44, 0xad, 0x37, 0x18, 0xb2,
-	0xc0, 0x0d, 0x36, 0x1e, 0xb2, 0x2a, 0xb3, 0x86, 0x49, 0x1e, 0xa0, 0x7f, 0xab, 0xe4, 0x1a, 0x0b,
-	0x99, 0xf3, 0x86, 0xa3, 0x42, 0x70, 0x1f, 0x73, 0x92, 0x5a, 0x3d, 0xba, 0xdd, 0x1b, 0xe8, 0x2c,
-	0x51, 0x36, 0x49, 0x71, 0x07, 0xbd, 0xfa, 0x03, 0x15, 0x5c, 0x6d, 0xb1, 0x90, 0x47, 0xce, 0x09,
-	0xdb, 0xcf, 0x8e, 0xa6, 0x2f, 0x6d, 0xf3, 0x73, 0xcd, 0xbe, 0x02, 0x00, 0x00, 0xff, 0xff, 0x85,
-	0x8c, 0xd7, 0x33, 0x8c, 0x03, 0x00, 0x00,
+	// 410 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x94, 0xcf, 0x6e, 0xd3, 0x40,
+	0x10, 0xc6, 0x6b, 0xec, 0xba, 0xf5, 0x98, 0x42, 0xb5, 0xe5, 0x60, 0x72, 0x40, 0x26, 0xa7, 0x5c,
+	0xe2, 0x43, 0xfb, 0x02, 0xd4, 0x89, 0x08, 0x48, 0x88, 0x83, 0xdd, 0x72, 0xe0, 0x62, 0x99, 0xf5,
+	0x40, 0x56, 0xa4, 0xde, 0xb0, 0x3b, 0x9b, 0x8a, 0xe7, 0xe0, 0x85, 0x38, 0xf3, 0x54, 0x68, 0x77,
+	0xf9, 0x53, 0x21, 0x10, 0x52, 0xf6, 0x64, 0xcf, 0x7c, 0x9f, 0x7e, 0xfa, 0x66, 0x3c, 0x32, 0x9c,
+	0xad, 0x6f, 0x35, 0x9f, 0x1b, 0x8d, 0x6a, 0xae, 0x77, 0xbc, 0xda, 0x2a, 0x49, 0x92, 0xe5, 0xb6,
+	0x79, 0xad, 0x51, 0xb5, 0x3b, 0x3e, 0x01, 0x2b, 0x7a, 0x61, 0x92, 0x93, 0xfc, 0x88, 0xa3, 0x2f,
+	0xa6, 0x5f, 0x22, 0xc8, 0xad, 0xa9, 0xc1, 0x4f, 0x06, 0x35, 0xb1, 0xa7, 0x70, 0xe8, 0xe4, 0x22,
+	0x2a, 0xa3, 0x59, 0x7e, 0x9e, 0x57, 0x96, 0x52, 0x5d, 0xd9, 0x56, 0xe3, 0x15, 0xf6, 0x04, 0x12,
+	0x4b, 0x2b, 0xee, 0x39, 0x07, 0x78, 0x87, 0x63, 0xb8, 0x3e, 0x63, 0x90, 0x0c, 0x46, 0x0c, 0x45,
+	0x5c, 0x46, 0xb3, 0xac, 0x71, 0xef, 0x6c, 0x0e, 0x67, 0xc6, 0x88, 0x41, 0x77, 0x24, 0x3b, 0xbd,
+	0xee, 0x15, 0x76, 0xce, 0x92, 0x94, 0xf1, 0x2c, 0x6b, 0x4e, 0x9d, 0x74, 0x25, 0x5b, 0x2b, 0x2c,
+	0x8d, 0x18, 0xa6, 0x5f, 0x23, 0xb8, 0xef, 0x53, 0xe9, 0xad, 0x1c, 0x35, 0xb2, 0x47, 0x90, 0x70,
+	0x39, 0xa0, 0x4b, 0x75, 0xf2, 0xe2, 0xa0, 0x71, 0x15, 0x2b, 0xe0, 0xe8, 0x06, 0xb5, 0xee, 0x3f,
+	0xa0, 0x0b, 0x93, 0x35, 0x3f, 0xcb, 0xdf, 0x63, 0xc4, 0xff, 0x1d, 0x23, 0xf9, 0xc7, 0x18, 0x17,
+	0xf0, 0xd0, 0x3e, 0x3b, 0x2e, 0x37, 0x1b, 0xe4, 0x24, 0xe4, 0x58, 0x1c, 0x96, 0xf1, 0x1f, 0xd6,
+	0x07, 0xd6, 0xb2, 0xf8, 0xe5, 0xa8, 0x8f, 0x21, 0xd5, 0xd4, 0x93, 0xd1, 0xe7, 0xdf, 0x52, 0xbf,
+	0xd8, 0x16, 0xd5, 0x4e, 0x70, 0x64, 0x35, 0x64, 0x2b, 0xa4, 0xd6, 0x89, 0xac, 0xa8, 0xee, 0x7c,
+	0x9c, 0xea, 0xce, 0xfe, 0x27, 0x8f, 0xff, 0xa2, 0xf8, 0x1d, 0x4c, 0x0f, 0xd8, 0x02, 0x60, 0xa1,
+	0xb0, 0x27, 0xb4, 0xfd, 0x00, 0xc8, 0x12, 0x37, 0x18, 0x0c, 0xb9, 0xde, 0x0e, 0x81, 0x49, 0x5e,
+	0xc2, 0xe9, 0xa5, 0xa1, 0x35, 0x8e, 0x24, 0x78, 0x20, 0xaa, 0x86, 0xec, 0x95, 0xd0, 0x64, 0xbb,
+	0x7b, 0x6f, 0xf7, 0x19, 0x1c, 0xad, 0x90, 0x42, 0x52, 0x3c, 0x87, 0x13, 0x7f, 0xc3, 0x92, 0x9b,
+	0x1b, 0x1c, 0x69, 0x5f, 0xce, 0x25, 0x1c, 0xaf, 0x90, 0xdc, 0xb5, 0xee, 0x8b, 0x58, 0x42, 0xfe,
+	0x06, 0x95, 0x78, 0xff, 0x39, 0x88, 0xf2, 0xe3, 0x68, 0x91, 0x2b, 0xa4, 0x00, 0xc6, 0x6b, 0xbc,
+	0x0d, 0x62, 0xd4, 0xe9, 0xdb, 0xc4, 0xaa, 0xef, 0x52, 0xf7, 0xd3, 0xba, 0xf8, 0x1e, 0x00, 0x00,
+	0xff, 0xff, 0x57, 0x1c, 0x35, 0xc6, 0xf1, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -281,6 +258,10 @@ type UserServiceClient interface {
 	//    3) found User object
 	// svc will...
 	ShareDocument(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	GetToken(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	VerifyToken(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	GetSecret(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	NewSecret(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
 }
 
 type userServiceClient struct {
@@ -363,6 +344,42 @@ func (c *userServiceClient) ShareDocument(ctx context.Context, in *UserRequest, 
 	return out, nil
 }
 
+func (c *userServiceClient) GetToken(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
+	out := new(UserResponse)
+	err := c.cc.Invoke(ctx, "/hwscUserSvc.UserService/GetToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) VerifyToken(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
+	out := new(UserResponse)
+	err := c.cc.Invoke(ctx, "/hwscUserSvc.UserService/VerifyToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) GetSecret(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
+	out := new(UserResponse)
+	err := c.cc.Invoke(ctx, "/hwscUserSvc.UserService/GetSecret", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) NewSecret(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
+	out := new(UserResponse)
+	err := c.cc.Invoke(ctx, "/hwscUserSvc.UserService/NewSecret", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 type UserServiceServer interface {
 	GetStatus(context.Context, *UserRequest) (*UserResponse, error)
@@ -392,6 +409,10 @@ type UserServiceServer interface {
 	//    3) found User object
 	// svc will...
 	ShareDocument(context.Context, *UserRequest) (*UserResponse, error)
+	GetToken(context.Context, *UserRequest) (*UserResponse, error)
+	VerifyToken(context.Context, *UserRequest) (*UserResponse, error)
+	GetSecret(context.Context, *UserRequest) (*UserResponse, error)
+	NewSecret(context.Context, *UserRequest) (*UserResponse, error)
 }
 
 func RegisterUserServiceServer(s *grpc.Server, srv UserServiceServer) {
@@ -542,6 +563,78 @@ func _UserService_ShareDocument_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscUserSvc.UserService/GetToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetToken(ctx, req.(*UserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_VerifyToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).VerifyToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscUserSvc.UserService/VerifyToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).VerifyToken(ctx, req.(*UserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_GetSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscUserSvc.UserService/GetSecret",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetSecret(ctx, req.(*UserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_NewSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).NewSecret(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hwscUserSvc.UserService/NewSecret",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).NewSecret(ctx, req.(*UserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _UserService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "hwscUserSvc.UserService",
 	HandlerType: (*UserServiceServer)(nil),
@@ -577,6 +670,22 @@ var _UserService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ShareDocument",
 			Handler:    _UserService_ShareDocument_Handler,
+		},
+		{
+			MethodName: "GetToken",
+			Handler:    _UserService_GetToken_Handler,
+		},
+		{
+			MethodName: "VerifyToken",
+			Handler:    _UserService_VerifyToken_Handler,
+		},
+		{
+			MethodName: "GetSecret",
+			Handler:    _UserService_GetSecret_Handler,
+		},
+		{
+			MethodName: "NewSecret",
+			Handler:    _UserService_NewSecret_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

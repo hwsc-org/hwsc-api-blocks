@@ -16,6 +16,7 @@ var user_pb = require('./user_pb.js');
 var hwsc$document$svc_pb = require('./hwsc-document-svc_pb.js');
 var document_pb = require('./document_pb.js');
 var hwsc$file$transaction$svc_pb = require('./hwsc-file-transaction-svc_pb.js');
+var token_pb = require('./token_pb.js');
 goog.exportSymbol('proto.hwscAppGatewaySvc.AppGatewayServiceRequest', null, global);
 goog.exportSymbol('proto.hwscAppGatewaySvc.AppGatewayServiceResponse', null, global);
 
@@ -65,6 +66,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.toObject = function(o
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
+    token: (f = msg.getToken()) && token_pb.Token.toObject(includeInstance, f),
     userRequest: (f = msg.getUserRequest()) && hwsc$user$svc_pb.UserRequest.toObject(includeInstance, f),
     documentRequest: (f = msg.getDocumentRequest()) && hwsc$document$svc_pb.DocumentRequest.toObject(includeInstance, f),
     chunk: (f = msg.getChunk()) && hwsc$file$transaction$svc_pb.Chunk.toObject(includeInstance, f)
@@ -105,16 +107,21 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.deserializeBinaryFromReader = f
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = new token_pb.Token;
+      reader.readMessage(value,token_pb.Token.deserializeBinaryFromReader);
+      msg.setToken(value);
+      break;
+    case 2:
       var value = new hwsc$user$svc_pb.UserRequest;
       reader.readMessage(value,hwsc$user$svc_pb.UserRequest.deserializeBinaryFromReader);
       msg.setUserRequest(value);
       break;
-    case 2:
+    case 3:
       var value = new hwsc$document$svc_pb.DocumentRequest;
       reader.readMessage(value,hwsc$document$svc_pb.DocumentRequest.deserializeBinaryFromReader);
       msg.setDocumentRequest(value);
       break;
-    case 3:
+    case 4:
       var value = new hwsc$file$transaction$svc_pb.Chunk;
       reader.readMessage(value,hwsc$file$transaction$svc_pb.Chunk.deserializeBinaryFromReader);
       msg.setChunk(value);
@@ -148,10 +155,18 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.serializeBinary = fun
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUserRequest();
+  f = message.getToken();
   if (f != null) {
     writer.writeMessage(
       1,
+      f,
+      token_pb.Token.serializeBinaryToWriter
+    );
+  }
+  f = message.getUserRequest();
+  if (f != null) {
+    writer.writeMessage(
+      2,
       f,
       hwsc$user$svc_pb.UserRequest.serializeBinaryToWriter
     );
@@ -159,7 +174,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.serializeBinaryToWriter = funct
   f = message.getDocumentRequest();
   if (f != null) {
     writer.writeMessage(
-      2,
+      3,
       f,
       hwsc$document$svc_pb.DocumentRequest.serializeBinaryToWriter
     );
@@ -167,7 +182,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.serializeBinaryToWriter = funct
   f = message.getChunk();
   if (f != null) {
     writer.writeMessage(
-      3,
+      4,
       f,
       hwsc$file$transaction$svc_pb.Chunk.serializeBinaryToWriter
     );
@@ -176,18 +191,48 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.serializeBinaryToWriter = funct
 
 
 /**
- * optional hwscUserSvc.UserRequest user_request = 1;
+ * optional hwsc.Token token = 1;
+ * @return {?proto.hwsc.Token}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.getToken = function() {
+  return /** @type{?proto.hwsc.Token} */ (
+    jspb.Message.getWrapperField(this, token_pb.Token, 1));
+};
+
+
+/** @param {?proto.hwsc.Token|undefined} value */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.setToken = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.clearToken = function() {
+  this.setToken(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.hasToken = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional hwscUserSvc.UserRequest user_request = 2;
  * @return {?proto.hwscUserSvc.UserRequest}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.getUserRequest = function() {
   return /** @type{?proto.hwscUserSvc.UserRequest} */ (
-    jspb.Message.getWrapperField(this, hwsc$user$svc_pb.UserRequest, 1));
+    jspb.Message.getWrapperField(this, hwsc$user$svc_pb.UserRequest, 2));
 };
 
 
 /** @param {?proto.hwscUserSvc.UserRequest|undefined} value */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.setUserRequest = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
+  jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -201,23 +246,23 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.clearUserRequest = fu
  * @return {!boolean}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.hasUserRequest = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional hwscDocumentSvc.DocumentRequest document_request = 2;
+ * optional hwscDocumentSvc.DocumentRequest document_request = 3;
  * @return {?proto.hwscDocumentSvc.DocumentRequest}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.getDocumentRequest = function() {
   return /** @type{?proto.hwscDocumentSvc.DocumentRequest} */ (
-    jspb.Message.getWrapperField(this, hwsc$document$svc_pb.DocumentRequest, 2));
+    jspb.Message.getWrapperField(this, hwsc$document$svc_pb.DocumentRequest, 3));
 };
 
 
 /** @param {?proto.hwscDocumentSvc.DocumentRequest|undefined} value */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.setDocumentRequest = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  jspb.Message.setWrapperField(this, 3, value);
 };
 
 
@@ -231,23 +276,23 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.clearDocumentRequest 
  * @return {!boolean}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.hasDocumentRequest = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional hwscFileTransactionSvc.Chunk chunk = 3;
+ * optional hwscFileTransactionSvc.Chunk chunk = 4;
  * @return {?proto.hwscFileTransactionSvc.Chunk}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.getChunk = function() {
   return /** @type{?proto.hwscFileTransactionSvc.Chunk} */ (
-    jspb.Message.getWrapperField(this, hwsc$file$transaction$svc_pb.Chunk, 3));
+    jspb.Message.getWrapperField(this, hwsc$file$transaction$svc_pb.Chunk, 4));
 };
 
 
 /** @param {?proto.hwscFileTransactionSvc.Chunk|undefined} value */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.setChunk = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
+  jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -261,7 +306,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.clearChunk = function
  * @return {!boolean}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceRequest.prototype.hasChunk = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -288,7 +333,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hwscAppGatewaySvc.AppGatewayServiceResponse.repeatedFields_ = [4,6];
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.repeatedFields_ = [5,7];
 
 /**
  * Oneof group definitions for this message. Each group defines the field
@@ -346,6 +391,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.toObject = function(includeIns
   var f, obj = {
     code: jspb.Message.getFieldWithDefault(msg, 1, 0),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    token: (f = msg.getToken()) && token_pb.Token.toObject(includeInstance, f),
     user: (f = msg.getUser()) && user_pb.User.toObject(includeInstance, f),
     userCollectionList: jspb.Message.toObjectList(msg.getUserCollectionList(),
     user_pb.User.toObject, includeInstance),
@@ -398,26 +444,31 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.deserializeBinaryFromReader = 
       msg.setMessage(value);
       break;
     case 3:
-      var value = new user_pb.User;
-      reader.readMessage(value,user_pb.User.deserializeBinaryFromReader);
-      msg.setUser(value);
+      var value = new token_pb.Token;
+      reader.readMessage(value,token_pb.Token.deserializeBinaryFromReader);
+      msg.setToken(value);
       break;
     case 4:
       var value = new user_pb.User;
       reader.readMessage(value,user_pb.User.deserializeBinaryFromReader);
-      msg.addUserCollection(value);
+      msg.setUser(value);
       break;
     case 5:
-      var value = new document_pb.Document;
-      reader.readMessage(value,document_pb.Document.deserializeBinaryFromReader);
-      msg.setDocument(value);
+      var value = new user_pb.User;
+      reader.readMessage(value,user_pb.User.deserializeBinaryFromReader);
+      msg.addUserCollection(value);
       break;
     case 6:
       var value = new document_pb.Document;
       reader.readMessage(value,document_pb.Document.deserializeBinaryFromReader);
-      msg.addDocumentCollection(value);
+      msg.setDocument(value);
       break;
     case 7:
+      var value = new document_pb.Document;
+      reader.readMessage(value,document_pb.Document.deserializeBinaryFromReader);
+      msg.addDocumentCollection(value);
+      break;
+    case 8:
       var value = new document_pb.QueryTransaction;
       reader.readMessage(value,document_pb.QueryTransaction.deserializeBinaryFromReader);
       msg.setQueryResults(value);
@@ -465,10 +516,18 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.serializeBinaryToWriter = func
       f
     );
   }
-  f = message.getUser();
+  f = message.getToken();
   if (f != null) {
     writer.writeMessage(
       3,
+      f,
+      token_pb.Token.serializeBinaryToWriter
+    );
+  }
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      4,
       f,
       user_pb.User.serializeBinaryToWriter
     );
@@ -476,7 +535,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.serializeBinaryToWriter = func
   f = message.getUserCollectionList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      4,
+      5,
       f,
       user_pb.User.serializeBinaryToWriter
     );
@@ -484,7 +543,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.serializeBinaryToWriter = func
   f = message.getDocument();
   if (f != null) {
     writer.writeMessage(
-      5,
+      6,
       f,
       document_pb.Document.serializeBinaryToWriter
     );
@@ -492,7 +551,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.serializeBinaryToWriter = func
   f = message.getDocumentCollectionList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      6,
+      7,
       f,
       document_pb.Document.serializeBinaryToWriter
     );
@@ -500,7 +559,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.serializeBinaryToWriter = func
   f = message.getQueryResults();
   if (f != null) {
     writer.writeMessage(
-      7,
+      8,
       f,
       document_pb.QueryTransaction.serializeBinaryToWriter
     );
@@ -553,18 +612,48 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setMessage = functio
 
 
 /**
- * optional hwsc.User user = 3;
+ * optional hwsc.Token token = 3;
+ * @return {?proto.hwsc.Token}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getToken = function() {
+  return /** @type{?proto.hwsc.Token} */ (
+    jspb.Message.getWrapperField(this, token_pb.Token, 3));
+};
+
+
+/** @param {?proto.hwsc.Token|undefined} value */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setToken = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearToken = function() {
+  this.setToken(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.hasToken = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional hwsc.User user = 4;
  * @return {?proto.hwsc.User}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getUser = function() {
   return /** @type{?proto.hwsc.User} */ (
-    jspb.Message.getWrapperField(this, user_pb.User, 3));
+    jspb.Message.getWrapperField(this, user_pb.User, 4));
 };
 
 
 /** @param {?proto.hwsc.User|undefined} value */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setUser = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
+  jspb.Message.setWrapperField(this, 4, value);
 };
 
 
@@ -578,23 +667,23 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearUser = function
  * @return {!boolean}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.hasUser = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * repeated hwsc.User user_collection = 4;
+ * repeated hwsc.User user_collection = 5;
  * @return {!Array<!proto.hwsc.User>}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getUserCollectionList = function() {
   return /** @type{!Array<!proto.hwsc.User>} */ (
-    jspb.Message.getRepeatedWrapperField(this, user_pb.User, 4));
+    jspb.Message.getRepeatedWrapperField(this, user_pb.User, 5));
 };
 
 
 /** @param {!Array<!proto.hwsc.User>} value */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setUserCollectionList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 4, value);
+  jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
 
 
@@ -604,7 +693,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setUserCollectionLis
  * @return {!proto.hwsc.User}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.addUserCollection = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.hwsc.User, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.hwsc.User, opt_index);
 };
 
 
@@ -614,18 +703,18 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearUserCollectionL
 
 
 /**
- * optional hwsc.Document document = 5;
+ * optional hwsc.Document document = 6;
  * @return {?proto.hwsc.Document}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getDocument = function() {
   return /** @type{?proto.hwsc.Document} */ (
-    jspb.Message.getWrapperField(this, document_pb.Document, 5));
+    jspb.Message.getWrapperField(this, document_pb.Document, 6));
 };
 
 
 /** @param {?proto.hwsc.Document|undefined} value */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setDocument = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -639,23 +728,23 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearDocument = func
  * @return {!boolean}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.hasDocument = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * repeated hwsc.Document document_collection = 6;
+ * repeated hwsc.Document document_collection = 7;
  * @return {!Array<!proto.hwsc.Document>}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getDocumentCollectionList = function() {
   return /** @type{!Array<!proto.hwsc.Document>} */ (
-    jspb.Message.getRepeatedWrapperField(this, document_pb.Document, 6));
+    jspb.Message.getRepeatedWrapperField(this, document_pb.Document, 7));
 };
 
 
 /** @param {!Array<!proto.hwsc.Document>} value */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setDocumentCollectionList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 6, value);
+  jspb.Message.setRepeatedWrapperField(this, 7, value);
 };
 
 
@@ -665,7 +754,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setDocumentCollectio
  * @return {!proto.hwsc.Document}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.addDocumentCollection = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 6, opt_value, proto.hwsc.Document, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.hwsc.Document, opt_index);
 };
 
 
@@ -675,18 +764,18 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearDocumentCollect
 
 
 /**
- * optional hwsc.QueryTransaction query_results = 7;
+ * optional hwsc.QueryTransaction query_results = 8;
  * @return {?proto.hwsc.QueryTransaction}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.getQueryResults = function() {
   return /** @type{?proto.hwsc.QueryTransaction} */ (
-    jspb.Message.getWrapperField(this, document_pb.QueryTransaction, 7));
+    jspb.Message.getWrapperField(this, document_pb.QueryTransaction, 8));
 };
 
 
 /** @param {?proto.hwsc.QueryTransaction|undefined} value */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.setQueryResults = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
+  jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -700,7 +789,7 @@ proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.clearQueryResults = 
  * @return {!boolean}
  */
 proto.hwscAppGatewaySvc.AppGatewayServiceResponse.prototype.hasQueryResults = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

@@ -3,8 +3,14 @@
 
 import * as jspb from "google-protobuf";
 import * as user_pb from "./user_pb";
+import * as token_pb from "./token_pb";
 
 export class UserRequest extends jspb.Message {
+  hasToken(): boolean;
+  clearToken(): void;
+  getToken(): token_pb.Token | undefined;
+  setToken(value?: token_pb.Token): void;
+
   hasUser(): boolean;
   clearUser(): void;
   getUser(): user_pb.User | undefined;
@@ -30,6 +36,7 @@ export class UserRequest extends jspb.Message {
 
 export namespace UserRequest {
   export type AsObject = {
+    token?: token_pb.Token.AsObject,
     user?: user_pb.User.AsObject,
     duid: string,
     uuidsToShareDuidList: Array<string>,
@@ -44,6 +51,11 @@ export class UserResponse extends jspb.Message {
 
   getMessage(): string;
   setMessage(value: string): void;
+
+  hasToken(): boolean;
+  clearToken(): void;
+  getToken(): token_pb.Token | undefined;
+  setToken(value?: token_pb.Token): void;
 
   hasUser(): boolean;
   clearUser(): void;
@@ -70,6 +82,7 @@ export namespace UserResponse {
   export type AsObject = {
     code: number,
     message: string,
+    token?: token_pb.Token.AsObject,
     user?: user_pb.User.AsObject,
     userCollectionList: Array<user_pb.User.AsObject>,
   }

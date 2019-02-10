@@ -76,6 +76,42 @@ type UserServiceShareDocument = {
   readonly responseType: typeof hwsc_user_svc_pb.UserResponse;
 };
 
+type UserServiceGetToken = {
+  readonly methodName: string;
+  readonly service: typeof UserService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof hwsc_user_svc_pb.UserRequest;
+  readonly responseType: typeof hwsc_user_svc_pb.UserResponse;
+};
+
+type UserServiceVerifyToken = {
+  readonly methodName: string;
+  readonly service: typeof UserService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof hwsc_user_svc_pb.UserRequest;
+  readonly responseType: typeof hwsc_user_svc_pb.UserResponse;
+};
+
+type UserServiceGetSecret = {
+  readonly methodName: string;
+  readonly service: typeof UserService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof hwsc_user_svc_pb.UserRequest;
+  readonly responseType: typeof hwsc_user_svc_pb.UserResponse;
+};
+
+type UserServiceNewSecret = {
+  readonly methodName: string;
+  readonly service: typeof UserService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof hwsc_user_svc_pb.UserRequest;
+  readonly responseType: typeof hwsc_user_svc_pb.UserResponse;
+};
+
 export class UserService {
   static readonly serviceName: string;
   static readonly GetStatus: UserServiceGetStatus;
@@ -86,6 +122,10 @@ export class UserService {
   static readonly ListUsers: UserServiceListUsers;
   static readonly GetUser: UserServiceGetUser;
   static readonly ShareDocument: UserServiceShareDocument;
+  static readonly GetToken: UserServiceGetToken;
+  static readonly VerifyToken: UserServiceVerifyToken;
+  static readonly GetSecret: UserServiceGetSecret;
+  static readonly NewSecret: UserServiceNewSecret;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -187,6 +227,42 @@ export class UserServiceClient {
     callback: (error: ServiceError|null, responseMessage: hwsc_user_svc_pb.UserResponse|null) => void
   ): void;
   shareDocument(
+    requestMessage: hwsc_user_svc_pb.UserRequest,
+    callback: (error: ServiceError|null, responseMessage: hwsc_user_svc_pb.UserResponse|null) => void
+  ): void;
+  getToken(
+    requestMessage: hwsc_user_svc_pb.UserRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: hwsc_user_svc_pb.UserResponse|null) => void
+  ): void;
+  getToken(
+    requestMessage: hwsc_user_svc_pb.UserRequest,
+    callback: (error: ServiceError|null, responseMessage: hwsc_user_svc_pb.UserResponse|null) => void
+  ): void;
+  verifyToken(
+    requestMessage: hwsc_user_svc_pb.UserRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: hwsc_user_svc_pb.UserResponse|null) => void
+  ): void;
+  verifyToken(
+    requestMessage: hwsc_user_svc_pb.UserRequest,
+    callback: (error: ServiceError|null, responseMessage: hwsc_user_svc_pb.UserResponse|null) => void
+  ): void;
+  getSecret(
+    requestMessage: hwsc_user_svc_pb.UserRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: hwsc_user_svc_pb.UserResponse|null) => void
+  ): void;
+  getSecret(
+    requestMessage: hwsc_user_svc_pb.UserRequest,
+    callback: (error: ServiceError|null, responseMessage: hwsc_user_svc_pb.UserResponse|null) => void
+  ): void;
+  newSecret(
+    requestMessage: hwsc_user_svc_pb.UserRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: hwsc_user_svc_pb.UserResponse|null) => void
+  ): void;
+  newSecret(
     requestMessage: hwsc_user_svc_pb.UserRequest,
     callback: (error: ServiceError|null, responseMessage: hwsc_user_svc_pb.UserResponse|null) => void
   ): void;

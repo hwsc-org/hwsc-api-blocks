@@ -7,8 +7,14 @@ import * as user_pb from "./user_pb";
 import * as hwsc_document_svc_pb from "./hwsc-document-svc_pb";
 import * as document_pb from "./document_pb";
 import * as hwsc_file_transaction_svc_pb from "./hwsc-file-transaction-svc_pb";
+import * as token_pb from "./token_pb";
 
 export class AppGatewayServiceRequest extends jspb.Message {
+  hasToken(): boolean;
+  clearToken(): void;
+  getToken(): token_pb.Token | undefined;
+  setToken(value?: token_pb.Token): void;
+
   hasUserRequest(): boolean;
   clearUserRequest(): void;
   getUserRequest(): hwsc_user_svc_pb.UserRequest | undefined;
@@ -36,6 +42,7 @@ export class AppGatewayServiceRequest extends jspb.Message {
 
 export namespace AppGatewayServiceRequest {
   export type AsObject = {
+    token?: token_pb.Token.AsObject,
     userRequest?: hwsc_user_svc_pb.UserRequest.AsObject,
     documentRequest?: hwsc_document_svc_pb.DocumentRequest.AsObject,
     chunk?: hwsc_file_transaction_svc_pb.Chunk.AsObject,
@@ -50,6 +57,11 @@ export class AppGatewayServiceResponse extends jspb.Message {
 
   getMessage(): string;
   setMessage(value: string): void;
+
+  hasToken(): boolean;
+  clearToken(): void;
+  getToken(): token_pb.Token | undefined;
+  setToken(value?: token_pb.Token): void;
 
   hasUser(): boolean;
   clearUser(): void;
@@ -91,6 +103,7 @@ export namespace AppGatewayServiceResponse {
   export type AsObject = {
     code: number,
     message: string,
+    token?: token_pb.Token.AsObject,
     user?: user_pb.User.AsObject,
     userCollectionList: Array<user_pb.User.AsObject>,
     document?: document_pb.Document.AsObject,
