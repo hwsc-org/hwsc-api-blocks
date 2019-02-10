@@ -1,4 +1,4 @@
-syntax="proto3";
+syntax = "proto3";
 
 package hwscAppGatewaySvc;
 
@@ -12,36 +12,55 @@ import "token.proto";
 option go_package = "hwsc";
 
 service AppGatewayService {
-    rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc GetToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc GetToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
 
-    rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc DeleteUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc UpdateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc AuthenticateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc ListUsers (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc GetUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc ShareDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc DeleteUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc UpdateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc AuthenticateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc ListUsers (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc GetUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc ShareDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
 
-    rpc CreateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc ListUserDocumentCollection (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc UpdateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc DeleteDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc AddFile (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc DeleteFile (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc ListDistinctFieldValues (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc QueryDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc CreateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc ListUserDocumentCollection (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc UpdateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc DeleteDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc AddFile (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc DeleteFile (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc ListDistinctFieldValues (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc QueryDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
 }
 
 message AppGatewayServiceRequest {
     hwsc.Token token = 1;
     hwscUserSvc.UserRequest user_request = 2;
     hwscDocumentSvc.DocumentRequest document_request = 3;
-    hwscFileTransactionSvc.Chunk chunk= 4;
+    hwscFileTransactionSvc.Chunk chunk = 4;
 }
 
 message AppGatewayServiceResponse {
-    oneof status { uint32 code = 1;}
+    oneof status {
+        uint32 code = 1;
+    }
     string message = 2;
     hwsc.Token token = 3;
     hwsc.User user = 4;

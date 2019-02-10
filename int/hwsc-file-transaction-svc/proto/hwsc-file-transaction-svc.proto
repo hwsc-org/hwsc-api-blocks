@@ -3,39 +3,48 @@ syntax = "proto3";
 package hwscFileTransactionSvc;
 
 import "token.proto";
+import "secret.proto";
 
 // The file transaction service definition
-service FileTransactionService{
+service FileTransactionService {
     // Gets status for user
-    rpc GetStatus (FileTransactionRequest) returns (FileTransactionResponse){}
+    rpc GetStatus (FileTransactionRequest) returns (FileTransactionResponse) {
+    }
     // Upload files to the storage
-    rpc UploadFile (stream Chunk) returns (FileTransactionResponse){}
+    rpc UploadFile (stream Chunk) returns (FileTransactionResponse) {
+    }
     // Download files from the storage
-    rpc DownloadZippedFiles (FileTransactionRequest) returns (stream Chunk){}
+    rpc DownloadZippedFiles (FileTransactionRequest) returns (stream Chunk) {
+    }
     // Create user folder in the sorage
-    rpc CreateUserFolder(FileTransactionRequest) returns (FileTransactionResponse){}
+    rpc CreateUserFolder (FileTransactionRequest) returns (FileTransactionResponse) {
+    }
 }
 
-message FileTransactionRequest{
+message FileTransactionRequest {
     hwsc.Token token = 1;
-    string message = 2;
-    string name = 3;
-    string uuid = 4;
-    repeated string urls = 5;
+    hwsc.Secret secret = 2;
+    string message = 3;
+    string name = 4;
+    string uuid = 5;
+    repeated string urls = 6;
 }
 
-message FileTransactionResponse{
-    oneof status {uint32 code = 1;}
+message FileTransactionResponse {
+    oneof status {
+        uint32 code = 1;
+    }
     string message = 2;
     string url = 3;
 }
 
-message Chunk{
-    oneof test_oneof{
+message Chunk {
+    oneof test_oneof {
         hwsc.Token token = 1;
-        bytes buffer = 2;
-        int64 length = 3;
-        string file_name = 4;
-        string uuid = 5;
+        hwsc.Secret secret = 2;
+        bytes buffer = 3;
+        int64 length = 4;
+        string file_name = 5;
+        string uuid = 6;
     }
 }

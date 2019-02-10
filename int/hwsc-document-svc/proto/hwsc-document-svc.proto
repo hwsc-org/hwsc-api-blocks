@@ -4,39 +4,52 @@ package hwscDocumentSvc;
 
 import "document.proto";
 import "token.proto";
+import "secret.proto";
 
 option go_package = "hwsc";
 
 service DocumentService {
-    rpc GetStatus (DocumentRequest) returns (DocumentResponse) {}
-    rpc CreateDocument (DocumentRequest) returns (DocumentResponse) {}
-    rpc ListUserDocumentCollection (DocumentRequest) returns (DocumentResponse) {}
-    rpc UpdateDocument (DocumentRequest) returns (DocumentResponse) {}
-    rpc DeleteDocument (DocumentRequest) returns (DocumentResponse) {}
-    rpc AddFileMetadata (DocumentRequest) returns (DocumentResponse) {}
-    rpc DeleteFileMetadata (DocumentRequest) returns (DocumentResponse) {}
-    rpc ListDistinctFieldValues (DocumentRequest) returns (DocumentResponse) {}
-    rpc QueryDocument (DocumentRequest) returns (DocumentResponse) {}
+    rpc GetStatus (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc CreateDocument (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc ListUserDocumentCollection (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc UpdateDocument (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc DeleteDocument (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc AddFileMetadata (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc DeleteFileMetadata (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc ListDistinctFieldValues (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc QueryDocument (DocumentRequest) returns (DocumentResponse) {
+    }
 }
 
 
 message DocumentRequest {
     hwsc.Token token = 1;
-    hwsc.Document data = 2;
-    repeated string image_urls = 3;
-    repeated string audio_urls = 4;
-    repeated string video_urls = 5;
-    repeated string file_urls = 6;
+    hwsc.Secret secret = 2;
+    hwsc.Document data = 3;
+    repeated string image_urls = 4;
+    repeated string audio_urls = 5;
+    repeated string video_urls = 6;
+    repeated string file_urls = 7;
 
     // Request for AddFileMetadata & DeleteFileMetadata
-    hwsc.FileMetadataTransaction fileMetadata_parameters = 7;
+    hwsc.FileMetadataTransaction fileMetadata_parameters = 8;
 
     // Request for QueryDocument
-    hwsc.QueryTransaction query_parameters = 8;
+    hwsc.QueryTransaction query_parameters = 9;
 }
 
 message DocumentResponse {
-    oneof status { uint32 code = 1; }
+    oneof status {
+        uint32 code = 1;
+    }
     string message = 2;
     hwsc.Document data = 3;
 

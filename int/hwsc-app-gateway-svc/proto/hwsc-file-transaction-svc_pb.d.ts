@@ -3,12 +3,18 @@
 
 import * as jspb from "google-protobuf";
 import * as token_pb from "./token_pb";
+import * as secret_pb from "./secret_pb";
 
 export class FileTransactionRequest extends jspb.Message {
   hasToken(): boolean;
   clearToken(): void;
   getToken(): token_pb.Token | undefined;
   setToken(value?: token_pb.Token): void;
+
+  hasSecret(): boolean;
+  clearSecret(): void;
+  getSecret(): secret_pb.Secret | undefined;
+  setSecret(value?: secret_pb.Secret): void;
 
   getMessage(): string;
   setMessage(value: string): void;
@@ -37,6 +43,7 @@ export class FileTransactionRequest extends jspb.Message {
 export namespace FileTransactionRequest {
   export type AsObject = {
     token?: token_pb.Token.AsObject,
+    secret?: secret_pb.Secret.AsObject,
     message: string,
     name: string,
     uuid: string,
@@ -86,6 +93,11 @@ export class Chunk extends jspb.Message {
   getToken(): token_pb.Token | undefined;
   setToken(value?: token_pb.Token): void;
 
+  hasSecret(): boolean;
+  clearSecret(): void;
+  getSecret(): secret_pb.Secret | undefined;
+  setSecret(value?: secret_pb.Secret): void;
+
   hasBuffer(): boolean;
   clearBuffer(): void;
   getBuffer(): Uint8Array | string;
@@ -122,6 +134,7 @@ export class Chunk extends jspb.Message {
 export namespace Chunk {
   export type AsObject = {
     token?: token_pb.Token.AsObject,
+    secret?: secret_pb.Secret.AsObject,
     buffer: Uint8Array | string,
     length: number,
     fileName: string,
@@ -131,10 +144,11 @@ export namespace Chunk {
   export enum TestOneofCase {
     TEST_ONEOF_NOT_SET = 0,
     TOKEN = 1,
-    BUFFER = 2,
-    LENGTH = 3,
-    FILE_NAME = 4,
-    UUID = 5,
+    SECRET = 2,
+    BUFFER = 3,
+    LENGTH = 4,
+    FILE_NAME = 5,
+    UUID = 6,
   }
 }
 
