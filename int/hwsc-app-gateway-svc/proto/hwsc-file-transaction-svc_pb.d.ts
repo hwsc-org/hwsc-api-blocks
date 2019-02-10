@@ -2,8 +2,14 @@
 // file: hwsc-file-transaction-svc.proto
 
 import * as jspb from "google-protobuf";
+import * as token_pb from "./token_pb";
 
 export class FileTransactionRequest extends jspb.Message {
+  hasToken(): boolean;
+  clearToken(): void;
+  getToken(): token_pb.Token | undefined;
+  setToken(value?: token_pb.Token): void;
+
   getMessage(): string;
   setMessage(value: string): void;
 
@@ -30,6 +36,7 @@ export class FileTransactionRequest extends jspb.Message {
 
 export namespace FileTransactionRequest {
   export type AsObject = {
+    token?: token_pb.Token.AsObject,
     message: string,
     name: string,
     uuid: string,
@@ -74,6 +81,11 @@ export namespace FileTransactionResponse {
 }
 
 export class Chunk extends jspb.Message {
+  hasToken(): boolean;
+  clearToken(): void;
+  getToken(): token_pb.Token | undefined;
+  setToken(value?: token_pb.Token): void;
+
   hasBuffer(): boolean;
   clearBuffer(): void;
   getBuffer(): Uint8Array | string;
@@ -109,6 +121,7 @@ export class Chunk extends jspb.Message {
 
 export namespace Chunk {
   export type AsObject = {
+    token?: token_pb.Token.AsObject,
     buffer: Uint8Array | string,
     length: number,
     fileName: string,
@@ -117,10 +130,11 @@ export namespace Chunk {
 
   export enum TestOneofCase {
     TEST_ONEOF_NOT_SET = 0,
-    BUFFER = 1,
-    LENGTH = 2,
-    FILE_NAME = 3,
-    UUID = 4,
+    TOKEN = 1,
+    BUFFER = 2,
+    LENGTH = 3,
+    FILE_NAME = 4,
+    UUID = 5,
   }
 }
 

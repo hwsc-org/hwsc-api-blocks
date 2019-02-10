@@ -3,8 +3,14 @@
 
 import * as jspb from "google-protobuf";
 import * as document_pb from "./document_pb";
+import * as token_pb from "./token_pb";
 
 export class DocumentRequest extends jspb.Message {
+  hasToken(): boolean;
+  clearToken(): void;
+  getToken(): token_pb.Token | undefined;
+  setToken(value?: token_pb.Token): void;
+
   hasData(): boolean;
   clearData(): void;
   getData(): document_pb.Document | undefined;
@@ -52,6 +58,7 @@ export class DocumentRequest extends jspb.Message {
 
 export namespace DocumentRequest {
   export type AsObject = {
+    token?: token_pb.Token.AsObject,
     data?: document_pb.Document.AsObject,
     imageUrlsList: Array<string>,
     audioUrlsList: Array<string>,

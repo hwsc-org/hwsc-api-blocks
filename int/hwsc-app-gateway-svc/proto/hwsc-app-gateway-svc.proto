@@ -7,11 +7,13 @@ import "user.proto";
 import "hwsc-document-svc.proto";
 import "document.proto";
 import "hwsc-file-transaction-svc.proto";
+import "token.proto";
 
 option go_package = "hwsc";
 
 service AppGatewayService {
     rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc GetToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
 
     rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
     rpc DeleteUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
@@ -29,26 +31,26 @@ service AppGatewayService {
     rpc DeleteFile (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
     rpc ListDistinctFieldValues (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
     rpc QueryDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-
 }
 
 message AppGatewayServiceRequest {
-    hwscUserSvc.UserRequest user_request = 1;
-    hwscDocumentSvc.DocumentRequest document_request = 2;
-    hwscFileTransactionSvc.Chunk chunk= 3;
+    hwsc.Token token = 1;
+    hwscUserSvc.UserRequest user_request = 2;
+    hwscDocumentSvc.DocumentRequest document_request = 3;
+    hwscFileTransactionSvc.Chunk chunk= 4;
 }
 
 message AppGatewayServiceResponse {
     oneof status { uint32 code = 1;}
     string message = 2;
-    hwsc.User user = 3;
+    hwsc.Token token = 3;
+    hwsc.User user = 4;
     // for ListUsers response
-    repeated hwsc.User user_collection = 4;
-
-    hwsc.Document document = 5;
+    repeated hwsc.User user_collection = 5;
+    hwsc.Document document = 6;
     // Response for ListUserDocumentCollection
     // Response for QueryDocument
-    repeated hwsc.Document document_collection = 6;
+    repeated hwsc.Document document_collection = 7;
     // Response for ListDistinctFieldValues
-    hwsc.QueryTransaction query_results = 7;
+    hwsc.QueryTransaction query_results = 8;
 }
