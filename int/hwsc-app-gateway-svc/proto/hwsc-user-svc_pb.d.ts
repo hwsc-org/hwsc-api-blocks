@@ -3,19 +3,13 @@
 
 import * as jspb from "google-protobuf";
 import * as user_pb from "./user_pb";
-import * as token_pb from "./token_pb";
-import * as secret_pb from "./secret_pb";
+import * as authority_pb from "./authority_pb";
 
 export class UserRequest extends jspb.Message {
-  hasToken(): boolean;
-  clearToken(): void;
-  getToken(): token_pb.Token | undefined;
-  setToken(value?: token_pb.Token): void;
-
-  hasSecret(): boolean;
-  clearSecret(): void;
-  getSecret(): secret_pb.Secret | undefined;
-  setSecret(value?: secret_pb.Secret): void;
+  hasAuthority(): boolean;
+  clearAuthority(): void;
+  getAuthority(): authority_pb.Authority | undefined;
+  setAuthority(value?: authority_pb.Authority): void;
 
   hasUser(): boolean;
   clearUser(): void;
@@ -42,8 +36,7 @@ export class UserRequest extends jspb.Message {
 
 export namespace UserRequest {
   export type AsObject = {
-    token?: token_pb.Token.AsObject,
-    secret?: secret_pb.Secret.AsObject,
+    authority?: authority_pb.Authority.AsObject,
     user?: user_pb.User.AsObject,
     duid: string,
     uuidsToShareDuidList: Array<string>,
@@ -59,15 +52,10 @@ export class UserResponse extends jspb.Message {
   getMessage(): string;
   setMessage(value: string): void;
 
-  hasToken(): boolean;
-  clearToken(): void;
-  getToken(): token_pb.Token | undefined;
-  setToken(value?: token_pb.Token): void;
-
-  hasSecret(): boolean;
-  clearSecret(): void;
-  getSecret(): secret_pb.Secret | undefined;
-  setSecret(value?: secret_pb.Secret): void;
+  hasAuthority(): boolean;
+  clearAuthority(): void;
+  getAuthority(): authority_pb.Authority | undefined;
+  setAuthority(value?: authority_pb.Authority): void;
 
   hasUser(): boolean;
   clearUser(): void;
@@ -94,8 +82,7 @@ export namespace UserResponse {
   export type AsObject = {
     code: number,
     message: string,
-    token?: token_pb.Token.AsObject,
-    secret?: secret_pb.Secret.AsObject,
+    authority?: authority_pb.Authority.AsObject,
     user?: user_pb.User.AsObject,
     userCollectionList: Array<user_pb.User.AsObject>,
   }

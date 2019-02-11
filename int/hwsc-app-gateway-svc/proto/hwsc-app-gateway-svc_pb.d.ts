@@ -7,13 +7,10 @@ import * as user_pb from "./user_pb";
 import * as hwsc_document_svc_pb from "./hwsc-document-svc_pb";
 import * as document_pb from "./document_pb";
 import * as hwsc_file_transaction_svc_pb from "./hwsc-file-transaction-svc_pb";
-import * as token_pb from "./token_pb";
 
 export class AppGatewayServiceRequest extends jspb.Message {
-  hasToken(): boolean;
-  clearToken(): void;
-  getToken(): token_pb.Token | undefined;
-  setToken(value?: token_pb.Token): void;
+  getToken(): string;
+  setToken(value: string): void;
 
   hasUserRequest(): boolean;
   clearUserRequest(): void;
@@ -24,6 +21,11 @@ export class AppGatewayServiceRequest extends jspb.Message {
   clearDocumentRequest(): void;
   getDocumentRequest(): hwsc_document_svc_pb.DocumentRequest | undefined;
   setDocumentRequest(value?: hwsc_document_svc_pb.DocumentRequest): void;
+
+  hasFileTransactionRequest(): boolean;
+  clearFileTransactionRequest(): void;
+  getFileTransactionRequest(): hwsc_file_transaction_svc_pb.FileTransactionRequest | undefined;
+  setFileTransactionRequest(value?: hwsc_file_transaction_svc_pb.FileTransactionRequest): void;
 
   hasChunk(): boolean;
   clearChunk(): void;
@@ -42,9 +44,10 @@ export class AppGatewayServiceRequest extends jspb.Message {
 
 export namespace AppGatewayServiceRequest {
   export type AsObject = {
-    token?: token_pb.Token.AsObject,
+    token: string,
     userRequest?: hwsc_user_svc_pb.UserRequest.AsObject,
     documentRequest?: hwsc_document_svc_pb.DocumentRequest.AsObject,
+    fileTransactionRequest?: hwsc_file_transaction_svc_pb.FileTransactionRequest.AsObject,
     chunk?: hwsc_file_transaction_svc_pb.Chunk.AsObject,
   }
 }
@@ -58,10 +61,8 @@ export class AppGatewayServiceResponse extends jspb.Message {
   getMessage(): string;
   setMessage(value: string): void;
 
-  hasToken(): boolean;
-  clearToken(): void;
-  getToken(): token_pb.Token | undefined;
-  setToken(value?: token_pb.Token): void;
+  getToken(): string;
+  setToken(value: string): void;
 
   hasUser(): boolean;
   clearUser(): void;
@@ -103,7 +104,7 @@ export namespace AppGatewayServiceResponse {
   export type AsObject = {
     code: number,
     message: string,
-    token?: token_pb.Token.AsObject,
+    token: string,
     user?: user_pb.User.AsObject,
     userCollectionList: Array<user_pb.User.AsObject>,
     document?: document_pb.Document.AsObject,
