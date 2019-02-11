@@ -3,19 +3,13 @@
 
 import * as jspb from "google-protobuf";
 import * as document_pb from "./document_pb";
-import * as token_pb from "./token_pb";
-import * as secret_pb from "./secret_pb";
+import * as authority_pb from "./authority_pb";
 
 export class DocumentRequest extends jspb.Message {
-  hasToken(): boolean;
-  clearToken(): void;
-  getToken(): token_pb.Token | undefined;
-  setToken(value?: token_pb.Token): void;
-
-  hasSecret(): boolean;
-  clearSecret(): void;
-  getSecret(): secret_pb.Secret | undefined;
-  setSecret(value?: secret_pb.Secret): void;
+  hasAuthority(): boolean;
+  clearAuthority(): void;
+  getAuthority(): authority_pb.Authority | undefined;
+  setAuthority(value?: authority_pb.Authority): void;
 
   hasData(): boolean;
   clearData(): void;
@@ -64,8 +58,7 @@ export class DocumentRequest extends jspb.Message {
 
 export namespace DocumentRequest {
   export type AsObject = {
-    token?: token_pb.Token.AsObject,
-    secret?: secret_pb.Secret.AsObject,
+    authority?: authority_pb.Authority.AsObject,
     data?: document_pb.Document.AsObject,
     imageUrlsList: Array<string>,
     audioUrlsList: Array<string>,

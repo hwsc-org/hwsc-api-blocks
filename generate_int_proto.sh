@@ -25,7 +25,7 @@ protoc \
     -I ${LIB_ROOT} \
     -I ${USER_ROOT} \
     --go_out=plugins=grpc:${USER_ROOT} \
-    user.proto hwsc-user-svc.proto token.proto secret.proto
+    user.proto hwsc-user-svc.proto authority.proto
 
 protoc-go-inject-tag -input=${USER_ROOT}hwsc-user-svc.pb.go
 protoc-go-inject-tag -input=${USER_ROOT}user.pb.go
@@ -40,7 +40,7 @@ protoc \
     -I ${LIB_ROOT} \
     -I ${DOCUMENT_ROOT} \
     --go_out=plugins=grpc:${DOCUMENT_ROOT} \
-    document.proto hwsc-document-svc.proto token.proto secret.proto
+    document.proto hwsc-document-svc.proto authority.proto
 
 protoc-go-inject-tag -input=${DOCUMENT_ROOT}hwsc-document-svc.pb.go
 protoc-go-inject-tag -input=${DOCUMENT_ROOT}document.pb.go
@@ -57,7 +57,7 @@ python3.7 -m grpc_tools.protoc \
     -I ${FILE_ROOT} \
     --python_out=${FILE_ROOT} \
     --grpc_python_out=${FILE_ROOT} \
-    hwsc-file-transaction-svc.proto token.proto secret.proto
+    hwsc-file-transaction-svc.proto authority.proto
 echo "Done generating FILE TRANSACTION SERVICE"
 echo "------------------------------------------------------------"
 echo
@@ -76,7 +76,7 @@ protoc \
   --go_out=plugins=grpc:${APP_ROOT} \
   --ts_out=service=true:${APP_ROOT} \
   hwsc-app-gateway-svc.proto document.proto hwsc-document-svc.proto user.proto hwsc-user-svc.proto \
-  hwsc-file-transaction-svc.proto token.proto secret.proto
+  hwsc-file-transaction-svc.proto authority.proto
 echo "Done generating APP GATEWAY SERVICE"
 echo "------------------------------------------------------------"
 echo

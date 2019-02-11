@@ -11,8 +11,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var token_pb = require('./token_pb.js');
-var secret_pb = require('./secret_pb.js');
+var authority_pb = require('./authority_pb.js');
 goog.exportSymbol('proto.hwscFileTransactionSvc.Chunk', null, global);
 goog.exportSymbol('proto.hwscFileTransactionSvc.FileTransactionRequest', null, global);
 goog.exportSymbol('proto.hwscFileTransactionSvc.FileTransactionResponse', null, global);
@@ -39,7 +38,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hwscFileTransactionSvc.FileTransactionRequest.repeatedFields_ = [6];
+proto.hwscFileTransactionSvc.FileTransactionRequest.repeatedFields_ = [5];
 
 
 
@@ -70,12 +69,11 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.toObject = functio
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    token: (f = msg.getToken()) && token_pb.Token.toObject(includeInstance, f),
-    secret: (f = msg.getSecret()) && secret_pb.Secret.toObject(includeInstance, f),
-    message: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    uuid: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    urlsList: jspb.Message.getRepeatedField(msg, 6)
+    authority: (f = msg.getAuthority()) && authority_pb.Authority.toObject(includeInstance, f),
+    message: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    uuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    urlsList: jspb.Message.getRepeatedField(msg, 5)
   };
 
   if (includeInstance) {
@@ -113,28 +111,23 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.deserializeBinaryFromReader 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new token_pb.Token;
-      reader.readMessage(value,token_pb.Token.deserializeBinaryFromReader);
-      msg.setToken(value);
+      var value = new authority_pb.Authority;
+      reader.readMessage(value,authority_pb.Authority.deserializeBinaryFromReader);
+      msg.setAuthority(value);
       break;
     case 2:
-      var value = new secret_pb.Secret;
-      reader.readMessage(value,secret_pb.Secret.deserializeBinaryFromReader);
-      msg.setSecret(value);
-      break;
-    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setMessage(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setUuid(value);
       break;
-    case 6:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.addUrls(value);
       break;
@@ -167,47 +160,39 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.serializeBinary = 
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getToken();
+  f = message.getAuthority();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      token_pb.Token.serializeBinaryToWriter
-    );
-  }
-  f = message.getSecret();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      secret_pb.Secret.serializeBinaryToWriter
+      authority_pb.Authority.serializeBinaryToWriter
     );
   }
   f = message.getMessage();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      2,
       f
     );
   }
   f = message.getName();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      3,
       f
     );
   }
   f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      4,
       f
     );
   }
   f = message.getUrlsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      6,
+      5,
       f
     );
   }
@@ -215,23 +200,23 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.serializeBinaryToWriter = fu
 
 
 /**
- * optional hwsc.Token token = 1;
- * @return {?proto.hwsc.Token}
+ * optional hwsc.Authority authority = 1;
+ * @return {?proto.hwsc.Authority}
  */
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.getToken = function() {
-  return /** @type{?proto.hwsc.Token} */ (
-    jspb.Message.getWrapperField(this, token_pb.Token, 1));
+proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.getAuthority = function() {
+  return /** @type{?proto.hwsc.Authority} */ (
+    jspb.Message.getWrapperField(this, authority_pb.Authority, 1));
 };
 
 
-/** @param {?proto.hwsc.Token|undefined} value */
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.setToken = function(value) {
+/** @param {?proto.hwsc.Authority|undefined} value */
+proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.setAuthority = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.clearToken = function() {
-  this.setToken(undefined);
+proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.clearAuthority = function() {
+  this.setAuthority(undefined);
 };
 
 
@@ -239,98 +224,68 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.clearToken = funct
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.hasToken = function() {
+proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.hasAuthority = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional hwsc.Secret secret = 2;
- * @return {?proto.hwsc.Secret}
- */
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.getSecret = function() {
-  return /** @type{?proto.hwsc.Secret} */ (
-    jspb.Message.getWrapperField(this, secret_pb.Secret, 2));
-};
-
-
-/** @param {?proto.hwsc.Secret|undefined} value */
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.setSecret = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.clearSecret = function() {
-  this.setSecret(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.hasSecret = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional string message = 3;
+ * optional string message = 2;
  * @return {string}
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
 proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.setMessage = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string name = 4;
+ * optional string name = 3;
  * @return {string}
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
 proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.setName = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string uuid = 5;
+ * optional string uuid = 4;
  * @return {string}
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.getUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
 proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.setUuid = function(value) {
-  jspb.Message.setProto3StringField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * repeated string urls = 6;
+ * repeated string urls = 5;
  * @return {!Array<string>}
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.getUrlsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 6));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
 
 /** @param {!Array<string>} value */
 proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.setUrlsList = function(value) {
-  jspb.Message.setField(this, 6, value || []);
+  jspb.Message.setField(this, 5, value || []);
 };
 
 
@@ -339,7 +294,7 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.setUrlsList = func
  * @param {number=} opt_index
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.addUrls = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 5, value, opt_index);
 };
 
 
@@ -609,19 +564,18 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.hwscFileTransactionSvc.Chunk.oneofGroups_ = [[1,2,3,4,5,6]];
+proto.hwscFileTransactionSvc.Chunk.oneofGroups_ = [[1,2,3,4,5]];
 
 /**
  * @enum {number}
  */
 proto.hwscFileTransactionSvc.Chunk.TestOneofCase = {
   TEST_ONEOF_NOT_SET: 0,
-  TOKEN: 1,
-  SECRET: 2,
-  BUFFER: 3,
-  LENGTH: 4,
-  FILE_NAME: 5,
-  UUID: 6
+  AUTHORITY: 1,
+  BUFFER: 2,
+  LENGTH: 3,
+  FILE_NAME: 4,
+  UUID: 5
 };
 
 /**
@@ -660,12 +614,11 @@ proto.hwscFileTransactionSvc.Chunk.prototype.toObject = function(opt_includeInst
  */
 proto.hwscFileTransactionSvc.Chunk.toObject = function(includeInstance, msg) {
   var f, obj = {
-    token: (f = msg.getToken()) && token_pb.Token.toObject(includeInstance, f),
-    secret: (f = msg.getSecret()) && secret_pb.Secret.toObject(includeInstance, f),
+    authority: (f = msg.getAuthority()) && authority_pb.Authority.toObject(includeInstance, f),
     buffer: msg.getBuffer_asB64(),
-    length: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    fileName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    uuid: jspb.Message.getFieldWithDefault(msg, 6, "")
+    length: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    fileName: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    uuid: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -703,28 +656,23 @@ proto.hwscFileTransactionSvc.Chunk.deserializeBinaryFromReader = function(msg, r
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new token_pb.Token;
-      reader.readMessage(value,token_pb.Token.deserializeBinaryFromReader);
-      msg.setToken(value);
+      var value = new authority_pb.Authority;
+      reader.readMessage(value,authority_pb.Authority.deserializeBinaryFromReader);
+      msg.setAuthority(value);
       break;
     case 2:
-      var value = new secret_pb.Secret;
-      reader.readMessage(value,secret_pb.Secret.deserializeBinaryFromReader);
-      msg.setSecret(value);
-      break;
-    case 3:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setBuffer(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setLength(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setFileName(value);
       break;
-    case 6:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setUuid(value);
       break;
@@ -757,32 +705,31 @@ proto.hwscFileTransactionSvc.Chunk.prototype.serializeBinary = function() {
  */
 proto.hwscFileTransactionSvc.Chunk.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getToken();
+  f = message.getAuthority();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      token_pb.Token.serializeBinaryToWriter
+      authority_pb.Authority.serializeBinaryToWriter
     );
   }
-  f = message.getSecret();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      secret_pb.Secret.serializeBinaryToWriter
-    );
-  }
-  f = /** @type {!(string|Uint8Array)} */ (jspb.Message.getField(message, 3));
+  f = /** @type {!(string|Uint8Array)} */ (jspb.Message.getField(message, 2));
   if (f != null) {
     writer.writeBytes(
+      2,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 3));
+  if (f != null) {
+    writer.writeInt64(
       3,
       f
     );
   }
-  f = /** @type {number} */ (jspb.Message.getField(message, 4));
+  f = /** @type {string} */ (jspb.Message.getField(message, 4));
   if (f != null) {
-    writer.writeInt64(
+    writer.writeString(
       4,
       f
     );
@@ -794,34 +741,27 @@ proto.hwscFileTransactionSvc.Chunk.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = /** @type {string} */ (jspb.Message.getField(message, 6));
-  if (f != null) {
-    writer.writeString(
-      6,
-      f
-    );
-  }
 };
 
 
 /**
- * optional hwsc.Token token = 1;
- * @return {?proto.hwsc.Token}
+ * optional hwsc.Authority authority = 1;
+ * @return {?proto.hwsc.Authority}
  */
-proto.hwscFileTransactionSvc.Chunk.prototype.getToken = function() {
-  return /** @type{?proto.hwsc.Token} */ (
-    jspb.Message.getWrapperField(this, token_pb.Token, 1));
+proto.hwscFileTransactionSvc.Chunk.prototype.getAuthority = function() {
+  return /** @type{?proto.hwsc.Authority} */ (
+    jspb.Message.getWrapperField(this, authority_pb.Authority, 1));
 };
 
 
-/** @param {?proto.hwsc.Token|undefined} value */
-proto.hwscFileTransactionSvc.Chunk.prototype.setToken = function(value) {
+/** @param {?proto.hwsc.Authority|undefined} value */
+proto.hwscFileTransactionSvc.Chunk.prototype.setAuthority = function(value) {
   jspb.Message.setOneofWrapperField(this, 1, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
 };
 
 
-proto.hwscFileTransactionSvc.Chunk.prototype.clearToken = function() {
-  this.setToken(undefined);
+proto.hwscFileTransactionSvc.Chunk.prototype.clearAuthority = function() {
+  this.setAuthority(undefined);
 };
 
 
@@ -829,52 +769,22 @@ proto.hwscFileTransactionSvc.Chunk.prototype.clearToken = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hwscFileTransactionSvc.Chunk.prototype.hasToken = function() {
+proto.hwscFileTransactionSvc.Chunk.prototype.hasAuthority = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional hwsc.Secret secret = 2;
- * @return {?proto.hwsc.Secret}
- */
-proto.hwscFileTransactionSvc.Chunk.prototype.getSecret = function() {
-  return /** @type{?proto.hwsc.Secret} */ (
-    jspb.Message.getWrapperField(this, secret_pb.Secret, 2));
-};
-
-
-/** @param {?proto.hwsc.Secret|undefined} value */
-proto.hwscFileTransactionSvc.Chunk.prototype.setSecret = function(value) {
-  jspb.Message.setOneofWrapperField(this, 2, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
-};
-
-
-proto.hwscFileTransactionSvc.Chunk.prototype.clearSecret = function() {
-  this.setSecret(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hwscFileTransactionSvc.Chunk.prototype.hasSecret = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional bytes buffer = 3;
+ * optional bytes buffer = 2;
  * @return {!(string|Uint8Array)}
  */
 proto.hwscFileTransactionSvc.Chunk.prototype.getBuffer = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * optional bytes buffer = 3;
+ * optional bytes buffer = 2;
  * This is a type-conversion wrapper around `getBuffer()`
  * @return {string}
  */
@@ -885,7 +795,7 @@ proto.hwscFileTransactionSvc.Chunk.prototype.getBuffer_asB64 = function() {
 
 
 /**
- * optional bytes buffer = 3;
+ * optional bytes buffer = 2;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getBuffer()`
@@ -899,12 +809,12 @@ proto.hwscFileTransactionSvc.Chunk.prototype.getBuffer_asU8 = function() {
 
 /** @param {!(string|Uint8Array)} value */
 proto.hwscFileTransactionSvc.Chunk.prototype.setBuffer = function(value) {
-  jspb.Message.setOneofField(this, 3, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
+  jspb.Message.setOneofField(this, 2, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
 };
 
 
 proto.hwscFileTransactionSvc.Chunk.prototype.clearBuffer = function() {
-  jspb.Message.setOneofField(this, 3, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], undefined);
+  jspb.Message.setOneofField(this, 2, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], undefined);
 };
 
 
@@ -913,27 +823,27 @@ proto.hwscFileTransactionSvc.Chunk.prototype.clearBuffer = function() {
  * @return {!boolean}
  */
 proto.hwscFileTransactionSvc.Chunk.prototype.hasBuffer = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional int64 length = 4;
+ * optional int64 length = 3;
  * @return {number}
  */
 proto.hwscFileTransactionSvc.Chunk.prototype.getLength = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /** @param {number} value */
 proto.hwscFileTransactionSvc.Chunk.prototype.setLength = function(value) {
-  jspb.Message.setOneofField(this, 4, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
+  jspb.Message.setOneofField(this, 3, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
 };
 
 
 proto.hwscFileTransactionSvc.Chunk.prototype.clearLength = function() {
-  jspb.Message.setOneofField(this, 4, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], undefined);
+  jspb.Message.setOneofField(this, 3, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], undefined);
 };
 
 
@@ -942,27 +852,27 @@ proto.hwscFileTransactionSvc.Chunk.prototype.clearLength = function() {
  * @return {!boolean}
  */
 proto.hwscFileTransactionSvc.Chunk.prototype.hasLength = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
- * optional string file_name = 5;
+ * optional string file_name = 4;
  * @return {string}
  */
 proto.hwscFileTransactionSvc.Chunk.prototype.getFileName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
 proto.hwscFileTransactionSvc.Chunk.prototype.setFileName = function(value) {
-  jspb.Message.setOneofField(this, 5, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
+  jspb.Message.setOneofField(this, 4, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
 };
 
 
 proto.hwscFileTransactionSvc.Chunk.prototype.clearFileName = function() {
-  jspb.Message.setOneofField(this, 5, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], undefined);
+  jspb.Message.setOneofField(this, 4, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], undefined);
 };
 
 
@@ -971,27 +881,27 @@ proto.hwscFileTransactionSvc.Chunk.prototype.clearFileName = function() {
  * @return {!boolean}
  */
 proto.hwscFileTransactionSvc.Chunk.prototype.hasFileName = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
- * optional string uuid = 6;
+ * optional string uuid = 5;
  * @return {string}
  */
 proto.hwscFileTransactionSvc.Chunk.prototype.getUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /** @param {string} value */
 proto.hwscFileTransactionSvc.Chunk.prototype.setUuid = function(value) {
-  jspb.Message.setOneofField(this, 6, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
+  jspb.Message.setOneofField(this, 5, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
 };
 
 
 proto.hwscFileTransactionSvc.Chunk.prototype.clearUuid = function() {
-  jspb.Message.setOneofField(this, 6, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], undefined);
+  jspb.Message.setOneofField(this, 5, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], undefined);
 };
 
 
@@ -1000,7 +910,7 @@ proto.hwscFileTransactionSvc.Chunk.prototype.clearUuid = function() {
  * @return {!boolean}
  */
 proto.hwscFileTransactionSvc.Chunk.prototype.hasUuid = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 

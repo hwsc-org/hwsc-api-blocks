@@ -3,8 +3,7 @@ syntax = "proto3";
 package hwscUserSvc;
 
 import "user.proto";
-import "token.proto";
-import "secret.proto";
+import "authority.proto";
 
 option go_package = "hwsc";
 
@@ -115,11 +114,10 @@ service UserService {
 }
 
 message UserRequest {
-    hwsc.Token token = 1;
-    hwsc.Secret secret = 2;
-    hwsc.User user = 3;
-    string duid = 4;
-    repeated string uuids_to_share_duid = 5;
+    hwsc.Authority authority = 1;
+    hwsc.User user = 2;
+    string duid = 3;
+    repeated string uuids_to_share_duid = 4;
 }
 
 message UserResponse {
@@ -127,8 +125,7 @@ message UserResponse {
         uint32 code = 1;
     }
     string message = 2;
-    hwsc.Token token = 3;
-    hwsc.Secret secret = 4;
-    hwsc.User user = 5;
-    repeated hwsc.User user_collection = 6; // for ListUsers response
+    hwsc.Authority authority = 3;
+    hwsc.User user = 4;
+    repeated hwsc.User user_collection = 5; // for ListUsers response
 }

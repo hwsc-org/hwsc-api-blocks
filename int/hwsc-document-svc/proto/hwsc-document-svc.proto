@@ -3,8 +3,7 @@ syntax = "proto3";
 package hwscDocumentSvc;
 
 import "document.proto";
-import "token.proto";
-import "secret.proto";
+import "authority.proto";
 
 option go_package = "hwsc";
 
@@ -31,19 +30,18 @@ service DocumentService {
 
 
 message DocumentRequest {
-    hwsc.Token token = 1;
-    hwsc.Secret secret = 2;
-    hwsc.Document data = 3;
-    repeated string image_urls = 4;
-    repeated string audio_urls = 5;
-    repeated string video_urls = 6;
-    repeated string file_urls = 7;
+    hwsc.Authority authority = 1;
+    hwsc.Document data = 2;
+    repeated string image_urls = 3;
+    repeated string audio_urls = 4;
+    repeated string video_urls = 5;
+    repeated string file_urls = 6;
 
     // Request for AddFileMetadata & DeleteFileMetadata
-    hwsc.FileMetadataTransaction fileMetadata_parameters = 8;
+    hwsc.FileMetadataTransaction fileMetadata_parameters = 7;
 
     // Request for QueryDocument
-    hwsc.QueryTransaction query_parameters = 9;
+    hwsc.QueryTransaction query_parameters = 8;
 }
 
 message DocumentResponse {

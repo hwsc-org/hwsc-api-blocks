@@ -12,8 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var document_pb = require('./document_pb.js');
-var token_pb = require('./token_pb.js');
-var secret_pb = require('./secret_pb.js');
+var authority_pb = require('./authority_pb.js');
 goog.exportSymbol('proto.hwscDocumentSvc.DocumentRequest', null, global);
 goog.exportSymbol('proto.hwscDocumentSvc.DocumentResponse', null, global);
 
@@ -39,7 +38,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.hwscDocumentSvc.DocumentRequest.repeatedFields_ = [4,5,6,7];
+proto.hwscDocumentSvc.DocumentRequest.repeatedFields_ = [3,4,5,6];
 
 
 
@@ -70,13 +69,12 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.toObject = function(opt_includeI
  */
 proto.hwscDocumentSvc.DocumentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    token: (f = msg.getToken()) && token_pb.Token.toObject(includeInstance, f),
-    secret: (f = msg.getSecret()) && secret_pb.Secret.toObject(includeInstance, f),
+    authority: (f = msg.getAuthority()) && authority_pb.Authority.toObject(includeInstance, f),
     data: (f = msg.getData()) && document_pb.Document.toObject(includeInstance, f),
-    imageUrlsList: jspb.Message.getRepeatedField(msg, 4),
-    audioUrlsList: jspb.Message.getRepeatedField(msg, 5),
-    videoUrlsList: jspb.Message.getRepeatedField(msg, 6),
-    fileUrlsList: jspb.Message.getRepeatedField(msg, 7),
+    imageUrlsList: jspb.Message.getRepeatedField(msg, 3),
+    audioUrlsList: jspb.Message.getRepeatedField(msg, 4),
+    videoUrlsList: jspb.Message.getRepeatedField(msg, 5),
+    fileUrlsList: jspb.Message.getRepeatedField(msg, 6),
     filemetadataParameters: (f = msg.getFilemetadataParameters()) && document_pb.FileMetadataTransaction.toObject(includeInstance, f),
     queryParameters: (f = msg.getQueryParameters()) && document_pb.QueryTransaction.toObject(includeInstance, f)
   };
@@ -116,42 +114,37 @@ proto.hwscDocumentSvc.DocumentRequest.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new token_pb.Token;
-      reader.readMessage(value,token_pb.Token.deserializeBinaryFromReader);
-      msg.setToken(value);
+      var value = new authority_pb.Authority;
+      reader.readMessage(value,authority_pb.Authority.deserializeBinaryFromReader);
+      msg.setAuthority(value);
       break;
     case 2:
-      var value = new secret_pb.Secret;
-      reader.readMessage(value,secret_pb.Secret.deserializeBinaryFromReader);
-      msg.setSecret(value);
-      break;
-    case 3:
       var value = new document_pb.Document;
       reader.readMessage(value,document_pb.Document.deserializeBinaryFromReader);
       msg.setData(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.addImageUrls(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.addAudioUrls(value);
       break;
-    case 6:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.addVideoUrls(value);
       break;
-    case 7:
+    case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.addFileUrls(value);
       break;
-    case 8:
+    case 7:
       var value = new document_pb.FileMetadataTransaction;
       reader.readMessage(value,document_pb.FileMetadataTransaction.deserializeBinaryFromReader);
       msg.setFilemetadataParameters(value);
       break;
-    case 9:
+    case 8:
       var value = new document_pb.QueryTransaction;
       reader.readMessage(value,document_pb.QueryTransaction.deserializeBinaryFromReader);
       msg.setQueryParameters(value);
@@ -185,26 +178,18 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.serializeBinary = function() {
  */
 proto.hwscDocumentSvc.DocumentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getToken();
+  f = message.getAuthority();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      token_pb.Token.serializeBinaryToWriter
-    );
-  }
-  f = message.getSecret();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      secret_pb.Secret.serializeBinaryToWriter
+      authority_pb.Authority.serializeBinaryToWriter
     );
   }
   f = message.getData();
   if (f != null) {
     writer.writeMessage(
-      3,
+      2,
       f,
       document_pb.Document.serializeBinaryToWriter
     );
@@ -212,35 +197,35 @@ proto.hwscDocumentSvc.DocumentRequest.serializeBinaryToWriter = function(message
   f = message.getImageUrlsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      4,
+      3,
       f
     );
   }
   f = message.getAudioUrlsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      5,
+      4,
       f
     );
   }
   f = message.getVideoUrlsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      6,
+      5,
       f
     );
   }
   f = message.getFileUrlsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      7,
+      6,
       f
     );
   }
   f = message.getFilemetadataParameters();
   if (f != null) {
     writer.writeMessage(
-      8,
+      7,
       f,
       document_pb.FileMetadataTransaction.serializeBinaryToWriter
     );
@@ -248,7 +233,7 @@ proto.hwscDocumentSvc.DocumentRequest.serializeBinaryToWriter = function(message
   f = message.getQueryParameters();
   if (f != null) {
     writer.writeMessage(
-      9,
+      8,
       f,
       document_pb.QueryTransaction.serializeBinaryToWriter
     );
@@ -257,23 +242,23 @@ proto.hwscDocumentSvc.DocumentRequest.serializeBinaryToWriter = function(message
 
 
 /**
- * optional hwsc.Token token = 1;
- * @return {?proto.hwsc.Token}
+ * optional hwsc.Authority authority = 1;
+ * @return {?proto.hwsc.Authority}
  */
-proto.hwscDocumentSvc.DocumentRequest.prototype.getToken = function() {
-  return /** @type{?proto.hwsc.Token} */ (
-    jspb.Message.getWrapperField(this, token_pb.Token, 1));
+proto.hwscDocumentSvc.DocumentRequest.prototype.getAuthority = function() {
+  return /** @type{?proto.hwsc.Authority} */ (
+    jspb.Message.getWrapperField(this, authority_pb.Authority, 1));
 };
 
 
-/** @param {?proto.hwsc.Token|undefined} value */
-proto.hwscDocumentSvc.DocumentRequest.prototype.setToken = function(value) {
+/** @param {?proto.hwsc.Authority|undefined} value */
+proto.hwscDocumentSvc.DocumentRequest.prototype.setAuthority = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.hwscDocumentSvc.DocumentRequest.prototype.clearToken = function() {
-  this.setToken(undefined);
+proto.hwscDocumentSvc.DocumentRequest.prototype.clearAuthority = function() {
+  this.setAuthority(undefined);
 };
 
 
@@ -281,54 +266,24 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.clearToken = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hwscDocumentSvc.DocumentRequest.prototype.hasToken = function() {
+proto.hwscDocumentSvc.DocumentRequest.prototype.hasAuthority = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional hwsc.Secret secret = 2;
- * @return {?proto.hwsc.Secret}
- */
-proto.hwscDocumentSvc.DocumentRequest.prototype.getSecret = function() {
-  return /** @type{?proto.hwsc.Secret} */ (
-    jspb.Message.getWrapperField(this, secret_pb.Secret, 2));
-};
-
-
-/** @param {?proto.hwsc.Secret|undefined} value */
-proto.hwscDocumentSvc.DocumentRequest.prototype.setSecret = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-proto.hwscDocumentSvc.DocumentRequest.prototype.clearSecret = function() {
-  this.setSecret(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.hwscDocumentSvc.DocumentRequest.prototype.hasSecret = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional hwsc.Document data = 3;
+ * optional hwsc.Document data = 2;
  * @return {?proto.hwsc.Document}
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.getData = function() {
   return /** @type{?proto.hwsc.Document} */ (
-    jspb.Message.getWrapperField(this, document_pb.Document, 3));
+    jspb.Message.getWrapperField(this, document_pb.Document, 2));
 };
 
 
 /** @param {?proto.hwsc.Document|undefined} value */
 proto.hwscDocumentSvc.DocumentRequest.prototype.setData = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
+  jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -342,22 +297,22 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.clearData = function() {
  * @return {!boolean}
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.hasData = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * repeated string image_urls = 4;
+ * repeated string image_urls = 3;
  * @return {!Array<string>}
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.getImageUrlsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
 /** @param {!Array<string>} value */
 proto.hwscDocumentSvc.DocumentRequest.prototype.setImageUrlsList = function(value) {
-  jspb.Message.setField(this, 4, value || []);
+  jspb.Message.setField(this, 3, value || []);
 };
 
 
@@ -366,7 +321,7 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.setImageUrlsList = function(valu
  * @param {number=} opt_index
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.addImageUrls = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 3, value, opt_index);
 };
 
 
@@ -376,17 +331,17 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.clearImageUrlsList = function() 
 
 
 /**
- * repeated string audio_urls = 5;
+ * repeated string audio_urls = 4;
  * @return {!Array<string>}
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.getAudioUrlsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
 /** @param {!Array<string>} value */
 proto.hwscDocumentSvc.DocumentRequest.prototype.setAudioUrlsList = function(value) {
-  jspb.Message.setField(this, 5, value || []);
+  jspb.Message.setField(this, 4, value || []);
 };
 
 
@@ -395,7 +350,7 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.setAudioUrlsList = function(valu
  * @param {number=} opt_index
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.addAudioUrls = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
 
@@ -405,17 +360,17 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.clearAudioUrlsList = function() 
 
 
 /**
- * repeated string video_urls = 6;
+ * repeated string video_urls = 5;
  * @return {!Array<string>}
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.getVideoUrlsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 6));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
 
 /** @param {!Array<string>} value */
 proto.hwscDocumentSvc.DocumentRequest.prototype.setVideoUrlsList = function(value) {
-  jspb.Message.setField(this, 6, value || []);
+  jspb.Message.setField(this, 5, value || []);
 };
 
 
@@ -424,7 +379,7 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.setVideoUrlsList = function(valu
  * @param {number=} opt_index
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.addVideoUrls = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 6, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 5, value, opt_index);
 };
 
 
@@ -434,17 +389,17 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.clearVideoUrlsList = function() 
 
 
 /**
- * repeated string file_urls = 7;
+ * repeated string file_urls = 6;
  * @return {!Array<string>}
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.getFileUrlsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 7));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 6));
 };
 
 
 /** @param {!Array<string>} value */
 proto.hwscDocumentSvc.DocumentRequest.prototype.setFileUrlsList = function(value) {
-  jspb.Message.setField(this, 7, value || []);
+  jspb.Message.setField(this, 6, value || []);
 };
 
 
@@ -453,7 +408,7 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.setFileUrlsList = function(value
  * @param {number=} opt_index
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.addFileUrls = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 7, value, opt_index);
+  jspb.Message.addToRepeatedField(this, 6, value, opt_index);
 };
 
 
@@ -463,18 +418,18 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.clearFileUrlsList = function() {
 
 
 /**
- * optional hwsc.FileMetadataTransaction fileMetadata_parameters = 8;
+ * optional hwsc.FileMetadataTransaction fileMetadata_parameters = 7;
  * @return {?proto.hwsc.FileMetadataTransaction}
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.getFilemetadataParameters = function() {
   return /** @type{?proto.hwsc.FileMetadataTransaction} */ (
-    jspb.Message.getWrapperField(this, document_pb.FileMetadataTransaction, 8));
+    jspb.Message.getWrapperField(this, document_pb.FileMetadataTransaction, 7));
 };
 
 
 /** @param {?proto.hwsc.FileMetadataTransaction|undefined} value */
 proto.hwscDocumentSvc.DocumentRequest.prototype.setFilemetadataParameters = function(value) {
-  jspb.Message.setWrapperField(this, 8, value);
+  jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -488,23 +443,23 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.clearFilemetadataParameters = fu
  * @return {!boolean}
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.hasFilemetadataParameters = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional hwsc.QueryTransaction query_parameters = 9;
+ * optional hwsc.QueryTransaction query_parameters = 8;
  * @return {?proto.hwsc.QueryTransaction}
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.getQueryParameters = function() {
   return /** @type{?proto.hwsc.QueryTransaction} */ (
-    jspb.Message.getWrapperField(this, document_pb.QueryTransaction, 9));
+    jspb.Message.getWrapperField(this, document_pb.QueryTransaction, 8));
 };
 
 
 /** @param {?proto.hwsc.QueryTransaction|undefined} value */
 proto.hwscDocumentSvc.DocumentRequest.prototype.setQueryParameters = function(value) {
-  jspb.Message.setWrapperField(this, 9, value);
+  jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -518,7 +473,7 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.clearQueryParameters = function(
  * @return {!boolean}
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.hasQueryParameters = function() {
-  return jspb.Message.getField(this, 9) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
