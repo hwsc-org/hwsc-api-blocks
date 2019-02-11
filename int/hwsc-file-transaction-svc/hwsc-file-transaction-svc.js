@@ -13,7 +13,7 @@ const hwscFileTransactionSvcProtoPkgDef = protoLoader.loadSync('', options);
 const hwscFileTransactionSvcPbJs = grpc.loadPackageDefinition(hwscFileTransactionSvcProtoPkgDef)
   .hwscFileTransactionSvc;
 
-const client = new hwscFileTransactionSvcPbJs.FileTransactionService('localhost:50051',
+const client = new hwscFileTransactionSvcPbJs.FileTransactionService('localhost:50055',
   grpc.credentials.createInsecure());
 
 function getStatus(callback) {
