@@ -12,7 +12,7 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import identification_pb2 as identification__pb2
+import authority_pb2 as authority__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -20,9 +20,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='hwscFileTransactionSvc',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x1fhwsc-file-transaction-svc.proto\x12\x16hwscFileTransactionSvc\x1a\x14identification.proto\"\x81\x01\n\x16\x46ileTransactionRequest\x12,\n\x0eidentification\x18\x01 \x01(\x0b\x32\x14.hwsc.Identification\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0c\n\x04uuid\x18\x04 \x01(\t\x12\x0c\n\x04urls\x18\x05 \x03(\t\"Q\n\x17\x46ileTransactionResponse\x12\x0e\n\x04\x63ode\x18\x01 \x01(\rH\x00\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0b\n\x03url\x18\x03 \x01(\tB\x08\n\x06status\"\x8e\x01\n\x05\x43hunk\x12.\n\x0eidentification\x18\x01 \x01(\x0b\x32\x14.hwsc.IdentificationH\x00\x12\x10\n\x06\x62uffer\x18\x02 \x01(\x0cH\x00\x12\x10\n\x06length\x18\x03 \x01(\x03H\x00\x12\x13\n\tfile_name\x18\x04 \x01(\tH\x00\x12\x0e\n\x04uuid\x18\x05 \x01(\tH\x00\x42\x0c\n\ntest_oneof2\xcb\x03\n\x16\x46ileTransactionService\x12n\n\tGetStatus\x12..hwscFileTransactionSvc.FileTransactionRequest\x1a/.hwscFileTransactionSvc.FileTransactionResponse\"\x00\x12`\n\nUploadFile\x12\x1d.hwscFileTransactionSvc.Chunk\x1a/.hwscFileTransactionSvc.FileTransactionResponse\"\x00(\x01\x12h\n\x13\x44ownloadZippedFiles\x12..hwscFileTransactionSvc.FileTransactionRequest\x1a\x1d.hwscFileTransactionSvc.Chunk\"\x00\x30\x01\x12u\n\x10\x43reateUserFolder\x12..hwscFileTransactionSvc.FileTransactionRequest\x1a/.hwscFileTransactionSvc.FileTransactionResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x1fhwsc-file-transaction-svc.proto\x12\x16hwscFileTransactionSvc\x1a\x0f\x61uthority.proto\"\x81\x01\n\x16\x46ileTransactionRequest\x12,\n\x0eidentification\x18\x01 \x01(\x0b\x32\x14.hwsc.Identification\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0c\n\x04uuid\x18\x04 \x01(\t\x12\x0c\n\x04urls\x18\x05 \x03(\t\"Q\n\x17\x46ileTransactionResponse\x12\x0e\n\x04\x63ode\x18\x01 \x01(\rH\x00\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0b\n\x03url\x18\x03 \x01(\tB\x08\n\x06status\"\x8e\x01\n\x05\x43hunk\x12.\n\x0eidentification\x18\x01 \x01(\x0b\x32\x14.hwsc.IdentificationH\x00\x12\x10\n\x06\x62uffer\x18\x02 \x01(\x0cH\x00\x12\x10\n\x06length\x18\x03 \x01(\x03H\x00\x12\x13\n\tfile_name\x18\x04 \x01(\tH\x00\x12\x0e\n\x04uuid\x18\x05 \x01(\tH\x00\x42\x0c\n\ntest_oneof2\xcb\x03\n\x16\x46ileTransactionService\x12n\n\tGetStatus\x12..hwscFileTransactionSvc.FileTransactionRequest\x1a/.hwscFileTransactionSvc.FileTransactionResponse\"\x00\x12`\n\nUploadFile\x12\x1d.hwscFileTransactionSvc.Chunk\x1a/.hwscFileTransactionSvc.FileTransactionResponse\"\x00(\x01\x12h\n\x13\x44ownloadZippedFiles\x12..hwscFileTransactionSvc.FileTransactionRequest\x1a\x1d.hwscFileTransactionSvc.Chunk\"\x00\x30\x01\x12u\n\x10\x43reateUserFolder\x12..hwscFileTransactionSvc.FileTransactionRequest\x1a/.hwscFileTransactionSvc.FileTransactionResponse\"\x00\x62\x06proto3')
   ,
-  dependencies=[identification__pb2.DESCRIPTOR,])
+  dependencies=[authority__pb2.DESCRIPTOR,])
 
 
 
@@ -81,8 +81,8 @@ _FILETRANSACTIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=82,
-  serialized_end=211,
+  serialized_start=77,
+  serialized_end=206,
 )
 
 
@@ -129,8 +129,8 @@ _FILETRANSACTIONRESPONSE = _descriptor.Descriptor(
       name='status', full_name='hwscFileTransactionSvc.FileTransactionResponse.status',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=213,
-  serialized_end=294,
+  serialized_start=208,
+  serialized_end=289,
 )
 
 
@@ -191,15 +191,15 @@ _CHUNK = _descriptor.Descriptor(
       name='test_oneof', full_name='hwscFileTransactionSvc.Chunk.test_oneof',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=297,
-  serialized_end=439,
+  serialized_start=292,
+  serialized_end=434,
 )
 
-_FILETRANSACTIONREQUEST.fields_by_name['identification'].message_type = identification__pb2._IDENTIFICATION
+_FILETRANSACTIONREQUEST.fields_by_name['identification'].message_type = authority__pb2._IDENTIFICATION
 _FILETRANSACTIONRESPONSE.oneofs_by_name['status'].fields.append(
   _FILETRANSACTIONRESPONSE.fields_by_name['code'])
 _FILETRANSACTIONRESPONSE.fields_by_name['code'].containing_oneof = _FILETRANSACTIONRESPONSE.oneofs_by_name['status']
-_CHUNK.fields_by_name['identification'].message_type = identification__pb2._IDENTIFICATION
+_CHUNK.fields_by_name['identification'].message_type = authority__pb2._IDENTIFICATION
 _CHUNK.oneofs_by_name['test_oneof'].fields.append(
   _CHUNK.fields_by_name['identification'])
 _CHUNK.fields_by_name['identification'].containing_oneof = _CHUNK.oneofs_by_name['test_oneof']
@@ -249,8 +249,8 @@ _FILETRANSACTIONSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=442,
-  serialized_end=901,
+  serialized_start=437,
+  serialized_end=896,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetStatus',

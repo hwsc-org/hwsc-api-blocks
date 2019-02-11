@@ -3,7 +3,7 @@ syntax = "proto3";
 package hwscDocumentSvc;
 
 import "document.proto";
-import "identification.proto";
+import "authority.proto";
 
 option go_package = "hwsc";
 

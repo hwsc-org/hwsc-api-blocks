@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hwscFileTransactionSvc;
 
-import "identification.proto";
+import "authority.proto";
 
 // The file transaction service definition
 service FileTransactionService {

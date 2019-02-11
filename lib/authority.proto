@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package hwsc;
+
+enum Algorithm {
+    NO_ALG = 0;
+    HS256 = 1;
+    HS512 = 2;
+}
+
+enum Type {
+    NO_TYPE = 0;
+    JWT = 1;
+}
+
+message Header {
+    Algorithm alg = 1;
+    Type typ = 2;
+}
+
+message Secret {
+    string key = 1;
+    int64 created_timestamp = 2;
+}
+
+// Identification is used for communicating between services.
+message Identification {
+    Header header = 1;
+    string token = 2;
+    Secret secret = 3;
+}
+
+// Payload is used for communicating between app-gateway-svc and Chrome.
+message Payload {
+    Header header = 1;
+    string token = 2;
+}

@@ -12,7 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var user_pb = require('./user_pb.js');
-var identification_pb = require('./identification_pb.js');
+var authority_pb = require('./authority_pb.js');
 goog.exportSymbol('proto.hwscUserSvc.UserRequest', null, global);
 goog.exportSymbol('proto.hwscUserSvc.UserResponse', null, global);
 
@@ -69,7 +69,7 @@ proto.hwscUserSvc.UserRequest.prototype.toObject = function(opt_includeInstance)
  */
 proto.hwscUserSvc.UserRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    identification: (f = msg.getIdentification()) && identification_pb.Identification.toObject(includeInstance, f),
+    identification: (f = msg.getIdentification()) && authority_pb.Identification.toObject(includeInstance, f),
     user: (f = msg.getUser()) && user_pb.User.toObject(includeInstance, f),
     duid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     uuidsToShareDuidList: jspb.Message.getRepeatedField(msg, 4)
@@ -110,8 +110,8 @@ proto.hwscUserSvc.UserRequest.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new identification_pb.Identification;
-      reader.readMessage(value,identification_pb.Identification.deserializeBinaryFromReader);
+      var value = new authority_pb.Identification;
+      reader.readMessage(value,authority_pb.Identification.deserializeBinaryFromReader);
       msg.setIdentification(value);
       break;
     case 2:
@@ -161,7 +161,7 @@ proto.hwscUserSvc.UserRequest.serializeBinaryToWriter = function(message, writer
     writer.writeMessage(
       1,
       f,
-      identification_pb.Identification.serializeBinaryToWriter
+      authority_pb.Identification.serializeBinaryToWriter
     );
   }
   f = message.getUser();
@@ -195,7 +195,7 @@ proto.hwscUserSvc.UserRequest.serializeBinaryToWriter = function(message, writer
  */
 proto.hwscUserSvc.UserRequest.prototype.getIdentification = function() {
   return /** @type{?proto.hwsc.Identification} */ (
-    jspb.Message.getWrapperField(this, identification_pb.Identification, 1));
+    jspb.Message.getWrapperField(this, authority_pb.Identification, 1));
 };
 
 
@@ -374,7 +374,7 @@ proto.hwscUserSvc.UserResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     code: jspb.Message.getFieldWithDefault(msg, 1, 0),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    identification: (f = msg.getIdentification()) && identification_pb.Identification.toObject(includeInstance, f),
+    identification: (f = msg.getIdentification()) && authority_pb.Identification.toObject(includeInstance, f),
     user: (f = msg.getUser()) && user_pb.User.toObject(includeInstance, f),
     userCollectionList: jspb.Message.toObjectList(msg.getUserCollectionList(),
     user_pb.User.toObject, includeInstance)
@@ -423,8 +423,8 @@ proto.hwscUserSvc.UserResponse.deserializeBinaryFromReader = function(msg, reade
       msg.setMessage(value);
       break;
     case 3:
-      var value = new identification_pb.Identification;
-      reader.readMessage(value,identification_pb.Identification.deserializeBinaryFromReader);
+      var value = new authority_pb.Identification;
+      reader.readMessage(value,authority_pb.Identification.deserializeBinaryFromReader);
       msg.setIdentification(value);
       break;
     case 4:
@@ -485,7 +485,7 @@ proto.hwscUserSvc.UserResponse.serializeBinaryToWriter = function(message, write
     writer.writeMessage(
       3,
       f,
-      identification_pb.Identification.serializeBinaryToWriter
+      authority_pb.Identification.serializeBinaryToWriter
     );
   }
   f = message.getUser();
@@ -557,7 +557,7 @@ proto.hwscUserSvc.UserResponse.prototype.setMessage = function(value) {
  */
 proto.hwscUserSvc.UserResponse.prototype.getIdentification = function() {
   return /** @type{?proto.hwsc.Identification} */ (
-    jspb.Message.getWrapperField(this, identification_pb.Identification, 3));
+    jspb.Message.getWrapperField(this, authority_pb.Identification, 3));
 };
 
 

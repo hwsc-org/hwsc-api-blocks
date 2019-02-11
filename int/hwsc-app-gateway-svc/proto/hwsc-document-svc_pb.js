@@ -12,7 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var document_pb = require('./document_pb.js');
-var identification_pb = require('./identification_pb.js');
+var authority_pb = require('./authority_pb.js');
 goog.exportSymbol('proto.hwscDocumentSvc.DocumentRequest', null, global);
 goog.exportSymbol('proto.hwscDocumentSvc.DocumentResponse', null, global);
 
@@ -69,7 +69,7 @@ proto.hwscDocumentSvc.DocumentRequest.prototype.toObject = function(opt_includeI
  */
 proto.hwscDocumentSvc.DocumentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    identification: (f = msg.getIdentification()) && identification_pb.Identification.toObject(includeInstance, f),
+    identification: (f = msg.getIdentification()) && authority_pb.Identification.toObject(includeInstance, f),
     data: (f = msg.getData()) && document_pb.Document.toObject(includeInstance, f),
     imageUrlsList: jspb.Message.getRepeatedField(msg, 3),
     audioUrlsList: jspb.Message.getRepeatedField(msg, 4),
@@ -114,8 +114,8 @@ proto.hwscDocumentSvc.DocumentRequest.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new identification_pb.Identification;
-      reader.readMessage(value,identification_pb.Identification.deserializeBinaryFromReader);
+      var value = new authority_pb.Identification;
+      reader.readMessage(value,authority_pb.Identification.deserializeBinaryFromReader);
       msg.setIdentification(value);
       break;
     case 2:
@@ -183,7 +183,7 @@ proto.hwscDocumentSvc.DocumentRequest.serializeBinaryToWriter = function(message
     writer.writeMessage(
       1,
       f,
-      identification_pb.Identification.serializeBinaryToWriter
+      authority_pb.Identification.serializeBinaryToWriter
     );
   }
   f = message.getData();
@@ -247,7 +247,7 @@ proto.hwscDocumentSvc.DocumentRequest.serializeBinaryToWriter = function(message
  */
 proto.hwscDocumentSvc.DocumentRequest.prototype.getIdentification = function() {
   return /** @type{?proto.hwsc.Identification} */ (
-    jspb.Message.getWrapperField(this, identification_pb.Identification, 1));
+    jspb.Message.getWrapperField(this, authority_pb.Identification, 1));
 };
 
 

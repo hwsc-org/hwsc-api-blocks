@@ -2,13 +2,13 @@
 // file: hwsc-file-transaction-svc.proto
 
 import * as jspb from "google-protobuf";
-import * as identification_pb from "./identification_pb";
+import * as authority_pb from "./authority_pb";
 
 export class FileTransactionRequest extends jspb.Message {
   hasIdentification(): boolean;
   clearIdentification(): void;
-  getIdentification(): identification_pb.Identification | undefined;
-  setIdentification(value?: identification_pb.Identification): void;
+  getIdentification(): authority_pb.Identification | undefined;
+  setIdentification(value?: authority_pb.Identification): void;
 
   getMessage(): string;
   setMessage(value: string): void;
@@ -36,7 +36,7 @@ export class FileTransactionRequest extends jspb.Message {
 
 export namespace FileTransactionRequest {
   export type AsObject = {
-    identification?: identification_pb.Identification.AsObject,
+    identification?: authority_pb.Identification.AsObject,
     message: string,
     name: string,
     uuid: string,
@@ -83,8 +83,8 @@ export namespace FileTransactionResponse {
 export class Chunk extends jspb.Message {
   hasIdentification(): boolean;
   clearIdentification(): void;
-  getIdentification(): identification_pb.Identification | undefined;
-  setIdentification(value?: identification_pb.Identification): void;
+  getIdentification(): authority_pb.Identification | undefined;
+  setIdentification(value?: authority_pb.Identification): void;
 
   hasBuffer(): boolean;
   clearBuffer(): void;
@@ -121,7 +121,7 @@ export class Chunk extends jspb.Message {
 
 export namespace Chunk {
   export type AsObject = {
-    identification?: identification_pb.Identification.AsObject,
+    identification?: authority_pb.Identification.AsObject,
     buffer: Uint8Array | string,
     length: number,
     fileName: string,

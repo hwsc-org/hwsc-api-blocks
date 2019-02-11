@@ -3,13 +3,13 @@
 
 import * as jspb from "google-protobuf";
 import * as user_pb from "./user_pb";
-import * as identification_pb from "./identification_pb";
+import * as authority_pb from "./authority_pb";
 
 export class UserRequest extends jspb.Message {
   hasIdentification(): boolean;
   clearIdentification(): void;
-  getIdentification(): identification_pb.Identification | undefined;
-  setIdentification(value?: identification_pb.Identification): void;
+  getIdentification(): authority_pb.Identification | undefined;
+  setIdentification(value?: authority_pb.Identification): void;
 
   hasUser(): boolean;
   clearUser(): void;
@@ -36,7 +36,7 @@ export class UserRequest extends jspb.Message {
 
 export namespace UserRequest {
   export type AsObject = {
-    identification?: identification_pb.Identification.AsObject,
+    identification?: authority_pb.Identification.AsObject,
     user?: user_pb.User.AsObject,
     duid: string,
     uuidsToShareDuidList: Array<string>,
@@ -54,8 +54,8 @@ export class UserResponse extends jspb.Message {
 
   hasIdentification(): boolean;
   clearIdentification(): void;
-  getIdentification(): identification_pb.Identification | undefined;
-  setIdentification(value?: identification_pb.Identification): void;
+  getIdentification(): authority_pb.Identification | undefined;
+  setIdentification(value?: authority_pb.Identification): void;
 
   hasUser(): boolean;
   clearUser(): void;
@@ -82,7 +82,7 @@ export namespace UserResponse {
   export type AsObject = {
     code: number,
     message: string,
-    identification?: identification_pb.Identification.AsObject,
+    identification?: authority_pb.Identification.AsObject,
     user?: user_pb.User.AsObject,
     userCollectionList: Array<user_pb.User.AsObject>,
   }

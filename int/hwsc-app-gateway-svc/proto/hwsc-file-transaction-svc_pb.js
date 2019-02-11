@@ -11,7 +11,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var identification_pb = require('./identification_pb.js');
+var authority_pb = require('./authority_pb.js');
 goog.exportSymbol('proto.hwscFileTransactionSvc.Chunk', null, global);
 goog.exportSymbol('proto.hwscFileTransactionSvc.FileTransactionRequest', null, global);
 goog.exportSymbol('proto.hwscFileTransactionSvc.FileTransactionResponse', null, global);
@@ -69,7 +69,7 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.toObject = functio
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    identification: (f = msg.getIdentification()) && identification_pb.Identification.toObject(includeInstance, f),
+    identification: (f = msg.getIdentification()) && authority_pb.Identification.toObject(includeInstance, f),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     uuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -111,8 +111,8 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.deserializeBinaryFromReader 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new identification_pb.Identification;
-      reader.readMessage(value,identification_pb.Identification.deserializeBinaryFromReader);
+      var value = new authority_pb.Identification;
+      reader.readMessage(value,authority_pb.Identification.deserializeBinaryFromReader);
       msg.setIdentification(value);
       break;
     case 2:
@@ -165,7 +165,7 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.serializeBinaryToWriter = fu
     writer.writeMessage(
       1,
       f,
-      identification_pb.Identification.serializeBinaryToWriter
+      authority_pb.Identification.serializeBinaryToWriter
     );
   }
   f = message.getMessage();
@@ -205,7 +205,7 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.serializeBinaryToWriter = fu
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.getIdentification = function() {
   return /** @type{?proto.hwsc.Identification} */ (
-    jspb.Message.getWrapperField(this, identification_pb.Identification, 1));
+    jspb.Message.getWrapperField(this, authority_pb.Identification, 1));
 };
 
 
@@ -614,7 +614,7 @@ proto.hwscFileTransactionSvc.Chunk.prototype.toObject = function(opt_includeInst
  */
 proto.hwscFileTransactionSvc.Chunk.toObject = function(includeInstance, msg) {
   var f, obj = {
-    identification: (f = msg.getIdentification()) && identification_pb.Identification.toObject(includeInstance, f),
+    identification: (f = msg.getIdentification()) && authority_pb.Identification.toObject(includeInstance, f),
     buffer: msg.getBuffer_asB64(),
     length: jspb.Message.getFieldWithDefault(msg, 3, 0),
     fileName: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -656,8 +656,8 @@ proto.hwscFileTransactionSvc.Chunk.deserializeBinaryFromReader = function(msg, r
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new identification_pb.Identification;
-      reader.readMessage(value,identification_pb.Identification.deserializeBinaryFromReader);
+      var value = new authority_pb.Identification;
+      reader.readMessage(value,authority_pb.Identification.deserializeBinaryFromReader);
       msg.setIdentification(value);
       break;
     case 2:
@@ -710,7 +710,7 @@ proto.hwscFileTransactionSvc.Chunk.serializeBinaryToWriter = function(message, w
     writer.writeMessage(
       1,
       f,
-      identification_pb.Identification.serializeBinaryToWriter
+      authority_pb.Identification.serializeBinaryToWriter
     );
   }
   f = /** @type {!(string|Uint8Array)} */ (jspb.Message.getField(message, 2));
@@ -750,7 +750,7 @@ proto.hwscFileTransactionSvc.Chunk.serializeBinaryToWriter = function(message, w
  */
 proto.hwscFileTransactionSvc.Chunk.prototype.getIdentification = function() {
   return /** @type{?proto.hwsc.Identification} */ (
-    jspb.Message.getWrapperField(this, identification_pb.Identification, 1));
+    jspb.Message.getWrapperField(this, authority_pb.Identification, 1));
 };
 
 
