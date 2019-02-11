@@ -3,7 +3,7 @@ syntax = "proto3";
 package hwscDocumentSvc;
 
 import "document.proto";
-import "authority.proto";
+import "identification.proto";
 
 option go_package = "hwsc";
 
@@ -30,7 +30,7 @@ service DocumentService {
 
 
 message DocumentRequest {
-    hwsc.Authority authority = 1;
+    hwsc.Identification identification = 1;
     hwsc.Document data = 2;
     repeated string image_urls = 3;
     repeated string audio_urls = 4;

@@ -11,7 +11,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-goog.exportSymbol('proto.hwsc.Authority', null, global);
+goog.exportSymbol('proto.hwsc.Identification', null, global);
 goog.exportSymbol('proto.hwsc.Secret', null, global);
 
 /**
@@ -193,12 +193,12 @@ proto.hwsc.Secret.prototype.setCreatedTimestamp = function(value) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.hwsc.Authority = function(opt_data) {
+proto.hwsc.Identification = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.hwsc.Authority, jspb.Message);
+goog.inherits(proto.hwsc.Identification, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.hwsc.Authority.displayName = 'proto.hwsc.Authority';
+  proto.hwsc.Identification.displayName = 'proto.hwsc.Identification';
 }
 
 
@@ -213,8 +213,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.hwsc.Authority.prototype.toObject = function(opt_includeInstance) {
-  return proto.hwsc.Authority.toObject(opt_includeInstance, this);
+proto.hwsc.Identification.prototype.toObject = function(opt_includeInstance) {
+  return proto.hwsc.Identification.toObject(opt_includeInstance, this);
 };
 
 
@@ -223,11 +223,11 @@ proto.hwsc.Authority.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.hwsc.Authority} msg The msg instance to transform.
+ * @param {!proto.hwsc.Identification} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hwsc.Authority.toObject = function(includeInstance, msg) {
+proto.hwsc.Identification.toObject = function(includeInstance, msg) {
   var f, obj = {
     token: jspb.Message.getFieldWithDefault(msg, 1, ""),
     secret: (f = msg.getSecret()) && proto.hwsc.Secret.toObject(includeInstance, f)
@@ -244,23 +244,23 @@ proto.hwsc.Authority.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.hwsc.Authority}
+ * @return {!proto.hwsc.Identification}
  */
-proto.hwsc.Authority.deserializeBinary = function(bytes) {
+proto.hwsc.Identification.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.hwsc.Authority;
-  return proto.hwsc.Authority.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.hwsc.Identification;
+  return proto.hwsc.Identification.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.hwsc.Authority} msg The message object to deserialize into.
+ * @param {!proto.hwsc.Identification} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.hwsc.Authority}
+ * @return {!proto.hwsc.Identification}
  */
-proto.hwsc.Authority.deserializeBinaryFromReader = function(msg, reader) {
+proto.hwsc.Identification.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -289,9 +289,9 @@ proto.hwsc.Authority.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.hwsc.Authority.prototype.serializeBinary = function() {
+proto.hwsc.Identification.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.hwsc.Authority.serializeBinaryToWriter(this, writer);
+  proto.hwsc.Identification.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -299,11 +299,11 @@ proto.hwsc.Authority.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.hwsc.Authority} message
+ * @param {!proto.hwsc.Identification} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.hwsc.Authority.serializeBinaryToWriter = function(message, writer) {
+proto.hwsc.Identification.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getToken();
   if (f.length > 0) {
@@ -327,13 +327,13 @@ proto.hwsc.Authority.serializeBinaryToWriter = function(message, writer) {
  * optional string token = 1;
  * @return {string}
  */
-proto.hwsc.Authority.prototype.getToken = function() {
+proto.hwsc.Identification.prototype.getToken = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.hwsc.Authority.prototype.setToken = function(value) {
+proto.hwsc.Identification.prototype.setToken = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -342,19 +342,19 @@ proto.hwsc.Authority.prototype.setToken = function(value) {
  * optional Secret secret = 2;
  * @return {?proto.hwsc.Secret}
  */
-proto.hwsc.Authority.prototype.getSecret = function() {
+proto.hwsc.Identification.prototype.getSecret = function() {
   return /** @type{?proto.hwsc.Secret} */ (
     jspb.Message.getWrapperField(this, proto.hwsc.Secret, 2));
 };
 
 
 /** @param {?proto.hwsc.Secret|undefined} value */
-proto.hwsc.Authority.prototype.setSecret = function(value) {
+proto.hwsc.Identification.prototype.setSecret = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.hwsc.Authority.prototype.clearSecret = function() {
+proto.hwsc.Identification.prototype.clearSecret = function() {
   this.setSecret(undefined);
 };
 
@@ -363,7 +363,7 @@ proto.hwsc.Authority.prototype.clearSecret = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hwsc.Authority.prototype.hasSecret = function() {
+proto.hwsc.Identification.prototype.hasSecret = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 

@@ -11,7 +11,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var authority_pb = require('./authority_pb.js');
+var identification_pb = require('./identification_pb.js');
 goog.exportSymbol('proto.hwscFileTransactionSvc.Chunk', null, global);
 goog.exportSymbol('proto.hwscFileTransactionSvc.FileTransactionRequest', null, global);
 goog.exportSymbol('proto.hwscFileTransactionSvc.FileTransactionResponse', null, global);
@@ -69,7 +69,7 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.toObject = functio
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    authority: (f = msg.getAuthority()) && authority_pb.Authority.toObject(includeInstance, f),
+    identification: (f = msg.getIdentification()) && identification_pb.Identification.toObject(includeInstance, f),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     uuid: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -111,9 +111,9 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.deserializeBinaryFromReader 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new authority_pb.Authority;
-      reader.readMessage(value,authority_pb.Authority.deserializeBinaryFromReader);
-      msg.setAuthority(value);
+      var value = new identification_pb.Identification;
+      reader.readMessage(value,identification_pb.Identification.deserializeBinaryFromReader);
+      msg.setIdentification(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -160,12 +160,12 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.serializeBinary = 
  */
 proto.hwscFileTransactionSvc.FileTransactionRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAuthority();
+  f = message.getIdentification();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      authority_pb.Authority.serializeBinaryToWriter
+      identification_pb.Identification.serializeBinaryToWriter
     );
   }
   f = message.getMessage();
@@ -200,23 +200,23 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.serializeBinaryToWriter = fu
 
 
 /**
- * optional hwsc.Authority authority = 1;
- * @return {?proto.hwsc.Authority}
+ * optional hwsc.Identification identification = 1;
+ * @return {?proto.hwsc.Identification}
  */
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.getAuthority = function() {
-  return /** @type{?proto.hwsc.Authority} */ (
-    jspb.Message.getWrapperField(this, authority_pb.Authority, 1));
+proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.getIdentification = function() {
+  return /** @type{?proto.hwsc.Identification} */ (
+    jspb.Message.getWrapperField(this, identification_pb.Identification, 1));
 };
 
 
-/** @param {?proto.hwsc.Authority|undefined} value */
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.setAuthority = function(value) {
+/** @param {?proto.hwsc.Identification|undefined} value */
+proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.setIdentification = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.clearAuthority = function() {
-  this.setAuthority(undefined);
+proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.clearIdentification = function() {
+  this.setIdentification(undefined);
 };
 
 
@@ -224,7 +224,7 @@ proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.clearAuthority = f
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.hasAuthority = function() {
+proto.hwscFileTransactionSvc.FileTransactionRequest.prototype.hasIdentification = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -571,7 +571,7 @@ proto.hwscFileTransactionSvc.Chunk.oneofGroups_ = [[1,2,3,4,5]];
  */
 proto.hwscFileTransactionSvc.Chunk.TestOneofCase = {
   TEST_ONEOF_NOT_SET: 0,
-  AUTHORITY: 1,
+  IDENTIFICATION: 1,
   BUFFER: 2,
   LENGTH: 3,
   FILE_NAME: 4,
@@ -614,7 +614,7 @@ proto.hwscFileTransactionSvc.Chunk.prototype.toObject = function(opt_includeInst
  */
 proto.hwscFileTransactionSvc.Chunk.toObject = function(includeInstance, msg) {
   var f, obj = {
-    authority: (f = msg.getAuthority()) && authority_pb.Authority.toObject(includeInstance, f),
+    identification: (f = msg.getIdentification()) && identification_pb.Identification.toObject(includeInstance, f),
     buffer: msg.getBuffer_asB64(),
     length: jspb.Message.getFieldWithDefault(msg, 3, 0),
     fileName: jspb.Message.getFieldWithDefault(msg, 4, ""),
@@ -656,9 +656,9 @@ proto.hwscFileTransactionSvc.Chunk.deserializeBinaryFromReader = function(msg, r
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new authority_pb.Authority;
-      reader.readMessage(value,authority_pb.Authority.deserializeBinaryFromReader);
-      msg.setAuthority(value);
+      var value = new identification_pb.Identification;
+      reader.readMessage(value,identification_pb.Identification.deserializeBinaryFromReader);
+      msg.setIdentification(value);
       break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
@@ -705,12 +705,12 @@ proto.hwscFileTransactionSvc.Chunk.prototype.serializeBinary = function() {
  */
 proto.hwscFileTransactionSvc.Chunk.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAuthority();
+  f = message.getIdentification();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      authority_pb.Authority.serializeBinaryToWriter
+      identification_pb.Identification.serializeBinaryToWriter
     );
   }
   f = /** @type {!(string|Uint8Array)} */ (jspb.Message.getField(message, 2));
@@ -745,23 +745,23 @@ proto.hwscFileTransactionSvc.Chunk.serializeBinaryToWriter = function(message, w
 
 
 /**
- * optional hwsc.Authority authority = 1;
- * @return {?proto.hwsc.Authority}
+ * optional hwsc.Identification identification = 1;
+ * @return {?proto.hwsc.Identification}
  */
-proto.hwscFileTransactionSvc.Chunk.prototype.getAuthority = function() {
-  return /** @type{?proto.hwsc.Authority} */ (
-    jspb.Message.getWrapperField(this, authority_pb.Authority, 1));
+proto.hwscFileTransactionSvc.Chunk.prototype.getIdentification = function() {
+  return /** @type{?proto.hwsc.Identification} */ (
+    jspb.Message.getWrapperField(this, identification_pb.Identification, 1));
 };
 
 
-/** @param {?proto.hwsc.Authority|undefined} value */
-proto.hwscFileTransactionSvc.Chunk.prototype.setAuthority = function(value) {
+/** @param {?proto.hwsc.Identification|undefined} value */
+proto.hwscFileTransactionSvc.Chunk.prototype.setIdentification = function(value) {
   jspb.Message.setOneofWrapperField(this, 1, proto.hwscFileTransactionSvc.Chunk.oneofGroups_[0], value);
 };
 
 
-proto.hwscFileTransactionSvc.Chunk.prototype.clearAuthority = function() {
-  this.setAuthority(undefined);
+proto.hwscFileTransactionSvc.Chunk.prototype.clearIdentification = function() {
+  this.setIdentification(undefined);
 };
 
 
@@ -769,7 +769,7 @@ proto.hwscFileTransactionSvc.Chunk.prototype.clearAuthority = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.hwscFileTransactionSvc.Chunk.prototype.hasAuthority = function() {
+proto.hwscFileTransactionSvc.Chunk.prototype.hasIdentification = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 

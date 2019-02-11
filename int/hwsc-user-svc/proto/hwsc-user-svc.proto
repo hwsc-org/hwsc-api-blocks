@@ -3,7 +3,7 @@ syntax = "proto3";
 package hwscUserSvc;
 
 import "user.proto";
-import "authority.proto";
+import "identification.proto";
 
 option go_package = "hwsc";
 
@@ -114,7 +114,7 @@ service UserService {
 }
 
 message UserRequest {
-    hwsc.Authority authority = 1;
+    hwsc.Identification identification = 1;
     hwsc.User user = 2;
     string duid = 3;
     repeated string uuids_to_share_duid = 4;
@@ -125,7 +125,7 @@ message UserResponse {
         uint32 code = 1;
     }
     string message = 2;
-    hwsc.Authority authority = 3;
+    hwsc.Identification identification = 3;
     hwsc.User user = 4;
     repeated hwsc.User user_collection = 5; // for ListUsers response
 }

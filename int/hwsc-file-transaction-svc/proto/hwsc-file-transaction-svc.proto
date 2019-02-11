@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hwscFileTransactionSvc;
 
-import "authority.proto";
+import "identification.proto";
 
 // The file transaction service definition
 service FileTransactionService {
@@ -21,7 +21,7 @@ service FileTransactionService {
 }
 
 message FileTransactionRequest {
-    hwsc.Authority authority = 1;
+    hwsc.Identification identification = 1;
     string message = 2;
     string name = 3;
     string uuid = 4;
@@ -38,7 +38,7 @@ message FileTransactionResponse {
 
 message Chunk {
     oneof test_oneof {
-        hwsc.Authority authority = 1;
+        hwsc.Identification identification = 1;
         bytes buffer = 2;
         int64 length = 3;
         string file_name = 4;

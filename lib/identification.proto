@@ -7,7 +7,7 @@ message Secret {
     int64 created_timestamp = 2;
 }
 
-message Authority {
+message Identification {
     string token = 1;
     Secret secret = 2;
 }

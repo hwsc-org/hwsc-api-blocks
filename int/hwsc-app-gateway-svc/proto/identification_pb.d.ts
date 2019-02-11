@@ -1,5 +1,5 @@
 // package: hwsc
-// file: authority.proto
+// file: identification.proto
 
 import * as jspb from "google-protobuf";
 
@@ -27,7 +27,7 @@ export namespace Secret {
   }
 }
 
-export class Authority extends jspb.Message {
+export class Identification extends jspb.Message {
   getToken(): string;
   setToken(value: string): void;
 
@@ -37,16 +37,16 @@ export class Authority extends jspb.Message {
   setSecret(value?: Secret): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Authority.AsObject;
-  static toObject(includeInstance: boolean, msg: Authority): Authority.AsObject;
+  toObject(includeInstance?: boolean): Identification.AsObject;
+  static toObject(includeInstance: boolean, msg: Identification): Identification.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Authority, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Authority;
-  static deserializeBinaryFromReader(message: Authority, reader: jspb.BinaryReader): Authority;
+  static serializeBinaryToWriter(message: Identification, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Identification;
+  static deserializeBinaryFromReader(message: Identification, reader: jspb.BinaryReader): Identification;
 }
 
-export namespace Authority {
+export namespace Identification {
   export type AsObject = {
     token: string,
     secret?: Secret.AsObject,
