@@ -7,7 +7,6 @@ import "user.proto";
 import "hwsc-document-svc.proto";
 import "document.proto";
 import "hwsc-file-transaction-svc.proto";
-import "authority.proto";
 
 option go_package = "hwsc";
 
@@ -51,7 +50,7 @@ service AppGatewayService {
 }
 
 message AppGatewayServiceRequest {
-    hwsc.Payload payload = 1;
+    string token = 1;
     hwscUserSvc.UserRequest user_request = 2;
     hwscDocumentSvc.DocumentRequest document_request = 3;
     hwscFileTransactionSvc.FileTransactionRequest file_transaction_request = 4;
@@ -63,7 +62,7 @@ message AppGatewayServiceResponse {
         uint32 code = 1;
     }
     string message = 2;
-    hwsc.Payload payload = 3;
+    string token = 3;
     hwsc.User user = 4;
     // for ListUsers response
     repeated hwsc.User user_collection = 5;

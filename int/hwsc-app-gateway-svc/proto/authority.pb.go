@@ -20,106 +20,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
-type Algorithm int32
-
-const (
-	Algorithm_NO_ALG Algorithm = 0
-	Algorithm_HS256  Algorithm = 1
-	Algorithm_HS512  Algorithm = 2
-)
-
-var Algorithm_name = map[int32]string{
-	0: "NO_ALG",
-	1: "HS256",
-	2: "HS512",
-}
-
-var Algorithm_value = map[string]int32{
-	"NO_ALG": 0,
-	"HS256":  1,
-	"HS512":  2,
-}
-
-func (x Algorithm) String() string {
-	return proto.EnumName(Algorithm_name, int32(x))
-}
-
-func (Algorithm) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_6a5a0640cd66a638, []int{0}
-}
-
-type Type int32
-
-const (
-	Type_NO_TYPE Type = 0
-	Type_JWT     Type = 1
-)
-
-var Type_name = map[int32]string{
-	0: "NO_TYPE",
-	1: "JWT",
-}
-
-var Type_value = map[string]int32{
-	"NO_TYPE": 0,
-	"JWT":     1,
-}
-
-func (x Type) String() string {
-	return proto.EnumName(Type_name, int32(x))
-}
-
-func (Type) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_6a5a0640cd66a638, []int{1}
-}
-
-type Header struct {
-	Alg                  Algorithm `protobuf:"varint,1,opt,name=alg,proto3,enum=hwsc.Algorithm" json:"alg,omitempty"`
-	Typ                  Type      `protobuf:"varint,2,opt,name=typ,proto3,enum=hwsc.Type" json:"typ,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *Header) Reset()         { *m = Header{} }
-func (m *Header) String() string { return proto.CompactTextString(m) }
-func (*Header) ProtoMessage()    {}
-func (*Header) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6a5a0640cd66a638, []int{0}
-}
-
-func (m *Header) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Header.Unmarshal(m, b)
-}
-func (m *Header) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Header.Marshal(b, m, deterministic)
-}
-func (m *Header) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Header.Merge(m, src)
-}
-func (m *Header) XXX_Size() int {
-	return xxx_messageInfo_Header.Size(m)
-}
-func (m *Header) XXX_DiscardUnknown() {
-	xxx_messageInfo_Header.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Header proto.InternalMessageInfo
-
-func (m *Header) GetAlg() Algorithm {
-	if m != nil {
-		return m.Alg
-	}
-	return Algorithm_NO_ALG
-}
-
-func (m *Header) GetTyp() Type {
-	if m != nil {
-		return m.Typ
-	}
-	return Type_NO_TYPE
-}
-
+// Secret is used for hashing.
 type Secret struct {
 	Key                  string   `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
 	CreatedTimestamp     int64    `protobuf:"varint,2,opt,name=created_timestamp,json=createdTimestamp,proto3" json:"created_timestamp,omitempty"`
@@ -132,7 +33,7 @@ func (m *Secret) Reset()         { *m = Secret{} }
 func (m *Secret) String() string { return proto.CompactTextString(m) }
 func (*Secret) ProtoMessage()    {}
 func (*Secret) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6a5a0640cd66a638, []int{1}
+	return fileDescriptor_6a5a0640cd66a638, []int{0}
 }
 
 func (m *Secret) XXX_Unmarshal(b []byte) error {
@@ -169,9 +70,8 @@ func (m *Secret) GetCreatedTimestamp() int64 {
 
 // Identification is used for communicating between services.
 type Identification struct {
-	Header               *Header  `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Token                string   `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
-	Secret               *Secret  `protobuf:"bytes,3,opt,name=secret,proto3" json:"secret,omitempty"`
+	Token                string   `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Secret               *Secret  `protobuf:"bytes,2,opt,name=secret,proto3" json:"secret,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -181,7 +81,7 @@ func (m *Identification) Reset()         { *m = Identification{} }
 func (m *Identification) String() string { return proto.CompactTextString(m) }
 func (*Identification) ProtoMessage()    {}
 func (*Identification) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6a5a0640cd66a638, []int{2}
+	return fileDescriptor_6a5a0640cd66a638, []int{1}
 }
 
 func (m *Identification) XXX_Unmarshal(b []byte) error {
@@ -202,13 +102,6 @@ func (m *Identification) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Identification proto.InternalMessageInfo
 
-func (m *Identification) GetHeader() *Header {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
 func (m *Identification) GetToken() string {
 	if m != nil {
 		return m.Token
@@ -223,84 +116,24 @@ func (m *Identification) GetSecret() *Secret {
 	return nil
 }
 
-// Payload is used for communicating between app-gateway-svc and Chrome.
-type Payload struct {
-	Header               *Header  `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Token                string   `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Payload) Reset()         { *m = Payload{} }
-func (m *Payload) String() string { return proto.CompactTextString(m) }
-func (*Payload) ProtoMessage()    {}
-func (*Payload) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6a5a0640cd66a638, []int{3}
-}
-
-func (m *Payload) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Payload.Unmarshal(m, b)
-}
-func (m *Payload) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Payload.Marshal(b, m, deterministic)
-}
-func (m *Payload) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Payload.Merge(m, src)
-}
-func (m *Payload) XXX_Size() int {
-	return xxx_messageInfo_Payload.Size(m)
-}
-func (m *Payload) XXX_DiscardUnknown() {
-	xxx_messageInfo_Payload.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Payload proto.InternalMessageInfo
-
-func (m *Payload) GetHeader() *Header {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-func (m *Payload) GetToken() string {
-	if m != nil {
-		return m.Token
-	}
-	return ""
-}
-
 func init() {
-	proto.RegisterEnum("hwsc.Algorithm", Algorithm_name, Algorithm_value)
-	proto.RegisterEnum("hwsc.Type", Type_name, Type_value)
-	proto.RegisterType((*Header)(nil), "hwsc.Header")
 	proto.RegisterType((*Secret)(nil), "hwsc.Secret")
 	proto.RegisterType((*Identification)(nil), "hwsc.Identification")
-	proto.RegisterType((*Payload)(nil), "hwsc.Payload")
 }
 
 func init() { proto.RegisterFile("authority.proto", fileDescriptor_6a5a0640cd66a638) }
 
 var fileDescriptor_6a5a0640cd66a638 = []byte{
-	// 299 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x91, 0xc1, 0x6b, 0xfa, 0x30,
-	0x14, 0xc7, 0xad, 0xd1, 0x4a, 0x9f, 0x3f, 0x34, 0xbf, 0xb0, 0x83, 0x07, 0x0f, 0x5b, 0xd9, 0x61,
-	0x38, 0x26, 0xac, 0xc3, 0xdd, 0x3d, 0x88, 0x3a, 0x86, 0x4a, 0x2c, 0x8c, 0x9d, 0x4a, 0xd6, 0x66,
-	0xb6, 0xd8, 0x36, 0x25, 0xcd, 0x18, 0xfd, 0xef, 0x47, 0x92, 0x6e, 0xec, 0xbe, 0xdb, 0xcb, 0xfb,
-	0xbc, 0xef, 0xf7, 0x7d, 0x79, 0x81, 0x31, 0xfb, 0x50, 0xa9, 0x90, 0x99, 0x6a, 0xe6, 0x95, 0x14,
-	0x4a, 0x90, 0x5e, 0xfa, 0x59, 0xc7, 0xfe, 0x16, 0xdc, 0x0d, 0x67, 0x09, 0x97, 0xe4, 0x0a, 0x10,
-	0xcb, 0x4f, 0x13, 0xe7, 0xd2, 0xb9, 0x19, 0x05, 0xe3, 0xb9, 0xa6, 0xf3, 0x65, 0x7e, 0xd2, 0x92,
-	0xb4, 0xa0, 0x9a, 0x91, 0x29, 0x20, 0xd5, 0x54, 0x93, 0xae, 0x19, 0x01, 0x3b, 0x12, 0x36, 0x15,
-	0xa7, 0xba, 0xed, 0xaf, 0xc1, 0x3d, 0xf2, 0x58, 0x72, 0x45, 0x30, 0xa0, 0x33, 0x6f, 0x8c, 0x95,
-	0x47, 0x75, 0x49, 0x6e, 0xe1, 0x7f, 0x2c, 0x39, 0x53, 0x3c, 0x89, 0x54, 0x56, 0xf0, 0x5a, 0xb1,
-	0xc2, 0xfa, 0x20, 0x8a, 0x5b, 0x10, 0x7e, 0xf7, 0x7d, 0x09, 0xa3, 0x6d, 0xc2, 0x4b, 0x95, 0xbd,
-	0x67, 0x31, 0x53, 0x99, 0x28, 0xc9, 0x35, 0xb8, 0xa9, 0x49, 0x69, 0x3c, 0x87, 0xc1, 0x3f, 0xbb,
-	0xdb, 0x26, 0xa7, 0x2d, 0x23, 0x17, 0xd0, 0x57, 0xe2, 0xcc, 0x4b, 0x63, 0xec, 0x51, 0xfb, 0xd0,
-	0xda, 0xda, 0xc4, 0x9a, 0xa0, 0xdf, 0x5a, 0x1b, 0x95, 0xb6, 0xcc, 0x5f, 0xc1, 0xe0, 0xc0, 0x9a,
-	0x5c, 0xb0, 0xe4, 0x2f, 0xcb, 0x66, 0x77, 0xe0, 0xfd, 0xdc, 0x8c, 0x00, 0xb8, 0xbb, 0x7d, 0xb4,
-	0x7c, 0x5e, 0xe3, 0x0e, 0xf1, 0xa0, 0xbf, 0x39, 0x06, 0x8b, 0x47, 0xec, 0xd8, 0x72, 0x71, 0x1f,
-	0xe0, 0xee, 0x6c, 0x0a, 0x3d, 0x7d, 0x3f, 0x32, 0x84, 0xc1, 0x6e, 0x1f, 0x85, 0xaf, 0x87, 0x15,
-	0xee, 0x90, 0x01, 0xa0, 0xa7, 0x97, 0x10, 0x3b, 0x6f, 0xae, 0xf9, 0xa8, 0x87, 0xaf, 0x00, 0x00,
-	0x00, 0xff, 0xff, 0x63, 0xbe, 0x22, 0x9f, 0xbb, 0x01, 0x00, 0x00,
+	// 164 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4f, 0x2c, 0x2d, 0xc9,
+	0xc8, 0x2f, 0xca, 0x2c, 0xa9, 0xd4, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0xc9, 0x28, 0x2f,
+	0x4e, 0x56, 0x72, 0xe7, 0x62, 0x0b, 0x4e, 0x4d, 0x2e, 0x4a, 0x2d, 0x11, 0x12, 0xe0, 0x62, 0xce,
+	0x4e, 0xad, 0x94, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x0c, 0x02, 0x31, 0x85, 0xb4, 0xb9, 0x04, 0x93,
+	0x8b, 0x52, 0x13, 0x4b, 0x52, 0x53, 0xe2, 0x4b, 0x32, 0x73, 0x53, 0x8b, 0x4b, 0x12, 0x73, 0x0b,
+	0x24, 0x98, 0x14, 0x18, 0x35, 0x98, 0x83, 0x04, 0xa0, 0x12, 0x21, 0x30, 0x71, 0x25, 0x1f, 0x2e,
+	0x3e, 0xcf, 0x94, 0xd4, 0xbc, 0x92, 0xcc, 0xb4, 0xcc, 0xe4, 0xc4, 0x92, 0xcc, 0xfc, 0x3c, 0x21,
+	0x11, 0x2e, 0xd6, 0x92, 0xfc, 0xec, 0xd4, 0x3c, 0xa8, 0x91, 0x10, 0x8e, 0x90, 0x0a, 0x17, 0x5b,
+	0x31, 0xd8, 0x42, 0xb0, 0x49, 0xdc, 0x46, 0x3c, 0x7a, 0x20, 0x77, 0xe8, 0x41, 0x1c, 0x11, 0x04,
+	0x95, 0x4b, 0x62, 0x03, 0xbb, 0xd1, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x8d, 0x3c, 0xb8, 0xa4,
+	0xb6, 0x00, 0x00, 0x00,
 }
