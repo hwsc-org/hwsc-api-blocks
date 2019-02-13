@@ -3,8 +3,14 @@
 
 import * as jspb from "google-protobuf";
 import * as document_pb from "./document_pb";
+import * as authority_pb from "./authority_pb";
 
 export class DocumentRequest extends jspb.Message {
+  hasIdentification(): boolean;
+  clearIdentification(): void;
+  getIdentification(): authority_pb.Identification | undefined;
+  setIdentification(value?: authority_pb.Identification): void;
+
   hasData(): boolean;
   clearData(): void;
   getData(): document_pb.Document | undefined;
@@ -52,6 +58,7 @@ export class DocumentRequest extends jspb.Message {
 
 export namespace DocumentRequest {
   export type AsObject = {
+    identification?: authority_pb.Identification.AsObject,
     data?: document_pb.Document.AsObject,
     imageUrlsList: Array<string>,
     audioUrlsList: Array<string>,

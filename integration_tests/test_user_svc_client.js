@@ -34,18 +34,21 @@ Numeric Test Options for process.argv[2]
 
 0 - valid getStatus
 
-1 - valid createUser - fn: Integrate, ln: Test One
+1 - valid createUser - firstName: Integrate, lastName: Test One
 2 - invalid createUser - test null user
 3 - invalid createUser - test empty user
 
-4 - valid getUser - fn: Mary-Jo, ln: Allen
+4 - valid getUser - firstName: Mary-Jo, lastName: Allen
 5 - invalid getUser - test non existent uuid
 
-6 - valid deleteUser - fn: Test Delete, ln: Delete
+6 - valid deleteUser - firstName: Test Delete, lastName: Delete
 7 - invalid deleteUser - test non existent uuid
 
-8 - valid updateUser - update fn to: Update User Test
+8 - valid updateUser - update firstName to: Update User Test
 9 - invalid updateUser - test non existent uuid
+
+10 - valid authenticateUser - authenticate firstName:
+11 - invalid authenticateUser - test invalid UUID
 
 */
 
@@ -118,6 +121,16 @@ const dataSet = [
     svcInfo: new SvcInfo('UpdateUser', 'test non existent uuid', state.INTERNAL),
     user: new User('0000xsnjg0mqjhbf4qx1efd6ya', 'Update User Test'),
   },
+  {
+    // 10
+    svcInfo: new SvcInfo('AuthenticateUser', 'valid', state.OK),
+    user: new User('0000xsnjg0mqjhbf4qx1efd6y3', null, null, 'lisa@test.com', 'testingPassword'),
+  },
+  {
+    // 11
+    svcInfo: new SvcInfo('AuthenticateUser', 'test invalid UUID', state.INVALID_ARGUMENT),
+    user: new User('0000xsnjg0mq'),
+  },
 ];
 
 const processResult = (err, response, svcInfo, displayResponse) => {
@@ -185,6 +198,12 @@ function main() {
       case 8:
       case 9:
         index.hwscUserSvc.updateUser(dataSet[test], (err, response) => {
+          processResult(err, response, dataSet[test].svcInfo, displayResponse);
+        });
+        break;
+      case 10:
+      case 11:
+        index.hwscUserSvc.authenticateUser(dataSet[test], (err, response) => {
           processResult(err, response, dataSet[test].svcInfo, displayResponse);
         });
         break;

@@ -1,4 +1,4 @@
-syntax="proto3";
+syntax = "proto3";
 
 package hwscAppGatewaySvc;
 
@@ -11,44 +11,65 @@ import "hwsc-file-transaction-svc.proto";
 option go_package = "hwsc";
 
 service AppGatewayService {
-    rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc GetToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
 
-    rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc DeleteUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc UpdateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc AuthenticateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc ListUsers (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc GetUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc ShareDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
+    rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc DeleteUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc UpdateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc AuthenticateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc ListUsers (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc GetUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc ShareDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
 
-    rpc CreateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc ListUserDocumentCollection (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc UpdateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc DeleteDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc AddFile (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc DeleteFile (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc ListDistinctFieldValues (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-    rpc QueryDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {}
-
+    rpc CreateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc ListUserDocumentCollection (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc UpdateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc DeleteDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc AddFile (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc DeleteFile (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc ListDistinctFieldValues (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
+    rpc QueryDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
 }
 
 message AppGatewayServiceRequest {
-    hwscUserSvc.UserRequest user_request = 1;
-    hwscDocumentSvc.DocumentRequest document_request = 2;
-    hwscFileTransactionSvc.Chunk chunk= 3;
+    string token = 1;
+    hwscUserSvc.UserRequest user_request = 2;
+    hwscDocumentSvc.DocumentRequest document_request = 3;
+    hwscFileTransactionSvc.FileTransactionRequest file_transaction_request = 4;
+    hwscFileTransactionSvc.Chunk chunk = 5;
 }
 
 message AppGatewayServiceResponse {
-    oneof status { uint32 code = 1;}
+    oneof status {
+        uint32 code = 1;
+    }
     string message = 2;
-    hwsc.User user = 3;
+    string token = 3;
+    hwsc.User user = 4;
     // for ListUsers response
-    repeated hwsc.User user_collection = 4;
-
-    hwsc.Document document = 5;
+    repeated hwsc.User user_collection = 5;
+    hwsc.Document document = 6;
     // Response for ListUserDocumentCollection
     // Response for QueryDocument
-    repeated hwsc.Document document_collection = 6;
+    repeated hwsc.Document document_collection = 7;
     // Response for ListDistinctFieldValues
-    hwsc.QueryTransaction query_results = 7;
+    hwsc.QueryTransaction query_results = 8;
 }

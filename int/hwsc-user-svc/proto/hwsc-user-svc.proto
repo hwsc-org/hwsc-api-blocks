@@ -1,18 +1,19 @@
-syntax="proto3";
+syntax = "proto3";
 
 package hwscUserSvc;
 
 import "user.proto";
+import "authority.proto";
 
-option go_package="hwsc";
-
+option go_package = "hwsc";
 
 // NOTES:
 // any user object returned by svc, will have password field empty string
 // use bson tags when objects get uploaded to mongodb
 
 service UserService {
-    rpc GetStatus (UserRequest) returns (UserResponse) {}
+    rpc GetStatus (UserRequest) returns (UserResponse) {
+    }
 
     // chrome fills out registration page and make request to register
     // gateway passes User filled object
@@ -23,8 +24,8 @@ service UserService {
 
     // if OK, chrome stores User object, and redirects to search page
     // else, chrome stays on registration page and display error msg
-    rpc CreateUser (UserRequest) returns (UserResponse) {}
-
+    rpc CreateUser (UserRequest) returns (UserResponse) {
+    }
 
     // chrome requests to delete user from user profile page
     // gateway passes the User object obtained when logging in
@@ -35,8 +36,8 @@ service UserService {
 
     // if OK, chrome redirects to login page
     // else, chrome stays on user profile page and displays error msg
-    rpc DeleteUser (UserRequest) returns (UserResponse) {}
-
+    rpc DeleteUser (UserRequest) returns (UserResponse) {
+    }
 
     // chrome makes changes to a copy of User object (obtained when logged in), from user profile page
     // gateway passes the modified User object
@@ -47,8 +48,8 @@ service UserService {
 
     // if OK, chrome sets offical User object with copy User object, displays success msg to user
     // else, chrome will display error msg
-    rpc UpdateUser (UserRequest) returns (UserResponse) {}
-
+    rpc UpdateUser (UserRequest) returns (UserResponse) {
+    }
 
     // chrome stores email/password in an object and makes request to login from login page
     // gateway passes email/password object
@@ -62,15 +63,14 @@ service UserService {
 
     // if OK, chrome will store user object and whatever token?, redirect to search page
     // else, chrome will display error msg
-    rpc AuthenticateUser (UserRequest) returns (UserResponse) {}
-
+    rpc AuthenticateUser (UserRequest) returns (UserResponse) {
+    }
 
     // get list of all users in user collection
-    rpc ListUsers (UserRequest) returns (UserResponse) {}
-
+    rpc ListUsers (UserRequest) returns (UserResponse) {
+    }
 
     // THINGS GET KIND OF CONFUSING FROM HERE --------------------------------------
-
 
     // chrome makes request to add friend by providing email? or by first and/or last name?
     // gateway passes email (or first and last name)
@@ -81,8 +81,8 @@ service UserService {
     //      || display list of matched names and corresponding emails and ask user to select correct one
     //   Once user selects or confirms, chrome will store the matched users object under friends object
     // else, chrome will display not found msg or error msg
-    rpc GetUser (UserRequest) returns (UserResponse) {}
-
+    rpc GetUser (UserRequest) returns (UserResponse) {
+    }
 
     // chrome makes request to share documents with found user
     // gateway passes
@@ -90,8 +90,8 @@ service UserService {
     //    2) a list of DUIDS to share with
     //    3) found User object
     // svc will...
-    rpc ShareDocument (UserRequest) returns (UserResponse) {}
-
+    rpc ShareDocument (UserRequest) returns (UserResponse) {
+    }
 
     // chrome makes request to delete document/s
     // gateway passes
@@ -101,17 +101,31 @@ service UserService {
     // svc will...
     //    rpc DeleteDocuments (UserRequest) returns (UserResponse) {}
 
+    rpc GetToken (UserRequest) returns (UserResponse) {
+    }
+    rpc VerifyToken (UserRequest) returns (UserResponse) {
+    }
+    rpc GetSecret (UserRequest) returns (UserResponse) {
+    }
+
+    // TODO add a REST endpoint later
+    rpc NewSecret (UserRequest) returns (UserResponse) {
+    }
 }
 
 message UserRequest {
-    hwsc.User user = 1;
-    string duid = 2;
-    repeated string uuids_to_share_duid = 3;
+    hwsc.Identification identification = 1;
+    hwsc.User user = 2;
+    string duid = 3;
+    repeated string uuids_to_share_duid = 4;
 }
 
 message UserResponse {
-    oneof status { uint32 code = 1; }
+    oneof status {
+        uint32 code = 1;
+    }
     string message = 2;
-    hwsc.User user = 3;
-    repeated hwsc.User user_collection = 4; // for ListUsers response
+    hwsc.Identification identification = 3;
+    hwsc.User user = 4;
+    repeated hwsc.User user_collection = 5; // for ListUsers response
 }
