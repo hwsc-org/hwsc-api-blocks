@@ -1,18 +1,28 @@
 #!/bin/bash
 
-
 LIB_ROOT="./lib/"
-USER_ROOT="./int/hwsc-user-svc/proto/"
-DOCUMENT_ROOT="./int/hwsc-document-svc/proto/"
-FILE_ROOT="./int/hwsc-file-transaction-svc/proto/"
-APP_ROOT="./int/hwsc-app-gateway-svc/proto/"
+USER_ROOT="./int/hwsc-user-svc/user/"
+DOCUMENT_ROOT="./int/hwsc-document-svc/document/"
+FILE_ROOT="./int/hwsc-file-transaction-svc/file/"
+APP_ROOT="./int/hwsc-app-gateway-svc/app/"
 
 # generate protoc for our service
 echo "Generating internal proto..."
 echo
 
+# LIB PACKAGE
+echo "Generating LIB PACKAGE"
+protoc -I ${LIB_ROOT} \
+    --go_out=plugins=grpc:${GOPATH}/src \
+    authority.proto document.proto user.proto
+protoc-go-inject-tag -input=${LIB_ROOT}user.pb.go
+protoc-go-inject-tag -input=${LIB_ROOT}document.pb.go
+sed -i -e 's/`json:"-"`/`json:"-" bson:"-"`/g' ${LIB_ROOT}*.pb.go
+echo "Done generating LIB PACKAGE"
+echo "------------------------------------------------------------"
+
 # SAMPLE SERVICE
-echo "Generating hwsc-grpc-sample-svc.pb.go..."
+echo "Generating SAMPLE SERVICE"
 protoc int/hwsc-grpc-sample-svc/proto/hwsc-grpc-sample-svc.proto \
     --go_out=plugins=grpc:.
 echo "Done generating SAMPLE SERVICE"
@@ -20,63 +30,53 @@ echo "------------------------------------------------------------"
 echo
 
 # USER SERVICE
-echo "Generating hwsc-user-svc.pb.go, user.pb.go..."
-protoc \
-    -I ${LIB_ROOT} \
-    -I ${USER_ROOT} \
-    --go_out=plugins=grpc:${USER_ROOT} \
-    user.proto hwsc-user-svc.proto authority.proto
-
-protoc-go-inject-tag -input=${USER_ROOT}hwsc-user-svc.pb.go
-protoc-go-inject-tag -input=${USER_ROOT}user.pb.go
-sed -i'.orig' -e 's/`json:"-"`/`json:"-" bson:"-"`/g' ${USER_ROOT}*.pb.go
+echo "Generating USER SERVICE"
+protoc -I ${USER_ROOT} \
+    --go_out=plugins=grpc:${GOPATH}/src \
+    hwsc-user-svc.proto
+protoc-go-inject-tag -input=${USER_ROOT}*.pb.go
+sed -i -e 's/`json:"-"`/`json:"-" bson:"-"`/g' ${USER_ROOT}*.pb.go
 echo "Done generating USER SERVICE"
 echo "------------------------------------------------------------"
 echo
 
 # DOCUMENT SERVICE
-echo "Generating hwsc-document-svc.pb.go, document.pb.go..."
-protoc \
-    -I ${LIB_ROOT} \
-    -I ${DOCUMENT_ROOT} \
-    --go_out=plugins=grpc:${DOCUMENT_ROOT} \
-    document.proto hwsc-document-svc.proto authority.proto
-
-protoc-go-inject-tag -input=${DOCUMENT_ROOT}hwsc-document-svc.pb.go
-protoc-go-inject-tag -input=${DOCUMENT_ROOT}document.pb.go
-sed -i'.orig' -e 's/`json:"-"`/`json:"-" bson:"-"`/g' int/hwsc-document-svc/proto/*.pb.go
-sed -i'.orig' -e 's/json:"is_public,omitempty" bson:"isPublic"/json:"is_public" bson:"isPublic"/g' int/hwsc-document-svc/proto/*.pb.go
+echo "Generating DOCUMENT SERVICE"
+protoc -I ${DOCUMENT_ROOT} \
+    --go_out=plugins=grpc:${GOPATH}/src \
+    hwsc-document-svc.proto
+protoc-go-inject-tag -input=${DOCUMENT_ROOT}*.pb.go
+sed -i -e 's/`json:"-"`/`json:"-" bson:"-"`/g' ${DOCUMENT_ROOT}*.pb.go
+sed -i -e 's/json:"is_public,omitempty" bson:"isPublic"/json:"is_public" bson:"isPublic"/g' ${DOCUMENT_ROOT}*.pb.go
 echo "Done generating DOCUMENT SERVICE"
 echo "------------------------------------------------------------"
 echo
 
 # FILE TRANSACTION SERVICE
-echo "Generating hwsc-file-transaction-svc.pb2.py, hwsc-file-transaction-svc.pb2_grpc.py..."
+echo "Generating FILE TRANSACTION SERVICE"
 python3.7 -m grpc_tools.protoc \
     -I ${LIB_ROOT} \
     -I ${FILE_ROOT} \
     --python_out=${FILE_ROOT} \
     --grpc_python_out=${FILE_ROOT} \
     hwsc-file-transaction-svc.proto authority.proto
+protoc -I ${FILE_ROOT} \
+    --go_out=plugins=grpc:${GOPATH}/src \
+    hwsc-file-transaction-svc.proto
 echo "Done generating FILE TRANSACTION SERVICE"
 echo "------------------------------------------------------------"
 echo
 
 # APP GATEWAY SERVICE
-echo "Generating hwsc-app-gateway .ts, .js, .pb"
+echo "Generating APP GATEWAY SERVICE"
 protoc \
   --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
   --plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-  -I ${LIB_ROOT} \
-  -I ${USER_ROOT} \
-  -I ${DOCUMENT_ROOT} \
-  -I ${FILE_ROOT} \
   -I ${APP_ROOT} \
-  --js_out=import_style=commonjs,binary:${APP_ROOT} \
-  --go_out=plugins=grpc:${APP_ROOT} \
-  --ts_out=service=true:${APP_ROOT} \
-  hwsc-app-gateway-svc.proto document.proto hwsc-document-svc.proto user.proto hwsc-user-svc.proto \
-  hwsc-file-transaction-svc.proto authority.proto
+  --js_out=import_style=commonjs,binary:${GOPATH}/src \
+  --go_out=plugins=grpc:${GOPATH}/src \
+  --ts_out=service=true:${GOPATH}/src \
+  hwsc-app-gateway-svc.proto
 echo "Done generating APP GATEWAY SERVICE"
 echo "------------------------------------------------------------"
 echo

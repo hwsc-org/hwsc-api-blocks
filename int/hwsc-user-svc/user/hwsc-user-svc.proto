@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package hwscUserSvc;
+option go_package = "github.com/hwsc-org/int/hwsc-user-svc/user";
 
-import "user.proto";
-import "authority.proto";
+package user;
 
-option go_package = "hwsc";
+import "lib/user.proto";
+import "lib/authority.proto";
 
 // NOTES:
 // any user object returned by svc, will have password field empty string
@@ -114,8 +114,8 @@ service UserService {
 }
 
 message UserRequest {
-    hwsc.Identification identification = 1;
-    hwsc.User user = 2;
+    lib.Identification identification = 1;
+    lib.User user = 2;
     string duid = 3;
     repeated string uuids_to_share_duid = 4;
 }
@@ -125,7 +125,7 @@ message UserResponse {
         uint32 code = 1;
     }
     string message = 2;
-    hwsc.Identification identification = 3;
-    hwsc.User user = 4;
-    repeated hwsc.User user_collection = 5; // for ListUsers response
+    lib.Identification identification = 3;
+    lib.User user = 4;
+    repeated lib.User user_collection = 5; // for ListUsers response
 }

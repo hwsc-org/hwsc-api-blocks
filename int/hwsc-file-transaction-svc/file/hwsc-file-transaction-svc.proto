@@ -1,8 +1,10 @@
 syntax = "proto3";
 
-package hwscFileTransactionSvc;
+option go_package = "github.com/hwsc-org/int/hwsc-file-transaction-svc/file";
 
-import "authority.proto";
+package file;
+
+import "lib/authority.proto";
 
 // The file transaction service definition
 service FileTransactionService {
@@ -21,7 +23,7 @@ service FileTransactionService {
 }
 
 message FileTransactionRequest {
-    hwsc.Identification identification = 1;
+    lib.Identification identification = 1;
     string message = 2;
     string name = 3;
     string uuid = 4;
@@ -37,8 +39,8 @@ message FileTransactionResponse {
 }
 
 message Chunk {
-    oneof test_oneof {
-        hwsc.Identification identification = 1;
+    oneof is_one_of {
+        lib.Identification identification = 1;
         bytes buffer = 2;
         int64 length = 3;
         string file_name = 4;

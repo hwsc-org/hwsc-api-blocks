@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package hwsc;
+option go_package = "github.com/hwsc-org/hwsc-api-blocks/lib";
+
+package lib;
 
 // Secret is used for hashing.
 message Secret {

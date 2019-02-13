@@ -1,14 +1,14 @@
 syntax = "proto3";
 
-package hwscAppGatewaySvc;
+package app;
 
-import "hwsc-user-svc.proto";
-import "user.proto";
-import "hwsc-document-svc.proto";
-import "document.proto";
-import "hwsc-file-transaction-svc.proto";
+import "hwsc-user-svc/user/hwsc-user-svc.proto";
+import "lib/user.proto";
+import "hwsc-document-svc/document/hwsc-document-svc.proto";
+import "lib/document.proto";
+import "hwsc-file-transaction-svc/file/hwsc-file-transaction-svc.proto";
 
-option go_package = "hwsc";
+option go_package = "github.com/hwsc-org/int/hwsc-app-gateway-svc/app";
 
 service AppGatewayService {
     rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
@@ -51,10 +51,10 @@ service AppGatewayService {
 
 message AppGatewayServiceRequest {
     string token = 1;
-    hwscUserSvc.UserRequest user_request = 2;
-    hwscDocumentSvc.DocumentRequest document_request = 3;
-    hwscFileTransactionSvc.FileTransactionRequest file_transaction_request = 4;
-    hwscFileTransactionSvc.Chunk chunk = 5;
+    user.UserRequest user_request = 2;
+    document.DocumentRequest document_request = 3;
+    file.FileTransactionRequest file_transaction_request = 4;
+    file.Chunk chunk = 5;
 }
 
 message AppGatewayServiceResponse {
@@ -63,13 +63,13 @@ message AppGatewayServiceResponse {
     }
     string message = 2;
     string token = 3;
-    hwsc.User user = 4;
+    lib.User user = 4;
     // for ListUsers response
-    repeated hwsc.User user_collection = 5;
-    hwsc.Document document = 6;
+    repeated lib.User user_collection = 5;
+    lib.Document document = 6;
     // Response for ListUserDocumentCollection
     // Response for QueryDocument
-    repeated hwsc.Document document_collection = 7;
+    repeated lib.Document document_collection = 7;
     // Response for ListDistinctFieldValues
-    hwsc.QueryTransaction query_results = 8;
+    lib.QueryTransaction query_results = 8;
 }

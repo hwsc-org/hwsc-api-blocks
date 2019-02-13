@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package hwscDocumentSvc;
+option go_package = "github.com/hwsc-org/int/hwsc-document-svc/document";
 
-import "document.proto";
-import "authority.proto";
+package document;
 
-option go_package = "hwsc";
+import "lib/document.proto";
+import "lib/authority.proto";
 
 service DocumentService {
     rpc GetStatus (DocumentRequest) returns (DocumentResponse) {
@@ -30,18 +30,18 @@ service DocumentService {
 
 
 message DocumentRequest {
-    hwsc.Identification identification = 1;
-    hwsc.Document data = 2;
+    lib.Identification identification = 1;
+    lib.Document data = 2;
     repeated string image_urls = 3;
     repeated string audio_urls = 4;
     repeated string video_urls = 5;
     repeated string file_urls = 6;
 
     // Request for AddFileMetadata & DeleteFileMetadata
-    hwsc.FileMetadataTransaction fileMetadata_parameters = 7;
+    lib.FileMetadataTransaction fileMetadata_parameters = 7;
 
     // Request for QueryDocument
-    hwsc.QueryTransaction query_parameters = 8;
+    lib.QueryTransaction query_parameters = 8;
 }
 
 message DocumentResponse {
@@ -49,12 +49,12 @@ message DocumentResponse {
         uint32 code = 1;
     }
     string message = 2;
-    hwsc.Document data = 3;
+    lib.Document data = 3;
 
     // Response for ListUserDocumentCollection
     // Response for QueryDocument
-    repeated hwsc.Document document_collection = 4;
+    repeated lib.Document document_collection = 4;
 
     // Response for ListDistinctFieldValues
-    hwsc.QueryTransaction query_results = 5;
+    lib.QueryTransaction query_results = 5;
 }
