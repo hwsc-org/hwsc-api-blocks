@@ -38,11 +38,11 @@ Numeric Test Options for process.argv[2]
 2 - invalid createUser - test null user
 3 - invalid createUser - test empty user
 
-4 - valid getUser - firstName: Mary-Jo, lastName: Allen
+4 - valid getUser - firstName: Integrate Test, lastName: GetUser
 5 - invalid getUser - test non existent uuid
 
 6 - valid deleteUser - firstName: Test Delete, lastName: Delete
-7 - invalid deleteUser - test non existent uuid
+7 - valid deleteUser - test non existent uuid
 
 8 - valid updateUser - update firstName to: Update User Test
 9 - invalid updateUser - test non existent uuid
@@ -84,7 +84,7 @@ const dataSet = [
   },
   { // 1
     svcInfo: new SvcInfo('CreateUser', 'valid', state.OK),
-    user: new User(null, 'Integrate', 'Test One', 'lisakeem@outlook.com', '12345678', 'uwb'),
+    user: new User(null, 'Integrate Test', 'CreateUser', 'lisakeem@outlook.com', '12345678', 'uwb'),
   },
   { // 2
     svcInfo: new SvcInfo('CreateUser', 'test null user', state.INVALID_ARGUMENT),
@@ -109,7 +109,7 @@ const dataSet = [
     user: new User('1000xsnjg0mqjhbf4qx1efd6y7'),
   },
   { // 7
-    svcInfo: new SvcInfo('DeleteUser', 'test non existent uuid', state.NOT_FOUND),
+    svcInfo: new SvcInfo('DeleteUser', 'test non existent uuid', state.OK),
     user: new User('0000xsnjg0mqjhbf4qx1efd6ya'),
   },
   { // 8
@@ -124,7 +124,7 @@ const dataSet = [
   {
     // 10
     svcInfo: new SvcInfo('AuthenticateUser', 'valid', state.OK),
-    user: new User('0000xsnjg0mqjhbf4qx1efd6y3', null, null, 'lisa@test.com', 'testingPassword'),
+    user: new User('0000xsnjg0mqjhbf4qx1efd6y3', null, null, 'integrate@update.com', 'testingPassword'),
   },
   {
     // 11
