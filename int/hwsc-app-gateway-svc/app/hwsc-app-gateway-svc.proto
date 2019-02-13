@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package app;
 
-import "hwsc-user-svc/user/hwsc-user-svc.proto";
+import "int/hwsc-user-svc/user/hwsc-user-svc.proto";
 import "lib/user.proto";
-import "hwsc-document-svc/document/hwsc-document-svc.proto";
+import "int/hwsc-document-svc/document/hwsc-document-svc.proto";
 import "lib/document.proto";
-import "hwsc-file-transaction-svc/file/hwsc-file-transaction-svc.proto";
+import "int/hwsc-file-transaction-svc/file/hwsc-file-transaction-svc.proto";
 
-option go_package = "github.com/hwsc-org/int/hwsc-app-gateway-svc/app";
+option go_package = "github.com/hwsc-org/hwsc-api-blocks/int/hwsc-app-gateway-svc/app";
 
 service AppGatewayService {
     rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {

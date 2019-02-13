@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/hwsc-org/int/hwsc-file-transaction-svc/file";
+option go_package = "github.com/hwsc-org/hwsc-api-blocks/int/hwsc-file-transaction-svc/file";
 
 package file;
 

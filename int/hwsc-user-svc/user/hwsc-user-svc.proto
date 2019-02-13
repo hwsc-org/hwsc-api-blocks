@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/hwsc-org/int/hwsc-user-svc/user";
+option go_package = "github.com/hwsc-org/hwsc-api-blocks/int/hwsc-user-svc/user";
 
 package user;
 
