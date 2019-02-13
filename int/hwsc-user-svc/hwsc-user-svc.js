@@ -15,7 +15,7 @@ const options = {
 const packageDefinition = protoLoader.loadSync('hwsc-user-svc.proto', options);
 
 // used to create a server stub
-const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).hwscUserSvc;
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).user;
 
 // to call service methods, create a stub
 const client = new protoDescriptor.UserService('localhost:50052', grpc.credentials.createInsecure());

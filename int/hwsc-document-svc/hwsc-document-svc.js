@@ -10,8 +10,7 @@ const options = {
   ],
 };
 const hwscDocumentSvcProtoPkgDef = protoLoader.loadSync('hwsc-document-svc.proto', options);
-const hwscDocumentSvcPbJs = grpc.loadPackageDefinition(hwscDocumentSvcProtoPkgDef)
-  .hwscDocumentSvc;
+const hwscDocumentSvcPbJs = grpc.loadPackageDefinition(hwscDocumentSvcProtoPkgDef).document;
 const client = new hwscDocumentSvcPbJs.DocumentService('localhost:50051',
   grpc.credentials.createInsecure());
 
