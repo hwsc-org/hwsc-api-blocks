@@ -54,12 +54,12 @@ echo
 
 # FILE TRANSACTION SERVICE
 echo "Generating FILE TRANSACTION SERVICE"
+cp ${LIB_ROOT}authority.proto ${FILE_ROOT}/lib
 python3.7 -m grpc_tools.protoc \
-    -I . \
     -I ${FILE_ROOT} \
     --python_out=${FILE_ROOT} \
     --grpc_python_out=${FILE_ROOT} \
-    hwsc-file-transaction-svc.proto lib/authority.proto
+    lib/authority.proto hwsc-file-transaction-svc.proto
 protoc -I . \
     --go_out=plugins=grpc:${GOPATH}/src \
     ${FILE_ROOT}hwsc-file-transaction-svc.proto
