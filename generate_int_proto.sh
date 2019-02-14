@@ -73,9 +73,9 @@ protoc \
   --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
   --plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
   -I . \
-  --js_out=import_style=commonjs,binary:${GOPATH}/src \
+  --js_out=import_style=commonjs,binary:${GOPATH}/src/github.com/hwsc-org/hwsc-api-blocks \
   --go_out=plugins=grpc:${GOPATH}/src \
-  --ts_out=service=true:${GOPATH}/src \
+  --ts_out=service=true:${GOPATH}/src/github.com/hwsc-org/hwsc-api-blocks \
   ${APP_ROOT}hwsc-app-gateway-svc.proto
 echo "Done generating APP GATEWAY SERVICE"
 echo "------------------------------------------------------------"
