@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='lib',
   syntax='proto3',
   serialized_options=_b('Z\'github.com/hwsc-org/hwsc-api-blocks/lib'),
-  serialized_pb=_b('\n\x13lib/authority.proto\x12\x03lib\"0\n\x06Secret\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x19\n\x11\x63reated_timestamp\x18\x02 \x01(\x03\"<\n\x0eIdentification\x12\r\n\x05token\x18\x01 \x01(\t\x12\x1b\n\x06secret\x18\x02 \x01(\x0b\x32\x0b.lib.SecretB)Z\'github.com/hwsc-org/hwsc-api-blocks/libb\x06proto3')
+  serialized_pb=_b('\n\x13lib/authority.proto\x12\x03lib\"N\n\x06Secret\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x19\n\x11\x63reated_timestamp\x18\x02 \x01(\x03\x12\x1c\n\x14\x65xpiration_timestamp\x18\x03 \x01(\x03\"<\n\x0eIdentification\x12\r\n\x05token\x18\x01 \x01(\t\x12\x1b\n\x06secret\x18\x02 \x01(\x0b\x32\x0b.lib.SecretB)Z\'github.com/hwsc-org/hwsc-api-blocks/libb\x06proto3')
 )
 
 
@@ -46,6 +46,13 @@ _SECRET = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='expiration_timestamp', full_name='lib.Secret.expiration_timestamp', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -59,7 +66,7 @@ _SECRET = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=28,
-  serialized_end=76,
+  serialized_end=106,
 )
 
 
@@ -96,8 +103,8 @@ _IDENTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=78,
-  serialized_end=138,
+  serialized_start=108,
+  serialized_end=168,
 )
 
 _IDENTIFICATION.fields_by_name['secret'].message_type = _SECRET

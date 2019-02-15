@@ -43,4 +43,6 @@ message User {
     int64 created_date = 9;
     // @inject_tag: bson:"isVerified"
     bool is_verified = 10;
+    // @inject_tag: bson:"permissionLevel"
+    string permission_level = 11;
 }

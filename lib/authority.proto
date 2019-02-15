@@ -8,6 +8,7 @@ package lib;
 message Secret {
     string key = 1;
     int64 created_timestamp = 2;
+    int64 expiration_timestamp = 3;
 }
 
 // Identification is used for communicating between services.
