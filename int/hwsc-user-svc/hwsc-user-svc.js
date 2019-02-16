@@ -1,18 +1,14 @@
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
-const HWSC_USER_PROTO_PATH = '../lib/';
-const HWSC_USER_SVC_PROTO_PATH = `${__dirname}/proto/`;
+const PROTO_PATH = `${__dirname}/../..`;
 
 const options = {
-  includeDirs: [
-    HWSC_USER_PROTO_PATH,
-    HWSC_USER_SVC_PROTO_PATH,
-  ],
+  includeDirs: [PROTO_PATH],
 };
 
 // load the .proto files
-const packageDefinition = protoLoader.loadSync('hwsc-user-svc.proto', options);
+const packageDefinition = protoLoader.loadSync('int/hwsc-user-svc/user/hwsc-user-svc.proto', options);
 
 // used to create a server stub
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).user;

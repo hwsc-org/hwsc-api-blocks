@@ -44,7 +44,9 @@ function extractFuid(err, response, url, media) {
         console.error('unsupported media type');
         return;
     }
+    /* eslint-disable */
     for (const key of Object.keys(map)) {
+      /* eslint-enable */
       if (map[key] === url) {
         console.log(key);
       }
@@ -255,6 +257,7 @@ const dataSet = [
   },
 ];
 
+/* eslint-disable */
 
 function main() {
   switch (process.argv[2]) {
@@ -313,5 +316,5 @@ function main() {
       console.error('invalid arg');
   }
 }
-
+/* eslint-enable */
 main();

@@ -1,22 +1,26 @@
-const HWSC_DOCUMENT_PROTO_PATH = '../lib/';
-const HWSC_DOCUMENT_SVC_PROTO_PATH = `${__dirname}/proto/`;
+/* eslint no-param-reassign: "error" */
+
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
+const PROTO_PATH = `${__dirname}/../..`;
+
 const options = {
-  includeDirs: [
-    HWSC_DOCUMENT_PROTO_PATH,
-    HWSC_DOCUMENT_SVC_PROTO_PATH,
-  ],
+  includeDirs: [PROTO_PATH],
 };
-const hwscDocumentSvcProtoPkgDef = protoLoader.loadSync('hwsc-document-svc.proto', options);
-const hwscDocumentSvcPbJs = grpc.loadPackageDefinition(hwscDocumentSvcProtoPkgDef).document;
-const client = new hwscDocumentSvcPbJs.DocumentService('localhost:50051',
-  grpc.credentials.createInsecure());
+
+const packageDefinition = protoLoader
+  .loadSync('int/hwsc-document-svc/document/hwsc-document-svc.proto', options);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).document;
+
+const client = new protoDescriptor.DocumentService('localhost:50051', grpc.credentials.createInsecure());
+
+const callbackErr = () => console.error('callback not a function');
 
 function getStatus(callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
 
@@ -31,11 +35,13 @@ function getStatus(callback) {
 
 function createDocument(documentRequest, callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
   if (documentRequest === null) {
+    /* eslint-disable */
     documentRequest = {};
+    /* eslint-enable */
   }
 
   client.createDocument(documentRequest, (err, response) => {
@@ -49,7 +55,7 @@ function createDocument(documentRequest, callback) {
 
 function listUserDocumentCollection(documentRequest, callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
 
@@ -64,7 +70,7 @@ function listUserDocumentCollection(documentRequest, callback) {
 
 function updateDocument(documentRequest, callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
 
@@ -79,7 +85,7 @@ function updateDocument(documentRequest, callback) {
 
 function deleteDocument(documentRequest, callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
 
@@ -94,7 +100,7 @@ function deleteDocument(documentRequest, callback) {
 
 function addFileMetadata(documentRequest, media, callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
 
@@ -129,7 +135,7 @@ function addFileMetadata(documentRequest, media, callback) {
 
 function deleteFileMetadata(documentRequest, media, callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
 
@@ -162,7 +168,7 @@ function deleteFileMetadata(documentRequest, media, callback) {
 
 function listDistinctFieldValues(documentRequest, callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
 
@@ -177,7 +183,7 @@ function listDistinctFieldValues(documentRequest, callback) {
 
 function queryDocument(documentRequest, callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
 
