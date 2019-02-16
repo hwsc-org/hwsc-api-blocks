@@ -14,7 +14,7 @@ const packageDefinition = protoLoader
 // pointing to pb file in memory
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).app;
 
-const client = new protoDescriptor.AppGatewayService('localhost: 50051', grpc.credentials.createInsecure());
+const client = new protoDescriptor.AppGatewayService('localhost: 50055', grpc.credentials.createInsecure());
 
 const callbackErr = () => console.error('callback not a function');
 
