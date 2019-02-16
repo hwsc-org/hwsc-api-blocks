@@ -1,30 +1,30 @@
-const HWSC_APP_GATEWAY_SVC_PROTO_PATH = `${__dirname}/proto/hwsc-app-gateway-svc.proto`;
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
-const options = {
-  includeDirs: [
-    HWSC_APP_GATEWAY_SVC_PROTO_PATH,
-  ],
+const PROTO_PATH = `${__dirname}/../..`;
 
+const options = {
+  includeDirs: [PROTO_PATH],
 };
 
 // runtime dynamic compialation proto file, creates pb file dynamically
-const hwscAppGatewaySvcProtoPkgDef = protoLoader.loadSync('hwsc-app-gateway-svc.proto', options);
+const packageDefinition = protoLoader
+  .loadSync('int/hwsc-app-gateway-svc/app/hwsc-app-gateway-svc.proto', options);
 
 // pointing to pb file in memory
-const hwscAppGatewaySvcPbJs = grpc.loadPackageDefinition(hwscAppGatewaySvcProtoPkgDef).app;
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).app;
+
+const client = new protoDescriptor.AppGatewayService('localhost: 50051', grpc.credentials.createInsecure());
+
+const callbackErr = () => console.error('callback not a function');
 
 function getStatus(callback) {
   if (typeof callback !== 'function') {
-    console.error('callback is not a function');
+    callbackErr();
     return;
   }
 
-  const client = new hwscAppGatewaySvcPbJs.AppGatewayService('localhost: 50051',
-    grpc.credentials.createInsecure());
-
-  client.getStatus({ message: 'hello pusheen' }, (err, response) => {
+  client.getStatus({}, (err, response) => {
     if (!err) {
       grpc.closeClient(client);
     }

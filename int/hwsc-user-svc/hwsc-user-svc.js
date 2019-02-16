@@ -8,7 +8,8 @@ const options = {
 };
 
 // load the .proto files
-const packageDefinition = protoLoader.loadSync('int/hwsc-user-svc/user/hwsc-user-svc.proto', options);
+const packageDefinition = protoLoader
+  .loadSync('int/hwsc-user-svc/user/hwsc-user-svc.proto', options);
 
 // used to create a server stub
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).user;
