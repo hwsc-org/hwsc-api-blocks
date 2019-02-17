@@ -52,6 +52,7 @@ Numeric Test Options for process.argv[2]
 
 12 - valid newSecret - generating new secret
 
+13 - valid getSecret - retrieve active key
 */
 
 class User {
@@ -138,6 +139,11 @@ const dataSet = [
     svcInfo: new SvcInfo('NewSecret', 'test generating new secret', state.OK),
     user: new User(),
   },
+  {
+    // 13
+    svcInfo: new SvcInfo('GetSecret', 'test retrieve active secret', state.OK),
+    user: new User(),
+  },
 ];
 
 const processResult = (err, response, svcInfo, displayResponse) => {
@@ -216,6 +222,11 @@ function main() {
         break;
       case 12:
         index.hwscUserSvc.newSecret(dataSet[test], (err, response) => {
+          processResult(err, response, dataSet[test].svcInfo, displayResponse);
+        });
+        break;
+      case 13:
+        index.hwscUserSvc.getSecret(dataSet[test], (err, response) => {
           processResult(err, response, dataSet[test].svcInfo, displayResponse);
         });
         break;
