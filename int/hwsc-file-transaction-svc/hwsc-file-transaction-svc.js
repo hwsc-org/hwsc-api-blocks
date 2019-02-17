@@ -1,23 +1,29 @@
-const HWSC_FILE_TRANSACTION_SVC_PROTO_PATH = `${__dirname}/proto/hwsc-file-transaction-svc.proto`;
+
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
+
+const PROTO_PATH = `${__dirname}/../..`;
+
+
 const fs = require('fs');
 const path = require('path');
 
 const options = {
-  includeDirs: [
-    HWSC_FILE_TRANSACTION_SVC_PROTO_PATH,
-  ],
+  includeDirs: [PROTO_PATH],
 };
-const hwscFileTransactionSvcProtoPkgDef = protoLoader.loadSync('', options);
-const hwscFileTransactionSvcPbJs = grpc.loadPackageDefinition(hwscFileTransactionSvcProtoPkgDef).file;
 
-const client = new hwscFileTransactionSvcPbJs.FileTransactionService('localhost:50053',
-  grpc.credentials.createInsecure());
+const packageDefinition = protoLoader
+  .loadSync('int/hwsc-file-transaction-svc/file/hwsc-file-transaction-svc.proto', options);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).file;
+
+const client = new protoDescriptor.FileTransactionService('localhost:50053', grpc.credentials.createInsecure());
+
+const callbackErr = () => console.error('callback not a function');
 
 function getStatus(callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
   const request = {};
@@ -26,13 +32,12 @@ function getStatus(callback) {
       grpc.closeClient(client);
     }
     callback(err, response);
-    console.log(err);
   });
 }
 
 function createUserFolder(uuid, callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
   const id = uuid;
@@ -49,7 +54,7 @@ function createUserFolder(uuid, callback) {
 
 function uploadFile(filePath, fileName, uuid, callback) {
   if (typeof callback !== 'function') {
-    console.error('callback not a function');
+    callbackErr();
     return;
   }
   const id = uuid;
