@@ -50,6 +50,8 @@ Numeric Test Options for process.argv[2]
 10 - valid authenticateUser - authenticate firstName:
 11 - invalid authenticateUser - test invalid UUID
 
+12 - valid newSecret - generating new secret
+
 */
 
 class User {
@@ -131,6 +133,11 @@ const dataSet = [
     svcInfo: new SvcInfo('AuthenticateUser', 'test invalid UUID', state.INVALID_ARGUMENT),
     user: new User('0000xsnjg0mq'),
   },
+  {
+    // 12
+    svcInfo: new SvcInfo('NewSecret', 'test generating new secret', state.OK),
+    user: new User(),
+  },
 ];
 
 const processResult = (err, response, svcInfo, displayResponse) => {
@@ -204,6 +211,11 @@ function main() {
       case 10:
       case 11:
         index.hwscUserSvc.authenticateUser(dataSet[test], (err, response) => {
+          processResult(err, response, dataSet[test].svcInfo, displayResponse);
+        });
+        break;
+      case 12:
+        index.hwscUserSvc.newSecret(dataSet[test], (err, response) => {
           processResult(err, response, dataSet[test].svcInfo, displayResponse);
         });
         break;
