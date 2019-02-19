@@ -53,6 +53,9 @@ Numeric Test Options for process.argv[2]
 12 - valid newSecret - generating new secret
 
 13 - valid getSecret - retrieve active key
+
+14 - valid getToken - retrieve token for user with no token in table
+15 - valid getToken - retrieve unexpired token for same user (shouldn't insert new token in table)
 */
 
 class User {
@@ -81,6 +84,7 @@ const state = {
   INTERNAL: 13,
 };
 
+// case passwords: testingPassword
 const dataSet = [
   { // 0
     svcInfo: new SvcInfo('GetStatus', 'valid', state.OK),
@@ -143,6 +147,16 @@ const dataSet = [
     // 13
     svcInfo: new SvcInfo('GetSecret', 'test retrieve active secret', state.OK),
     user: new User(),
+  },
+  {
+    // 14
+    svcInfo: new SvcInfo('GetToken', 'get token for user with no previous token', state.OK),
+    user: new User('0000xsnjg0mqjhbf4qx1efd6y5', null, null, 'integrate@get.com', 'testingPassword'),
+  },
+  {
+    // 15
+    svcInfo: new SvcInfo('GetToken', 'get same/unexpired token for same user', state.OK),
+    user: new User('0000xsnjg0mqjhbf4qx1efd6y5', null, null, 'integrate@get.com', 'testingPassword'),
   },
 ];
 
@@ -227,6 +241,12 @@ function main() {
         break;
       case 13:
         index.hwscUserSvc.getSecret(dataSet[test], (err, response) => {
+          processResult(err, response, dataSet[test].svcInfo, displayResponse);
+        });
+        break;
+      case 14:
+      case 15:
+        index.hwscUserSvc.getToken(dataSet[test], (err, response) => {
           processResult(err, response, dataSet[test].svcInfo, displayResponse);
         });
         break;

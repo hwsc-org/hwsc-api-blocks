@@ -174,6 +174,26 @@ function getSecret(request, callback) {
   });
 }
 
+function getToken(request, callback) {
+  if (typeof callback !== 'function') {
+    callbackErr();
+    return;
+  }
+
+  let userRequest = request;
+  if (userRequest == null) {
+    userRequest = {};
+  }
+
+  client.getToken(userRequest, (err, response) => {
+    if (!err) {
+      grpc.closeClient(client);
+    }
+
+    callback(err, response);
+  });
+}
+
 module.exports = {
   getStatus,
   createUser,
@@ -183,4 +203,5 @@ module.exports = {
   authenticateUser,
   newSecret,
   getSecret,
+  getToken,
 };
