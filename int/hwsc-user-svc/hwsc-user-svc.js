@@ -19,178 +19,97 @@ const client = new protoDescriptor.UserService('localhost:50052', grpc.credentia
 
 const callbackErr = () => console.error('callback not a function');
 
-function getStatus(callback) {
-  if (typeof callback !== 'function') {
-    callbackErr();
-    return;
+const closeClient = () => {
+  console.log('\n\nClosing grpc client connection.');
+  grpc.closeClient(client);
+};
+
+const setRequestObject = (request) => {
+  if (request != null) {
+    return request;
   }
+  return {};
+};
 
-  client.getStatus({}, (err, response) => {
-    if (!err) {
-      grpc.closeClient(client);
-    }
+// close connection when script is about to exit or on ctrc+c event
+process.on('exit', closeClient);
+process.on('SIGINT', () => process.exit(0));
 
-    callback(err, response);
+function getStatus(svcInfo) {
+  return new Promise((resolve) => {
+    client.getStatus({}, (err, res) => resolve({ err, res, svcInfo }));
   });
 }
 
-function createUser(request, callback) {
-  if (typeof callback !== 'function') {
-    callbackErr();
-    return;
-  }
+function createUser(request, svcInfo) {
+  const userRequest = setRequestObject(request);
 
-  let userRequest = request;
-  if (userRequest == null) {
-    userRequest = {};
-  }
-
-  client.createUser(userRequest, (err, response) => {
-    if (!err) {
-      grpc.closeClient(client);
-    }
-
-    callback(err, response);
+  return new Promise((resolve) => {
+    client.createUser(userRequest, (err, res) => resolve({ err, res, svcInfo }));
   });
 }
 
-function getUser(request, callback) {
-  if (typeof callback !== 'function') {
-    callbackErr();
-    return;
-  }
+function getUser(request, svcInfo) {
+  const userRequest = setRequestObject(request);
 
-  let userRequest = request;
-  if (userRequest == null) {
-    userRequest = {};
-  }
-
-  client.getUser(userRequest, (err, response) => {
-    if (!err) {
-      grpc.closeClient(client);
-    }
-
-    callback(err, response);
+  return new Promise((resolve) => {
+    client.getUser(userRequest, (err, res) => resolve({ err, res, svcInfo }));
   });
 }
 
-function deleteUser(request, callback) {
-  if (typeof callback !== 'function') {
-    callbackErr();
-    return;
-  }
+function deleteUser(request, svcInfo) {
+  const userRequest = setRequestObject(request);
 
-  let userRequest = request;
-  if (userRequest == null) {
-    userRequest = {};
-  }
-
-  client.deleteUser(userRequest, (err, response) => {
-    if (!err) {
-      grpc.closeClient(client);
-    }
-
-    callback(err, response);
+  return new Promise((resolve) => {
+    client.deleteUser(userRequest, (err, res) => resolve({ err, res, svcInfo }));
   });
 }
 
-function updateUser(request, callback) {
-  if (typeof callback !== 'function') {
-    callbackErr();
-    return;
-  }
+function updateUser(request, svcInfo) {
+  const userRequest = setRequestObject(request);
 
-  let userRequest = request;
-  if (userRequest == null) {
-    userRequest = {};
-  }
-
-  client.updateUser(userRequest, (err, response) => {
-    if (!err) {
-      grpc.closeClient(client);
-    }
-
-    callback(err, response);
+  return new Promise((resolve) => {
+    client.updateUser(userRequest, (err, res) => resolve({ err, res, svcInfo }));
   });
 }
 
-function authenticateUser(request, callback) {
-  if (typeof callback !== 'function') {
-    callbackErr();
-    return;
-  }
+function authenticateUser(request, svcInfo) {
+  const userRequest = setRequestObject(request);
 
-  let userRequest = request;
-  if (userRequest == null) {
-    userRequest = {};
-  }
-
-  client.authenticateUser(userRequest, (err, response) => {
-    if (!err) {
-      grpc.closeClient(client);
-    }
-
-    callback(err, response);
+  return new Promise((resolve) => {
+    client.authenticateUser(userRequest, (err, res) => resolve({ err, res, svcInfo }));
   });
 }
 
-function newSecret(request, callback) {
-  if (typeof callback !== 'function') {
-    callbackErr();
-    return;
-  }
+function newSecret(request, svcInfo) {
+  const userRequest = setRequestObject(request);
 
-  let userRequest = request;
-  if (userRequest == null) {
-    userRequest = {};
-  }
-
-  client.newSecret(userRequest, (err, response) => {
-    if (!err) {
-      grpc.closeClient(client);
-    }
-
-    callback(err, response);
+  return new Promise((resolve) => {
+    client.newSecret(userRequest, (err, res) => resolve({ err, res, svcInfo }));
   });
 }
 
-function getSecret(request, callback) {
-  if (typeof callback !== 'function') {
-    callbackErr();
-    return;
-  }
+function getSecret(request, svcInfo) {
+  const userRequest = setRequestObject(request);
 
-  let userRequest = request;
-  if (userRequest == null) {
-    userRequest = {};
-  }
-
-  client.getSecret(userRequest, (err, response) => {
-    if (!err) {
-      grpc.closeClient(client);
-    }
-
-    callback(err, response);
+  return new Promise((resolve) => {
+    client.getSecret(userRequest, (err, res) => resolve({ err, res, svcInfo }));
   });
 }
 
-function getToken(request, callback) {
-  if (typeof callback !== 'function') {
-    callbackErr();
-    return;
-  }
+function getToken(request, svcInfo) {
+  const userRequest = setRequestObject(request);
 
-  let userRequest = request;
-  if (userRequest == null) {
-    userRequest = {};
-  }
+  return new Promise((resolve) => {
+    client.getToken(userRequest, (err, res) => resolve({ err, res, svcInfo }));
+  });
+}
 
-  client.getToken(userRequest, (err, response) => {
-    if (!err) {
-      grpc.closeClient(client);
-    }
+function verifyToken(request, svcInfo) {
+  const userRequest = setRequestObject(request);
 
-    callback(err, response);
+  return new Promise((resolve) => {
+    client.verifyToken(userRequest, (err, res) => resolve({ err, res, svcInfo }));
   });
 }
 
@@ -204,4 +123,5 @@ module.exports = {
   newSecret,
   getSecret,
   getToken,
+  verifyToken,
 };
