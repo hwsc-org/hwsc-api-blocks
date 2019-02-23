@@ -20,7 +20,6 @@ const client = new protoDescriptor.UserService('localhost:50052', grpc.credentia
 const callbackErr = () => console.error('callback not a function');
 
 const closeClient = () => {
-  console.log('\n\nClosing grpc client connection.');
   grpc.closeClient(client);
 };
 
