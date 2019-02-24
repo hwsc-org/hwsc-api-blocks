@@ -82,7 +82,6 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     echo -e "😃 [INFO] grep using Linux OS"
     DUID=$(node test_document_svc_client.js $CREATE_DOC_SIGNAL $VALID_DOC_REQ| grep -o 'duid: .*' | grep -oP "'[^'].*[^,]" | sed "s/'//g")
-
 fi
 
 if ! [[ $DUID =~ ^[0-9A-Za-z]{27}$ ]]; then
