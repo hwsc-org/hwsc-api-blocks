@@ -197,7 +197,7 @@ async function getTokenForNewUser(userRequest, svcInfo) {
 
   const { uuid, email } = newUserData.res.user;
   const newUserRequest = { user: new User(uuid, null, null, email, userRequest.user.password) };
-  const tokenData = await index.hwscUserSvc.getToken(newUserRequest, svcInfo);
+  const tokenData = await index.hwscUserSvc.getAuthToken(newUserRequest, svcInfo);
 
   return Promise.resolve({
     err: tokenData.err, res: tokenData.res, svcInfo, createdUser: newUserRequest,
@@ -316,7 +316,7 @@ function main() {
           promises.push(index.hwscUserSvc.authenticateUser(userRequest, svcInfo));
           break;
         case 12:
-          promises.push(index.hwscUserSvc.newSecret(userRequest, svcInfo));
+          promises.push(index.hwscUserSvc.makeNewSecret(userRequest, svcInfo));
           break;
         case 13:
           promises.push(index.hwscUserSvc.getSecret(userRequest, svcInfo));
@@ -331,7 +331,7 @@ function main() {
               return Promise.resolve(data);
             }
 
-            return Promise.resolve(await index.hwscUserSvc.getToken(data.createdUser, svcInfo));
+            return Promise.resolve(await index.hwscUserSvc.getAuthToken(data.createdUser, svcInfo));
           };
           promises.push(validGetTokenProcessForSameUser());
           break;
