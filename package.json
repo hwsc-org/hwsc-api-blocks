@@ -20,7 +20,7 @@
     "@grpc/proto-loader": "^0.4.0",
     "grpc": "^1.18.0",
     "moment": "^2.22.2",
-    "npm": "^6.4.1"
+    "npm": "^6.8.0"
   },
   "devDependencies": {
     "eslint": "^5.8.0",
