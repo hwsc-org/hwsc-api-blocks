@@ -15,7 +15,7 @@
 5. Ensure [protoc 3.7.0](https://github.com/protocolbuffers/protobuf/releases) is installed
 6. Get the latest `go get -u google.golang.org/grpc` and `go get -u github.com/golang/protobuf/protoc-gen-go` as necessary if you get issue related to `proto.ProtoPackageIsVersion`
 7. Update `package.json` or get [npm grpc 1.18.0](https://www.npmjs.com/package/grpc) as dev dependency
-8. Update `package.json` or get [npm ts-protoc-gen 0.9.0](https://www.npmjs.com/package/ts-protoc-gen) as dev dependency
+8. Update `package.json` or get [npm ts-protoc-gen 0.8.0](https://www.npmjs.com/package/ts-protoc-gen) as dev dependency
 9. Update `package.json` or get [npm grpc/proto-loader 0.4.0](https://www.npmjs.com/package/@grpc/proto-loader) as dev dependecy
 10. `npm install` as needed
 11. Ensure Python 3 [gRPC tools](https://grpc.io/docs/quickstart/python.html) are installed `$ python3 -m pip install grpcio`

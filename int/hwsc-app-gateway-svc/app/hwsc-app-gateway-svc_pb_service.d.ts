@@ -180,8 +180,10 @@ export class AppGatewayService {
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
 export type Status = { details: string, code: number; metadata: grpc.Metadata }
-export type ServiceClientOptions = { transport: grpc.TransportConstructor; debug?: boolean }
 
+interface UnaryResponse {
+  cancel(): void;
+}
 interface ResponseStream<T> {
   cancel(): void;
   on(type: 'data', handler: (message: T) => void): ResponseStream<T>;
@@ -195,171 +197,171 @@ interface RequestStream<T> {
   on(type: 'end', handler: () => void): RequestStream<T>;
   on(type: 'status', handler: (status: Status) => void): RequestStream<T>;
 }
-interface BidirectionalStream<T> {
-  write(message: T): BidirectionalStream<T>;
+interface BidirectionalStream<ReqT, ResT> {
+  write(message: ReqT): BidirectionalStream<ReqT, ResT>;
   end(): void;
   cancel(): void;
-  on(type: 'data', handler: (message: T) => void): BidirectionalStream<T>;
-  on(type: 'end', handler: () => void): BidirectionalStream<T>;
-  on(type: 'status', handler: (status: Status) => void): BidirectionalStream<T>;
+  on(type: 'data', handler: (message: ResT) => void): BidirectionalStream<ReqT, ResT>;
+  on(type: 'end', handler: () => void): BidirectionalStream<ReqT, ResT>;
+  on(type: 'status', handler: (status: Status) => void): BidirectionalStream<ReqT, ResT>;
 }
 
 export class AppGatewayServiceClient {
   readonly serviceHost: string;
 
-  constructor(serviceHost: string, options?: ServiceClientOptions);
+  constructor(serviceHost: string, options?: grpc.RpcOptions);
   getStatus(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   getStatus(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   getToken(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   getToken(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   createUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   createUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   deleteUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   deleteUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   updateUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   updateUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   authenticateUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   authenticateUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   listUsers(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   listUsers(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   getUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   getUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   shareDocument(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   shareDocument(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   createDocument(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   createDocument(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   listUserDocumentCollection(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   listUserDocumentCollection(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   updateDocument(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   updateDocument(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   deleteDocument(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   deleteDocument(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   addFile(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   addFile(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   deleteFile(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   deleteFile(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   listDistinctFieldValues(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   listDistinctFieldValues(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   queryDocument(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     metadata: grpc.Metadata,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
   queryDocument(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): void;
+  ): UnaryResponse;
 }
 
