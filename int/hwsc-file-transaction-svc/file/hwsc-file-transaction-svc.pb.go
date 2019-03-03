@@ -4,10 +4,10 @@
 package file
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	lib "github.com/hwsc-org/hwsc-api-blocks/lib"
-	context "golang.org/x/net/context"
 	grpc "google.golang.org/grpc"
 	math "math"
 )
@@ -21,7 +21,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type FileTransactionRequest struct {
 	Identification       *lib.Identification `protobuf:"bytes,1,opt,name=identification,proto3" json:"identification,omitempty"`
@@ -168,54 +168,11 @@ func (m *FileTransactionResponse) GetUrl() string {
 	return ""
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*FileTransactionResponse) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _FileTransactionResponse_OneofMarshaler, _FileTransactionResponse_OneofUnmarshaler, _FileTransactionResponse_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*FileTransactionResponse) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*FileTransactionResponse_Code)(nil),
 	}
-}
-
-func _FileTransactionResponse_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*FileTransactionResponse)
-	// status
-	switch x := m.Status.(type) {
-	case *FileTransactionResponse_Code:
-		b.EncodeVarint(1<<3 | proto.WireVarint)
-		b.EncodeVarint(uint64(x.Code))
-	case nil:
-	default:
-		return fmt.Errorf("FileTransactionResponse.Status has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _FileTransactionResponse_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*FileTransactionResponse)
-	switch tag {
-	case 1: // status.code
-		if wire != proto.WireVarint {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeVarint()
-		m.Status = &FileTransactionResponse_Code{uint32(x)}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _FileTransactionResponse_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*FileTransactionResponse)
-	// status
-	switch x := m.Status.(type) {
-	case *FileTransactionResponse_Code:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(x.Code))
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
 }
 
 type Chunk struct {
@@ -332,118 +289,15 @@ func (m *Chunk) GetUuid() string {
 	return ""
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*Chunk) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _Chunk_OneofMarshaler, _Chunk_OneofUnmarshaler, _Chunk_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*Chunk) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*Chunk_Identification)(nil),
 		(*Chunk_Buffer)(nil),
 		(*Chunk_Length)(nil),
 		(*Chunk_FileName)(nil),
 		(*Chunk_Uuid)(nil),
 	}
-}
-
-func _Chunk_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*Chunk)
-	// is_one_of
-	switch x := m.IsOneOf.(type) {
-	case *Chunk_Identification:
-		b.EncodeVarint(1<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.Identification); err != nil {
-			return err
-		}
-	case *Chunk_Buffer:
-		b.EncodeVarint(2<<3 | proto.WireBytes)
-		b.EncodeRawBytes(x.Buffer)
-	case *Chunk_Length:
-		b.EncodeVarint(3<<3 | proto.WireVarint)
-		b.EncodeVarint(uint64(x.Length))
-	case *Chunk_FileName:
-		b.EncodeVarint(4<<3 | proto.WireBytes)
-		b.EncodeStringBytes(x.FileName)
-	case *Chunk_Uuid:
-		b.EncodeVarint(5<<3 | proto.WireBytes)
-		b.EncodeStringBytes(x.Uuid)
-	case nil:
-	default:
-		return fmt.Errorf("Chunk.IsOneOf has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _Chunk_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*Chunk)
-	switch tag {
-	case 1: // is_one_of.identification
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(lib.Identification)
-		err := b.DecodeMessage(msg)
-		m.IsOneOf = &Chunk_Identification{msg}
-		return true, err
-	case 2: // is_one_of.buffer
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeRawBytes(true)
-		m.IsOneOf = &Chunk_Buffer{x}
-		return true, err
-	case 3: // is_one_of.length
-		if wire != proto.WireVarint {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeVarint()
-		m.IsOneOf = &Chunk_Length{int64(x)}
-		return true, err
-	case 4: // is_one_of.file_name
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeStringBytes()
-		m.IsOneOf = &Chunk_FileName{x}
-		return true, err
-	case 5: // is_one_of.uuid
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeStringBytes()
-		m.IsOneOf = &Chunk_Uuid{x}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _Chunk_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*Chunk)
-	// is_one_of
-	switch x := m.IsOneOf.(type) {
-	case *Chunk_Identification:
-		s := proto.Size(x.Identification)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *Chunk_Buffer:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(len(x.Buffer)))
-		n += len(x.Buffer)
-	case *Chunk_Length:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(x.Length))
-	case *Chunk_FileName:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(len(x.FileName)))
-		n += len(x.FileName)
-	case *Chunk_Uuid:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(len(x.Uuid)))
-		n += len(x.Uuid)
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
 }
 
 func init() {

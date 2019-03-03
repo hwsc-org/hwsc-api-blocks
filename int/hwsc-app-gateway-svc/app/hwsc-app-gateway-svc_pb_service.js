@@ -174,7 +174,7 @@ AppGatewayServiceClient.prototype.getStatus = function getStatus(requestMessage,
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.GetStatus, {
+  var client = grpc.unary(AppGatewayService.GetStatus, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -193,13 +193,19 @@ AppGatewayServiceClient.prototype.getStatus = function getStatus(requestMessage,
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.getToken = function getToken(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.GetToken, {
+  var client = grpc.unary(AppGatewayService.GetToken, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -218,13 +224,19 @@ AppGatewayServiceClient.prototype.getToken = function getToken(requestMessage, m
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.createUser = function createUser(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.CreateUser, {
+  var client = grpc.unary(AppGatewayService.CreateUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -243,13 +255,19 @@ AppGatewayServiceClient.prototype.createUser = function createUser(requestMessag
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.deleteUser = function deleteUser(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.DeleteUser, {
+  var client = grpc.unary(AppGatewayService.DeleteUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -268,13 +286,19 @@ AppGatewayServiceClient.prototype.deleteUser = function deleteUser(requestMessag
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.updateUser = function updateUser(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.UpdateUser, {
+  var client = grpc.unary(AppGatewayService.UpdateUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -293,13 +317,19 @@ AppGatewayServiceClient.prototype.updateUser = function updateUser(requestMessag
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.authenticateUser = function authenticateUser(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.AuthenticateUser, {
+  var client = grpc.unary(AppGatewayService.AuthenticateUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -318,13 +348,19 @@ AppGatewayServiceClient.prototype.authenticateUser = function authenticateUser(r
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.listUsers = function listUsers(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.ListUsers, {
+  var client = grpc.unary(AppGatewayService.ListUsers, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -343,13 +379,19 @@ AppGatewayServiceClient.prototype.listUsers = function listUsers(requestMessage,
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.getUser = function getUser(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.GetUser, {
+  var client = grpc.unary(AppGatewayService.GetUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -368,13 +410,19 @@ AppGatewayServiceClient.prototype.getUser = function getUser(requestMessage, met
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.shareDocument = function shareDocument(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.ShareDocument, {
+  var client = grpc.unary(AppGatewayService.ShareDocument, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -393,13 +441,19 @@ AppGatewayServiceClient.prototype.shareDocument = function shareDocument(request
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.createDocument = function createDocument(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.CreateDocument, {
+  var client = grpc.unary(AppGatewayService.CreateDocument, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -418,13 +472,19 @@ AppGatewayServiceClient.prototype.createDocument = function createDocument(reque
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.listUserDocumentCollection = function listUserDocumentCollection(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.ListUserDocumentCollection, {
+  var client = grpc.unary(AppGatewayService.ListUserDocumentCollection, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -443,13 +503,19 @@ AppGatewayServiceClient.prototype.listUserDocumentCollection = function listUser
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.updateDocument = function updateDocument(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.UpdateDocument, {
+  var client = grpc.unary(AppGatewayService.UpdateDocument, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -468,13 +534,19 @@ AppGatewayServiceClient.prototype.updateDocument = function updateDocument(reque
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.deleteDocument = function deleteDocument(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.DeleteDocument, {
+  var client = grpc.unary(AppGatewayService.DeleteDocument, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -493,13 +565,19 @@ AppGatewayServiceClient.prototype.deleteDocument = function deleteDocument(reque
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.addFile = function addFile(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.AddFile, {
+  var client = grpc.unary(AppGatewayService.AddFile, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -518,13 +596,19 @@ AppGatewayServiceClient.prototype.addFile = function addFile(requestMessage, met
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.deleteFile = function deleteFile(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.DeleteFile, {
+  var client = grpc.unary(AppGatewayService.DeleteFile, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -543,13 +627,19 @@ AppGatewayServiceClient.prototype.deleteFile = function deleteFile(requestMessag
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.listDistinctFieldValues = function listDistinctFieldValues(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.ListDistinctFieldValues, {
+  var client = grpc.unary(AppGatewayService.ListDistinctFieldValues, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -568,13 +658,19 @@ AppGatewayServiceClient.prototype.listDistinctFieldValues = function listDistinc
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 AppGatewayServiceClient.prototype.queryDocument = function queryDocument(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  grpc.unary(AppGatewayService.QueryDocument, {
+  var client = grpc.unary(AppGatewayService.QueryDocument, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -593,6 +689,12 @@ AppGatewayServiceClient.prototype.queryDocument = function queryDocument(request
       }
     }
   });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
 };
 
 exports.AppGatewayServiceClient = AppGatewayServiceClient;
