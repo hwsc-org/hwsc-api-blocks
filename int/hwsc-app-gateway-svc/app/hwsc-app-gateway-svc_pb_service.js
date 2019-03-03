@@ -2,7 +2,7 @@
 // file: int/hwsc-app-gateway-svc/app/hwsc-app-gateway-svc.proto
 
 var int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb = require("../../../int/hwsc-app-gateway-svc/app/hwsc-app-gateway-svc_pb");
-var grpc = require("grpc-web-client").grpc;
+var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var AppGatewayService = (function () {
   function AppGatewayService() {}

@@ -2,7 +2,7 @@
 // file: int/hwsc-app-gateway-svc/app/hwsc-app-gateway-svc.proto
 
 import * as int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb from "../../../int/hwsc-app-gateway-svc/app/hwsc-app-gateway-svc_pb";
-import {grpc} from "grpc-web-client";
+import {grpc} from "@improbable-eng/grpc-web";
 
 type AppGatewayServiceGetStatus = {
   readonly methodName: string;
