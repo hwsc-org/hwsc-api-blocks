@@ -1,7 +1,7 @@
 # hwsc-api-blocks
 
 ### Steps to Declaring gRPC API Contract:
-#### Protocol Buffers must be generated within `$GOPATH/src/hwsc-org/hwsc-api-blocks`
+#### Protocol Buffers must be generated within `$GOPATH/src/github.com/hwsc-org/hwsc-api-blocks`
 ##### *Example: [hwsc-grpc-sample-svc](https://github.com/hwsc-org/hwsc-grpc-sample-svc)*
 1. Read protocol buffer [guideline](https://developers.google.com/protocol-buffers/docs/proto3)
 2. Read gRPC with [guideline](https://grpc.io/blog/coreos)
