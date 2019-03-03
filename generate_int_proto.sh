@@ -28,6 +28,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 fi
 echo "Done generating LIB PACKAGE"
 echo "------------------------------------------------------------"
+echo
 
 # SAMPLE SERVICE
 echo "Generating SAMPLE SERVICE"

@@ -25,7 +25,7 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 // value = this can be anything, helps O(1) lookup time for deletion and updating
 type UserDocumentMetadata struct {
 	// @inject_tag: bson:"isPublic"
-	IsPublic bool `protobuf:"varint,1,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty" bson:"isPublic"`
+	IsPublic bool `protobuf:"varint,1,opt,name=is_public,json=isPublic,proto3" json:"is_public" bson:"isPublic"`
 	// @inject_tag: bson:"sharedWith"
 	SharedWith           map[string]bool `protobuf:"bytes,2,rep,name=shared_with,json=sharedWith,proto3" json:"shared_with,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3" bson:"sharedWith"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-" bson:"-"`
