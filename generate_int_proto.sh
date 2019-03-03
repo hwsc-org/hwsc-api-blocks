@@ -18,11 +18,11 @@ protoc -I ${LIB_ROOT} \
 protoc-go-inject-tag -input=${LIB_ROOT}user.pb.go
 protoc-go-inject-tag -input=${LIB_ROOT}document.pb.go
 if [ "$(uname)" == "Darwin" ]; then
-    echo -e "😃 sed using MacOS"
+    echo -e "INFO: sed using MacOS"
     sed -i '' -e 's/`json:"-"`/`json:"-" bson:"-"`/g' ${LIB_ROOT}*.pb.go
     sed -i '' -e 's/json:"is_public,omitempty" bson:"isPublic"/json:"is_public" bson:"isPublic"/g' ${LIB_ROOT}*.pb.go
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    echo -e "😃 sed using Linux OS"
+    echo -e "INFO: sed using Linux OS"
     find ${LIB_ROOT} -type f -print0 | xargs -0 sed -i 's/`json:"-"`/`json:"-" bson:"-"`/g'
     find ${LIB_ROOT} -type f -print0 | xargs -0 sed -i 's/json:"is_public,omitempty" bson:"isPublic"/json:"is_public" bson:"isPublic"/g'
 fi
@@ -45,10 +45,10 @@ protoc -I . \
     ${USER_ROOT}hwsc-user-svc.proto
 protoc-go-inject-tag -input=${USER_ROOT}hwsc-user-svc.pb.go
 if [ "$(uname)" == "Darwin" ]; then
-    echo -e "😃 sed using MacOS"
+    echo -e "INFO: sed using MacOS"
     sed -i '' -e 's/`json:"-"`/`json:"-" bson:"-"`/g' ${USER_ROOT}*.pb.go
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    echo -e "😃 sed using Linux OS"
+    echo -e "INFO: sed using Linux OS"
     find ${USER_ROOT} -type f -print0 | xargs -0 sed -i 's/`json:"-"`/`json:"-" bson:"-"`/g'
 fi
 echo "Done generating USER SERVICE"
@@ -62,10 +62,10 @@ protoc -I . \
     ${DOCUMENT_ROOT}hwsc-document-svc.proto
 protoc-go-inject-tag -input=${DOCUMENT_ROOT}hwsc-document-svc.pb.go
 if [ "$(uname)" == "Darwin" ]; then
-    echo -e "😃 sed using MacOS"
+    echo -e "INFO: sed using MacOS"
     sed -i '' -e 's/`json:"-"`/`json:"-" bson:"-"`/g' ${DOCUMENT_ROOT}*.pb.go
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    echo -e "😃 sed using Linux OS"
+    echo -e "INFO: sed using Linux OS"
     find ${DOCUMENT_ROOT} -type f -print0 | xargs -0 sed -i 's/`json:"-"`/`json:"-" bson:"-"`/g'
 fi
 echo "Done generating DOCUMENT SERVICE"
