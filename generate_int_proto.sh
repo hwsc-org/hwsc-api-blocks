@@ -20,10 +20,12 @@ protoc-go-inject-tag -input=${LIB_ROOT}document.pb.go
 if [ "$(uname)" == "Darwin" ]; then
     echo -e "INFO: sed using MacOS"
     sed -i '' -e 's/`json:"-"`/`json:"-" bson:"-"`/g' ${LIB_ROOT}*.pb.go
+    # TODO https://github.com/hwsc-org/hwsc-api-blocks/issues/88
     sed -i '' -e 's/json:"is_public,omitempty" bson:"isPublic"/json:"is_public" bson:"isPublic"/g' ${LIB_ROOT}*.pb.go
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     echo -e "INFO: sed using Linux OS"
     find ${LIB_ROOT} -type f -print0 | xargs -0 sed -i 's/`json:"-"`/`json:"-" bson:"-"`/g'
+    # TODO https://github.com/hwsc-org/hwsc-api-blocks/issues/88
     find ${LIB_ROOT} -type f -print0 | xargs -0 sed -i 's/json:"is_public,omitempty" bson:"isPublic"/json:"is_public" bson:"isPublic"/g'
 fi
 echo "Done generating LIB PACKAGE"
