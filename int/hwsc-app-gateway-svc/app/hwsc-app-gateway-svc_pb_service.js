@@ -64,15 +64,6 @@ AppGatewayService.UpdateUser = {
   responseType: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse
 };
 
-AppGatewayService.AuthenticateUser = {
-  methodName: "AuthenticateUser",
-  service: AppGatewayService,
-  requestStream: false,
-  responseStream: false,
-  requestType: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
-  responseType: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse
-};
-
 AppGatewayService.ListUsers = {
   methodName: "ListUsers",
   service: AppGatewayService,
@@ -339,37 +330,6 @@ AppGatewayServiceClient.prototype.updateUser = function updateUser(requestMessag
     callback = arguments[1];
   }
   var client = grpc.unary(AppGatewayService.UpdateUser, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-AppGatewayServiceClient.prototype.authenticateUser = function authenticateUser(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(AppGatewayService.AuthenticateUser, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

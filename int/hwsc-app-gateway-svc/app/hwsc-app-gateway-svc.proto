@@ -23,15 +23,12 @@ service AppGatewayService {
     }
     rpc UpdateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
-    rpc AuthenticateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
-    }
     rpc ListUsers (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
     rpc GetUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
     rpc ShareDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
-
     rpc CreateDocument (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
     rpc ListUserDocumentCollection (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {

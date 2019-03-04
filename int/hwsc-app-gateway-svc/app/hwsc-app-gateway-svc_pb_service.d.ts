@@ -58,15 +58,6 @@ type AppGatewayServiceUpdateUser = {
   readonly responseType: typeof int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse;
 };
 
-type AppGatewayServiceAuthenticateUser = {
-  readonly methodName: string;
-  readonly service: typeof AppGatewayService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest;
-  readonly responseType: typeof int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse;
-};
-
 type AppGatewayServiceListUsers = {
   readonly methodName: string;
   readonly service: typeof AppGatewayService;
@@ -174,7 +165,6 @@ export class AppGatewayService {
   static readonly CreateUser: AppGatewayServiceCreateUser;
   static readonly DeleteUser: AppGatewayServiceDeleteUser;
   static readonly UpdateUser: AppGatewayServiceUpdateUser;
-  static readonly AuthenticateUser: AppGatewayServiceAuthenticateUser;
   static readonly ListUsers: AppGatewayServiceListUsers;
   static readonly GetUser: AppGatewayServiceGetUser;
   static readonly ShareDocument: AppGatewayServiceShareDocument;
@@ -271,15 +261,6 @@ export class AppGatewayServiceClient {
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
   ): UnaryResponse;
   updateUser(
-    requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
-    callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): UnaryResponse;
-  authenticateUser(
-    requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): UnaryResponse;
-  authenticateUser(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
   ): UnaryResponse;
