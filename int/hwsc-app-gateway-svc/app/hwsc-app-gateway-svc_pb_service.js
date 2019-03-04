@@ -19,8 +19,17 @@ AppGatewayService.GetStatus = {
   responseType: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse
 };
 
-AppGatewayService.GetToken = {
-  methodName: "GetToken",
+AppGatewayService.GetAuthToken = {
+  methodName: "GetAuthToken",
+  service: AppGatewayService,
+  requestStream: false,
+  responseStream: false,
+  requestType: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
+  responseType: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse
+};
+
+AppGatewayService.VerifyEmailToken = {
+  methodName: "VerifyEmailToken",
   service: AppGatewayService,
   requestStream: false,
   responseStream: false,
@@ -201,11 +210,42 @@ AppGatewayServiceClient.prototype.getStatus = function getStatus(requestMessage,
   };
 };
 
-AppGatewayServiceClient.prototype.getToken = function getToken(requestMessage, metadata, callback) {
+AppGatewayServiceClient.prototype.getAuthToken = function getAuthToken(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(AppGatewayService.GetToken, {
+  var client = grpc.unary(AppGatewayService.GetAuthToken, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+AppGatewayServiceClient.prototype.verifyEmailToken = function verifyEmailToken(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(AppGatewayService.VerifyEmailToken, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

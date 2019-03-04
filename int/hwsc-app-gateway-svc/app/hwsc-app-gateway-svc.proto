@@ -13,9 +13,10 @@ option go_package = "github.com/hwsc-org/hwsc-api-blocks/int/hwsc-app-gateway-sv
 service AppGatewayService {
     rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
-    rpc GetToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    rpc GetAuthToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
-
+    rpc VerifyEmailToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    }
     rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
     rpc DeleteUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
