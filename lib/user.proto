@@ -40,7 +40,7 @@ message User {
     // @inject_tag: bson:"sharedToMe"
     map<string, UserFriendMetadata> shared_to_me = 8; // key = friends uuid
     // @inject_tag: bson:"createdDate"
-    int64 created_date = 9;
+    int64 created_timestamp = 9;
     // @inject_tag: bson:"isVerified"
     bool is_verified = 10;
     // @inject_tag: bson:"permissionLevel"
