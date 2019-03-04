@@ -1,5 +1,13 @@
 #!/bin/bash
 
+PROTOC_VERSION=$(protoc --version | sed 's/[^0-9.]//g')
+CURRENT_VERSION="3.7.0"
+
+if [ "$PROTOC_VERSION" != "$CURRENT_VERSION" ]; then
+  echo "Please upgrade your protoc version to ${CURRENT_VERSION}"
+  exit 1
+fi
+
 LIB_ROOT="./lib/"
 USER_ROOT="./int/hwsc-user-svc/user/"
 DOCUMENT_ROOT="./int/hwsc-document-svc/document/"
