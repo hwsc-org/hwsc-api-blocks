@@ -29,7 +29,9 @@ service UserService {
     }
     rpc GetAuthToken (UserRequest) returns (UserResponse) {
     }
-    rpc VerifyToken (UserRequest) returns (UserResponse) {
+    rpc VerifyAuthToken (UserRequest) returns (UserResponse) {
+    }
+    rpc VerifyEmailToken (UserRequest) returns (UserResponse) {
     }
     rpc GetSecret (UserRequest) returns (UserResponse) {
     }
