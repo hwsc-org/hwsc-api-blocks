@@ -36,7 +36,11 @@ process.on('SIGINT', () => process.exit(0));
 
 function getStatus(svcInfo) {
   return new Promise((resolve) => {
-    client.getStatus({}, (err, res) => resolve({ err, res, svcInfo }));
+    client.getStatus({}, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
   });
 }
 
@@ -44,7 +48,11 @@ function createUser(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.createUser(userRequest, (err, res) => resolve({ err, res, svcInfo }));
+    client.createUser(userRequest, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
   });
 }
 
@@ -52,7 +60,11 @@ function getUser(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.getUser(userRequest, (err, res) => resolve({ err, res, svcInfo }));
+    client.getUser(userRequest, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
   });
 }
 
@@ -60,7 +72,11 @@ function deleteUser(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.deleteUser(userRequest, (err, res) => resolve({ err, res, svcInfo }));
+    client.deleteUser(userRequest, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
   });
 }
 
@@ -68,7 +84,11 @@ function updateUser(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.updateUser(userRequest, (err, res) => resolve({ err, res, svcInfo }));
+    client.updateUser(userRequest, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
   });
 }
 
@@ -76,7 +96,11 @@ function authenticateUser(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.authenticateUser(userRequest, (err, res) => resolve({ err, res, svcInfo }));
+    client.authenticateUser(userRequest, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
   });
 }
 
@@ -84,7 +108,11 @@ function makeNewSecret(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.makeNewSecret(userRequest, (err, res) => resolve({ err, res, svcInfo }));
+    client.makeNewSecret(userRequest, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
   });
 }
 
@@ -92,7 +120,11 @@ function getSecret(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.getSecret(userRequest, (err, res) => resolve({ err, res, svcInfo }));
+    client.getSecret(userRequest, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
   });
 }
 
@@ -100,15 +132,23 @@ function getAuthToken(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.getAuthToken(userRequest, (err, res) => resolve({ err, res, svcInfo }));
+    client.getAuthToken(userRequest, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
   });
 }
 
-function verifyToken(request, svcInfo) {
+function verifyAuthToken(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.verifyToken(userRequest, (err, res) => resolve({ err, res, svcInfo }));
+    client.verifyAuthToken(userRequest, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
   });
 }
 
@@ -122,5 +162,5 @@ module.exports = {
   makeNewSecret,
   getSecret,
   getAuthToken,
-  verifyToken,
+  verifyAuthToken,
 };

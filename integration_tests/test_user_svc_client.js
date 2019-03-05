@@ -1,7 +1,6 @@
 /* eslint no-continue: 0 */
-
 const index = require('../index.js');
-
+const objects = require('../objects');
 /*
 --------------------------------------------------------------------------
 Command line arg template:
@@ -57,117 +56,93 @@ Numeric Test Options for process.argv[2]
 14 - valid getToken - retrieve token for user with no token in table
 15 - valid getToken - retrieve unexpired token for same user (shouldn't insert new token in table)
 
-16 - valid verifyToken - retrieve token paired with secret
+16 - valid verifyAuthToken - retrieve token paired with secret
 */
 
-class User {
-  constructor(uuid, firstName, lastName, email, password, organization) {
-    this.uuid = uuid;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.password = password;
-    this.organization = organization;
-  }
-}
-
-class SvcInfo {
-  constructor(svcType, testType, code) {
-    this.svcType = svcType;
-    this.testType = testType;
-    this.code = code;
-  }
-}
-
-const state = {
-  OK: 0,
-  INVALID_ARGUMENT: 3,
-  NOT_FOUND: 5,
-  INTERNAL: 13,
-};
-
 const generateRandomEmail = () => {
-  const randomText = Math.random().toString(36).substr(2, 5);
+  const randomText = Math.random()
+    .toString(36)
+    .substr(2, 5);
   return `hwsc.test+user_${randomText}@gmail.com`;
 };
 
 const testCases = [
   { // 0
-    svcInfo: new SvcInfo('GetStatus', 'valid', state.OK),
+    svcInfo: new objects.SvcInfo('GetStatus', 'valid', objects.state.OK),
   },
   { // 1
-    svcInfo: new SvcInfo('CreateUser', 'valid', state.OK),
-    user: new User(null, 'IntegrateTest', 'CreateUser-One', generateRandomEmail(), 'testingPassword', 'uwb'),
+    svcInfo: new objects.SvcInfo('CreateUser', 'valid', objects.state.OK),
+    user: new objects.User(null, 'IntegrateTest', 'CreateUser-One', generateRandomEmail(), 'testingPassword', 'uwb'),
   },
   { // 2
-    svcInfo: new SvcInfo('CreateUser', 'test null user', state.INVALID_ARGUMENT),
+    svcInfo: new objects.SvcInfo('CreateUser', 'test null user', objects.state.INVALID_ARGUMENT),
     user: null,
   },
   { // 3
     // TODO err code needs to change in hwsc-user-svc to INVALID_ARGUMENT
-    svcInfo: new SvcInfo('CreateUser', 'test empty user', state.INTERNAL),
-    user: new User(),
+    svcInfo: new objects.SvcInfo('CreateUser', 'test empty user', objects.state.INTERNAL),
+    user: new objects.User(),
   },
   { // 4
-    svcInfo: new SvcInfo('GetUser', 'valid', state.OK),
-    user: new User(null, 'IntegrateTest', 'GetUser-One', generateRandomEmail(), 'testingPassword', 'uwb'),
+    svcInfo: new objects.SvcInfo('GetUser', 'valid', objects.state.OK),
+    user: new objects.User(null, 'IntegrateTest', 'GetUser-One', generateRandomEmail(), 'testingPassword', 'uwb'),
   },
   { // 5
     // TODO err code needs to change in hwsc-user-svc to NOT_FOUND
-    svcInfo: new SvcInfo('GetUser', 'test non existent uuid', state.INTERNAL),
-    user: new User('0000xsnjg0mqjhbf4qx1efd6ya'),
+    svcInfo: new objects.SvcInfo('GetUser', 'test non existent uuid', objects.state.INTERNAL),
+    user: new objects.User('0000xsnjg0mqjhbf4qx1efd6ya'),
   },
   { // 6
-    svcInfo: new SvcInfo('DeleteUser', 'valid, delete existing user', state.OK),
-    user: new User(null, 'IntegrateTest', 'DeleteUser', generateRandomEmail(), 'testingPassword', 'uwb'),
+    svcInfo: new objects.SvcInfo('DeleteUser', 'valid, delete existing user', objects.state.OK),
+    user: new objects.User(null, 'IntegrateTest', 'DeleteUser', generateRandomEmail(), 'testingPassword', 'uwb'),
   },
   { // 7
-    svcInfo: new SvcInfo('DeleteUser', 'test non existent uuid', state.OK),
-    user: new User('0000xsnjg0mqjhbf4qx1efd6ya'),
+    svcInfo: new objects.SvcInfo('DeleteUser', 'test non existent uuid', objects.state.OK),
+    user: new objects.User('0000xsnjg0mqjhbf4qx1efd6ya'),
   },
   { // 8
-    svcInfo: new SvcInfo('UpdateUser', 'valid', state.OK),
-    user: new User(null, 'IntegrateTest', 'UpdateUser', generateRandomEmail(), 'testingPassword', 'uwb'),
+    svcInfo: new objects.SvcInfo('UpdateUser', 'valid', objects.state.OK),
+    user: new objects.User(null, 'IntegrateTest', 'UpdateUser', generateRandomEmail(), 'testingPassword', 'uwb'),
   },
   { // 9
     // TODO err code needs to change in hwsc-user-svc to NOT_FOUND
-    svcInfo: new SvcInfo('UpdateUser', 'test non existent uuid', state.INTERNAL),
-    user: new User('0000xsnjg0mqjhbf4qx1efd6ya', 'Update User Test'),
+    svcInfo: new objects.SvcInfo('UpdateUser', 'test non existent uuid', objects.state.INTERNAL),
+    user: new objects.User('0000xsnjg0mqjhbf4qx1efd6ya', 'Update User Test'),
   },
   {
     // 10
-    svcInfo: new SvcInfo('AuthenticateUser', 'valid', state.OK),
-    user: new User(null, 'IntegrateTest', 'AuthenticateUser', generateRandomEmail(), 'testingPassword', 'uwb'),
+    svcInfo: new objects.SvcInfo('AuthenticateUser', 'valid', objects.state.OK),
+    user: new objects.User(null, 'IntegrateTest', 'AuthenticateUser', generateRandomEmail(), 'testingPassword', 'uwb'),
   },
   {
     // 11
-    svcInfo: new SvcInfo('AuthenticateUser', 'test invalid UUID', state.INVALID_ARGUMENT),
-    user: new User('0000xsnjg0mq'),
+    svcInfo: new objects.SvcInfo('AuthenticateUser', 'test invalid UUID', objects.state.INVALID_ARGUMENT),
+    user: new objects.User('0000xsnjg0mq'),
   },
   {
     // 12
-    svcInfo: new SvcInfo('NewSecret', 'test generating new secret', state.OK),
-    user: new User(),
+    svcInfo: new objects.SvcInfo('NewSecret', 'test generating new secret', objects.state.OK),
+    user: new objects.User(),
   },
   {
     // 13
-    svcInfo: new SvcInfo('GetSecret', 'test retrieve active secret', state.OK),
-    user: new User(),
+    svcInfo: new objects.SvcInfo('GetSecret', 'test retrieve active secret', objects.state.OK),
+    user: new objects.User(),
   },
   {
     // 14
-    svcInfo: new SvcInfo('GetToken', 'get token for user with no previous token', state.OK),
-    user: new User(null, 'IntegrateTest', 'GetToken-NewUser', generateRandomEmail(), 'testingPassword', 'uwb'),
+    svcInfo: new objects.SvcInfo('GetToken', 'get token for user with no previous token', objects.state.OK),
+    user: new objects.User(null, 'IntegrateTest', 'GetToken-NewUser', generateRandomEmail(), 'testingPassword', 'uwb'),
   },
   {
     // 15
-    svcInfo: new SvcInfo('GetToken', 'get same/unexpired token for same user', state.OK),
-    user: new User(null, 'IntegrateTest', 'GetToken-SameUser', generateRandomEmail(), 'testingPassword', 'uwb'),
+    svcInfo: new objects.SvcInfo('GetToken', 'get same/unexpired token for same user', objects.state.OK),
+    user: new objects.User(null, 'IntegrateTest', 'GetToken-SameUser', generateRandomEmail(), 'testingPassword', 'uwb'),
   },
   {
     // 16
-    svcInfo: new SvcInfo('VerifyToken', 'get existing token paired with secret', state.OK),
-    user: new User(null, 'IntegrateTest', 'VerifyToken', generateRandomEmail(), 'testingPassword', 'uwb'),
+    svcInfo: new objects.SvcInfo('VerifyAuthToken', 'get existing token paired with secret', objects.state.OK),
+    user: new objects.User(null, 'IntegrateTest', 'VerifyAuthToken', generateRandomEmail(), 'testingPassword', 'uwb'),
   },
 ];
 
@@ -191,16 +166,23 @@ async function getTokenForNewUser(userRequest, svcInfo) {
   const newUserData = await index.hwscUserSvc.createUser(userRequest, svcInfo);
   if (newUserData.err != null) {
     return Promise.resolve({
-      err: newUserData.err, res: newUserData.res, svcInfo,
+      err: newUserData.err,
+      res: newUserData.res,
+      svcInfo,
     });
   }
 
   const { uuid, email } = newUserData.res.user;
-  const newUserRequest = { user: new User(uuid, null, null, email, userRequest.user.password) };
+  const newUserRequest = {
+    user: new objects.User(uuid, null, null, email, userRequest.user.password),
+  };
   const tokenData = await index.hwscUserSvc.getAuthToken(newUserRequest, svcInfo);
 
   return Promise.resolve({
-    err: tokenData.err, res: tokenData.res, svcInfo, createdUser: newUserRequest,
+    err: tokenData.err,
+    res: tokenData.res,
+    svcInfo,
+    createdUser: newUserRequest,
   });
 }
 
@@ -213,7 +195,8 @@ function main() {
 
   let tests = process.argv[2].split(',');
   if (tests.length === 1 && tests[0].toLowerCase() === 'all') {
-    tests = [...Array(testCases.length).keys()];
+    tests = [...Array(testCases.length)
+      .keys()];
   } else {
     tests = tests.map(Number); // convert each element to a Number type
   }
@@ -305,7 +288,7 @@ function main() {
 
             const { uuid, email } = data.res.user;
             const { password } = userRequest.user;
-            const newUserRequest = { user: new User(uuid, null, null, email, password) };
+            const newUserRequest = { user: new objects.User(uuid, null, null, email, password) };
             data = await index.hwscUserSvc.authenticateUser(newUserRequest, svcInfo);
             return Promise.resolve(data);
           };
@@ -342,7 +325,7 @@ function main() {
             const { token } = tokenData.res.identification;
             const identity = { identification: { token } };
 
-            return Promise.resolve(await index.hwscUserSvc.verifyToken(identity, svcInfo));
+            return Promise.resolve(await index.hwscUserSvc.verifyAuthToken(identity, svcInfo));
           };
           promises.push(validVerifyToken());
           break;
