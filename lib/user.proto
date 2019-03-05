@@ -45,4 +45,6 @@ message User {
     bool is_verified = 10;
     // @inject_tag: bson:"permissionLevel"
     string permission_level = 11;
+    // @inject_tag: bson:"prospectiveEmail"
+    string prospective_email = 12;
 }
