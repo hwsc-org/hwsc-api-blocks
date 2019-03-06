@@ -57,6 +57,9 @@ Numeric Test Options for process.argv[2]
 15 - valid getToken - retrieve unexpired token for same user (shouldn't insert new token in table)
 
 16 - valid verifyAuthToken - retrieve token paired with secret
+
+17 - valid verifyEmailToken - verify existing token (mXRLhKATqLq0-5mQ4O9iUob9W896uUhXBT9JrkWMpNs=)
+18 - invalid verifyEmailToken - test non-existent token
 */
 
 const generateRandomEmail = () => {
@@ -143,6 +146,16 @@ const testCases = [
     // 16
     svcInfo: new objects.SvcInfo('VerifyAuthToken', 'get existing token paired with secret', objects.state.OK),
     user: new objects.User(null, 'IntegrateTest', 'VerifyAuthToken', generateRandomEmail(), 'testingPassword', 'uwb'),
+  },
+  {
+    // 17
+    svcInfo: new objects.SvcInfo('VerifyEmailToken', 'verify existing token', objects.state.OK),
+    user: new objects.User(null, 'IntegrateTest', 'VerifyEmailToken', generateRandomEmail(), 'testingPassword', 'uwb'),
+  },
+  {
+    // 18
+    svcInfo: new objects.SvcInfo('VerifyEmailToken', 'test non-existing token', objects.state.INTERNAL),
+    user: null,
   },
 ];
 
@@ -320,14 +333,32 @@ function main() {
           break;
         }
         case 16: {
-          const validVerifyToken = async () => {
+          const validVerifyAuthToken = async () => {
             const tokenData = await getTokenForNewUser(userRequest, svcInfo);
             const { token } = tokenData.res.identification;
             const identity = { identification: { token } };
 
             return Promise.resolve(await index.hwscUserSvc.verifyAuthToken(identity, svcInfo));
           };
-          promises.push(validVerifyToken());
+          promises.push(validVerifyAuthToken());
+          break;
+        }
+        case 17: {
+          const validVerifyEmailToken = async () => {
+            let data = await index.hwscUserSvc.createUser(userRequest, svcInfo);
+            if (data.err != null) {
+              return Promise.resolve(data);
+            }
+            const identity = { identification: { token: data.res.identification.token } };
+            data = await index.hwscUserSvc.verifyEmailToken(identity, svcInfo);
+            return Promise.resolve(data);
+          };
+          promises.push(validVerifyEmailToken());
+          break;
+        }
+        case 18: {
+          const identity = { identification: { token: 'not-exist' } };
+          promises.push(index.hwscUserSvc.verifyEmailToken(identity, svcInfo));
           break;
         }
         default:
