@@ -150,7 +150,7 @@ const testCases = [
   {
     // 17
     svcInfo: new objects.SvcInfo('VerifyEmailToken', 'verify existing token', objects.state.OK),
-    user: null,
+    user: new objects.User(null, 'IntegrateTest', 'VerifyEmailToken', generateRandomEmail(), 'testingPassword', 'uwb'),
   },
   {
     // 18
@@ -344,11 +344,16 @@ function main() {
           break;
         }
         case 17: {
-          // this test can be only ran once b/c after success, service will delete this token
-          // if you want to test this case again for success, re-run the db-local script
-          const existingEmailToken = 'mXRLhKATqLq0-5mQ4O9iUob9W896uUhXBT9JrkWMpNs=';
-          const identity = { identification: { token: existingEmailToken } };
-          promises.push(index.hwscUserSvc.verifyEmailToken(identity, svcInfo));
+          const validVerifyEmailToken = async () => {
+            let data = await index.hwscUserSvc.createUser(userRequest, svcInfo);
+            if (data.err != null) {
+              return Promise.resolve(data);
+            }
+            const identity = { identification: { token: data.res.identification.token } };
+            data = await index.hwscUserSvc.verifyEmailToken(identity, svcInfo);
+            return Promise.resolve(data);
+          };
+          promises.push(validVerifyEmailToken());
           break;
         }
         case 18: {
