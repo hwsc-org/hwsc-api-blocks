@@ -152,6 +152,18 @@ function verifyAuthToken(request, svcInfo) {
   });
 }
 
+function verifyEmailToken(request, svcInfo) {
+  const userRequest = setRequestObject(request);
+
+  return new Promise((resolve) => {
+    client.verifyEmailToken(userRequest, (err, res) => resolve({
+      err,
+      res,
+      svcInfo,
+    }));
+  });
+}
+
 module.exports = {
   getStatus,
   createUser,
@@ -163,4 +175,5 @@ module.exports = {
   getSecret,
   getAuthToken,
   verifyAuthToken,
+  verifyEmailToken,
 };
