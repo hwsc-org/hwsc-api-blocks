@@ -3,9 +3,9 @@ syntax = "proto3";
 package app;
 
 import "int/hwsc-user-svc/user/hwsc-user-svc.proto";
-import "lib/user.proto";
+import "int/lib/user.proto";
 import "int/hwsc-document-svc/document/hwsc-document-svc.proto";
-import "lib/document.proto";
+import "int/lib/document.proto";
 import "int/hwsc-file-transaction-svc/file/hwsc-file-transaction-svc.proto";
 
 option go_package = "github.com/hwsc-org/hwsc-api-blocks/int/hwsc-app-gateway-svc/app";

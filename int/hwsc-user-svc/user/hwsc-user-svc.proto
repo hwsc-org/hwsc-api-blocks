@@ -4,8 +4,8 @@ option go_package = "github.com/hwsc-org/hwsc-api-blocks/int/hwsc-user-svc/user"
 
 package user;
 
-import "lib/user.proto";
-import "lib/authority.proto";
+import "int/lib/user.proto";
+import "int/lib/authority.proto";
 
 // NOTES:
 // any user object returned by svc, will have password field empty string

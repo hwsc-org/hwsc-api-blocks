@@ -8,7 +8,7 @@ if [ "$PROTOC_VERSION" != "$CURRENT_VERSION" ]; then
   exit 1
 fi
 
-LIB_ROOT="./lib/"
+LIB_ROOT="./int/lib/"
 USER_ROOT="./int/hwsc-user-svc/user/"
 DOCUMENT_ROOT="./int/hwsc-document-svc/document/"
 FILE_ROOT="./int/hwsc-file-transaction-svc/file/"
@@ -84,12 +84,12 @@ echo
 
 # FILE TRANSACTION SERVICE
 echo "Generating FILE TRANSACTION SERVICE"
-cp ${LIB_ROOT}authority.proto ${FILE_ROOT}/lib
+cp ${LIB_ROOT}authority.proto ${FILE_ROOT}/int/lib
 python3.7 -m grpc_tools.protoc \
     -I ${FILE_ROOT} \
     --python_out=${FILE_ROOT} \
     --grpc_python_out=${FILE_ROOT} \
-    lib/authority.proto hwsc-file-transaction-svc.proto
+    int/lib/authority.proto hwsc-file-transaction-svc.proto
 protoc -I . \
     --go_out=plugins=grpc:${GOPATH}/src \
     ${FILE_ROOT}hwsc-file-transaction-svc.proto
