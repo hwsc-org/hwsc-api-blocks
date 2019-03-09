@@ -4,8 +4,8 @@ option go_package = "github.com/hwsc-org/hwsc-api-blocks/int/hwsc-document-svc/d
 
 package document;
 
-import "lib/document.proto";
-import "lib/authority.proto";
+import "int/lib/document.proto";
+import "int/lib/authority.proto";
 
 service DocumentService {
     rpc GetStatus (DocumentRequest) returns (DocumentResponse) {

@@ -13,12 +13,12 @@ var global = Function('return this')();
 
 var int_hwsc$user$svc_user_hwsc$user$svc_pb = require('../../../int/hwsc-user-svc/user/hwsc-user-svc_pb.js');
 goog.object.extend(proto, int_hwsc$user$svc_user_hwsc$user$svc_pb);
-var lib_user_pb = require('../../../lib/user_pb.js');
-goog.object.extend(proto, lib_user_pb);
+var int_lib_user_pb = require('../../../int/lib/user_pb.js');
+goog.object.extend(proto, int_lib_user_pb);
 var int_hwsc$document$svc_document_hwsc$document$svc_pb = require('../../../int/hwsc-document-svc/document/hwsc-document-svc_pb.js');
 goog.object.extend(proto, int_hwsc$document$svc_document_hwsc$document$svc_pb);
-var lib_document_pb = require('../../../lib/document_pb.js');
-goog.object.extend(proto, lib_document_pb);
+var int_lib_document_pb = require('../../../int/lib/document_pb.js');
+goog.object.extend(proto, int_lib_document_pb);
 var int_hwsc$file$transaction$svc_file_hwsc$file$transaction$svc_pb = require('../../../int/hwsc-file-transaction-svc/file/hwsc-file-transaction-svc_pb.js');
 goog.object.extend(proto, int_hwsc$file$transaction$svc_file_hwsc$file$transaction$svc_pb);
 goog.exportSymbol('proto.app.AppGatewayServiceRequest', null, global);
@@ -443,13 +443,13 @@ proto.app.AppGatewayServiceResponse.toObject = function(includeInstance, msg) {
     code: jspb.Message.getFieldWithDefault(msg, 1, 0),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
     token: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    user: (f = msg.getUser()) && lib_user_pb.User.toObject(includeInstance, f),
+    user: (f = msg.getUser()) && int_lib_user_pb.User.toObject(includeInstance, f),
     userCollectionList: jspb.Message.toObjectList(msg.getUserCollectionList(),
-    lib_user_pb.User.toObject, includeInstance),
-    document: (f = msg.getDocument()) && lib_document_pb.Document.toObject(includeInstance, f),
+    int_lib_user_pb.User.toObject, includeInstance),
+    document: (f = msg.getDocument()) && int_lib_document_pb.Document.toObject(includeInstance, f),
     documentCollectionList: jspb.Message.toObjectList(msg.getDocumentCollectionList(),
-    lib_document_pb.Document.toObject, includeInstance),
-    queryResults: (f = msg.getQueryResults()) && lib_document_pb.QueryTransaction.toObject(includeInstance, f)
+    int_lib_document_pb.Document.toObject, includeInstance),
+    queryResults: (f = msg.getQueryResults()) && int_lib_document_pb.QueryTransaction.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -499,28 +499,28 @@ proto.app.AppGatewayServiceResponse.deserializeBinaryFromReader = function(msg, 
       msg.setToken(value);
       break;
     case 4:
-      var value = new lib_user_pb.User;
-      reader.readMessage(value,lib_user_pb.User.deserializeBinaryFromReader);
+      var value = new int_lib_user_pb.User;
+      reader.readMessage(value,int_lib_user_pb.User.deserializeBinaryFromReader);
       msg.setUser(value);
       break;
     case 5:
-      var value = new lib_user_pb.User;
-      reader.readMessage(value,lib_user_pb.User.deserializeBinaryFromReader);
+      var value = new int_lib_user_pb.User;
+      reader.readMessage(value,int_lib_user_pb.User.deserializeBinaryFromReader);
       msg.addUserCollection(value);
       break;
     case 6:
-      var value = new lib_document_pb.Document;
-      reader.readMessage(value,lib_document_pb.Document.deserializeBinaryFromReader);
+      var value = new int_lib_document_pb.Document;
+      reader.readMessage(value,int_lib_document_pb.Document.deserializeBinaryFromReader);
       msg.setDocument(value);
       break;
     case 7:
-      var value = new lib_document_pb.Document;
-      reader.readMessage(value,lib_document_pb.Document.deserializeBinaryFromReader);
+      var value = new int_lib_document_pb.Document;
+      reader.readMessage(value,int_lib_document_pb.Document.deserializeBinaryFromReader);
       msg.addDocumentCollection(value);
       break;
     case 8:
-      var value = new lib_document_pb.QueryTransaction;
-      reader.readMessage(value,lib_document_pb.QueryTransaction.deserializeBinaryFromReader);
+      var value = new int_lib_document_pb.QueryTransaction;
+      reader.readMessage(value,int_lib_document_pb.QueryTransaction.deserializeBinaryFromReader);
       msg.setQueryResults(value);
       break;
     default:
@@ -578,7 +578,7 @@ proto.app.AppGatewayServiceResponse.serializeBinaryToWriter = function(message, 
     writer.writeMessage(
       4,
       f,
-      lib_user_pb.User.serializeBinaryToWriter
+      int_lib_user_pb.User.serializeBinaryToWriter
     );
   }
   f = message.getUserCollectionList();
@@ -586,7 +586,7 @@ proto.app.AppGatewayServiceResponse.serializeBinaryToWriter = function(message, 
     writer.writeRepeatedMessage(
       5,
       f,
-      lib_user_pb.User.serializeBinaryToWriter
+      int_lib_user_pb.User.serializeBinaryToWriter
     );
   }
   f = message.getDocument();
@@ -594,7 +594,7 @@ proto.app.AppGatewayServiceResponse.serializeBinaryToWriter = function(message, 
     writer.writeMessage(
       6,
       f,
-      lib_document_pb.Document.serializeBinaryToWriter
+      int_lib_document_pb.Document.serializeBinaryToWriter
     );
   }
   f = message.getDocumentCollectionList();
@@ -602,7 +602,7 @@ proto.app.AppGatewayServiceResponse.serializeBinaryToWriter = function(message, 
     writer.writeRepeatedMessage(
       7,
       f,
-      lib_document_pb.Document.serializeBinaryToWriter
+      int_lib_document_pb.Document.serializeBinaryToWriter
     );
   }
   f = message.getQueryResults();
@@ -610,7 +610,7 @@ proto.app.AppGatewayServiceResponse.serializeBinaryToWriter = function(message, 
     writer.writeMessage(
       8,
       f,
-      lib_document_pb.QueryTransaction.serializeBinaryToWriter
+      int_lib_document_pb.QueryTransaction.serializeBinaryToWriter
     );
   }
 };
@@ -684,7 +684,7 @@ proto.app.AppGatewayServiceResponse.prototype.setToken = function(value) {
  */
 proto.app.AppGatewayServiceResponse.prototype.getUser = function() {
   return /** @type{?proto.lib.User} */ (
-    jspb.Message.getWrapperField(this, lib_user_pb.User, 4));
+    jspb.Message.getWrapperField(this, int_lib_user_pb.User, 4));
 };
 
 
@@ -717,7 +717,7 @@ proto.app.AppGatewayServiceResponse.prototype.hasUser = function() {
  */
 proto.app.AppGatewayServiceResponse.prototype.getUserCollectionList = function() {
   return /** @type{!Array<!proto.lib.User>} */ (
-    jspb.Message.getRepeatedWrapperField(this, lib_user_pb.User, 5));
+    jspb.Message.getRepeatedWrapperField(this, int_lib_user_pb.User, 5));
 };
 
 
@@ -751,7 +751,7 @@ proto.app.AppGatewayServiceResponse.prototype.clearUserCollectionList = function
  */
 proto.app.AppGatewayServiceResponse.prototype.getDocument = function() {
   return /** @type{?proto.lib.Document} */ (
-    jspb.Message.getWrapperField(this, lib_document_pb.Document, 6));
+    jspb.Message.getWrapperField(this, int_lib_document_pb.Document, 6));
 };
 
 
@@ -784,7 +784,7 @@ proto.app.AppGatewayServiceResponse.prototype.hasDocument = function() {
  */
 proto.app.AppGatewayServiceResponse.prototype.getDocumentCollectionList = function() {
   return /** @type{!Array<!proto.lib.Document>} */ (
-    jspb.Message.getRepeatedWrapperField(this, lib_document_pb.Document, 7));
+    jspb.Message.getRepeatedWrapperField(this, int_lib_document_pb.Document, 7));
 };
 
 
@@ -818,7 +818,7 @@ proto.app.AppGatewayServiceResponse.prototype.clearDocumentCollectionList = func
  */
 proto.app.AppGatewayServiceResponse.prototype.getQueryResults = function() {
   return /** @type{?proto.lib.QueryTransaction} */ (
-    jspb.Message.getWrapperField(this, lib_document_pb.QueryTransaction, 8));
+    jspb.Message.getWrapperField(this, int_lib_document_pb.QueryTransaction, 8));
 };
 
 

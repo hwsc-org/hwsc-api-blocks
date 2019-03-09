@@ -3,9 +3,9 @@
 
 import * as jspb from "google-protobuf";
 import * as int_hwsc_user_svc_user_hwsc_user_svc_pb from "../../../int/hwsc-user-svc/user/hwsc-user-svc_pb";
-import * as lib_user_pb from "../../../lib/user_pb";
+import * as int_lib_user_pb from "../../../int/lib/user_pb";
 import * as int_hwsc_document_svc_document_hwsc_document_svc_pb from "../../../int/hwsc-document-svc/document/hwsc-document-svc_pb";
-import * as lib_document_pb from "../../../lib/document_pb";
+import * as int_lib_document_pb from "../../../int/lib/document_pb";
 import * as int_hwsc_file_transaction_svc_file_hwsc_file_transaction_svc_pb from "../../../int/hwsc-file-transaction-svc/file/hwsc-file-transaction-svc_pb";
 
 export class AppGatewayServiceRequest extends jspb.Message {
@@ -66,28 +66,28 @@ export class AppGatewayServiceResponse extends jspb.Message {
 
   hasUser(): boolean;
   clearUser(): void;
-  getUser(): lib_user_pb.User | undefined;
-  setUser(value?: lib_user_pb.User): void;
+  getUser(): int_lib_user_pb.User | undefined;
+  setUser(value?: int_lib_user_pb.User): void;
 
   clearUserCollectionList(): void;
-  getUserCollectionList(): Array<lib_user_pb.User>;
-  setUserCollectionList(value: Array<lib_user_pb.User>): void;
-  addUserCollection(value?: lib_user_pb.User, index?: number): lib_user_pb.User;
+  getUserCollectionList(): Array<int_lib_user_pb.User>;
+  setUserCollectionList(value: Array<int_lib_user_pb.User>): void;
+  addUserCollection(value?: int_lib_user_pb.User, index?: number): int_lib_user_pb.User;
 
   hasDocument(): boolean;
   clearDocument(): void;
-  getDocument(): lib_document_pb.Document | undefined;
-  setDocument(value?: lib_document_pb.Document): void;
+  getDocument(): int_lib_document_pb.Document | undefined;
+  setDocument(value?: int_lib_document_pb.Document): void;
 
   clearDocumentCollectionList(): void;
-  getDocumentCollectionList(): Array<lib_document_pb.Document>;
-  setDocumentCollectionList(value: Array<lib_document_pb.Document>): void;
-  addDocumentCollection(value?: lib_document_pb.Document, index?: number): lib_document_pb.Document;
+  getDocumentCollectionList(): Array<int_lib_document_pb.Document>;
+  setDocumentCollectionList(value: Array<int_lib_document_pb.Document>): void;
+  addDocumentCollection(value?: int_lib_document_pb.Document, index?: number): int_lib_document_pb.Document;
 
   hasQueryResults(): boolean;
   clearQueryResults(): void;
-  getQueryResults(): lib_document_pb.QueryTransaction | undefined;
-  setQueryResults(value?: lib_document_pb.QueryTransaction): void;
+  getQueryResults(): int_lib_document_pb.QueryTransaction | undefined;
+  setQueryResults(value?: int_lib_document_pb.QueryTransaction): void;
 
   getStatusCase(): AppGatewayServiceResponse.StatusCase;
   serializeBinary(): Uint8Array;
@@ -105,11 +105,11 @@ export namespace AppGatewayServiceResponse {
     code: number,
     message: string,
     token: string,
-    user?: lib_user_pb.User.AsObject,
-    userCollectionList: Array<lib_user_pb.User.AsObject>,
-    document?: lib_document_pb.Document.AsObject,
-    documentCollectionList: Array<lib_document_pb.Document.AsObject>,
-    queryResults?: lib_document_pb.QueryTransaction.AsObject,
+    user?: int_lib_user_pb.User.AsObject,
+    userCollectionList: Array<int_lib_user_pb.User.AsObject>,
+    document?: int_lib_document_pb.Document.AsObject,
+    documentCollectionList: Array<int_lib_document_pb.Document.AsObject>,
+    queryResults?: int_lib_document_pb.QueryTransaction.AsObject,
   }
 
   export enum StatusCase {
