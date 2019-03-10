@@ -5,14 +5,8 @@
 ##### *Example: [hwsc-grpc-sample-svc](https://github.com/hwsc-org/hwsc-grpc-sample-svc)*
 1. Read protocol buffer [guideline](https://developers.google.com/protocol-buffers/docs/proto3)
 2. Read gRPC with [guideline](https://grpc.io/blog/coreos)
-3. Once the endpoint is implemented, add a folder in the [hwsc-api-blocks](https://github.com/hwsc-org/hwsc-api-blocks) "int" folder
-     <dl>
-	    <dt>int</dt>
-  		   <dd>internal or for developers only</dd>
-       <dt>ext</dt>
-  		   <dd>external or production only </dd>
-    </dl>
-4. Make and define proto file in the folder "int/hwsc-file-svc" with a function that uses the service, [example](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/int/hwsc-grpc-sample-svc/proto/grpc-sample-svc.proto)
+3. Once the endpoint is implemented, add a folder in the [hwsc-api-blocks](https://github.com/hwsc-org/hwsc-api-blocks) "protobuf" folder
+4. Make and define proto file in the folder "protobuf/hwsc-file-svc" with a function that uses the service, [example](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/protobuf/hwsc-grpc-sample-svc/proto/grpc-sample-svc.proto)
 5. Ensure [protoc 3.7.0](https://github.com/protocolbuffers/protobuf/releases) is installed
 6. Get the latest `go get -u google.golang.org/grpc` and `go get -u github.com/golang/protobuf/protoc-gen-go` as necessary if you get issue related to `proto.ProtoPackageIsVersion`
 7. Update `package.json` or get [npm grpc 1.18.0](https://www.npmjs.com/package/grpc) as dev dependency
@@ -26,7 +20,7 @@
 15. Modify bash [script](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/generate_proto.sh) for generating proto stub
 16. Run the bash script to generate proto stub
 17. Implement your gRPC service in the language you prefer, [example](https://github.com/hwsc-org/hwsc-grpc-sample-svc)
-18. Implement a wrapper for the gRPC call, [example](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/int/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js)
+18. Implement a wrapper for the gRPC call, [example](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/protobuf/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js)
 19. Test your function using [index.js](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/index.js)
 
 ### ESLinting
