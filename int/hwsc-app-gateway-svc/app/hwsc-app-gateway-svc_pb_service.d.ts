@@ -22,15 +22,6 @@ type AppGatewayServiceGetAuthToken = {
   readonly responseType: typeof int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse;
 };
 
-type AppGatewayServiceVerifyEmailToken = {
-  readonly methodName: string;
-  readonly service: typeof AppGatewayService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest;
-  readonly responseType: typeof int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse;
-};
-
 type AppGatewayServiceCreateUser = {
   readonly methodName: string;
   readonly service: typeof AppGatewayService;
@@ -161,7 +152,6 @@ export class AppGatewayService {
   static readonly serviceName: string;
   static readonly GetStatus: AppGatewayServiceGetStatus;
   static readonly GetAuthToken: AppGatewayServiceGetAuthToken;
-  static readonly VerifyEmailToken: AppGatewayServiceVerifyEmailToken;
   static readonly CreateUser: AppGatewayServiceCreateUser;
   static readonly DeleteUser: AppGatewayServiceDeleteUser;
   static readonly UpdateUser: AppGatewayServiceUpdateUser;
@@ -225,15 +215,6 @@ export class AppGatewayServiceClient {
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
   ): UnaryResponse;
   getAuthToken(
-    requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
-    callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): UnaryResponse;
-  verifyEmailToken(
-    requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
-  ): UnaryResponse;
-  verifyEmailToken(
     requestMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceRequest,
     callback: (error: ServiceError|null, responseMessage: int_hwsc_app_gateway_svc_app_hwsc_app_gateway_svc_pb.AppGatewayServiceResponse|null) => void
   ): UnaryResponse;

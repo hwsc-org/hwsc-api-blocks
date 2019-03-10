@@ -15,8 +15,6 @@ service AppGatewayService {
     }
     rpc GetAuthToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
-    rpc VerifyEmailToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
-    }
     rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
     rpc DeleteUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
