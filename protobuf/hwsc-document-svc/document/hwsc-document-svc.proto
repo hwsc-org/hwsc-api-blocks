@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+option go_package = "github.com/hwsc-org/hwsc-api-blocks/protobuf/hwsc-document-svc/document";
+
+package document;
+
+import "protobuf/lib/document.proto";
+import "protobuf/lib/authority.proto";
+
+service DocumentService {
+    rpc GetStatus (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc CreateDocument (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc ListUserDocumentCollection (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc UpdateDocument (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc DeleteDocument (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc AddFileMetadata (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc DeleteFileMetadata (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc ListDistinctFieldValues (DocumentRequest) returns (DocumentResponse) {
+    }
+    rpc QueryDocument (DocumentRequest) returns (DocumentResponse) {
+    }
+}
+
+
+message DocumentRequest {
+    lib.Identification identification = 1;
+    lib.Document data = 2;
+    repeated string image_urls = 3;
+    repeated string audio_urls = 4;
+    repeated string video_urls = 5;
+    repeated string file_urls = 6;
+
+    // Request for AddFileMetadata & DeleteFileMetadata
+    lib.FileMetadataTransaction fileMetadata_parameters = 7;
+
+    // Request for QueryDocument
+    lib.QueryTransaction query_parameters = 8;
+}
+
+message DocumentResponse {
+    oneof status {
+        uint32 code = 1;
+    }
+    string message = 2;
+    lib.Document data = 3;
+
+    // Response for ListUserDocumentCollection
+    // Response for QueryDocument
+    repeated lib.Document document_collection = 4;
+
+    // Response for ListDistinctFieldValues
+    lib.QueryTransaction query_results = 5;
+}
