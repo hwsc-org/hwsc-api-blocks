@@ -1,14 +1,15 @@
-const HWSC_GRPC_SAMPLE_SVC_PROTO_PATH = `${__dirname}/protobuf/hwsc-grpc-sample-svc.proto`;
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 const moment = require('moment');
 
+const PROTO_PATH = `${__dirname}/../..`;
+
 const options = {
-  includeDirs: [
-    HWSC_GRPC_SAMPLE_SVC_PROTO_PATH,
-  ],
+  includeDirs: [PROTO_PATH],
 };
-const hwscGrpcSampleSvcProtoPkgDef = protoLoader.loadSync('', options);
+
+const hwscGrpcSampleSvcProtoPkgDef = protoLoader
+  .loadSync('protobuf/hwsc-grpc-sample-svc/proto/hwsc-grpc-sample-svc.proto', options);
 const hwscGrpcSampleSvcPbJs = grpc.loadPackageDefinition(hwscGrpcSampleSvcProtoPkgDef)
   .hwscGrpcSampleSvc;
 

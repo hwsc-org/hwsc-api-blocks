@@ -10,7 +10,7 @@ const options = {
 };
 
 const packageDefinition = protoLoader
-  .loadSync('int/hwsc-document-svc/document/hwsc-document-svc.proto', options);
+  .loadSync('protobuf/hwsc-document-svc/document/hwsc-document-svc.proto', options);
 
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).document;
 
