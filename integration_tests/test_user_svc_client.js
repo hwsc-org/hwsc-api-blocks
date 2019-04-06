@@ -154,7 +154,7 @@ const testCases = [
   },
   {
     // 18
-    svcInfo: new objects.SvcInfo('VerifyEmailToken', 'test non-existing token', objects.state.INTERNAL),
+    svcInfo: new objects.SvcInfo('VerifyEmailToken', 'test non-existing token', objects.state.INVALID_ARGUMENT),
     user: null,
   },
 ];
@@ -184,6 +184,9 @@ async function getTokenForNewUser(userRequest, svcInfo) {
       svcInfo,
     });
   }
+
+  const identity = { identification: { token: newUserData.res.identification.token } };
+  await index.hwscUserSvc.verifyEmailToken(identity, svcInfo);
 
   const { uuid, email } = newUserData.res.user;
   const newUserRequest = {
