@@ -51,7 +51,7 @@ Numeric Test Options for process.argv[2]
 
 12 - valid newSecret - generating new secret
 
-13 - valid getSecret - retrieve active key
+13 - valid getAuthSecret - retrieve active key
 
 14 - valid getToken - retrieve token for user with no token in table
 15 - valid getToken - retrieve unexpired token for same user (shouldn't insert new token in table)
@@ -129,7 +129,7 @@ const testCases = [
   },
   {
     // 13
-    svcInfo: new objects.SvcInfo('GetSecret', 'test retrieve active secret', objects.state.OK),
+    svcInfo: new objects.SvcInfo('GetAuthSecret', 'test retrieve active secret', objects.state.OK),
     user: new objects.User(),
   },
   {
@@ -315,10 +315,10 @@ function main() {
           promises.push(index.hwscUserSvc.authenticateUser(userRequest, svcInfo));
           break;
         case 12:
-          promises.push(index.hwscUserSvc.makeNewSecret(userRequest, svcInfo));
+          promises.push(index.hwscUserSvc.makeNewAuthSecret(userRequest, svcInfo));
           break;
         case 13:
-          promises.push(index.hwscUserSvc.getSecret(userRequest, svcInfo));
+          promises.push(index.hwscUserSvc.getAuthSecret(userRequest, svcInfo));
           break;
         case 14:
           promises.push(getTokenForNewUser(userRequest, svcInfo));

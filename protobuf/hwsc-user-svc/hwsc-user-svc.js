@@ -104,11 +104,11 @@ function authenticateUser(request, svcInfo) {
   });
 }
 
-function makeNewSecret(request, svcInfo) {
+function makeNewAuthSecret(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.makeNewSecret(userRequest, (err, res) => resolve({
+    client.makeNewAuthSecret(userRequest, (err, res) => resolve({
       err,
       res,
       svcInfo,
@@ -116,11 +116,11 @@ function makeNewSecret(request, svcInfo) {
   });
 }
 
-function getSecret(request, svcInfo) {
+function getAuthSecret(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
-    client.getSecret(userRequest, (err, res) => resolve({
+    client.getAuthSecret(userRequest, (err, res) => resolve({
       err,
       res,
       svcInfo,
@@ -171,8 +171,8 @@ module.exports = {
   deleteUser,
   updateUser,
   authenticateUser,
-  makeNewSecret,
-  getSecret,
+  makeNewAuthSecret,
+  getAuthSecret,
   getAuthToken,
   verifyAuthToken,
   verifyEmailToken,

@@ -33,11 +33,11 @@ service UserService {
     }
     rpc VerifyEmailToken (UserRequest) returns (UserResponse) {
     }
-    rpc GetSecret (UserRequest) returns (UserResponse) {
+    rpc GetAuthSecret (UserRequest) returns (UserResponse) {
     }
 
     // TODO add a REST endpoint later
-    rpc MakeNewSecret (UserRequest) returns (UserResponse) {
+    rpc MakeNewAuthSecret (UserRequest) returns (UserResponse) {
     }
 }
 
