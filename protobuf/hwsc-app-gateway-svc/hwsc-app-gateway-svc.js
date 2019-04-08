@@ -1,5 +1,6 @@
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
+const base64 = require('js-base64').Base64;
 
 const PROTO_PATH = `${__dirname}/../..`;
 
@@ -14,7 +15,12 @@ const packageDefinition = protoLoader
 // pointing to pb file in memory
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition).app;
 
-const client = new protoDescriptor.AppGatewayService('localhost: 50055', grpc.credentials.createInsecure());
+// insecure no SSL and TLS
+const client = new protoDescriptor
+  .AppGatewayService('localhost: 50055', grpc.credentials.createInsecure());
+
+const userPass = new grpc.Metadata();
+userPass.add('authorization', `Basic ${base64.encode('change-me')}`);
 
 const callbackErr = () => console.error('callback not a function');
 
@@ -24,7 +30,7 @@ function getStatus(callback) {
     return;
   }
 
-  client.getStatus({}, (err, response) => {
+  client.getStatus({}, userPass, (err, response) => {
     if (!err) {
       grpc.closeClient(client);
     }

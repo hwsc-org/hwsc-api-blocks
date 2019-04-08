@@ -19,7 +19,8 @@
   "dependencies": {
     "@grpc/proto-loader": "^0.4.0",
     "google-protobuf": "^3.7.1",
-    "grpc": "^1.18.0",
+    "grpc": "^1.19.0",
+    "js-base64": "^2.5.1",
     "moment": "^2.22.2",
     "npm": "^6.8.0"
   },
