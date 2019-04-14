@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	lib "github.com/hwsc-org/hwsc-api-blocks/protobuf/lib"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -467,6 +469,23 @@ type FileTransactionServiceServer interface {
 	DownloadZippedFiles(*FileTransactionRequest, FileTransactionService_DownloadZippedFilesServer) error
 	// Create user folder in the sorage
 	CreateUserFolder(context.Context, *FileTransactionRequest) (*FileTransactionResponse, error)
+}
+
+// UnimplementedFileTransactionServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedFileTransactionServiceServer struct {
+}
+
+func (*UnimplementedFileTransactionServiceServer) GetStatus(ctx context.Context, req *FileTransactionRequest) (*FileTransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
+}
+func (*UnimplementedFileTransactionServiceServer) UploadFile(srv FileTransactionService_UploadFileServer) error {
+	return status.Errorf(codes.Unimplemented, "method UploadFile not implemented")
+}
+func (*UnimplementedFileTransactionServiceServer) DownloadZippedFiles(req *FileTransactionRequest, srv FileTransactionService_DownloadZippedFilesServer) error {
+	return status.Errorf(codes.Unimplemented, "method DownloadZippedFiles not implemented")
+}
+func (*UnimplementedFileTransactionServiceServer) CreateUserFolder(ctx context.Context, req *FileTransactionRequest) (*FileTransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUserFolder not implemented")
 }
 
 func RegisterFileTransactionServiceServer(s *grpc.Server, srv FileTransactionServiceServer) {

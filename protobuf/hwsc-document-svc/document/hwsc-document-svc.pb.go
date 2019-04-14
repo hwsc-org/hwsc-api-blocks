@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	lib "github.com/hwsc-org/hwsc-api-blocks/protobuf/lib"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -391,6 +393,38 @@ type DocumentServiceServer interface {
 	DeleteFileMetadata(context.Context, *DocumentRequest) (*DocumentResponse, error)
 	ListDistinctFieldValues(context.Context, *DocumentRequest) (*DocumentResponse, error)
 	QueryDocument(context.Context, *DocumentRequest) (*DocumentResponse, error)
+}
+
+// UnimplementedDocumentServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedDocumentServiceServer struct {
+}
+
+func (*UnimplementedDocumentServiceServer) GetStatus(ctx context.Context, req *DocumentRequest) (*DocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
+}
+func (*UnimplementedDocumentServiceServer) CreateDocument(ctx context.Context, req *DocumentRequest) (*DocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateDocument not implemented")
+}
+func (*UnimplementedDocumentServiceServer) ListUserDocumentCollection(ctx context.Context, req *DocumentRequest) (*DocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUserDocumentCollection not implemented")
+}
+func (*UnimplementedDocumentServiceServer) UpdateDocument(ctx context.Context, req *DocumentRequest) (*DocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDocument not implemented")
+}
+func (*UnimplementedDocumentServiceServer) DeleteDocument(ctx context.Context, req *DocumentRequest) (*DocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDocument not implemented")
+}
+func (*UnimplementedDocumentServiceServer) AddFileMetadata(ctx context.Context, req *DocumentRequest) (*DocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddFileMetadata not implemented")
+}
+func (*UnimplementedDocumentServiceServer) DeleteFileMetadata(ctx context.Context, req *DocumentRequest) (*DocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFileMetadata not implemented")
+}
+func (*UnimplementedDocumentServiceServer) ListDistinctFieldValues(ctx context.Context, req *DocumentRequest) (*DocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDistinctFieldValues not implemented")
+}
+func (*UnimplementedDocumentServiceServer) QueryDocument(ctx context.Context, req *DocumentRequest) (*DocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryDocument not implemented")
 }
 
 func RegisterDocumentServiceServer(s *grpc.Server, srv DocumentServiceServer) {

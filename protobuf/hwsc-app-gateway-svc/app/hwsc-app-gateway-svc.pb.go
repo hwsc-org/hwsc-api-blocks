@@ -12,6 +12,8 @@ import (
 	user "github.com/hwsc-org/hwsc-api-blocks/protobuf/hwsc-user-svc/user"
 	lib "github.com/hwsc-org/hwsc-api-blocks/protobuf/lib"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -476,6 +478,59 @@ type AppGatewayServiceServer interface {
 	DeleteFile(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
 	ListDistinctFieldValues(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
 	QueryDocument(context.Context, *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error)
+}
+
+// UnimplementedAppGatewayServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedAppGatewayServiceServer struct {
+}
+
+func (*UnimplementedAppGatewayServiceServer) GetStatus(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) GetAuthToken(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthToken not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) CreateUser(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) DeleteUser(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) UpdateUser(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) ListUsers(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUsers not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) GetUser(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) ShareDocument(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ShareDocument not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) CreateDocument(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateDocument not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) ListUserDocumentCollection(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUserDocumentCollection not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) UpdateDocument(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateDocument not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) DeleteDocument(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDocument not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) AddFile(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddFile not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) DeleteFile(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFile not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) ListDistinctFieldValues(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDistinctFieldValues not implemented")
+}
+func (*UnimplementedAppGatewayServiceServer) QueryDocument(ctx context.Context, req *AppGatewayServiceRequest) (*AppGatewayServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryDocument not implemented")
 }
 
 func RegisterAppGatewayServiceServer(s *grpc.Server, srv AppGatewayServiceServer) {

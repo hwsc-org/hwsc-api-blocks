@@ -9,6 +9,8 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	lib "github.com/hwsc-org/hwsc-api-blocks/protobuf/lib"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -396,6 +398,50 @@ type UserServiceServer interface {
 	GetAuthSecret(context.Context, *UserRequest) (*UserResponse, error)
 	// TODO add a REST endpoint later
 	MakeNewAuthSecret(context.Context, *UserRequest) (*UserResponse, error)
+}
+
+// UnimplementedUserServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedUserServiceServer struct {
+}
+
+func (*UnimplementedUserServiceServer) GetStatus(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
+}
+func (*UnimplementedUserServiceServer) CreateUser(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
+}
+func (*UnimplementedUserServiceServer) DeleteUser(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
+}
+func (*UnimplementedUserServiceServer) UpdateUser(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
+}
+func (*UnimplementedUserServiceServer) AuthenticateUser(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthenticateUser not implemented")
+}
+func (*UnimplementedUserServiceServer) ListUsers(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUsers not implemented")
+}
+func (*UnimplementedUserServiceServer) GetUser(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
+}
+func (*UnimplementedUserServiceServer) ShareDocument(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ShareDocument not implemented")
+}
+func (*UnimplementedUserServiceServer) GetAuthToken(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthToken not implemented")
+}
+func (*UnimplementedUserServiceServer) VerifyAuthToken(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyAuthToken not implemented")
+}
+func (*UnimplementedUserServiceServer) VerifyEmailToken(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmailToken not implemented")
+}
+func (*UnimplementedUserServiceServer) GetAuthSecret(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthSecret not implemented")
+}
+func (*UnimplementedUserServiceServer) MakeNewAuthSecret(ctx context.Context, req *UserRequest) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MakeNewAuthSecret not implemented")
 }
 
 func RegisterUserServiceServer(s *grpc.Server, srv UserServiceServer) {
