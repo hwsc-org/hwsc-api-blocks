@@ -94,7 +94,7 @@ proto.app.AppGatewayServiceRequest.prototype.toObject = function(opt_includeInst
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.app.AppGatewayServiceRequest.toObject = function(includeInstance, msg) {
-  var obj = {
+  var f, obj = {
     token: jspb.Message.getFieldWithDefault(msg, 1, ""),
     userRequest: (f = msg.getUserRequest()) && protobuf_hwsc$user$svc_user_hwsc$user$svc_pb.UserRequest.toObject(includeInstance, f),
     documentRequest: (f = msg.getDocumentRequest()) && protobuf_hwsc$document$svc_document_hwsc$document$svc_pb.DocumentRequest.toObject(includeInstance, f),
@@ -439,7 +439,7 @@ proto.app.AppGatewayServiceResponse.prototype.toObject = function(opt_includeIns
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.app.AppGatewayServiceResponse.toObject = function(includeInstance, msg) {
-  var obj = {
+  var f, obj = {
     code: jspb.Message.getFieldWithDefault(msg, 1, 0),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
     token: jspb.Message.getFieldWithDefault(msg, 3, ""),
