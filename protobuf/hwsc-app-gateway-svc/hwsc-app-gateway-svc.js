@@ -20,7 +20,8 @@ const client = new protoDescriptor
   .AppGatewayService('localhost: 50055', grpc.credentials.createInsecure());
 
 const userPass = new grpc.Metadata();
-userPass.add('authorization', `Basic ${base64.encode('change-me')}`);
+userPass.add('authorization',
+  `Basic ${base64.encode(`${process.env.hosts_dummy_email}:${process.env.hosts_dummy_password}`)}`);
 
 const callbackErr = () => console.error('callback not a function');
 
