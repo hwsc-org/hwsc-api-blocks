@@ -70,37 +70,39 @@ message Document {
     string call_type_name = 4;
     // @inject_tag: bson:"groundType"
     string ground_type = 5;
+    // @inject_tag: bson:"description"
+    string description = 6;
     // @inject_tag: bson:"studySite"
-    StudySite study_site = 6;
+    StudySite study_site = 7;
     // @inject_tag: bson:"ocean"
-    string ocean = 7;
+    string ocean = 8;
     // @inject_tag: bson:"sensorType"
-    string sensor_type = 8;
+    string sensor_type = 9;
     // @inject_tag: bson:"sensorName"
-    string sensor_name = 9;
+    string sensor_name = 10;
     // @inject_tag: bson:"samplingRate"
-    uint32 sampling_rate = 10;
+    uint32 sampling_rate = 11;
     // @inject_tag: bson:"latitude"
-    float latitude = 11;
+    float latitude = 12;
     // @inject_tag: bson:"longitude"
-    float longitude = 12;
+    float longitude = 13;
 
     // @inject_tag: bson:"imageUrlsMap"
-    map<string, string> image_urls_map = 13;
+    map<string, string> image_urls_map = 14;
     // @inject_tag: bson:"audioUrlsMap"
-    map<string, string> audio_urls_map = 14;
+    map<string, string> audio_urls_map = 15;
     // @inject_tag: bson:"videoUrlsMap"
-    map<string, string> video_urls_map = 15;
+    map<string, string> video_urls_map = 16;
     // @inject_tag: bson:"fileUrlsMap"
-    map<string, string> file_urls_map = 16;
+    map<string, string> file_urls_map = 17;
 
     // @inject_tag: bson:"recordTimestamp"
-    int64 record_timestamp = 17;
+    int64 record_timestamp = 18;
     // @inject_tag: bson:"createTimestamp"
-    int64 create_timestamp = 18;
+    int64 create_timestamp = 19;
     // @inject_tag: bson:"updateTimestamp"
-    int64 update_timestamp = 19;
+    int64 update_timestamp = 20;
 
     // @inject_tag: bson:"isPublic"
-    bool is_public = 20;
+    bool is_public = 21;
 }
