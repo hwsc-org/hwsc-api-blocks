@@ -1,6 +1,6 @@
 /* eslint no-continue: 0 */
 const index = require('../index.js');
-const objects = require('../objects');
+const objects = require('../helper/objects');
 /*
 --------------------------------------------------------------------------
 Command line arg template:

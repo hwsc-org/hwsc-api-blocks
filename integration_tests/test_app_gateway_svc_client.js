@@ -1,5 +1,5 @@
 const index = require('../index.js');
-const objects = require('../objects');
+const objects = require('../helper/objects');
 
 function callback(err, response) {
   if (err) {

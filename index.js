@@ -2,7 +2,6 @@
 /* eslint-disable global-require */
 
 module.exports = {
-  demo: require('./protobuf/demo/demo.js'),
   hwscGrpcSampleSvc: require('./protobuf/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js'),
   hwscDocumentSvc: require('./protobuf/hwsc-document-svc/hwsc-document-svc.js'),
   hwscUserSvc: require('./protobuf/hwsc-user-svc/hwsc-user-svc.js'),
