@@ -22,6 +22,8 @@ echo
 echo "Generating LIB PACKAGE"
 protoc -I ${LIB_ROOT} \
     --go_out=plugins=grpc:${GOPATH}/src \
+    --js_out=import_style=commonjs:${LIB_ROOT} \
+    --grpc-web_out=import_style=typescript,mode=grpcwebtext:${LIB_ROOT} \
     authority.proto document.proto user.proto
 protoc-go-inject-tag -input=${LIB_ROOT}user.pb.go
 protoc-go-inject-tag -input=${LIB_ROOT}document.pb.go
@@ -51,8 +53,10 @@ echo
 # USER SERVICE
 echo "Generating USER SERVICE"
 protoc -I . \
-    --go_out=plugins=grpc:${GOPATH}/src \
-    ${USER_ROOT}hwsc-user-svc.proto
+  --go_out=plugins=grpc:${GOPATH}/src \
+  --js_out=import_style=commonjs:. \
+  --grpc-web_out=import_style=typescript,mode=grpcwebtext:. \
+  ${USER_ROOT}hwsc-user-svc.proto
 protoc-go-inject-tag -input=${USER_ROOT}hwsc-user-svc.pb.go
 if [ "$(uname)" == "Darwin" ]; then
     echo -e "INFO: sed using MacOS"
@@ -68,8 +72,10 @@ echo
 # DOCUMENT SERVICE
 echo "Generating DOCUMENT SERVICE"
 protoc -I . \
-    --go_out=plugins=grpc:${GOPATH}/src \
-    ${DOCUMENT_ROOT}hwsc-document-svc.proto
+  --go_out=plugins=grpc:${GOPATH}/src \
+  --js_out=import_style=commonjs:. \
+  --grpc-web_out=import_style=typescript,mode=grpcwebtext:. \
+  ${DOCUMENT_ROOT}hwsc-document-svc.proto
 protoc-go-inject-tag -input=${DOCUMENT_ROOT}hwsc-document-svc.pb.go
 if [ "$(uname)" == "Darwin" ]; then
     echo -e "INFO: sed using MacOS"
@@ -92,6 +98,8 @@ python3.7 -m grpc_tools.protoc \
     protobuf/lib/authority.proto hwsc-file-transaction-svc.proto
 protoc -I . \
     --go_out=plugins=grpc:${GOPATH}/src \
+    --js_out=import_style=commonjs:. \
+    --grpc-web_out=import_style=typescript,mode=grpcwebtext:. \
     ${FILE_ROOT}hwsc-file-transaction-svc.proto
 echo "Done generating FILE TRANSACTION SERVICE"
 echo "------------------------------------------------------------"
@@ -99,13 +107,11 @@ echo
 
 # APP GATEWAY SERVICE
 echo "Generating APP GATEWAY SERVICE"
-protoc \
-  --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
+protoc -I . \
   --plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-  -I . \
-  --js_out=import_style=commonjs,binary:${GOPATH}/src/github.com/hwsc-org/hwsc-api-blocks \
   --go_out=plugins=grpc:${GOPATH}/src \
-  --ts_out=service=true:${GOPATH}/src/github.com/hwsc-org/hwsc-api-blocks \
+  --js_out=import_style=commonjs:. \
+  --grpc-web_out=import_style=typescript,mode=grpcwebtext:. \
   ${APP_ROOT}hwsc-app-gateway-svc.proto
 echo "Done generating APP GATEWAY SERVICE"
 echo "------------------------------------------------------------"

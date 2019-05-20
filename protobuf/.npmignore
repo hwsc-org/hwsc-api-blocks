@@ -1,0 +1,9 @@
+# ignore everything
+protobuf/**/**/*
+
+# except directories with js and ts files
+!protobuf/**/**/*.js
+!protobuf/**/**/*.ts
+
+# ignore files ending in *-svc.js
+protobuf/**/*-svc.js
