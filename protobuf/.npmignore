@@ -1,0 +1,9 @@
+# ignore everything
+**/**/*
+
+# except directories with js and ts files
+!**/**/*.js
+!**/**/*.ts
+
+# ignore files ending in *-svc.js
+**/*-svc.js

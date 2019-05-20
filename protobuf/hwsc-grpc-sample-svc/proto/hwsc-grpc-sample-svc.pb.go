@@ -8,8 +8,6 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -186,14 +184,6 @@ func (c *sampleServiceClient) SayHello(ctx context.Context, in *SampleServiceReq
 type SampleServiceServer interface {
 	// Sends a greeting
 	SayHello(context.Context, *SampleServiceRequest) (*SampleServiceResponse, error)
-}
-
-// UnimplementedSampleServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedSampleServiceServer struct {
-}
-
-func (*UnimplementedSampleServiceServer) SayHello(ctx context.Context, req *SampleServiceRequest) (*SampleServiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
 }
 
 func RegisterSampleServiceServer(s *grpc.Server, srv SampleServiceServer) {
