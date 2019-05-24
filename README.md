@@ -14,6 +14,7 @@
 9. To inject an additional tag like `bson`, install and include [protoc-go-inject-tag](https://github.com/favadi/protoc-go-inject-tag)
 10. Modify bash [script](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/generate_proto.sh) for generating proto stub
 11. Run the bash script to generate proto stub
+12. Publish the npm package needed by `hwsc-frontend` using this [guide](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/protobuf/README.md)
 12. Implement your gRPC service in the language you prefer, [example](https://github.com/hwsc-org/hwsc-grpc-sample-svc)
 13. Implement a wrapper for the gRPC call, [example](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/protobuf/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js)
 14. Test your function using [index.js](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/index.js)
