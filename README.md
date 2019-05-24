@@ -9,19 +9,15 @@
 4. Make and define proto file in the folder "protobuf/hwsc-file-svc" with a function that uses the service, [example](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/protobuf/hwsc-grpc-sample-svc/proto/grpc-sample-svc.proto)
 5. Ensure [protoc 3.7.1](https://github.com/protocolbuffers/protobuf/releases) is installed
 6. Get the latest `go get -u google.golang.org/grpc` and `go get -u github.com/golang/protobuf/protoc-gen-go` as necessary if you get issue related to `proto.ProtoPackageIsVersion`
-7. Update `package.json` or get [npm grpc 1.19.0](https://www.npmjs.com/package/grpc) as dev dependency
-8. Update `package.json` or get [npm ts-protoc-gen 0.9.0](https://www.npmjs.com/package/ts-protoc-gen) as dev dependency
-9. Update `package.json` or get [npm grpc/proto-loader 0.5.0](https://www.npmjs.com/package/@grpc/proto-loader) as dev dependency
-10. Update `package.json` or get [npm google-protobuf 3.7.1](https://www.npmjs.com/package/google-protobuf) as dev dependency
-11. `npm install` as needed
-12. Ensure Python 3 [gRPC tools](https://grpc.io/docs/quickstart/python.html) are installed `$ python3.7 -m pip install grpcio` or `$ pip3.7 install --upgrade grpcio`
-13. To inject an additional tag like `bson`, install and include [protoc-go-inject-tag](https://github.com/favadi/protoc-go-inject-tag)
-14. To unit test service in GoLang, install and use [gRPC mocking service](https://github.com/grpc/grpc-go/blob/master/Documentation/gomock-example.md)
-15. Modify bash [script](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/generate_proto.sh) for generating proto stub
-16. Run the bash script to generate proto stub
-17. Implement your gRPC service in the language you prefer, [example](https://github.com/hwsc-org/hwsc-grpc-sample-svc)
-18. Implement a wrapper for the gRPC call, [example](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/protobuf/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js)
-19. Test your function using [index.js](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/index.js)
+7. `npm install` as needed
+8. Ensure Python 3 [gRPC tools](https://grpc.io/docs/quickstart/python.html) are installed `$ python3.7 -m pip install grpcio` or `$ pip3.7 install --upgrade grpcio`
+9. To inject an additional tag like `bson`, install and include [protoc-go-inject-tag](https://github.com/favadi/protoc-go-inject-tag)
+10. To unit test service in GoLang, install and use [gRPC mocking service](https://github.com/grpc/grpc-go/blob/master/Documentation/gomock-example.md)
+11. Modify bash [script](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/generate_proto.sh) for generating proto stub
+12. Run the bash script to generate proto stub
+13. Implement your gRPC service in the language you prefer, [example](https://github.com/hwsc-org/hwsc-grpc-sample-svc)
+14. Implement a wrapper for the gRPC call, [example](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/protobuf/hwsc-grpc-sample-svc/hwsc-grpc-sample-svc.js)
+15. Test your function using [index.js](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/index.js)
 
 ### ESLinting
 
