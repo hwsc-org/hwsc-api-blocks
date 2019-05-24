@@ -1,11 +1,11 @@
 {
-  "name": "@hwsc/hwsc-api-blocks-lisa-test",
-  "version": "0.0.3",
+  "name": "@hwsc/hwsc-api-blocks",
+  "version": "0.0.1",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "HWSC",
   "license": "ISC",
   "dependencies": {
     "grpc-web": "^1.0.4",
