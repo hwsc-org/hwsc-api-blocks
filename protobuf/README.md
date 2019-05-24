@@ -2,7 +2,7 @@
 An npm package that contains proto client stubs for all services for `hwsc-frontend`
 
 ## Installation
-1. `$ npm i @hwsc/hwsc-api-blocks-lisa-test`
+1. `$ npm i @hwsc/hwsc-api-blocks`
 
 ## Requirement
 1. Create an account with [www.npmjs.com](https://www.npmjs.com/signup)
