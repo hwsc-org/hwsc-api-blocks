@@ -210,7 +210,7 @@ export class UserServiceClient {
       callback);
   }
 
-  methodInfoGetAuthToken = new grpcWeb.AbstractClientBase.MethodInfo(
+  methodInfoGetNewAuthToken = new grpcWeb.AbstractClientBase.MethodInfo(
     UserResponse,
     (request: UserRequest) => {
       return request.serializeBinary();
@@ -218,17 +218,17 @@ export class UserServiceClient {
     UserResponse.deserializeBinary
   );
 
-  getAuthToken(
+  getNewAuthToken(
     request: UserRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
                response: UserResponse) => void) {
     return this.client_.rpcCall(
       this.hostname_ +
-        '/user.UserService/GetAuthToken',
+        '/user.UserService/GetNewAuthToken',
       request,
       metadata || {},
-      this.methodInfoGetAuthToken,
+      this.methodInfoGetNewAuthToken,
       callback);
   }
 

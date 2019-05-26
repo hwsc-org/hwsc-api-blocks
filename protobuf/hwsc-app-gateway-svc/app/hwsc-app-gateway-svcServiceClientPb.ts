@@ -59,7 +59,7 @@ export class AppGatewayServiceClient {
       callback);
   }
 
-  methodInfoGetAuthToken = new grpcWeb.AbstractClientBase.MethodInfo(
+  methodInfoGetNewAuthToken = new grpcWeb.AbstractClientBase.MethodInfo(
     AppGatewayServiceResponse,
     (request: AppGatewayServiceRequest) => {
       return request.serializeBinary();
@@ -67,17 +67,17 @@ export class AppGatewayServiceClient {
     AppGatewayServiceResponse.deserializeBinary
   );
 
-  getAuthToken(
+  getNewAuthToken(
     request: AppGatewayServiceRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
                response: AppGatewayServiceResponse) => void) {
     return this.client_.rpcCall(
       this.hostname_ +
-        '/app.AppGatewayService/GetAuthToken',
+        '/app.AppGatewayService/GetNewAuthToken',
       request,
       metadata || {},
-      this.methodInfoGetAuthToken,
+      this.methodInfoGetNewAuthToken,
       callback);
   }
 

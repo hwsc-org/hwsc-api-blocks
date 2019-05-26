@@ -13,7 +13,7 @@ option go_package = "github.com/hwsc-org/hwsc-api-blocks/protobuf/hwsc-app-gatew
 service AppGatewayService {
     rpc GetStatus (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
-    rpc GetAuthToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
+    rpc GetNewAuthToken (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }
     rpc CreateUser (AppGatewayServiceRequest) returns (AppGatewayServiceResponse) {
     }

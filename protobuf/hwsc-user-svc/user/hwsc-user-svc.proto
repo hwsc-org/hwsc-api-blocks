@@ -27,7 +27,7 @@ service UserService {
     }
     rpc ShareDocument (UserRequest) returns (UserResponse) {
     }
-    rpc GetAuthToken (UserRequest) returns (UserResponse) {
+    rpc GetNewAuthToken (UserRequest) returns (UserResponse) {
     }
     rpc VerifyAuthToken (UserRequest) returns (UserResponse) {
     }
