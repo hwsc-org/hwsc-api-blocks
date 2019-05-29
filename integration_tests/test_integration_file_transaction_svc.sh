@@ -7,8 +7,7 @@ CREATE_USER_FOLDER_SIGNAL=2
 
 # Test variables for CreateUserFolder
 VALID_UUID=0
-DUPLICATE_UUID=1
-INVALID_UUID=2
+INVALID_UUID=1
 
 echo "💩 Integration Test for file-transaction-svc 💩"
 
@@ -31,7 +30,7 @@ else
     echo "---------- Fatal Exit ----------"
     exit 1
 fi
-node test_file_transaction_svc_client.js $CREATE_USER_FOLDER_SIGNAL $DUPLICATE_UUID | grep 'code: 2,' &> /dev/null
+node test_file_transaction_svc_client.js $CREATE_USER_FOLDER_SIGNAL $VALID_UUID | grep 'code: 2,' &> /dev/null
 if [ $? == 0 ]; then
    echo -e  "😃 [SUCCESS] Handled Duplicate UUID User Folder Creation"
 else

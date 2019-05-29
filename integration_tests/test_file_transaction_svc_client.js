@@ -12,8 +12,7 @@ const fileName = 'cat.jpg';
 
 const uuids = [
   '1234abcd5454efef8842ll3faq',
-  '1234abcd5454efef8842ll3faq',
-  '1234abcd5454efef8842ll3fa',
+  '1234abcd5454efef8842ll3fa', // invalid uuid
 ];
 
 function main() {
