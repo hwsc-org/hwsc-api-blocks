@@ -128,7 +128,7 @@ function getAuthSecret(request, svcInfo) {
   });
 }
 
-function getAuthToken(request, svcInfo) {
+function getNewAuthToken(request, svcInfo) {
   const userRequest = setRequestObject(request);
 
   return new Promise((resolve) => {
@@ -173,7 +173,7 @@ module.exports = {
   authenticateUser,
   makeNewAuthSecret,
   getAuthSecret,
-  getAuthToken,
+  getNewAuthToken,
   verifyAuthToken,
   verifyEmailToken,
 };

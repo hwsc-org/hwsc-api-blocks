@@ -192,7 +192,7 @@ async function getTokenForNewUser(userRequest, svcInfo) {
   const newUserRequest = {
     user: new objects.User(uuid, null, null, email, userRequest.user.password),
   };
-  const tokenData = await index.hwscUserSvc.getAuthToken(newUserRequest, svcInfo);
+  const tokenData = await index.hwscUserSvc.getNewAuthToken(newUserRequest, svcInfo);
 
   return Promise.resolve({
     err: tokenData.err,
@@ -301,7 +301,7 @@ function main() {
             if (data.err != null) {
               return Promise.resolve(data);
             }
-
+            console.log('data', data);
             const { uuid, email } = data.res.user;
             const { password } = userRequest.user;
             const newUserRequest = { user: new objects.User(uuid, null, null, email, password) };
@@ -330,22 +330,24 @@ function main() {
               return Promise.resolve(data);
             }
 
-            return Promise.resolve(await index.hwscUserSvc.getAuthToken(data.createdUser, svcInfo));
+            // TODO valida
+            // eslint-disable-next-line max-len
+            return Promise.resolve(await index.hwscUserSvc.getNewAuthToken(data.createdUser, svcInfo));
           };
           promises.push(validGetTokenProcessForSameUser());
           break;
         }
-        case 16: {
-          const validVerifyAuthToken = async () => {
-            const tokenData = await getTokenForNewUser(userRequest, svcInfo);
-            const { token } = tokenData.res.identification;
-            const identity = { identification: { token } };
-
-            return Promise.resolve(await index.hwscUserSvc.verifyAuthToken(identity, svcInfo));
-          };
-          promises.push(validVerifyAuthToken());
-          break;
-        }
+        // case 16: {
+        //   const validVerifyAuthToken = async () => {
+        //     const tokenData = await getTokenForNewUser(userRequest, svcInfo);
+        //     const { token } = tokenData.res.identification;
+        //     const identity = { identification: { token } };
+        //
+        //     return Promise.resolve(await index.hwscUserSvc.verifyAuthToken(identity, svcInfo));
+        //   };
+        //   promises.push(validVerifyAuthToken());
+        //   break;
+        // }
         case 17: {
           const validVerifyEmailToken = async () => {
             let data = await index.hwscUserSvc.createUser(userRequest, svcInfo);
