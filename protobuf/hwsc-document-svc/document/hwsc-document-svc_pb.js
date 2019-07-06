@@ -71,13 +71,15 @@ proto.document.DocumentRequest.repeatedFields_ = [3,4,5,6];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.document.DocumentRequest.prototype.toObject = function(opt_includeInstance) {
@@ -87,8 +89,8 @@ proto.document.DocumentRequest.prototype.toObject = function(opt_includeInstance
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.document.DocumentRequest} msg The msg instance to transform.
  * @return {!Object}
@@ -98,10 +100,10 @@ proto.document.DocumentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     identification: (f = msg.getIdentification()) && protobuf_lib_authority_pb.Identification.toObject(includeInstance, f),
     data: (f = msg.getData()) && protobuf_lib_document_pb.Document.toObject(includeInstance, f),
-    imageUrlsList: jspb.Message.getRepeatedField(msg, 3),
-    audioUrlsList: jspb.Message.getRepeatedField(msg, 4),
-    videoUrlsList: jspb.Message.getRepeatedField(msg, 5),
-    fileUrlsList: jspb.Message.getRepeatedField(msg, 6),
+    imageUrlsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    audioUrlsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+    videoUrlsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+    fileUrlsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
     filemetadataParameters: (f = msg.getFilemetadataParameters()) && protobuf_lib_document_pb.FileMetadataTransaction.toObject(includeInstance, f),
     queryParameters: (f = msg.getQueryParameters()) && protobuf_lib_document_pb.QueryTransaction.toObject(includeInstance, f)
   };
@@ -565,13 +567,15 @@ proto.document.DocumentResponse.prototype.getStatusCase = function() {
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.document.DocumentResponse.prototype.toObject = function(opt_includeInstance) {
@@ -581,8 +585,8 @@ proto.document.DocumentResponse.prototype.toObject = function(opt_includeInstanc
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.document.DocumentResponse} msg The msg instance to transform.
  * @return {!Object}

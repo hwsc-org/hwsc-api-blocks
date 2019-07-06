@@ -82,13 +82,15 @@ if (goog.DEBUG && !COMPILED) {
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.lib.UserDocumentMetadata.prototype.toObject = function(opt_includeInstance) {
@@ -98,8 +100,8 @@ proto.lib.UserDocumentMetadata.prototype.toObject = function(opt_includeInstance
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.lib.UserDocumentMetadata} msg The msg instance to transform.
  * @return {!Object}
@@ -107,7 +109,7 @@ proto.lib.UserDocumentMetadata.prototype.toObject = function(opt_includeInstance
  */
 proto.lib.UserDocumentMetadata.toObject = function(includeInstance, msg) {
   var f, obj = {
-    isPublic: jspb.Message.getFieldWithDefault(msg, 1, false),
+    isPublic: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
     sharedWithMap: (f = msg.getSharedWithMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
@@ -200,12 +202,10 @@ proto.lib.UserDocumentMetadata.serializeBinaryToWriter = function(message, write
 
 /**
  * optional bool is_public = 1;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
 proto.lib.UserDocumentMetadata.prototype.getIsPublic = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
 };
 
 
@@ -241,13 +241,15 @@ proto.lib.UserDocumentMetadata.prototype.clearSharedWithMap = function() {
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.lib.UserFriendMetadata.prototype.toObject = function(opt_includeInstance) {
@@ -257,8 +259,8 @@ proto.lib.UserFriendMetadata.prototype.toObject = function(opt_includeInstance) 
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.lib.UserFriendMetadata} msg The msg instance to transform.
  * @return {!Object}
@@ -371,13 +373,15 @@ proto.lib.UserFriendMetadata.prototype.clearSharedDuidToMeMap = function() {
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.lib.User.prototype.toObject = function(opt_includeInstance) {
@@ -387,8 +391,8 @@ proto.lib.User.prototype.toObject = function(opt_includeInstance) {
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.lib.User} msg The msg instance to transform.
  * @return {!Object}
@@ -405,7 +409,7 @@ proto.lib.User.toObject = function(includeInstance, msg) {
     userDocumentsMap: (f = msg.getUserDocumentsMap()) ? f.toObject(includeInstance, proto.lib.UserDocumentMetadata.toObject) : [],
     sharedToMeMap: (f = msg.getSharedToMeMap()) ? f.toObject(includeInstance, proto.lib.UserFriendMetadata.toObject) : [],
     createdTimestamp: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    isVerified: jspb.Message.getFieldWithDefault(msg, 10, false),
+    isVerified: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
     permissionLevel: jspb.Message.getFieldWithDefault(msg, 11, ""),
     prospectiveEmail: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
@@ -755,12 +759,10 @@ proto.lib.User.prototype.setCreatedTimestamp = function(value) {
 
 /**
  * optional bool is_verified = 10;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
 proto.lib.User.prototype.getIsVerified = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 10, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
 };
 
 

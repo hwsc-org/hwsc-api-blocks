@@ -127,13 +127,15 @@ if (goog.DEBUG && !COMPILED) {
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.lib.Publisher.prototype.toObject = function(opt_includeInstance) {
@@ -143,8 +145,8 @@ proto.lib.Publisher.prototype.toObject = function(opt_includeInstance) {
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.lib.Publisher} msg The msg instance to transform.
  * @return {!Object}
@@ -279,13 +281,15 @@ proto.lib.Publisher.prototype.setFirstName = function(value) {
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.lib.StudySite.prototype.toObject = function(opt_includeInstance) {
@@ -295,8 +299,8 @@ proto.lib.StudySite.prototype.toObject = function(opt_includeInstance) {
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.lib.StudySite} msg The msg instance to transform.
  * @return {!Object}
@@ -485,13 +489,15 @@ proto.lib.StudySite.prototype.setCountry = function(value) {
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.lib.FileMetadataTransaction.prototype.toObject = function(opt_includeInstance) {
@@ -501,8 +507,8 @@ proto.lib.FileMetadataTransaction.prototype.toObject = function(opt_includeInsta
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.lib.FileMetadataTransaction} msg The msg instance to transform.
  * @return {!Object}
@@ -725,13 +731,15 @@ proto.lib.QueryTransaction.repeatedFields_ = [1,2,3,4,5,6];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.lib.QueryTransaction.prototype.toObject = function(opt_includeInstance) {
@@ -741,8 +749,8 @@ proto.lib.QueryTransaction.prototype.toObject = function(opt_includeInstance) {
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.lib.QueryTransaction} msg The msg instance to transform.
  * @return {!Object}
@@ -754,10 +762,10 @@ proto.lib.QueryTransaction.toObject = function(includeInstance, msg) {
     proto.lib.Publisher.toObject, includeInstance),
     studySitesList: jspb.Message.toObjectList(msg.getStudySitesList(),
     proto.lib.StudySite.toObject, includeInstance),
-    callTypeNamesList: jspb.Message.getRepeatedField(msg, 3),
-    groundTypesList: jspb.Message.getRepeatedField(msg, 4),
-    sensorTypesList: jspb.Message.getRepeatedField(msg, 5),
-    sensorNamesList: jspb.Message.getRepeatedField(msg, 6),
+    callTypeNamesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    groundTypesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
+    sensorTypesList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefined : f,
+    sensorNamesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
     minRecordTimestamp: jspb.Message.getFieldWithDefault(msg, 7, 0),
     maxRecordTimestamp: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
@@ -1151,13 +1159,15 @@ proto.lib.QueryTransaction.prototype.setMaxRecordTimestamp = function(value) {
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.lib.Document.prototype.toObject = function(opt_includeInstance) {
@@ -1167,8 +1177,8 @@ proto.lib.Document.prototype.toObject = function(opt_includeInstance) {
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.lib.Document} msg The msg instance to transform.
  * @return {!Object}
@@ -1187,8 +1197,8 @@ proto.lib.Document.toObject = function(includeInstance, msg) {
     sensorType: jspb.Message.getFieldWithDefault(msg, 9, ""),
     sensorName: jspb.Message.getFieldWithDefault(msg, 10, ""),
     samplingRate: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    latitude: +jspb.Message.getFieldWithDefault(msg, 12, 0.0),
-    longitude: +jspb.Message.getFieldWithDefault(msg, 13, 0.0),
+    latitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
+    longitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 13, 0.0),
     imageUrlsMapMap: (f = msg.getImageUrlsMapMap()) ? f.toObject(includeInstance, undefined) : [],
     audioUrlsMapMap: (f = msg.getAudioUrlsMapMap()) ? f.toObject(includeInstance, undefined) : [],
     videoUrlsMapMap: (f = msg.getVideoUrlsMapMap()) ? f.toObject(includeInstance, undefined) : [],
@@ -1196,7 +1206,7 @@ proto.lib.Document.toObject = function(includeInstance, msg) {
     recordTimestamp: jspb.Message.getFieldWithDefault(msg, 18, 0),
     createTimestamp: jspb.Message.getFieldWithDefault(msg, 19, 0),
     updateTimestamp: jspb.Message.getFieldWithDefault(msg, 20, 0),
-    isPublic: jspb.Message.getFieldWithDefault(msg, 21, false)
+    isPublic: jspb.Message.getBooleanFieldWithDefault(msg, 21, false)
   };
 
   if (includeInstance) {
@@ -1702,7 +1712,7 @@ proto.lib.Document.prototype.setSamplingRate = function(value) {
  * @return {number}
  */
 proto.lib.Document.prototype.getLatitude = function() {
-  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 12, 0.0));
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 12, 0.0));
 };
 
 
@@ -1717,7 +1727,7 @@ proto.lib.Document.prototype.setLatitude = function(value) {
  * @return {number}
  */
 proto.lib.Document.prototype.getLongitude = function() {
-  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 13, 0.0));
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 13, 0.0));
 };
 
 
@@ -1858,12 +1868,10 @@ proto.lib.Document.prototype.setUpdateTimestamp = function(value) {
 
 /**
  * optional bool is_public = 21;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
  * @return {boolean}
  */
 proto.lib.Document.prototype.getIsPublic = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 21, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 21, false));
 };
 
 
