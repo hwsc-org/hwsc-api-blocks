@@ -42,7 +42,6 @@ export namespace UserRequest {
 export class UserResponse extends jspb.Message {
   getCode(): number;
   setCode(value: number): void;
-  hasCode(): boolean;
 
   getMessage(): string;
   setMessage(value: string): void;

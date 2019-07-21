@@ -43,7 +43,6 @@ export namespace FileTransactionRequest {
 export class FileTransactionResponse extends jspb.Message {
   getCode(): number;
   setCode(value: number): void;
-  hasCode(): boolean;
 
   getMessage(): string;
   setMessage(value: string): void;
@@ -79,25 +78,20 @@ export class Chunk extends jspb.Message {
   setIdentification(value?: protobuf_lib_authority_pb.Identification): void;
   hasIdentification(): boolean;
   clearIdentification(): void;
-  hasIdentification(): boolean;
 
   getBuffer(): Uint8Array | string;
   getBuffer_asU8(): Uint8Array;
   getBuffer_asB64(): string;
   setBuffer(value: Uint8Array | string): void;
-  hasBuffer(): boolean;
 
   getLength(): number;
   setLength(value: number): void;
-  hasLength(): boolean;
 
   getFileName(): string;
   setFileName(value: string): void;
-  hasFileName(): boolean;
 
   getUuid(): string;
   setUuid(value: string): void;
-  hasUuid(): boolean;
 
   getIsOneOfCase(): Chunk.IsOneOfCase;
 
