@@ -1,3 +1,4 @@
+// source: document.proto
 /**
  * @fileoverview
  * @enhanceable

@@ -1,3 +1,4 @@
+// source: authority.proto
 /**
  * @fileoverview
  * @enhanceable
