@@ -7,8 +7,8 @@
 2. Read gRPC with [guideline](https://grpc.io/blog/coreos)
 3. Once the endpoint is implemented, add a folder in the [hwsc-api-blocks](https://github.com/hwsc-org/hwsc-api-blocks) "protobuf" folder
 4. Make and define proto file in the folder "protobuf/hwsc-file-svc" with a function that uses the service, [example](https://github.com/hwsc-org/hwsc-api-blocks/blob/master/protobuf/hwsc-grpc-sample-svc/proto/grpc-sample-svc.proto)
-5. Ensure [protoc 3.9.0](https://github.com/protocolbuffers/protobuf/releases) is installed
-6. Ensure [protoc-gen-grpc-web-1.0.5](https://github.com/grpc/grpc-web#code-generator-plugin) is installed
+5. Ensure [protoc 3.9.1](https://github.com/protocolbuffers/protobuf/releases) is installed
+6. Ensure [protoc-gen-grpc-web-1.0.6](https://github.com/grpc/grpc-web#code-generator-plugin) is installed
 7. Get the latest `go get -u google.golang.org/grpc` and `go get -u github.com/golang/protobuf/protoc-gen-go` as necessary if you get issue related to `proto.ProtoPackageIsVersion`
 8. `npm install` as needed
 9. Ensure Python 3 [gRPC tools](https://grpc.io/docs/quickstart/python.html) are installed `$ python3.7 -m pip install grpcio` or `$ pip3.7 install --upgrade grpcio`

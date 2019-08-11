@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PROTOC_VERSION=$(protoc --version | sed 's/[^0-9.]//g')
-CURRENT_VERSION="3.9.0"
+CURRENT_VERSION="3.9.1"
 
 if [ "$PROTOC_VERSION" != "$CURRENT_VERSION" ]; then
   echo "Please upgrade your protoc version to ${CURRENT_VERSION}"

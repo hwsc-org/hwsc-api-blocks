@@ -8,7 +8,7 @@
   "author": "HWSC",
   "license": "ISC",
   "dependencies": {
-    "grpc-web": "^1.0.5",
-    "google-protobuf": "^3.9.0"
+    "grpc-web": "^1.0.6",
+    "google-protobuf": "^3.9.1"
   }
 }
